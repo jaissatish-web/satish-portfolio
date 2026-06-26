@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Satish Kumar Jaiswal — Lead Instrumentation & Control Engineer | Portfolio</title>
+<meta name="description" content="Lead Instrumentation & Control Engineer with 15+ years in oil & gas commissioning. NEOM Green Hydrogen, ADNOC, Bechtel projects. 67K+ loop checks, Zero LTI.">
+<meta name="keywords" content="Instrumentation Engineer, Commissioning, DCS, SIS, NEOM, Green Hydrogen, Loop Testing, Saudi Arabia">
+<meta property="og:title" content="Satish Kumar Jaiswal — Lead Instrumentation & Control Engineer">
+<meta property="og:description" content="Engineering Precision at Unprecedented Scale. 15+ years, 67K+ loop checks, Zero LTI.">
+<meta property="og:image" content="assets/images/photo.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#10B981">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],space:['Space Grotesk','sans-serif']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hidden;cursor:none}
+::selection{background:rgba(16,185,129,.3);color:#fff}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
+
+/* Custom Cursor */
+.cursor-dot{position:fixed;width:8px;height:8px;background:#10B981;border-radius:50%;pointer-events:none;z-index:99999;transition:transform .1s}
+.cursor-ring{position:fixed;width:40px;height:40px;border:1.5px solid rgba(16,185,129,.4);border-radius:50%;pointer-events:none;z-index:99998;transition:all .15s ease-out}
+.cursor-ring.hover{transform:scale(1.8);border-color:rgba(16,185,129,.8);background:rgba(16,185,129,.05)}
+
+/* Loader */
+#loader{position:fixed;inset:0;background:#050507;z-index:100000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .6s,visibility .6s}
+#loader.hidden{opacity:0;visibility:hidden}
+.loader-ring{width:60px;height:60px;border:2px solid rgba(16,185,129,.1);border-top-color:#10B981;border-radius:50%;animation:spin 1s linear infinite}
+.loader-text{margin-top:20px;font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.3em;color:rgba(16,185,129,.6);text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Progress Bar */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#10B981,#34D399,#6EE7B7);z-index:9999;transition:width .1s}
+
+/* Gradient Text */
+.grad-text{background:linear-gradient(135deg,#fff 0%,#fff 40%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-text-emerald{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Glass */
+.glass{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
+.glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
+.glass-hover:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse-glow{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
+@keyframes rotate-slow{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes borderGlow{0%,100%{border-color:rgba(16,185,129,.2)}50%{border-color:rgba(16,185,129,.5)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes orbit{from{transform:rotate(0deg) translateX(120px) rotate(0deg)}to{transform:rotate(360deg) translateX(120px) rotate(-360deg)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+
+.anim-fade-up{animation:fadeUp .8s cubic-bezier(.4,0,.2,1) forwards}
+.anim-fade-in{animation:fadeIn .6s ease forwards}
+.anim-slide-in{animation:slideIn .6s ease forwards}
+.anim-float{animation:float 6s ease-in-out infinite}
+.anim-pulse{animation:pulse-glow 4s ease-in-out infinite}
+.anim-rotate{animation:rotate-slow 25s linear infinite}
+.anim-orbit{animation:orbit 15s linear infinite}
+.anim-scale-in{animation:scaleIn .5s cubic-bezier(.4,0,.2,1) forwards}
+
+.shimmer{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.04) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 3s infinite}
+
+/* Reveal on Scroll */
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+
+/* Photo - FIXED: object-position to show full face in circle */
+.photo-frame{position:relative;border-radius:50%;padding:3px;background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7,#10B981);background-size:300% 300%;animation:shimmer 4s ease infinite}
+.photo-frame::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(16,185,129,.15);animation:pulse-glow 3s ease-in-out infinite}
+.photo-frame img{border-radius:50%;display:block;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+
+/* Skill Bar */
+.skill-track{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#10B981,#34D399);transform:scaleX(0);transform-origin:left;transition:transform 1.5s cubic-bezier(.4,0,.2,1)}
+.reveal.active .skill-fill{transform:scaleX(1)}
+
+/* Timeline */
+.tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid #10B981;background:#050507;position:relative;z-index:2;transition:all .3s}
+.tl-dot.active{background:#10B981;box-shadow:0 0 20px rgba(16,185,129,.4)}
+
+/* Tool Tab */
+.tool-tab{position:relative;overflow:hidden}
+.tool-tab::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:#10B981;transition:all .3s;transform:translateX(-50%)}
+.tool-tab.active::after{width:100%}
+.tool-tab.active{color:#10B981;background:rgba(16,185,129,.08)}
+
+/* Inputs */
+.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
+.inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 4px rgba(16,185,129,.08);background:rgba(255,255,255,.06)}
+.inp::placeholder{color:rgba(255,255,255,.2)}
+select.inp option{background:#0a0a0f;color:#fff}
+
+/* Result */
+.result-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:20px}
+
+/* Magnetic Button */
+.mag-btn{position:relative;overflow:hidden;transition:all .3s}
+.mag-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(16,185,129,0));opacity:0;transition:opacity .3s}
+.mag-btn:hover::before{opacity:1}
+
+/* Marquee */
+.marquee-track{display:flex;gap:3rem;animation:marquee 30s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Checklist */
+.chk-item{transition:all .3s}
+.chk-item.done{opacity:.4}
+.chk-item.done .chk-text{text-decoration:line-through}
+.chk-item.done .chk-box{background:rgba(16,185,129,.2);border-color:#10B981}
+
+/* Toast */
+.toast{position:fixed;bottom:30px;right:30px;padding:14px 28px;border-radius:14px;font-size:13px;font-weight:500;z-index:99999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);background:rgba(16,185,129,.95);color:#fff;backdrop-filter:blur(10px)}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* Particles */
+#particles-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* Responsive */
+@media(max-width:768px){
+  body{cursor:auto}
+  .cursor-dot,.cursor-ring{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <div class="loader-text">Initializing</div>
+</div>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- Particle Canvas -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- Navigation -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:rgba(5,5,7,.85);backdrop-filter:blur(16px);border-bottom:1px solid transparent">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-3 group">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all">
+        <span class="text-emerald-400 font-bold text-sm font-space">SJ</span>
+      </div>
+      <div class="hidden sm:block">
+        <div class="text-white font-medium text-sm tracking-tight">Satish Jaiswal</div>
+        <div class="text-[10px] text-slate-500 tracking-wide">INSTRUMENTATION ENGINEER</div>
+      </div>
+    </a>
+    <div class="hidden lg:flex items-center gap-1">
+      <a href="#hero" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Home</a>
+      <a href="#about" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">About</a>
+      <a href="#experience" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Experience</a>
+      <a href="#skills" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Skills</a>
+      <a href="#achievements" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Achievements</a>
+      <a href="#tools" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Tools</a>
+      <a href="#contact" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-white/10 text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-white/15 transition-all duration-200 tracking-wide uppercase border border-white/10">
+        <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+        Resume
+      </a>
+      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-emerald-500 text-black text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-emerald-400 transition-all duration-200 tracking-wide uppercase">
+        Hire Me
+      </a>
+      <button id="mobile-btn" class="lg:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-all">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="lg:hidden hidden px-6 pb-4 border-t border-white/5 mt-1 pt-3">
+    <div class="flex flex-col gap-1">
+      <a href="#hero" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Home</a>
+      <a href="#about" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">About</a>
+      <a href="#experience" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Experience</a>
+      <a href="#skills" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Skills</a>
+      <a href="#achievements" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Achievements</a>
+      <a href="#tools" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Tools</a>
+      <a href="#contact" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+  <!-- Decorative Elements -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] md:w-[1000px] md:h-[1000px] anim-rotate opacity-[0.04] pointer-events-none">
+    <div class="w-full h-full rounded-full border border-white" style="border-style:dashed"></div>
+  </div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] anim-rotate opacity-[0.03] pointer-events-none" style="animation-direction:reverse;animation-duration:18s">
+    <div class="w-full h-full rounded-full border border-emerald-400" style="border-style:dotted"></div>
+  </div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
+    <div class="anim-orbit"><div class="w-2 h-2 rounded-full bg-emerald-400/30"></div></div>
+  </div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
+    <div class="anim-orbit" style="animation-duration:20s;animation-direction:reverse"><div class="w-1.5 h-1.5 rounded-full bg-emerald-300/20" style="transform:translateX(180px)"></div></div>
+  </div>
+  <!-- Glow Orbs -->
+  <div class="absolute w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[120px] -top-32 -right-32 pointer-events-none"></div>
+  <div class="absolute w-[400px] h-[400px] rounded-full bg-emerald-600/4 blur-[100px] bottom-20 -left-32 pointer-events-none anim-pulse"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto text-center">
+    <!-- Photo - FIXED: using local image with proper object-position -->
+    <div class="mb-8 flex justify-center" style="animation:fadeUp .8s ease forwards;animation-delay:.1s;opacity:0">
+      <div class="photo-frame w-28 h-28 md:w-36 md:h-36">
+        <img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" loading="eager">
+      </div>
+    </div>
+
+    <!-- Status Badge -->
+    <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass mb-8" style="animation:fadeUp .8s ease forwards;animation-delay:.2s;opacity:0">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+      </span>
+      <span class="text-[11px] font-semibold tracking-[.2em] uppercase text-emerald-400">Immediately Available · GCC Ready</span>
+    </div>
+
+    <!-- Name -->
+    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-4 font-space" style="animation:fadeUp .8s ease forwards;animation-delay:.3s;opacity:0">
+      <span class="grad-text">Satish Kumar</span><br>
+      <span class="grad-text-emerald">Jaiswal</span>
+    </h1>
+
+    <!-- Title -->
+    <div style="animation:fadeUp .8s ease forwards;animation-delay:.4s;opacity:0">
+      <p class="text-lg md:text-xl lg:text-2xl font-light text-slate-300 mb-3">
+        Lead Instrumentation & Control Engineer
+      </p>
+      <p class="text-sm md:text-base text-slate-500 mb-6 max-w-2xl mx-auto">
+        Commissioning & Pre-Commissioning Specialist · 15+ Years · Oil & Gas · Petrochemical · Green Hydrogen · DCS/SIS/SCADA Validation
+      </p>
+    </div>
+
+    <!-- Company Tags Marquee -->
+    <div style="animation:fadeUp .8s ease forwards;animation-delay:.5s;opacity:0">
+      <div class="overflow-hidden py-4 mb-8 relative">
+        <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#050507] to-transparent z-10"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#050507] to-transparent z-10"></div>
+        <div class="marquee-track">
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500/8 text-emerald-400 border border-emerald-500/15 whitespace-nowrap">Saudi Aramco</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-blue-500/8 text-blue-400 border border-blue-500/15 whitespace-nowrap">ADNOC</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-purple-500/8 text-purple-400 border border-purple-500/15 whitespace-nowrap">Bechtel</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 whitespace-nowrap">Air Products</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 whitespace-nowrap">NEOM</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap">Hyundai Engineering</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-white/50 border border-white/10 whitespace-nowrap">Zero LTI · 15+ Years</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500/8 text-emerald-400 border border-emerald-500/15 whitespace-nowrap">Saudi Aramco</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-blue-500/8 text-blue-400 border border-blue-500/15 whitespace-nowrap">ADNOC</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-purple-500/8 text-purple-400 border border-purple-500/15 whitespace-nowrap">Bechtel</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 whitespace-nowrap">Air Products</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 whitespace-nowrap">NEOM</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap">Hyundai Engineering</span>
+          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-white/50 border border-white/10 whitespace-nowrap">Zero LTI · 15+ Years</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" style="animation:fadeUp .8s ease forwards;animation-delay:.6s;opacity:0">
+      <a href="#experience" class="mag-btn inline-flex items-center gap-2.5 bg-white text-black text-sm font-semibold px-8 py-4 rounded-full hover:bg-slate-100 transition-all duration-200 group tracking-wide">
+        View Experience
+        <i data-lucide="arrow-down-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform"></i>
+      </a>
+      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="mag-btn inline-flex items-center gap-2.5 text-sm font-medium px-8 py-4 rounded-full border border-white/12 hover:bg-white/5 hover:border-white/20 transition-all duration-200 text-white group">
+        <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i>
+        Download Resume
+        <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 anim-float" style="animation-delay:1s">
+    <div class="w-5 h-8 rounded-full border border-white/15 flex items-start justify-center pt-1.5">
+      <div class="w-0.5 h-2 rounded-full bg-emerald-400/60" style="animation:blink 2s ease infinite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STATS ==================== -->
+<section class="relative py-6 border-y border-white/5 bg-black/30">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="text-center py-4 reveal">
+        <div class="text-2xl md:text-4xl font-bold font-space grad-text-emerald counter" data-target="67000">0</div>
+        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Loop Checks</div>
+      </div>
+      <div class="text-center py-4 reveal reveal-delay-1">
+        <div class="text-2xl md:text-4xl font-bold font-space text-white counter" data-target="15">0</div>
+        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Years Experience</div>
+      </div>
+      <div class="text-center py-4 reveal reveal-delay-2">
+        <div class="text-2xl md:text-4xl font-bold font-space grad-text-emerald counter" data-target="8">0</div>
+        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Mega Projects</div>
+      </div>
+      <div class="text-center py-4 reveal reveal-delay-3">
+        <div class="text-2xl md:text-4xl font-bold font-space text-white counter" data-target="4">0</div>
+        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Countries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section id="about" class="relative py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
+      <!-- Left: Photo + Info -->
+      <div class="md:col-span-2 reveal">
+        <div class="relative">
+          <!-- Photo Card - FIXED: removed mix-blend-luminosity for better visibility -->
+          <div class="glass rounded-3xl overflow-hidden">
+            <div class="relative aspect-[3/4]">
+              <img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" class="w-full h-full object-cover object-top opacity-90 hover:opacity-100 transition-all duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <div class="text-[10px] font-semibold tracking-[.25em] uppercase text-emerald-400 mb-2">Currently at</div>
+                <div class="text-xl font-semibold font-space text-white">NEOM Green Hydrogen</div>
+                <div class="text-sm text-slate-400 mt-0.5">USD 8.4B · World's Largest Green H₂</div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating Stats -->
+          <div class="absolute -top-4 -right-4 glass rounded-2xl p-4 anim-float z-10" style="animation-delay:.5s">
+            <div class="text-2xl font-bold font-space grad-text-emerald">99.2%</div>
+            <div class="text-[9px] text-slate-400 uppercase tracking-[.15em] font-medium mt-0.5">First-Pass Accuracy</div>
+          </div>
+          <div class="absolute -bottom-4 -left-4 glass rounded-2xl p-4 anim-float z-10" style="animation-delay:1.5s">
+            <div class="text-2xl font-bold font-space text-white">0</div>
+            <div class="text-[9px] text-emerald-400 uppercase tracking-[.15em] font-medium mt-0.5">Lost Time Incidents</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="md:col-span-3 reveal reveal-delay-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
+          <i data-lucide="user" class="w-3 h-3 text-emerald-400"></i>
+          <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">About Me</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight grad-text font-space leading-[1.1] mb-8">
+          Engineering Precision<br>at Unprecedented Scale
+        </h2>
+        <div class="space-y-5 text-slate-400 text-[15px] leading-[1.8]">
+          <p>With over <span class="text-white font-semibold">15 years</span> of specialized experience in instrumentation commissioning and pre-commissioning, I've delivered critical systems across the world's most demanding industrial environments — from the <span class="text-emerald-400 font-medium">USD 8.4B NEOM Green Hydrogen Complex</span> to Asia's largest single-train refinery.</p>
+          <p>My expertise spans the full commissioning lifecycle — from DCS/SIS validation and loop testing through to mechanical completion and system handover. I've completed <span class="text-white font-semibold">67,000+ loop checks</span> across 8+ mega-projects in 4 countries, maintaining an exceptional safety record with <span class="text-emerald-400 font-medium">Zero Lost Time Incidents</span>.</p>
+          <p>Currently leading pre-commissioning at the world's largest green hydrogen facility under CCC / Air Products, supervising 12+ engineers and 90+ technicians delivering 50,000+ loop checks ahead of schedule.</p>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="grid grid-cols-2 gap-3 mt-8">
+          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Location</span></div>
+            <div class="text-sm text-white font-medium">Duba, Saudi Arabia</div>
+          </div>
+          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Visa</span></div>
+            <div class="text-sm text-white font-medium">Transferable Iqama</div>
+          </div>
+          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Availability</span></div>
+            <div class="text-sm text-white font-medium">Immediate · No Notice</div>
+          </div>
+          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Eligible</span></div>
+            <div class="text-sm text-white font-medium">All GCC Countries</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== EXPERIENCE ==================== -->
+<section id="experience" class="relative py-24 md:py-32 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-20 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
+        <i data-lucide="briefcase" class="w-3 h-3 text-emerald-400"></i>
+        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Career Journey</span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Professional Experience</h2>
+      <p class="text-slate-500 mt-4 max-w-xl mx-auto">15+ years delivering instrumentation excellence across the world's most complex industrial projects</p>
+    </div>
+
+    <div class="relative">
+      <div class="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/40 via-emerald-500/15 to-transparent"></div>
+      <div class="md:hidden absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/40 via-emerald-500/15 to-transparent"></div>
+
+      <div class="space-y-6">
+        <!-- Experience 1 -->
+        <div class="relative pl-16 md:pl-20 reveal">
+          <div class="absolute left-5 md:left-5 top-8 tl-dot active"></div>
+          <div class="glass glass-hover rounded-2xl p-6 md:p-8 group">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">Current</span>
+              <span class="text-xs text-slate-500 font-medium">Jul 2024 – Present</span>
+            </div>
+            <h3 class="text-lg font-semibold text-white font-space mb-1 group-hover:text-emerald-400 transition-colors">Instrument Pre-Commissioning Engineer</h3>
+            <p class="text-emerald-400 text-sm font-medium mb-1">CCC — Air Products · NEOM Green Hydrogen Complex</p>
+            <p class="text-[11px] text-slate-500 mb-5">USD 8.4B · World's Largest Green H₂ Facility · Duba, Saudi Arabia</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>50,000+ loop checks ahead of schedule, 99.2% accuracy</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>DCS/SIS validation — Siemens S7, ESD, F&G, SCADA</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Fail-safe logic verification & C&E matrix sign-off</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Supervised 12+ engineers, 90+ technicians</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 2 -->
+        <div class="relative pl-16 md:pl-20 reveal">
+          <div class="absolute left-5 md:left-5 top-8 tl-dot"></div>
+          <div class="glass glass-hover rounded-2xl p-6 md:p-8 group">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-blue-500/15 text-blue-400 border border-blue-500/20">Promoted</span>
+              <span class="text-xs text-slate-500 font-medium">Dec 2022 – Feb 2024</span>
+            </div>
+            <h3 class="text-lg font-semibold text-white font-space mb-1 group-hover:text-blue-400 transition-colors">Assistant Superintendent — Utility Maintenance</h3>
+            <p class="text-blue-400 text-sm font-medium mb-1">PEC Ltd · NSRP Refinery</p>
+            <p class="text-[11px] text-slate-500 mb-5">200,000 BPD · Asia's Largest Single-Train Refinery · Vietnam</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>Led full utility commissioning — GTGs, STGs, boilers</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>Honeywell Experion PKS — 8,000+ utility points</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>Supervised 30+ engineers, zero incidents</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>F&G integrity, SIS, PLC interlock validation</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 3 -->
+        <div class="relative pl-16 md:pl-20 reveal">
+          <div class="absolute left-5 md:left-5 top-8 tl-dot"></div>
+          <div class="glass glass-hover rounded-2xl p-6 md:p-8 group">
+            <div class="flex flex-wrap items-center gap-2 mb-3"><span class="text-xs text-slate-500 font-medium">Dec 2020 – Nov 2022</span></div>
+            <h3 class="text-lg font-semibold text-white font-space mb-1 group-hover:text-purple-400 transition-colors">Senior Instrument Engineer</h3>
+            <p class="text-purple-400 text-sm font-medium mb-1">PEC Ltd · NSRP Refinery · Vietnam</p>
+            <div class="grid sm:grid-cols-2 gap-3 mt-4">
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>12,000+ loop tests — DCS, SIS, SCADA</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>RCA reduced downtime by ~25%</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>3,000+ instruments optimised</span></div>
+              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>Authored standardised maintenance procedures</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 4-8 compact -->
+        <div class="relative pl-16 md:pl-20 reveal">
+          <div class="absolute left-5 md:left-5 top-8 tl-dot"></div>
+          <div class="space-y-3">
+            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-semibold text-white group-hover:text-amber-400 transition-colors">Instrumentation & Control Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-medium">2018 – 2020</span>
+              </div>
+              <p class="text-xs text-amber-400">PEC Ltd · NSRP Refinery · Vietnam</p>
+              <p class="text-xs text-slate-500 mt-1">5,000+ loop checks, HART/Fieldbus validation</p>
+            </div>
+            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-semibold text-white group-hover:text-rose-400 transition-colors">I&C Pre-Commissioning Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-medium">2018</span>
+              </div>
+              <p class="text-xs text-rose-400">Bechtel · Al Taweelah Alumina · UAE</p>
+              <p class="text-xs text-slate-500 mt-1">Honeywell Experion PKS, SILbus, C&E matrices</p>
+            </div>
+            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">I&C Commissioning & Maintenance Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-medium">2016 – 2018</span>
+              </div>
+              <p class="text-xs text-cyan-400">JGCS (JV) · NSRP Refinery · Vietnam</p>
+              <p class="text-xs text-slate-500 mt-1">Plant startup — SCADA, Allen Bradley PLC, SIS</p>
+            </div>
+            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">Instrument Commissioning Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-medium">2014 – 2016</span>
+              </div>
+              <p class="text-xs text-emerald-400">Hyundai Engineering · ADNOC/TAKREER · UAE</p>
+              <p class="text-xs text-slate-500 mt-1">Foxboro DCS, Triconex ESD, BMS — ADNOC standards</p>
+            </div>
+            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-semibold text-white group-hover:text-slate-300 transition-colors">Instrument & Control Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-medium">2011 – 2014</span>
+              </div>
+              <p class="text-xs text-slate-400">Sulzer Ltd & UB Engineering · India</p>
+              <p class="text-xs text-slate-500 mt-1">DCS/SCADA checkout, calibration, field commissioning</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SKILLS ==================== -->
+<section id="skills" class="relative py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
+        <i data-lucide="cpu" class="w-3 h-3 text-emerald-400"></i>
+        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Technical Arsenal</span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Core Competencies</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- DCS -->
+      <div class="glass glass-hover rounded-2xl p-7 reveal">
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5">
+          <i data-lucide="cpu" class="w-5 h-5 text-emerald-400"></i>
+        </div>
+        <h3 class="text-base font-semibold text-white font-space mb-4">Control Systems (DCS)</h3>
+        <div class="space-y-3">
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Siemens S7</span><span class="text-emerald-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Honeywell TPS / Experion PKS</span><span class="text-emerald-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Foxboro / Yokogawa CENTUM VP</span><span class="text-emerald-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
+        </div>
+      </div>
+      <!-- SIS -->
+      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-1">
+        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5">
+          <i data-lucide="shield-alert" class="w-5 h-5 text-red-400"></i>
+        </div>
+        <h3 class="text-base font-semibold text-white font-space mb-4">Safety Systems (ESD/SIS)</h3>
+        <div class="space-y-3">
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Triconex TS3000</span><span class="text-red-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Honeywell Safety Builder / FSC</span><span class="text-red-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">FGS / BMS / HIPS</span><span class="text-red-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
+        </div>
+      </div>
+      <!-- PLC/SCADA -->
+      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-2">
+        <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-5">
+          <i data-lucide="network" class="w-5 h-5 text-blue-400"></i>
+        </div>
+        <h3 class="text-base font-semibold text-white font-space mb-4">Automation & ICSS</h3>
+        <div class="space-y-3">
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Allen Bradley PLC</span><span class="text-blue-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:88%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Siemens PLC</span><span class="text-blue-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">SCADA / HMI / ICSS</span><span class="text-blue-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
+        </div>
+      </div>
+      <!-- Commissioning -->
+      <div class="glass glass-hover rounded-2xl p-7 reveal">
+        <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-5">
+          <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
+        </div>
+        <h3 class="text-base font-semibold text-white font-space mb-4">Commissioning Lifecycle</h3>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Pre-Commissioning</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Dry/Wet Testing</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Loop Testing</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">FAT/SAT</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Functional Testing</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">ITR/ICAPS</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">PSSR</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Handover</span>
+        </div>
+      </div>
+      <!-- Field Instruments -->
+      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-1">
+        <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-5">
+          <i data-lucide="gauge" class="w-5 h-5 text-purple-400"></i>
+        </div>
+        <h3 class="text-base font-semibold text-white font-space mb-4">Field Instruments</h3>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">HART</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Fieldbus</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Control Valves</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Solenoid Valves</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Positioners</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Analysers</span>
+          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Vibration</span>
+        </div>
+      </div>
+      <!-- Functional Safety -->
+      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-2">
+        <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-5">
+          <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400"></i>
+        </div>
+        <h3 class="text-base font-semibold text-white font-space mb-4">Functional Safety</h3>
+        <div class="space-y-2.5">
+          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>HAZOP Participation</div>
+          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>SIL/LOPA Assessment</div>
+          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>IEC 61511 / IEC 61508</div>
+          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>Fail-Safe Logic Verification</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standards & Software -->
+    <div class="grid md:grid-cols-2 gap-5 mt-6">
+      <div class="glass rounded-2xl p-7 reveal">
+        <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2 font-space"><i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i>Standards & Codes</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500/8 text-emerald-400 border border-emerald-500/15">Saudi Aramco SAES/SAEP</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-500/8 text-blue-400 border border-blue-500/15">ADNOC</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-amber-500/8 text-amber-400 border border-amber-500/15">Bechtel</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-purple-500/8 text-purple-400 border border-purple-500/15">Shell DEP</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">API</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">IEC</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">ISA</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">NEMA</span>
+        </div>
+      </div>
+      <div class="glass rounded-2xl p-7 reveal reveal-delay-1">
+        <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2 font-space"><i data-lucide="monitor" class="w-4 h-4 text-emerald-400"></i>Software & Tools</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">SPI/INtools</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">ICAPS</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">Emerson AMS</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">SAP PM</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">CMMS</span>
+          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">MS Office</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ACHIEVEMENTS ==================== -->
+<section id="achievements" class="relative py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
+        <i data-lucide="trophy" class="w-3 h-3 text-emerald-400"></i>
+        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Milestones</span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Key Achievements</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="glass glass-hover rounded-2xl p-7 group reveal text-center">
+        <div class="text-4xl md:text-5xl font-bold font-space grad-text-emerald mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">50K+</div>
+        <div class="text-sm font-semibold text-white mb-2">Loop Checks at NEOM NGHC</div>
+        <p class="text-xs text-slate-500 leading-relaxed">Ahead of schedule with 99.2% first-pass accuracy at the USD 8.4B green hydrogen facility</p>
+      </div>
+      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-1 text-center">
+        <div class="text-4xl md:text-5xl font-bold font-space text-white mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">67K+</div>
+        <div class="text-sm font-semibold text-white mb-2">Total Loop Checks</div>
+        <p class="text-xs text-slate-500 leading-relaxed">Across 8+ mega-projects in 4 countries — oil & gas, petrochemical, alumina, green hydrogen</p>
+      </div>
+      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-2 text-center">
+        <div class="text-4xl md:text-5xl font-bold font-space grad-text-emerald mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">Zero</div>
+        <div class="text-sm font-semibold text-white mb-2">Lost Time Incidents</div>
+        <p class="text-xs text-slate-500 leading-relaxed">Across 15+ years supervising teams of 30+ engineers — safety-first leadership</p>
+      </div>
+      <div class="glass glass-hover rounded-2xl p-7 group reveal text-center">
+        <div class="text-4xl md:text-5xl font-bold font-space text-white mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">25%</div>
+        <div class="text-sm font-semibold text-white mb-2">Downtime Reduction</div>
+        <p class="text-xs text-slate-500 leading-relaxed">Through Root Cause Analysis implementation at NSRP Refinery</p>
+      </div>
+      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-1 text-center">
+        <div class="text-4xl md:text-5xl font-bold font-space grad-text-emerald mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">100%</div>
+        <div class="text-sm font-semibold text-white mb-2">System Handover On Time</div>
+        <p class="text-xs text-slate-500 leading-relaxed">All milestones achieved on schedule at NEOM Green Hydrogen Complex</p>
+      </div>
+      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-2 text-center">
+        <div class="text-4xl md:text-5xl font-bold font-space text-white mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">5+</div>
+        <div class="text-sm font-semibold text-white mb-2">Client Standards Mastered</div>
+        <p class="text-xs text-slate-500 leading-relaxed">Saudi Aramco, ADNOC, Bechtel, Shell DEP, QatarEnergy</p>
+      </div>
+    </div>
+
+    <!-- Education & Certs -->
+    <div class="grid md:grid-cols-2 gap-5 mt-8">
+      <div class="glass rounded-2xl p-7 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-400"></i></div>
+          <h3 class="text-base font-semibold text-white font-space">Education</h3>
+        </div>
+        <div class="text-sm font-semibold text-white">B.Tech — Electronics & Communication Engineering</div>
+        <div class="text-xs text-slate-400 mt-1">Uttar Pradesh Technical University (UPTU), India · 2012</div>
+      </div>
+      <div class="glass rounded-2xl p-7 reveal reveal-delay-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="award" class="w-5 h-5 text-amber-400"></i></div>
+          <h3 class="text-base font-semibold text-white font-space">Certifications</h3>
+        </div>
+        <div class="space-y-2.5">
+          <div class="flex items-center gap-2.5 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>Industrial Automation & Instrumentation Engineering — 2012</div>
+          <div class="flex items-center gap-2.5 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>Functional Safety SIS Awareness — TÜV/Industry Standard</div>
+          <div class="flex items-center gap-2.5 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>HAZOP Study Participation — Certified 2019</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== INSTRUMENTATION TOOLS ==================== -->
+<section id="tools" class="relative py-24 md:py-32 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
+        <i data-lucide="wrench" class="w-3 h-3 text-emerald-400"></i>
+        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Free Online Tools</span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Instrumentation Toolkit</h2>
+      <p class="text-slate-500 mt-4 max-w-xl mx-auto text-sm">Essential calculators and converters for instrumentation engineers — use on the job, in the field, or during commissioning</p>
+    </div>
+
+    <!-- Tool Tabs -->
+    <div class="flex flex-wrap justify-center gap-1.5 mb-8 reveal" id="tool-tabs">
+      <button class="tool-tab active px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 transition-all duration-300" data-tab="ma">4-20mA Signal</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="pv">PV Calculator</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="dp">DP Flow</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="rtd">RTD (Pt100)</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="tc">Thermocouple</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="cv">Valve Cv</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="ohm">Ohm's Law</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="unit">Unit Convert</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="cable">Cable Sizing</button>
+      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="checklist">Loop Checklist</button>
+    </div>
+
+    <!-- Tool Content Area -->
+    <div id="tool-content" class="reveal"></div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section id="contact" class="relative py-24 md:py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start">
+      <!-- Left -->
+      <div class="md:col-span-2 reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
+          <i data-lucide="mail" class="w-3 h-3 text-emerald-400"></i>
+          <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Get In Touch</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight grad-text font-space leading-[1.1] mb-6">Let's Build Something Great</h2>
+        <p class="text-slate-400 text-sm leading-relaxed mb-8">Available immediately for instrumentation & control engineering roles across the GCC. Transferable Iqama, no notice period.</p>
+
+        <div class="space-y-3">
+          <a href="tel:+966554803735" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i></div>
+            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Phone</div><div class="text-sm text-white font-medium group-hover:text-emerald-400 transition-colors">+966 554803735</div></div>
+          </a>
+          <a href="mailto:jaissatish@gmail.com" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-4 h-4 text-blue-400"></i></div>
+            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Email</div><div class="text-sm text-white font-medium group-hover:text-blue-400 transition-colors">jaissatish@gmail.com</div></div>
+          </a>
+          <a href="https://linkedin.com/in/jaissatish" target="_blank" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group cursor-pointer">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0"><i data-lucide="external-link" class="w-4 h-4 text-purple-400"></i></div>
+            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">LinkedIn</div><div class="text-sm text-white font-medium group-hover:text-purple-400 transition-colors">linkedin.com/in/jaissatish</div></div>
+          </a>
+          <div class="flex items-center gap-4 glass rounded-xl p-4">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0"><i data-lucide="map-pin" class="w-4 h-4 text-amber-400"></i></div>
+            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Location</div><div class="text-sm text-white font-medium">Duba, Tabuk, Saudi Arabia</div></div>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="mt-6 glass rounded-xl p-5">
+          <div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium mb-3">Languages</div>
+          <div class="flex gap-2">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/70 border border-white/8">English (Fluent)</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/70 border border-white/8">Hindi (Native)</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500/8 text-emerald-400 border border-emerald-500/15">Arabic (Open)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="md:col-span-3 reveal reveal-delay-2">
+        <form id="contact-form" class="glass rounded-2xl p-8" onsubmit="handleSubmit(event)">
+          <h3 class="text-lg font-semibold text-white font-space mb-6">Send a Message</h3>
+          <div class="space-y-4">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Full Name</label><input type="text" class="inp" placeholder="Your name" required></div>
+              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Email</label><input type="email" class="inp" placeholder="your@email.com" required></div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Company</label><input type="text" class="inp" placeholder="Company name"></div>
+              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Project Type</label>
+                <select class="inp">
+                  <option value="">Select type...</option>
+                  <option>Oil & Gas</option>
+                  <option>Petrochemical</option>
+                  <option>Green Hydrogen</option>
+                  <option>Refinery</option>
+                  <option>Power Generation</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Message</label>
+              <textarea rows="4" class="inp" style="resize:none" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-emerald-500 text-black text-sm font-semibold py-4 rounded-xl hover:bg-emerald-400 transition-all duration-200 flex items-center justify-center gap-2 tracking-wide uppercase">
+              Send Message <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-white/5 py-10 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center"><span class="text-emerald-400 font-bold text-xs font-space">SJ</span></div>
+      <span class="text-xs text-slate-500">© 2025 Satish Kumar Jaiswal. All rights reserved.</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="tel:+966554803735" class="text-slate-600 hover:text-emerald-400 transition-colors" title="Phone"><i data-lucide="phone" class="w-4 h-4"></i></a>
+      <a href="mailto:jaissatish@gmail.com" class="text-slate-600 hover:text-emerald-400 transition-colors" title="Email"><i data-lucide="mail" class="w-4 h-4"></i></a>
+      <a href="https://linkedin.com/in/jaissatish" target="_blank" class="text-slate-600 hover:text-emerald-400 transition-colors" title="LinkedIn"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="text-slate-600 hover:text-emerald-400 transition-colors" title="Download Resume"><i data-lucide="file-text" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ====== INIT ======
+lucide.createIcons();
+
+// ====== LOADER ======
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hidden')},1200)});
+
+// ====== CUSTOM CURSOR ======
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,dx=0,dy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx-4+'px';dot.style.top=my-4+'px'});
+function animCursor(){dx+=(mx-dx)*.15;dy+=(my-dy)*.15;ring.style.left=dx-20+'px';ring.style.top=dy-20+'px';requestAnimationFrame(animCursor)}
+animCursor();
+document.querySelectorAll('a,button,input,select,textarea,.glass-hover').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+});
+
+// ====== PARTICLES ======
+const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
+let particles=[];
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+for(let i=0;i<60;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,a:Math.random()*.3+.05})}
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(16,185,129,${p.a})`;ctx.fill();
+  });
+  particles.forEach((a,i)=>{
+    for(let j=i+1;j<particles.length;j++){
+      const b=particles[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<150){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(16,185,129,${.06*(1-d/150)})`;ctx.lineWidth=.5;ctx.stroke()}
+    }
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ====== SCROLL PROGRESS ======
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('scroll-progress').style.width=(window.scrollY/h*100)+'%';
+  document.getElementById('navbar').style.borderBottomColor=window.scrollY>50?'rgba(255,255,255,.05)':'transparent';
+});
+
+// ====== SCROLL REVEAL ======
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');revealObs.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+// ====== COUNTERS ======
+const counterObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target,target=parseInt(el.dataset.target);
+      let start=0;const dur=2000,startTime=performance.now();
+      function anim(now){
+        const prog=Math.min((now-startTime)/dur,1),ease=1-Math.pow(1-prog,3);
+        el.textContent=Math.floor(ease*target).toLocaleString()+(target>100?'+':'+');
+        if(prog<1)requestAnimationFrame(anim);
+      }
+      requestAnimationFrame(anim);counterObs.unobserve(el);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
+
+// ====== MOBILE MENU ======
+document.getElementById('mobile-btn').addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('hidden'));
+document.querySelectorAll('.mob-nav').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobile-menu').classList.add('hidden')));
+
+// ====== SMOOTH SCROLL ======
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+
+// ====== TOAST ======
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+
+// ====== CONTACT FORM ======
+function handleSubmit(e){e.preventDefault();showToast('Thank you! Message received. Satish will respond soon.');e.target.reset()}
+
+// ====== INSTRUMENTATION TOOLS ======
+const toolTemplates={
+  ma:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="activity" class="w-5 h-5 text-emerald-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">4-20mA Signal Calculator</h3><p class="text-xs text-slate-500">Convert between percentage and mA signal values</p></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Percentage (%)</label><input type="number" class="inp" id="ma-pct" placeholder="0 - 100" min="0" max="100" oninput="calcMA()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current (mA)</label><input type="number" class="inp" id="ma-val" placeholder="4 - 20" min="4" max="20" step="0.01" oninput="calcMArev()"></div>
+      </div>
+      <div class="result-box">
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mA Signal</div><div id="ma-r1" class="text-xl font-bold font-space grad-text-emerald">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="ma-r2" class="text-xl font-bold font-space text-white">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Span</div><div id="ma-r3" class="text-xl font-bold font-space text-blue-400">—</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> mA = (% × 16 / 100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100 / 16</p></div>
+    </div>`,
+  pv:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><i data-lucide="gauge" class="w-5 h-5 text-blue-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">Process Variable (PV) Calculator</h3><p class="text-xs text-slate-500">Convert between mA signal and engineering units</p></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">LRV (Lower Range Value)</label><input type="number" class="inp" id="pv-lrv" placeholder="e.g., 0" step="any"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">URV (Upper Range Value)</label><input type="number" class="inp" id="pv-urv" placeholder="e.g., 100" step="any"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">mA Signal (4-20)</label><input type="number" class="inp" id="pv-ma" placeholder="4 - 20" step="0.01" oninput="calcPV()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Process Variable (EU)</label><input type="number" class="inp" id="pv-eu" placeholder="Engineering Units" step="any" oninput="calcPVrev()"></div>
+      </div>
+      <div class="result-box">
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">PV (EU)</div><div id="pv-r1" class="text-lg font-bold font-space grad-text-emerald">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mA</div><div id="pv-r2" class="text-lg font-bold font-space text-white">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="pv-r3" class="text-lg font-bold font-space text-blue-400">—</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>
+    </div>`,
+  dp:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><i data-lucide="waves" class="w-5 h-5 text-purple-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">DP Flow Calculator</h3><p class="text-xs text-slate-500">Calculate flow from differential pressure using √ extraction</p></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Design Flow Qmax</label><input type="number" class="inp" id="dp-qmax" placeholder="e.g., 1000" step="any"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Design DP DPmax (%)</label><input type="number" class="inp" id="dp-dpmax" placeholder="e.g., 100" step="any"></div>
+      </div>
+      <div class="mb-6"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Measured DP (% of DPmax)</label><input type="number" class="inp" id="dp-meas" placeholder="0 - 100" step="0.01" oninput="calcDP()"></div>
+      <div class="result-box">
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Actual Flow</div><div id="dp-r1" class="text-xl font-bold font-space text-purple-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Flow % of Qmax</div><div id="dp-r2" class="text-xl font-bold font-space text-white">—</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> Q = Qmax × √(DPmeasured / DPmax)</p></div>
+    </div>`,
+  rtd:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="thermometer" class="w-5 h-5 text-amber-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">Pt100 RTD Calculator</h3><p class="text-xs text-slate-500">Resistance ↔ Temperature (IEC 60751)</p></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Resistance (Ω)</label><input type="number" class="inp" id="rtd-r" placeholder="e.g., 100" step="0.01" oninput="calcRTD()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Temperature (°C)</label><input type="number" class="inp" id="rtd-t" placeholder="e.g., 0" step="0.01" oninput="calcRTDrev()"></div>
+      </div>
+      <div class="result-box">
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Temperature</div><div id="rtd-r1" class="text-xl font-bold font-space text-amber-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Resistance</div><div id="rtd-r2" class="text-xl font-bold font-space text-white">—</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Reference:</strong> R₀ = 100Ω at 0°C · α = 0.00385 Ω/Ω/°C · R = R₀(1 + αT)</p></div>
+    </div>`,
+  tc:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center"><i data-lucide="flame" class="w-5 h-5 text-orange-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">Thermocouple mV Calculator</h3><p class="text-xs text-slate-500">Approximate mV output for Type K thermocouple</p></div>
+      </div>
+      <div class="mb-6"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Temperature (°C)</label><input type="number" class="inp" id="tc-t" placeholder="e.g., 500" step="1" oninput="calcTC()"></div>
+      <div class="result-box">
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mV Output (approx)</div><div id="tc-r1" class="text-xl font-bold font-space text-orange-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Type</div><div id="tc-r2" class="text-xl font-bold font-space text-white">K</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Approx:</strong> mV ≈ 0.041 × T − 0.001 × T²/1000 (Type K, simplified linear approximation)</p></div>
+    </div>`,
+  cv:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="settings" class="w-5 h-5 text-cyan-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">Control Valve Cv Calculator</h3><p class="text-xs text-slate-500">Liquid service flow coefficient (ISA-75.01)</p></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Flow Rate Q (US GPM)</label><input type="number" class="inp" id="cv-q" placeholder="e.g., 100" step="any"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Pressure Drop ΔP (psi)</label><input type="number" class="inp" id="cv-dp" placeholder="e.g., 10" step="any"></div>
+      </div>
+      <div class="mb-6"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Specific Gravity (G)</label><input type="number" class="inp" id="cv-sg" value="1" step="0.01"></div>
+      <button onclick="calcCv()" class="w-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 rounded-xl py-3.5 text-sm font-semibold hover:bg-emerald-500/25 transition-all">Calculate Cv</button>
+      <div class="result-box mt-4 text-center"><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Flow Coefficient (Cv)</div><div id="cv-r1" class="text-2xl font-bold font-space text-cyan-400">—</div></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> Cv = Q × √(G / ΔP)</p></div>
+    </div>`,
+  ohm:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center"><i data-lucide="zap" class="w-5 h-5 text-yellow-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">Ohm's Law Calculator</h3><p class="text-xs text-slate-500">Calculate V, I, or R from any two known values</p></div>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Voltage V (Volts)</label><input type="number" class="inp" id="ohm-v" placeholder="Volts" step="any" oninput="calcOhm()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current I (Amps)</label><input type="number" class="inp" id="ohm-i" placeholder="Amps" step="any" oninput="calcOhm()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Resistance R (Ohms)</label><input type="number" class="inp" id="ohm-r" placeholder="Ohms" step="any" oninput="calcOhm()"></div>
+      </div>
+      <div class="result-box">
+        <div class="grid grid-cols-4 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Voltage</div><div id="ohm-r1" class="text-lg font-bold font-space text-yellow-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Current</div><div id="ohm-r2" class="text-lg font-bold font-space text-white">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Resistance</div><div id="ohm-r3" class="text-lg font-bold font-space text-emerald-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Power</div><div id="ohm-r4" class="text-lg font-bold font-space text-blue-400">—</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formulas:</strong> V = I×R · I = V/R · R = V/I · P = V×I</p></div>
+    </div>`,
+  unit:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center"><i data-lucide="repeat" class="w-5 h-5 text-rose-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">Unit Converter</h3><p class="text-xs text-slate-500">Common engineering unit conversions</p></div>
+      </div>
+      <div class="mb-4"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Category</label>
+        <select class="inp" id="uc-type" onchange="updateUC()">
+          <option value="pressure">Pressure</option><option value="temperature">Temperature</option><option value="flow">Flow Rate</option><option value="length">Length</option><option value="mass">Mass</option>
+        </select>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 mb-6 items-end">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">From</label><select class="inp" id="uc-from" onchange="doUC()"></select></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Value</label><input type="number" class="inp" id="uc-val" placeholder="Enter value" step="any" oninput="doUC()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">To</label><select class="inp" id="uc-to" onchange="doUC()"></select></div>
+      </div>
+      <div class="result-box text-center"><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Result</div><div id="uc-r1" class="text-2xl font-bold font-space text-rose-400">—</div></div>
+    </div>`,
+  cable:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center"><i data-lucide="cable" class="w-5 h-5 text-indigo-400"></i></div>
+        <div><h3 class="text-lg font-semibold text-white font-space">Instrument Cable Sizing</h3><p class="text-xs text-slate-500">Estimate voltage drop for instrument cable runs</p></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current (mA)</label><input type="number" class="inp" id="cab-i" placeholder="e.g., 20" step="any"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Cable Length (m) one-way</label><input type="number" class="inp" id="cab-l" placeholder="e.g., 500" step="any"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Cable Size (mm²)</label>
+          <select class="inp" id="cab-mm">
+            <option value="0.5">0.5 mm²</option><option value="0.75">0.75 mm²</option><option value="1.0" selected>1.0 mm²</option><option value="1.5">1.5 mm²</option><option value="2.5">2.5 mm²</option><option value="4.0">4.0 mm²</option>
+          </select>
+        </div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Supply Voltage (VDC)</label><input type="number" class="inp" id="cab-v" placeholder="e.g., 24" step="any"></div>
+      </div>
+      <button onclick="calcCable()" class="w-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 rounded-xl py-3.5 text-sm font-semibold hover:bg-emerald-500/25 transition-all">Calculate Voltage Drop</button>
+      <div class="result-box mt-4">
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Vdrop (V)</div><div id="cab-r1" class="text-lg font-bold font-space text-indigo-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">V at Load</div><div id="cab-r2" class="text-lg font-bold font-space text-emerald-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Drop %</div><div id="cab-r3" class="text-lg font-bold font-space text-white">—</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> Vdrop = 2 × L × (ρ / A) × I &nbsp;·&nbsp; ρ(copper) ≈ 0.0175 Ω·mm²/m</p></div>
+    </div>`,
+  checklist:()=>`
+    <div class="glass rounded-2xl p-8">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="check-square" class="w-5 h-5 text-emerald-400"></i></div>
+          <div><h3 class="text-lg font-semibold text-white font-space">Loop Check Checklist</h3><p class="text-xs text-slate-500">Interactive pre-commissioning checklist</p></div>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="resetCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-all">Reset</button>
+          <button onclick="exportCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/25 transition-all">Export</button>
+        </div>
+      </div>
+      <div class="mb-5">
+        <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Progress</span><span id="cl-prog" class="text-emerald-400 font-medium">0 / 20</span></div>
+        <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div id="cl-bar" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-500" style="width:0%"></div></div>
+      </div>
+      <div class="mb-5"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Loop Tag Number</label><input type="text" class="inp max-w-xs" id="cl-tag" placeholder="e.g., FT-1001-A"></div>
+      <div id="cl-container"></div>
+    </div>`
+};
+
+// Checklist data
+const clData=[
+  {cat:'Pre-Loop Check',items:['P&ID verified against installation','Instrument tag number verified on nameplate','Instrument mounted correctly per hook-up drawing','Impulse lines / tubing installed & connected','Cable tray / routing verified','Cable tagged at both ends','Power supply verified (24VDC / 120VAC)','Grounding / shielding verified']},
+  {cat:'Loop Testing',items:['Continuity test passed (field to DCS)','Insulation resistance test passed','I/O check — DCS reading matches field signal','4mA zero verification — reading 0%','20mA span verification — reading 100%','Mid-range (12mA) verification — reading 50%','Alarm setpoints verified (HH, H, L, LL)','Fail-safe action verified (FO / FC)']},
+  {cat:'Functional Testing',items:['Control valve stroke test (0-25-50-75-100%)','Interlock / trip logic verified per C&E matrix','ESD function test completed','Final walk-through & punch list clearance']}
+];
+
+function renderCL(){
+  const c=document.getElementById('cl-container');if(!c)return;
+  c.innerHTML='';let idx=0;
+  clData.forEach(cat=>{
+    c.innerHTML+=`<div class="text-[10px] font-semibold uppercase tracking-[.2em] text-emerald-400 mt-5 mb-2 px-3">${cat.cat}</div>`;
+    cat.items.forEach(item=>{
+      c.innerHTML+=`<div class="chk-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/3 cursor-pointer transition-all" data-idx="${idx}" onclick="toggleCL(this)"><div class="chk-box w-5 h-5 rounded border border-white/12 flex items-center justify-center shrink-0 transition-all"><i data-lucide="check" class="w-3 h-3 text-emerald-400 opacity-0 transition-opacity"></i></div><span class="text-sm text-slate-300 chk-text">${item}</span></div>`;
+      idx++;
+    });
+  });
+  lucide.createIcons();updateCL();
+}
+
+function toggleCL(el){
+  el.classList.toggle('done');
+  const icon=el.querySelector('i'),box=el.querySelector('.chk-box');
+  if(el.classList.contains('done')){icon.style.opacity='1';box.style.background='rgba(16,185,129,.15)';box.style.borderColor='#10B981'}
+  else{icon.style.opacity='0';box.style.background='transparent';box.style.borderColor='rgba(255,255,255,.12)'}
+  updateCL();
+}
+
+function updateCL(){
+  const total=document.querySelectorAll('.chk-item').length,done=document.querySelectorAll('.chk-item.done').length;
+  const progEl=document.getElementById('cl-prog'),barEl=document.getElementById('cl-bar');
+  if(progEl)progEl.textContent=`${done} / ${total}`;
+  if(barEl)barEl.style.width=(total?done/total*100:0)+'%';
+}
+
+function resetCL(){
+  document.querySelectorAll('.chk-item').forEach(el=>{
+    el.classList.remove('done');
+    el.querySelector('i').style.opacity='0';
+    const b=el.querySelector('.chk-box');b.style.background='transparent';b.style.borderColor='rgba(255,255,255,.12)';
+  });updateCL();showToast('Checklist reset!');
+}
+
+function exportCL(){
+  const tag=document.getElementById('cl-tag')?.value||'UNTITLED',date=new Date().toLocaleDateString();
+  let txt=`LOOP CHECK REPORT\n${'='.repeat(40)}\nTag: ${tag}\nDate: ${date}\nEngineer: ________________\n\n`;let idx=0;
+  clData.forEach(cat=>{txt+=`\n${cat.cat}\n${'-'.repeat(30)}\n`;cat.items.forEach(item=>{const el=document.querySelector(`.chk-item[data-idx="${idx}"]`);txt+=`${el&&el.classList.contains('done')?'[✓]':'[ ]'} ${item}\n`;idx++})});
+  const done=document.querySelectorAll('.chk-item.done').length,total=document.querySelectorAll('.chk-item').length;
+  txt+=`\n${'='.repeat(40)}\nProgress: ${done}/${total} (${(done/total*100).toFixed(0)}%)\n`;
+  const b=new Blob([txt],{type:'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');
+  a.href=u;a.download=`LoopCheck_${tag}_${date.replace(/\//g,'-')}.txt`;a.click();URL.revokeObjectURL(u);showToast('Checklist exported!');
+}
+
+// Tool Tab Switching
+document.querySelectorAll('.tool-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tool-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab=btn.dataset.tab,container=document.getElementById('tool-content');
+    container.innerHTML=toolTemplates[tab]();
+    lucide.createIcons();
+    if(tab==='checklist')renderCL();
+    if(tab==='unit')updateUC();
+  });
+});
+
+// Initialize first tool
+document.getElementById('tool-content').innerHTML=toolTemplates.ma();
+lucide.createIcons();
+
+// ====== TOOL CALC FUNCTIONS ======
+function calcMA(){
+  const p=parseFloat(document.getElementById('ma-pct').value);if(isNaN(p))return;
+  const ma=(p*16/100)+4;
+  document.getElementById('ma-val').value=ma.toFixed(3);
+  document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';
+  document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';
+  document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';
+}
+function calcMArev(){
+  const ma=parseFloat(document.getElementById('ma-val').value);if(isNaN(ma))return;
+  const p=((ma-4)*100)/16;
+  document.getElementById('ma-pct').value=p.toFixed(2);
+  document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';
+  document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';
+  document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';
+}
+function calcPV(){
+  const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),ma=parseFloat(document.getElementById('pv-ma').value);
+  if(isNaN(lrv)||isNaN(urv)||isNaN(ma))return;
+  const pv=lrv+((ma-4)*(urv-lrv))/16,pct=((ma-4)*100)/16;
+  document.getElementById('pv-eu').value=pv.toFixed(3);
+  document.getElementById('pv-r1').textContent=pv.toFixed(2)+' EU';
+  document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';
+  document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';
+}
+function calcPVrev(){
+  const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),eu=parseFloat(document.getElementById('pv-eu').value);
+  if(isNaN(lrv)||isNaN(urv)||isNaN(eu))return;
+  const ma=4+((eu-lrv)/(urv-lrv))*16,pct=((ma-4)*100)/16;
+  document.getElementById('pv-ma').value=ma.toFixed(3);
+  document.getElementById('pv-r1').textContent=eu.toFixed(2)+' EU';
+  document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';
+  document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';
+}
+function calcDP(){
+  const qm=parseFloat(document.getElementById('dp-qmax').value),dm=parseFloat(document.getElementById('dp-dpmax').value),meas=parseFloat(document.getElementById('dp-meas').value);
+  if(isNaN(qm)||isNaN(dm)||isNaN(meas))return;
+  const flow=qm*Math.sqrt(meas/dm),pct=(flow/qm)*100;
+  document.getElementById('dp-r1').textContent=flow.toFixed(2);
+  document.getElementById('dp-r2').textContent=pct.toFixed(1)+'%';
+}
+function calcRTD(){
+  const r=parseFloat(document.getElementById('rtd-r').value);if(isNaN(r))return;
+  const t=(r/100-1)/0.00385;
+  document.getElementById('rtd-t').value=t.toFixed(2);
+  document.getElementById('rtd-r1').textContent=t.toFixed(2)+' °C';
+  document.getElementById('rtd-r2').textContent=r.toFixed(2)+' Ω';
+}
+function calcRTDrev(){
+  const t=parseFloat(document.getElementById('rtd-t').value);if(isNaN(t))return;
+  const r=100*(1+0.00385*t);
+  document.getElementById('rtd-r').value=r.toFixed(2);
+  document.getElementById('rtd-r1').textContent=t.toFixed(2)+' °C';
+  document.getElementById('rtd-r2').textContent=r.toFixed(2)+' Ω';
+}
+function calcTC(){
+  const t=parseFloat(document.getElementById('tc-t').value);if(isNaN(t))return;
+  const mv=0.041*t-0.000001*t*t;
+  document.getElementById('tc-r1').textContent=mv.toFixed(3)+' mV';
+}
+function calcCv(){
+  const q=parseFloat(document.getElementById('cv-q').value),dp=parseFloat(document.getElementById('cv-dp').value),sg=parseFloat(document.getElementById('cv-sg').value)||1;
+  if(isNaN(q)||isNaN(dp)||dp===0)return;
+  document.getElementById('cv-r1').textContent=(q*Math.sqrt(sg/dp)).toFixed(2);
+}
+function calcOhm(){
+  const v=parseFloat(document.getElementById('ohm-v').value),i=parseFloat(document.getElementById('ohm-i').value),r=parseFloat(document.getElementById('ohm-r').value);
+  let rv=v,ri=i,rr=r,rp=NaN;
+  if(!isNaN(v)&&!isNaN(i)){rr=v/i;rp=v*i}
+  else if(!isNaN(v)&&!isNaN(r)){ri=v/r;rp=v*v/r}
+  else if(!isNaN(i)&&!isNaN(r)){rv=i*r;rp=i*i*r}
+  else return;
+  document.getElementById('ohm-r1').textContent=isNaN(rv)?'—':rv.toFixed(3)+' V';
+  document.getElementById('ohm-r2').textContent=isNaN(ri)?'—':ri.toFixed(4)+' A';
+  document.getElementById('ohm-r3').textContent=isNaN(rr)?'—':rr.toFixed(3)+' Ω';
+  document.getElementById('ohm-r4').textContent=isNaN(rp)?'—':rp.toFixed(3)+' W';
+}
+function calcCable(){
+  const i=parseFloat(document.getElementById('cab-i').value)/1000,l=parseFloat(document.getElementById('cab-l').value),a=parseFloat(document.getElementById('cab-mm').value),vs=parseFloat(document.getElementById('cab-v').value);
+  if(isNaN(i)||isNaN(l)||isNaN(a)||isNaN(vs))return;
+  const rho=0.0175,vdrop=2*l*(rho/a)*i,vload=vs-vdrop,pct=(vdrop/vs)*100;
+  document.getElementById('cab-r1').textContent=vdrop.toFixed(4)+' V';
+  document.getElementById('cab-r2').textContent=vload.toFixed(2)+' V';
+  document.getElementById('cab-r3').textContent=pct.toFixed(2)+'%';
+}
+
+// Unit Converter Data
+const ucData={
+  pressure:{units:['bar','psi','kPa','MPa','kg/cm²','mmH2O','inH2O','mmHg'],base:{'bar':1,'psi':.0689476,'kPa':.01,'MPa':10,'kg/cm²':.980665,'mmH2O':.0000980665,'inH2O':.00249089,'mmHg':.00133322}},
+  temperature:{units:['°C','°F','K'],special:true},
+  flow:{units:['m³/h','GPM','L/min','L/s','bbl/d'],base:{'m³/h':1,'GPM':.227124,'L/min':.06,'L/s':3.6,'bbl/d':.0066245}},
+  length:{units:['mm','inch','m','ft','cm','micron'],base:{'mm':1,'inch':25.4,'m':1000,'ft':304.8,'cm':10,'micron':.001}},
+  mass:{units:['kg','lb','g','ton','oz'],base:{'kg':1,'lb':.453592,'g':.001,'ton':1000,'oz':.0283495}}
+};
+function updateUC(){
+  const type=document.getElementById('uc-type').value,data=ucData[type],fs=document.getElementById('uc-from'),ts=document.getElementById('uc-to');
+  fs.innerHTML='';ts.innerHTML='';
+  data.units.forEach((u,i)=>{fs.innerHTML+=`<option value="${u}">${u}</option>`;ts.innerHTML+=`<option value="${u}" ${i===1?'selected':''}>${u}</option>`});
+  doUC();
+}
+function doUC(){
+  const type=document.getElementById('uc-type').value,from=document.getElementById('uc-from').value,to=document.getElementById('uc-to').value,val=parseFloat(document.getElementById('uc-val').value);
+  if(isNaN(val)){document.getElementById('uc-r1').textContent='—';return}
+  if(type==='temperature'){
+    let c=val;
+    if(from==='°F')c=(val-32)*5/9;else if(from==='K')c=val-273.15;
+    let r=c;if(to==='°F')r=c*9/5+32;else if(to==='K')r=c+273.15;
+    document.getElementById('uc-r1').textContent=r.toFixed(4)+' '+to;return;
+  }
+  const data=ucData[type],bv=val*data.base[from],r=bv/data.base[to];
+  document.getElementById('uc-r1').textContent=r.toFixed(6)+' '+to;
+}
+updateUC();
+</script>
+</body>
+</html>
