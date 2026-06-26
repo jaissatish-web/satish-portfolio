@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loop Check Checklist — Satish Jaiswal Portfolio</title>
+<meta name="description" content="Interactive pre-commissioning checklist — track loop test progress and export reports for ITR/ICAPS sign-off.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],space:['Space Grotesk','sans-serif']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hidden}
+::selection{background:rgba(16,185,129,.3);color:#fff}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
+.glass{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
+.glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
+.glass-hover:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
+.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
+.inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 4px rgba(16,185,129,.08);background:rgba(255,255,255,.06)}
+.inp::placeholder{color:rgba(255,255,255,.2)}
+select.inp option{background:#0a0a0f;color:#fff}
+.result-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:20px}
+.grad-text{background:linear-gradient(135deg,#fff 0%,#fff 40%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-text-emerald{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.chk-item{transition:all .3s}
+.chk-item.done{opacity:.4}
+.chk-item.done .chk-text{text-decoration:line-through}
+.chk-item.done .chk-box{background:rgba(16,185,129,.2);border-color:#10B981}
+.toast{position:fixed;bottom:30px;right:30px;padding:14px 28px;border-radius:14px;font-size:13px;font-weight:500;z-index:99999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);background:rgba(16,185,129,.95);color:#fff;backdrop-filter:blur(10px)}
+.toast.show{transform:translateY(0);opacity:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(5,5,7,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)">
+  <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2.5 group">
+      <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all">
+        <span class="text-emerald-400 font-bold text-[10px] font-space">SJ</span>
+      </div>
+      <span class="text-xs text-slate-400 group-hover:text-white transition-colors">&larr; Back to Portfolio</span>
+    </a>
+    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
+      <i data-lucide="file-text" class="w-3 h-3"></i> Resume
+    </a>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="min-h-screen flex items-center justify-center px-6 pt-14 pb-20">
+  <div class="w-full max-w-2xl mx-auto" style="animation:fadeUp .6s ease forwards">
+
+    <!-- Tool Header -->
+    <div class="text-center mb-10 mt-8">
+      <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-5">
+        <i data-lucide="check-square" class="w-7 h-7 text-emerald-400"></i>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-bold font-space grad-text">Loop Check Checklist</h1>
+      <p class="text-sm text-slate-500 mt-2">Interactive pre-commissioning checklist — track loop test progress and export reports for ITR/ICAPS sign-off.</p>
+    </div>
+
+    <!-- Tool Body -->
+    <div class="glass rounded-2xl p-6 md:p-8">
+      
+      <div class="flex items-center justify-between mb-6">
+        <div><h3 class="text-lg font-semibold text-white font-space">Pre-Commissioning Checklist</h3><p class="text-xs text-slate-500 mt-1">Track and export your loop check progress</p></div>
+        <div class="flex gap-2">
+          <button onclick="resetCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-all">Reset</button>
+          <button onclick="exportCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/25 transition-all">Export Report</button>
+        </div>
+      </div>
+      <div class="mb-5">
+        <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Progress</span><span id="cl-prog" class="text-emerald-400 font-medium">0 / 20</span></div>
+        <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div id="cl-bar" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-500" style="width:0%"></div></div>
+      </div>
+      <div class="mb-5"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Loop Tag Number</label><input type="text" class="inp max-w-xs" id="cl-tag" placeholder="e.g., FT-1001-A"></div>
+      <div id="cl-container"></div>
+    </div>
+
+    <!-- Back Link -->
+    <div class="text-center mt-8">
+      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-400 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back to all tools
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+const clData=[
+  {cat:'Pre-Loop Check',items:['P&ID verified against installation','Instrument tag number verified on nameplate','Instrument mounted correctly per hook-up drawing','Impulse lines / tubing installed & connected','Cable tray / routing verified','Cable tagged at both ends','Power supply verified (24VDC / 120VAC)','Grounding / shielding verified']},
+  {cat:'Loop Testing',items:['Continuity test passed (field to DCS)','Insulation resistance test passed','I/O check — DCS reading matches field signal','4mA zero verification — reading 0%','20mA span verification — reading 100%','Mid-range (12mA) verification — reading 50%','Alarm setpoints verified (HH, H, L, LL)','Fail-safe action verified (FO / FC)']},
+  {cat:'Functional Testing',items:['Control valve stroke test (0-25-50-75-100%)','Interlock / trip logic verified per C&E matrix','ESD function test completed','Final walk-through & punch list clearance']}
+];
+function renderCL(){
+  const c=document.getElementById('cl-container');if(!c)return;
+  c.innerHTML='';let idx=0;
+  clData.forEach(cat=>{
+    c.innerHTML+='<div class="text-[10px] font-semibold uppercase tracking-[.2em] text-emerald-400 mt-5 mb-2 px-3">'+cat.cat+'</div>';
+    cat.items.forEach(item=>{
+      c.innerHTML+='<div class="chk-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/3 cursor-pointer transition-all" data-idx="'+idx+'" onclick="toggleCL(this)"><div class="chk-box w-5 h-5 rounded border border-white/12 flex items-center justify-center shrink-0 transition-all"><i data-lucide="check" class="w-3 h-3 text-emerald-400 opacity-0 transition-opacity"></i></div><span class="text-sm text-slate-300 chk-text">'+item+'</span></div>';
+      idx++;
+    });
+  });
+  lucide.createIcons();updateCL();
+}
+function toggleCL(el){
+  el.classList.toggle('done');
+  const icon=el.querySelector('i'),box=el.querySelector('.chk-box');
+  if(el.classList.contains('done')){icon.style.opacity='1';box.style.background='rgba(16,185,129,.15)';box.style.borderColor='#10B981'}
+  else{icon.style.opacity='0';box.style.background='transparent';box.style.borderColor='rgba(255,255,255,.12)'}
+  updateCL();
+}
+function updateCL(){
+  const total=document.querySelectorAll('.chk-item').length,done=document.querySelectorAll('.chk-item.done').length;
+  const progEl=document.getElementById('cl-prog'),barEl=document.getElementById('cl-bar');
+  if(progEl)progEl.textContent=done+' / '+total;
+  if(barEl)barEl.style.width=(total?done/total*100:0)+'%';
+}
+function resetCL(){
+  document.querySelectorAll('.chk-item').forEach(el=>{
+    el.classList.remove('done');
+    el.querySelector('i').style.opacity='0';
+    const b=el.querySelector('.chk-box');b.style.background='transparent';b.style.borderColor='rgba(255,255,255,.12)';
+  });updateCL();showToast('Checklist reset!');
+}
+function exportCL(){
+  const tag=document.getElementById('cl-tag')?.value||'UNTITLED',date=new Date().toLocaleDateString();
+  let txt='LOOP CHECK REPORT\n'+'='.repeat(40)+'\nTag: '+tag+'\nDate: '+date+'\nEngineer: ________________\n\n';let idx=0;
+  clData.forEach(cat=>{txt+='\n'+cat.cat+'\n'+'-'.repeat(30)+'\n';cat.items.forEach(item=>{const el=document.querySelector('.chk-item[data-idx="'+idx+'"]');txt+=(el&&el.classList.contains('done')?'[\u2713]':'[ ]')+' '+item+'\n';idx++})});
+  const done=document.querySelectorAll('.chk-item.done').length,total=document.querySelectorAll('.chk-item').length;
+  txt+='\n'+'='.repeat(40)+'\nProgress: '+done+'/'+total+' ('+(done/total*100).toFixed(0)+'%)\n';
+  const b=new Blob([txt],{type:'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');
+  a.href=u;a.download='LoopCheck_'+tag+'_'+date.replace(/\//g,'-')+'.txt';a.click();URL.revokeObjectURL(u);showToast('Checklist exported!');
+}
+function showToast(m){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t)}
+  t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3000);
+}
+renderCL();
+</script>
+</body>
+</html>

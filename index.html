@@ -97,11 +97,6 @@ body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hid
 .tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid #10B981;background:#050507;position:relative;z-index:2;transition:all .3s}
 .tl-dot.active{background:#10B981;box-shadow:0 0 20px rgba(16,185,129,.4)}
 
-/* Tool Tab */
-.tool-tab{position:relative;overflow:hidden}
-.tool-tab::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:#10B981;transition:all .3s;transform:translateX(-50%)}
-.tool-tab.active::after{width:100%}
-.tool-tab.active{color:#10B981;background:rgba(16,185,129,.08)}
 
 /* Inputs */
 .inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
@@ -722,32 +717,137 @@ select.inp option{background:#0a0a0f;color:#fff}
 
 <!-- ==================== INSTRUMENTATION TOOLS ==================== -->
 <section id="tools" class="relative py-24 md:py-32 px-6">
-  <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-12 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14 reveal">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
         <i data-lucide="wrench" class="w-3 h-3 text-emerald-400"></i>
         <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Free Online Tools</span>
       </div>
       <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Instrumentation Toolkit</h2>
-      <p class="text-slate-500 mt-4 max-w-xl mx-auto text-sm">Essential calculators and converters for instrumentation engineers — use on the job, in the field, or during commissioning</p>
+      <p class="text-slate-500 mt-4 max-w-xl mx-auto text-sm">Essential calculators and converters for instrumentation engineers — each tool on its own dedicated page for focused work</p>
     </div>
 
-    <!-- Tool Tabs -->
-    <div class="flex flex-wrap justify-center gap-1.5 mb-8 reveal" id="tool-tabs">
-      <button class="tool-tab active px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 transition-all duration-300" data-tab="ma">4-20mA Signal</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="pv">PV Calculator</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="dp">DP Flow</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="rtd">RTD (Pt100)</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="tc">Thermocouple</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="cv">Valve Cv</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="ohm">Ohm's Law</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="unit">Unit Convert</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="cable">Cable Sizing</button>
-      <button class="tool-tab px-4 py-2.5 rounded-xl text-xs font-medium border border-white/8 text-slate-400 transition-all duration-300" data-tab="checklist">Loop Checklist</button>
-    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 reveal">
+      <a href="tools/ma-calculator.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="activity" class="w-6 h-6 text-emerald-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-emerald-400 transition-colors">4-20mA Signal</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Percentage ↔ mA conversion for loop testing</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-emerald-400/60 group-hover:text-emerald-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
 
-    <!-- Tool Content Area -->
-    <div id="tool-content" class="reveal"></div>
+      <a href="tools/pv-calculator.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="gauge" class="w-6 h-6 text-blue-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-blue-400 transition-colors">PV Calculator</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">mA signal ↔ engineering units conversion</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-blue-400/60 group-hover:text-blue-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/dp-flow.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="waves" class="w-6 h-6 text-purple-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-purple-400 transition-colors">DP Flow</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Flow from differential pressure (√ extraction)</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-purple-400/60 group-hover:text-purple-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/rtd-pt100.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="thermometer" class="w-6 h-6 text-amber-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-amber-400 transition-colors">RTD (Pt100)</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Resistance ↔ Temperature per IEC 60751</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-amber-400/60 group-hover:text-amber-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/thermocouple.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="flame" class="w-6 h-6 text-orange-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-orange-400 transition-colors">Thermocouple</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Type K mV output approximation</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-orange-400/60 group-hover:text-orange-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/valve-cv.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="settings" class="w-6 h-6 text-cyan-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-cyan-400 transition-colors">Valve Cv</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Flow coefficient per ISA-75.01</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-cyan-400/60 group-hover:text-cyan-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/ohms-law.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="zap" class="w-6 h-6 text-yellow-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-yellow-400 transition-colors">Ohm's Law</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">V, I, R, P from any two values</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-yellow-400/60 group-hover:text-yellow-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/unit-converter.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="repeat" class="w-6 h-6 text-rose-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-rose-400 transition-colors">Unit Converter</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Pressure, temp, flow, length, mass</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-rose-400/60 group-hover:text-rose-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/cable-sizing.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="cable" class="w-6 h-6 text-indigo-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-indigo-400 transition-colors">Cable Sizing</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Voltage drop for instrument cable runs</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-indigo-400/60 group-hover:text-indigo-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+
+      <a href="tools/loop-checklist.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+          <i data-lucide="check-square" class="w-6 h-6 text-emerald-400"></i>
+        </div>
+        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-emerald-400 transition-colors">Loop Checklist</h3>
+        <p class="text-[10px] text-slate-500 leading-relaxed">Interactive pre-comm checklist with export</p>
+        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-emerald-400/60 group-hover:text-emerald-400 transition-colors">
+          <span>Open Tool</span>
+          <i data-lucide="external-link" class="w-3 h-3"></i>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -931,389 +1031,7 @@ function showToast(m){const t=document.getElementById('toast');t.textContent=m;t
 // ====== CONTACT FORM ======
 function handleSubmit(e){e.preventDefault();showToast('Thank you! Message received. Satish will respond soon.');e.target.reset()}
 
-// ====== INSTRUMENTATION TOOLS ======
-const toolTemplates={
-  ma:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="activity" class="w-5 h-5 text-emerald-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">4-20mA Signal Calculator</h3><p class="text-xs text-slate-500">Convert between percentage and mA signal values</p></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Percentage (%)</label><input type="number" class="inp" id="ma-pct" placeholder="0 - 100" min="0" max="100" oninput="calcMA()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current (mA)</label><input type="number" class="inp" id="ma-val" placeholder="4 - 20" min="4" max="20" step="0.01" oninput="calcMArev()"></div>
-      </div>
-      <div class="result-box">
-        <div class="grid grid-cols-3 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mA Signal</div><div id="ma-r1" class="text-xl font-bold font-space grad-text-emerald">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="ma-r2" class="text-xl font-bold font-space text-white">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Span</div><div id="ma-r3" class="text-xl font-bold font-space text-blue-400">—</div></div>
-        </div>
-      </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> mA = (% × 16 / 100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100 / 16</p></div>
-    </div>`,
-  pv:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><i data-lucide="gauge" class="w-5 h-5 text-blue-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">Process Variable (PV) Calculator</h3><p class="text-xs text-slate-500">Convert between mA signal and engineering units</p></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">LRV (Lower Range Value)</label><input type="number" class="inp" id="pv-lrv" placeholder="e.g., 0" step="any"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">URV (Upper Range Value)</label><input type="number" class="inp" id="pv-urv" placeholder="e.g., 100" step="any"></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">mA Signal (4-20)</label><input type="number" class="inp" id="pv-ma" placeholder="4 - 20" step="0.01" oninput="calcPV()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Process Variable (EU)</label><input type="number" class="inp" id="pv-eu" placeholder="Engineering Units" step="any" oninput="calcPVrev()"></div>
-      </div>
-      <div class="result-box">
-        <div class="grid grid-cols-3 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">PV (EU)</div><div id="pv-r1" class="text-lg font-bold font-space grad-text-emerald">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mA</div><div id="pv-r2" class="text-lg font-bold font-space text-white">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="pv-r3" class="text-lg font-bold font-space text-blue-400">—</div></div>
-        </div>
-      </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>
-    </div>`,
-  dp:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><i data-lucide="waves" class="w-5 h-5 text-purple-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">DP Flow Calculator</h3><p class="text-xs text-slate-500">Calculate flow from differential pressure using √ extraction</p></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Design Flow Qmax</label><input type="number" class="inp" id="dp-qmax" placeholder="e.g., 1000" step="any"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Design DP DPmax (%)</label><input type="number" class="inp" id="dp-dpmax" placeholder="e.g., 100" step="any"></div>
-      </div>
-      <div class="mb-6"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Measured DP (% of DPmax)</label><input type="number" class="inp" id="dp-meas" placeholder="0 - 100" step="0.01" oninput="calcDP()"></div>
-      <div class="result-box">
-        <div class="grid grid-cols-2 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Actual Flow</div><div id="dp-r1" class="text-xl font-bold font-space text-purple-400">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Flow % of Qmax</div><div id="dp-r2" class="text-xl font-bold font-space text-white">—</div></div>
-        </div>
-      </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> Q = Qmax × √(DPmeasured / DPmax)</p></div>
-    </div>`,
-  rtd:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="thermometer" class="w-5 h-5 text-amber-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">Pt100 RTD Calculator</h3><p class="text-xs text-slate-500">Resistance ↔ Temperature (IEC 60751)</p></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Resistance (Ω)</label><input type="number" class="inp" id="rtd-r" placeholder="e.g., 100" step="0.01" oninput="calcRTD()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Temperature (°C)</label><input type="number" class="inp" id="rtd-t" placeholder="e.g., 0" step="0.01" oninput="calcRTDrev()"></div>
-      </div>
-      <div class="result-box">
-        <div class="grid grid-cols-2 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Temperature</div><div id="rtd-r1" class="text-xl font-bold font-space text-amber-400">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Resistance</div><div id="rtd-r2" class="text-xl font-bold font-space text-white">—</div></div>
-        </div>
-      </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Reference:</strong> R₀ = 100Ω at 0°C · α = 0.00385 Ω/Ω/°C · R = R₀(1 + αT)</p></div>
-    </div>`,
-  tc:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center"><i data-lucide="flame" class="w-5 h-5 text-orange-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">Thermocouple mV Calculator</h3><p class="text-xs text-slate-500">Approximate mV output for Type K thermocouple</p></div>
-      </div>
-      <div class="mb-6"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Temperature (°C)</label><input type="number" class="inp" id="tc-t" placeholder="e.g., 500" step="1" oninput="calcTC()"></div>
-      <div class="result-box">
-        <div class="grid grid-cols-2 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mV Output (approx)</div><div id="tc-r1" class="text-xl font-bold font-space text-orange-400">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Type</div><div id="tc-r2" class="text-xl font-bold font-space text-white">K</div></div>
-        </div>
-      </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Approx:</strong> mV ≈ 0.041 × T − 0.001 × T²/1000 (Type K, simplified linear approximation)</p></div>
-    </div>`,
-  cv:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="settings" class="w-5 h-5 text-cyan-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">Control Valve Cv Calculator</h3><p class="text-xs text-slate-500">Liquid service flow coefficient (ISA-75.01)</p></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Flow Rate Q (US GPM)</label><input type="number" class="inp" id="cv-q" placeholder="e.g., 100" step="any"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Pressure Drop ΔP (psi)</label><input type="number" class="inp" id="cv-dp" placeholder="e.g., 10" step="any"></div>
-      </div>
-      <div class="mb-6"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Specific Gravity (G)</label><input type="number" class="inp" id="cv-sg" value="1" step="0.01"></div>
-      <button onclick="calcCv()" class="w-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 rounded-xl py-3.5 text-sm font-semibold hover:bg-emerald-500/25 transition-all">Calculate Cv</button>
-      <div class="result-box mt-4 text-center"><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Flow Coefficient (Cv)</div><div id="cv-r1" class="text-2xl font-bold font-space text-cyan-400">—</div></div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> Cv = Q × √(G / ΔP)</p></div>
-    </div>`,
-  ohm:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center"><i data-lucide="zap" class="w-5 h-5 text-yellow-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">Ohm's Law Calculator</h3><p class="text-xs text-slate-500">Calculate V, I, or R from any two known values</p></div>
-      </div>
-      <div class="grid md:grid-cols-3 gap-4 mb-6">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Voltage V (Volts)</label><input type="number" class="inp" id="ohm-v" placeholder="Volts" step="any" oninput="calcOhm()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current I (Amps)</label><input type="number" class="inp" id="ohm-i" placeholder="Amps" step="any" oninput="calcOhm()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Resistance R (Ohms)</label><input type="number" class="inp" id="ohm-r" placeholder="Ohms" step="any" oninput="calcOhm()"></div>
-      </div>
-      <div class="result-box">
-        <div class="grid grid-cols-4 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Voltage</div><div id="ohm-r1" class="text-lg font-bold font-space text-yellow-400">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Current</div><div id="ohm-r2" class="text-lg font-bold font-space text-white">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Resistance</div><div id="ohm-r3" class="text-lg font-bold font-space text-emerald-400">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Power</div><div id="ohm-r4" class="text-lg font-bold font-space text-blue-400">—</div></div>
-        </div>
-      </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formulas:</strong> V = I×R · I = V/R · R = V/I · P = V×I</p></div>
-    </div>`,
-  unit:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center"><i data-lucide="repeat" class="w-5 h-5 text-rose-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">Unit Converter</h3><p class="text-xs text-slate-500">Common engineering unit conversions</p></div>
-      </div>
-      <div class="mb-4"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Category</label>
-        <select class="inp" id="uc-type" onchange="updateUC()">
-          <option value="pressure">Pressure</option><option value="temperature">Temperature</option><option value="flow">Flow Rate</option><option value="length">Length</option><option value="mass">Mass</option>
-        </select>
-      </div>
-      <div class="grid md:grid-cols-3 gap-4 mb-6 items-end">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">From</label><select class="inp" id="uc-from" onchange="doUC()"></select></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Value</label><input type="number" class="inp" id="uc-val" placeholder="Enter value" step="any" oninput="doUC()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">To</label><select class="inp" id="uc-to" onchange="doUC()"></select></div>
-      </div>
-      <div class="result-box text-center"><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Result</div><div id="uc-r1" class="text-2xl font-bold font-space text-rose-400">—</div></div>
-    </div>`,
-  cable:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center"><i data-lucide="cable" class="w-5 h-5 text-indigo-400"></i></div>
-        <div><h3 class="text-lg font-semibold text-white font-space">Instrument Cable Sizing</h3><p class="text-xs text-slate-500">Estimate voltage drop for instrument cable runs</p></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current (mA)</label><input type="number" class="inp" id="cab-i" placeholder="e.g., 20" step="any"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Cable Length (m) one-way</label><input type="number" class="inp" id="cab-l" placeholder="e.g., 500" step="any"></div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Cable Size (mm²)</label>
-          <select class="inp" id="cab-mm">
-            <option value="0.5">0.5 mm²</option><option value="0.75">0.75 mm²</option><option value="1.0" selected>1.0 mm²</option><option value="1.5">1.5 mm²</option><option value="2.5">2.5 mm²</option><option value="4.0">4.0 mm²</option>
-          </select>
-        </div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Supply Voltage (VDC)</label><input type="number" class="inp" id="cab-v" placeholder="e.g., 24" step="any"></div>
-      </div>
-      <button onclick="calcCable()" class="w-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 rounded-xl py-3.5 text-sm font-semibold hover:bg-emerald-500/25 transition-all">Calculate Voltage Drop</button>
-      <div class="result-box mt-4">
-        <div class="grid grid-cols-3 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Vdrop (V)</div><div id="cab-r1" class="text-lg font-bold font-space text-indigo-400">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">V at Load</div><div id="cab-r2" class="text-lg font-bold font-space text-emerald-400">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Drop %</div><div id="cab-r3" class="text-lg font-bold font-space text-white">—</div></div>
-        </div>
-      </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> Vdrop = 2 × L × (ρ / A) × I &nbsp;·&nbsp; ρ(copper) ≈ 0.0175 Ω·mm²/m</p></div>
-    </div>`,
-  checklist:()=>`
-    <div class="glass rounded-2xl p-8">
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="check-square" class="w-5 h-5 text-emerald-400"></i></div>
-          <div><h3 class="text-lg font-semibold text-white font-space">Loop Check Checklist</h3><p class="text-xs text-slate-500">Interactive pre-commissioning checklist</p></div>
-        </div>
-        <div class="flex gap-2">
-          <button onclick="resetCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-all">Reset</button>
-          <button onclick="exportCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/25 transition-all">Export</button>
-        </div>
-      </div>
-      <div class="mb-5">
-        <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Progress</span><span id="cl-prog" class="text-emerald-400 font-medium">0 / 20</span></div>
-        <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div id="cl-bar" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-500" style="width:0%"></div></div>
-      </div>
-      <div class="mb-5"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Loop Tag Number</label><input type="text" class="inp max-w-xs" id="cl-tag" placeholder="e.g., FT-1001-A"></div>
-      <div id="cl-container"></div>
-    </div>`
-};
 
-// Checklist data
-const clData=[
-  {cat:'Pre-Loop Check',items:['P&ID verified against installation','Instrument tag number verified on nameplate','Instrument mounted correctly per hook-up drawing','Impulse lines / tubing installed & connected','Cable tray / routing verified','Cable tagged at both ends','Power supply verified (24VDC / 120VAC)','Grounding / shielding verified']},
-  {cat:'Loop Testing',items:['Continuity test passed (field to DCS)','Insulation resistance test passed','I/O check — DCS reading matches field signal','4mA zero verification — reading 0%','20mA span verification — reading 100%','Mid-range (12mA) verification — reading 50%','Alarm setpoints verified (HH, H, L, LL)','Fail-safe action verified (FO / FC)']},
-  {cat:'Functional Testing',items:['Control valve stroke test (0-25-50-75-100%)','Interlock / trip logic verified per C&E matrix','ESD function test completed','Final walk-through & punch list clearance']}
-];
-
-function renderCL(){
-  const c=document.getElementById('cl-container');if(!c)return;
-  c.innerHTML='';let idx=0;
-  clData.forEach(cat=>{
-    c.innerHTML+=`<div class="text-[10px] font-semibold uppercase tracking-[.2em] text-emerald-400 mt-5 mb-2 px-3">${cat.cat}</div>`;
-    cat.items.forEach(item=>{
-      c.innerHTML+=`<div class="chk-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/3 cursor-pointer transition-all" data-idx="${idx}" onclick="toggleCL(this)"><div class="chk-box w-5 h-5 rounded border border-white/12 flex items-center justify-center shrink-0 transition-all"><i data-lucide="check" class="w-3 h-3 text-emerald-400 opacity-0 transition-opacity"></i></div><span class="text-sm text-slate-300 chk-text">${item}</span></div>`;
-      idx++;
-    });
-  });
-  lucide.createIcons();updateCL();
-}
-
-function toggleCL(el){
-  el.classList.toggle('done');
-  const icon=el.querySelector('i'),box=el.querySelector('.chk-box');
-  if(el.classList.contains('done')){icon.style.opacity='1';box.style.background='rgba(16,185,129,.15)';box.style.borderColor='#10B981'}
-  else{icon.style.opacity='0';box.style.background='transparent';box.style.borderColor='rgba(255,255,255,.12)'}
-  updateCL();
-}
-
-function updateCL(){
-  const total=document.querySelectorAll('.chk-item').length,done=document.querySelectorAll('.chk-item.done').length;
-  const progEl=document.getElementById('cl-prog'),barEl=document.getElementById('cl-bar');
-  if(progEl)progEl.textContent=`${done} / ${total}`;
-  if(barEl)barEl.style.width=(total?done/total*100:0)+'%';
-}
-
-function resetCL(){
-  document.querySelectorAll('.chk-item').forEach(el=>{
-    el.classList.remove('done');
-    el.querySelector('i').style.opacity='0';
-    const b=el.querySelector('.chk-box');b.style.background='transparent';b.style.borderColor='rgba(255,255,255,.12)';
-  });updateCL();showToast('Checklist reset!');
-}
-
-function exportCL(){
-  const tag=document.getElementById('cl-tag')?.value||'UNTITLED',date=new Date().toLocaleDateString();
-  let txt=`LOOP CHECK REPORT\n${'='.repeat(40)}\nTag: ${tag}\nDate: ${date}\nEngineer: ________________\n\n`;let idx=0;
-  clData.forEach(cat=>{txt+=`\n${cat.cat}\n${'-'.repeat(30)}\n`;cat.items.forEach(item=>{const el=document.querySelector(`.chk-item[data-idx="${idx}"]`);txt+=`${el&&el.classList.contains('done')?'[✓]':'[ ]'} ${item}\n`;idx++})});
-  const done=document.querySelectorAll('.chk-item.done').length,total=document.querySelectorAll('.chk-item').length;
-  txt+=`\n${'='.repeat(40)}\nProgress: ${done}/${total} (${(done/total*100).toFixed(0)}%)\n`;
-  const b=new Blob([txt],{type:'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');
-  a.href=u;a.download=`LoopCheck_${tag}_${date.replace(/\//g,'-')}.txt`;a.click();URL.revokeObjectURL(u);showToast('Checklist exported!');
-}
-
-// Tool Tab Switching
-document.querySelectorAll('.tool-tab').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.tool-tab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const tab=btn.dataset.tab,container=document.getElementById('tool-content');
-    container.innerHTML=toolTemplates[tab]();
-    lucide.createIcons();
-    if(tab==='checklist')renderCL();
-    if(tab==='unit')updateUC();
-  });
-});
-
-// Initialize first tool
-document.getElementById('tool-content').innerHTML=toolTemplates.ma();
-lucide.createIcons();
-
-// ====== TOOL CALC FUNCTIONS ======
-function calcMA(){
-  const p=parseFloat(document.getElementById('ma-pct').value);if(isNaN(p))return;
-  const ma=(p*16/100)+4;
-  document.getElementById('ma-val').value=ma.toFixed(3);
-  document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';
-  document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';
-}
-function calcMArev(){
-  const ma=parseFloat(document.getElementById('ma-val').value);if(isNaN(ma))return;
-  const p=((ma-4)*100)/16;
-  document.getElementById('ma-pct').value=p.toFixed(2);
-  document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';
-  document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';
-}
-function calcPV(){
-  const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),ma=parseFloat(document.getElementById('pv-ma').value);
-  if(isNaN(lrv)||isNaN(urv)||isNaN(ma))return;
-  const pv=lrv+((ma-4)*(urv-lrv))/16,pct=((ma-4)*100)/16;
-  document.getElementById('pv-eu').value=pv.toFixed(3);
-  document.getElementById('pv-r1').textContent=pv.toFixed(2)+' EU';
-  document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';
-}
-function calcPVrev(){
-  const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),eu=parseFloat(document.getElementById('pv-eu').value);
-  if(isNaN(lrv)||isNaN(urv)||isNaN(eu))return;
-  const ma=4+((eu-lrv)/(urv-lrv))*16,pct=((ma-4)*100)/16;
-  document.getElementById('pv-ma').value=ma.toFixed(3);
-  document.getElementById('pv-r1').textContent=eu.toFixed(2)+' EU';
-  document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';
-}
-function calcDP(){
-  const qm=parseFloat(document.getElementById('dp-qmax').value),dm=parseFloat(document.getElementById('dp-dpmax').value),meas=parseFloat(document.getElementById('dp-meas').value);
-  if(isNaN(qm)||isNaN(dm)||isNaN(meas))return;
-  const flow=qm*Math.sqrt(meas/dm),pct=(flow/qm)*100;
-  document.getElementById('dp-r1').textContent=flow.toFixed(2);
-  document.getElementById('dp-r2').textContent=pct.toFixed(1)+'%';
-}
-function calcRTD(){
-  const r=parseFloat(document.getElementById('rtd-r').value);if(isNaN(r))return;
-  const t=(r/100-1)/0.00385;
-  document.getElementById('rtd-t').value=t.toFixed(2);
-  document.getElementById('rtd-r1').textContent=t.toFixed(2)+' °C';
-  document.getElementById('rtd-r2').textContent=r.toFixed(2)+' Ω';
-}
-function calcRTDrev(){
-  const t=parseFloat(document.getElementById('rtd-t').value);if(isNaN(t))return;
-  const r=100*(1+0.00385*t);
-  document.getElementById('rtd-r').value=r.toFixed(2);
-  document.getElementById('rtd-r1').textContent=t.toFixed(2)+' °C';
-  document.getElementById('rtd-r2').textContent=r.toFixed(2)+' Ω';
-}
-function calcTC(){
-  const t=parseFloat(document.getElementById('tc-t').value);if(isNaN(t))return;
-  const mv=0.041*t-0.000001*t*t;
-  document.getElementById('tc-r1').textContent=mv.toFixed(3)+' mV';
-}
-function calcCv(){
-  const q=parseFloat(document.getElementById('cv-q').value),dp=parseFloat(document.getElementById('cv-dp').value),sg=parseFloat(document.getElementById('cv-sg').value)||1;
-  if(isNaN(q)||isNaN(dp)||dp===0)return;
-  document.getElementById('cv-r1').textContent=(q*Math.sqrt(sg/dp)).toFixed(2);
-}
-function calcOhm(){
-  const v=parseFloat(document.getElementById('ohm-v').value),i=parseFloat(document.getElementById('ohm-i').value),r=parseFloat(document.getElementById('ohm-r').value);
-  let rv=v,ri=i,rr=r,rp=NaN;
-  if(!isNaN(v)&&!isNaN(i)){rr=v/i;rp=v*i}
-  else if(!isNaN(v)&&!isNaN(r)){ri=v/r;rp=v*v/r}
-  else if(!isNaN(i)&&!isNaN(r)){rv=i*r;rp=i*i*r}
-  else return;
-  document.getElementById('ohm-r1').textContent=isNaN(rv)?'—':rv.toFixed(3)+' V';
-  document.getElementById('ohm-r2').textContent=isNaN(ri)?'—':ri.toFixed(4)+' A';
-  document.getElementById('ohm-r3').textContent=isNaN(rr)?'—':rr.toFixed(3)+' Ω';
-  document.getElementById('ohm-r4').textContent=isNaN(rp)?'—':rp.toFixed(3)+' W';
-}
-function calcCable(){
-  const i=parseFloat(document.getElementById('cab-i').value)/1000,l=parseFloat(document.getElementById('cab-l').value),a=parseFloat(document.getElementById('cab-mm').value),vs=parseFloat(document.getElementById('cab-v').value);
-  if(isNaN(i)||isNaN(l)||isNaN(a)||isNaN(vs))return;
-  const rho=0.0175,vdrop=2*l*(rho/a)*i,vload=vs-vdrop,pct=(vdrop/vs)*100;
-  document.getElementById('cab-r1').textContent=vdrop.toFixed(4)+' V';
-  document.getElementById('cab-r2').textContent=vload.toFixed(2)+' V';
-  document.getElementById('cab-r3').textContent=pct.toFixed(2)+'%';
-}
-
-// Unit Converter Data
-const ucData={
-  pressure:{units:['bar','psi','kPa','MPa','kg/cm²','mmH2O','inH2O','mmHg'],base:{'bar':1,'psi':.0689476,'kPa':.01,'MPa':10,'kg/cm²':.980665,'mmH2O':.0000980665,'inH2O':.00249089,'mmHg':.00133322}},
-  temperature:{units:['°C','°F','K'],special:true},
-  flow:{units:['m³/h','GPM','L/min','L/s','bbl/d'],base:{'m³/h':1,'GPM':.227124,'L/min':.06,'L/s':3.6,'bbl/d':.0066245}},
-  length:{units:['mm','inch','m','ft','cm','micron'],base:{'mm':1,'inch':25.4,'m':1000,'ft':304.8,'cm':10,'micron':.001}},
-  mass:{units:['kg','lb','g','ton','oz'],base:{'kg':1,'lb':.453592,'g':.001,'ton':1000,'oz':.0283495}}
-};
-function updateUC(){
-  const type=document.getElementById('uc-type').value,data=ucData[type],fs=document.getElementById('uc-from'),ts=document.getElementById('uc-to');
-  fs.innerHTML='';ts.innerHTML='';
-  data.units.forEach((u,i)=>{fs.innerHTML+=`<option value="${u}">${u}</option>`;ts.innerHTML+=`<option value="${u}" ${i===1?'selected':''}>${u}</option>`});
-  doUC();
-}
-function doUC(){
-  const type=document.getElementById('uc-type').value,from=document.getElementById('uc-from').value,to=document.getElementById('uc-to').value,val=parseFloat(document.getElementById('uc-val').value);
-  if(isNaN(val)){document.getElementById('uc-r1').textContent='—';return}
-  if(type==='temperature'){
-    let c=val;
-    if(from==='°F')c=(val-32)*5/9;else if(from==='K')c=val-273.15;
-    let r=c;if(to==='°F')r=c*9/5+32;else if(to==='K')r=c+273.15;
-    document.getElementById('uc-r1').textContent=r.toFixed(4)+' '+to;return;
-  }
-  const data=ucData[type],bv=val*data.base[from],r=bv/data.base[to];
-  document.getElementById('uc-r1').textContent=r.toFixed(6)+' '+to;
-}
-updateUC();
 </script>
 </body>
 </html>

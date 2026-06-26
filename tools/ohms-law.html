@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ohm's Law Calculator — Satish Jaiswal Portfolio</title>
+<meta name="description" content="Calculate voltage, current, resistance, or power from any two known values — essential for instrument loop troubleshooting.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],space:['Space Grotesk','sans-serif']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hidden}
+::selection{background:rgba(16,185,129,.3);color:#fff}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
+.glass{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
+.glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
+.glass-hover:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
+.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
+.inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 4px rgba(16,185,129,.08);background:rgba(255,255,255,.06)}
+.inp::placeholder{color:rgba(255,255,255,.2)}
+select.inp option{background:#0a0a0f;color:#fff}
+.result-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:20px}
+.grad-text{background:linear-gradient(135deg,#fff 0%,#fff 40%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-text-emerald{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.chk-item{transition:all .3s}
+.chk-item.done{opacity:.4}
+.chk-item.done .chk-text{text-decoration:line-through}
+.chk-item.done .chk-box{background:rgba(16,185,129,.2);border-color:#10B981}
+.toast{position:fixed;bottom:30px;right:30px;padding:14px 28px;border-radius:14px;font-size:13px;font-weight:500;z-index:99999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);background:rgba(16,185,129,.95);color:#fff;backdrop-filter:blur(10px)}
+.toast.show{transform:translateY(0);opacity:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(5,5,7,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)">
+  <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-2.5 group">
+      <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all">
+        <span class="text-emerald-400 font-bold text-[10px] font-space">SJ</span>
+      </div>
+      <span class="text-xs text-slate-400 group-hover:text-white transition-colors">&larr; Back to Portfolio</span>
+    </a>
+    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
+      <i data-lucide="file-text" class="w-3 h-3"></i> Resume
+    </a>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="min-h-screen flex items-center justify-center px-6 pt-14 pb-20">
+  <div class="w-full max-w-2xl mx-auto" style="animation:fadeUp .6s ease forwards">
+
+    <!-- Tool Header -->
+    <div class="text-center mb-10 mt-8">
+      <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mx-auto mb-5">
+        <i data-lucide="zap" class="w-7 h-7 text-yellow-400"></i>
+      </div>
+      <h1 class="text-2xl md:text-3xl font-bold font-space grad-text">Ohm's Law Calculator</h1>
+      <p class="text-sm text-slate-500 mt-2">Calculate voltage, current, resistance, or power from any two known values — essential for instrument loop troubleshooting.</p>
+    </div>
+
+    <!-- Tool Body -->
+    <div class="glass rounded-2xl p-6 md:p-8">
+      
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Voltage V (Volts)</label><input type="number" class="inp" id="ohm-v" placeholder="Volts" step="any" oninput="calcOhm()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current I (Amps)</label><input type="number" class="inp" id="ohm-i" placeholder="Amps" step="any" oninput="calcOhm()"></div>
+        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Resistance R (Ohms)</label><input type="number" class="inp" id="ohm-r" placeholder="Ohms" step="any" oninput="calcOhm()"></div>
+      </div>
+      <div class="result-box">
+        <div class="grid grid-cols-4 gap-4 text-center">
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Voltage</div><div id="ohm-r1" class="text-lg font-bold font-space text-yellow-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Current</div><div id="ohm-r2" class="text-lg font-bold font-space text-white">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Resistance</div><div id="ohm-r3" class="text-lg font-bold font-space text-emerald-400">—</div></div>
+          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Power</div><div id="ohm-r4" class="text-lg font-bold font-space text-blue-400">—</div></div>
+        </div>
+      </div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formulas:</strong> V = I×R · I = V/R · R = V/I · P = V×I</p></div>
+    </div>
+
+    <!-- Back Link -->
+    <div class="text-center mt-8">
+      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-400 transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back to all tools
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+function calcOhm(){
+  const v=parseFloat(document.getElementById('ohm-v').value),i=parseFloat(document.getElementById('ohm-i').value),r=parseFloat(document.getElementById('ohm-r').value);
+  let rv=v,ri=i,rr=r,rp=NaN;
+  if(!isNaN(v)&&!isNaN(i)){rr=v/i;rp=v*i}
+  else if(!isNaN(v)&&!isNaN(r)){ri=v/r;rp=v*v/r}
+  else if(!isNaN(i)&&!isNaN(r)){rv=i*r;rp=i*i*r}
+  else return;
+  document.getElementById('ohm-r1').textContent=isNaN(rv)?'—':rv.toFixed(3)+' V';
+  document.getElementById('ohm-r2').textContent=isNaN(ri)?'—':ri.toFixed(4)+' A';
+  document.getElementById('ohm-r3').textContent=isNaN(rr)?'—':rr.toFixed(3)+' Omega';
+  document.getElementById('ohm-r4').textContent=isNaN(rp)?'—':rp.toFixed(3)+' W';
+}
+</script>
+</body>
+</html>
