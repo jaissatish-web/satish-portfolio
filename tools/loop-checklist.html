@@ -3,94 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loop Check Checklist — Satish Jaiswal Portfolio</title>
-<meta name="description" content="Interactive pre-commissioning checklist — track loop test progress and export reports for ITR/ICAPS sign-off.">
+<title>Interactive Pre-Commissioning Loop Checklist — Satish Jaiswal Portfolio</title>
+<meta name="description" content="Three-gate progressive checklist (Pre-Test, Cold Loop, Hot Sign-off) with LocalStorage persistence and export to text report.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
-tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],space:['Space Grotesk','sans-serif']}}}}
+tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:#0B0F19;color:#e2e8f0;overflow-x:hidden}
 ::selection{background:rgba(16,185,129,.3);color:#fff}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
-.glass{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
-.glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
-.glass-hover:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
-.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
+.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#e2e8f0;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'JetBrains Mono',monospace}
 .inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 4px rgba(16,185,129,.08);background:rgba(255,255,255,.06)}
-.inp::placeholder{color:rgba(255,255,255,.2)}
-select.inp option{background:#0a0a0f;color:#fff}
-.result-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:20px}
-.grad-text{background:linear-gradient(135deg,#fff 0%,#fff 40%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.grad-text-emerald{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.inp::placeholder{color:rgba(148,163,184,.3)}
+select.inp option{background:#111827;color:#e2e8f0}
+.result-box{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);border-radius:16px;padding:20px}
+.grad-text{background:linear-gradient(135deg,#fff 0%,#94a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-green{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.neon-border{box-shadow:inset 0 0 0 1px rgba(16,185,129,.12),0 0 15px rgba(16,185,129,.04)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .chk-item{transition:all .3s}
-.chk-item.done{opacity:.4}
-.chk-item.done .chk-text{text-decoration:line-through}
+.chk-item.done{opacity:.5}
+.chk-item.done .chk-text{text-decoration:line-through;color:rgba(148,163,184,.5)}
 .chk-item.done .chk-box{background:rgba(16,185,129,.2);border-color:#10B981}
-.toast{position:fixed;bottom:30px;right:30px;padding:14px 28px;border-radius:14px;font-size:13px;font-weight:500;z-index:99999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);background:rgba(16,185,129,.95);color:#fff;backdrop-filter:blur(10px)}
-.toast.show{transform:translateY(0);opacity:1}
-@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#10B981;cursor:pointer;border:3px solid #0B0F19;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
 
 <!-- Nav -->
-<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(5,5,7,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)">
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(11,15,19,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(16,185,129,.08)">
   <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
     <a href="../index.html" class="flex items-center gap-2.5 group">
       <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all">
-        <span class="text-emerald-400 font-bold text-[10px] font-space">SJ</span>
+        <span class="text-emerald-400 font-bold text-[10px] font-mono">[SJ]</span>
       </div>
-      <span class="text-xs text-slate-400 group-hover:text-white transition-colors">&larr; Back to Portfolio</span>
+      <span class="text-[10px] font-mono text-slate-500 group-hover:text-emerald-400 transition-colors">&larr; PORTFOLIO</span>
     </a>
-    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
-      <i data-lucide="file-text" class="w-3 h-3"></i> Resume
+    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[9px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
+      <i data-lucide="file-text" class="w-3 h-3"></i> CV
     </a>
   </div>
 </nav>
 
-<!-- Main Content -->
+<!-- Content -->
 <div class="min-h-screen flex items-center justify-center px-6 pt-14 pb-20">
   <div class="w-full max-w-2xl mx-auto" style="animation:fadeUp .6s ease forwards">
 
-    <!-- Tool Header -->
+    <!-- Header -->
     <div class="text-center mb-10 mt-8">
-      <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-5">
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-emerald-400/5 border border-emerald-500/20 flex items-center justify-center mx-auto mb-5">
         <i data-lucide="check-square" class="w-7 h-7 text-emerald-400"></i>
       </div>
-      <h1 class="text-2xl md:text-3xl font-bold font-space grad-text">Loop Check Checklist</h1>
-      <p class="text-sm text-slate-500 mt-2">Interactive pre-commissioning checklist — track loop test progress and export reports for ITR/ICAPS sign-off.</p>
+      <h1 class="text-2xl md:text-3xl font-bold font-mono tracking-tight grad-text">Interactive Pre-Commissioning Loop Checklist</h1>
+      <p class="text-xs font-mono text-slate-500 mt-2 max-w-lg mx-auto">Three-gate progressive checklist (Pre-Test, Cold Loop, Hot Sign-off) with LocalStorage persistence and export to text report.</p>
     </div>
 
-    <!-- Tool Body -->
-    <div class="glass rounded-2xl p-6 md:p-8">
+    <!-- Body -->
+    <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
       <div class="flex items-center justify-between mb-6">
-        <div><h3 class="text-lg font-semibold text-white font-space">Pre-Commissioning Checklist</h3><p class="text-xs text-slate-500 mt-1">Track and export your loop check progress</p></div>
+        <div><h3 class="text-lg font-semibold text-white font-mono tracking-wide">LOOP CHECK // PRE-COMM</h3><p class="text-[10px] font-mono text-slate-500 mt-1">3-Gate progressive sign-off with auto-save</p></div>
         <div class="flex gap-2">
-          <button onclick="resetCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-all">Reset</button>
-          <button onclick="exportCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/25 transition-all">Export Report</button>
+          <button onclick="resetCL()" class="px-3 py-1.5 rounded-lg text-[9px] font-mono border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-all">RESET</button>
+          <button onclick="exportCL()" class="px-3 py-1.5 rounded-lg text-[9px] font-mono bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/25 transition-all">EXPORT</button>
         </div>
       </div>
       <div class="mb-5">
-        <div class="flex justify-between text-xs mb-2"><span class="text-slate-400">Progress</span><span id="cl-prog" class="text-emerald-400 font-medium">0 / 20</span></div>
+        <div class="flex justify-between text-[10px] font-mono mb-2"><span class="text-slate-400">PROGRESS</span><span id="cl-prog" class="text-emerald-400 font-medium">0 / 20</span></div>
         <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div id="cl-bar" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-500" style="width:0%"></div></div>
       </div>
-      <div class="mb-5"><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Loop Tag Number</label><input type="text" class="inp max-w-xs" id="cl-tag" placeholder="e.g., FT-1001-A"></div>
+      <div class="mb-5"><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Loop Tag Number</label><input type="text" class="inp max-w-xs" id="cl-tag" placeholder="e.g., FT-1001-A"></div>
       <div id="cl-container"></div>
     </div>
 
-    <!-- Back Link -->
+    <!-- Back -->
     <div class="text-center mt-8">
-      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-400 transition-colors">
+      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-emerald-400 transition-colors">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
-        Back to all tools
+        Back to toolkit
       </a>
     </div>
 
@@ -100,57 +97,15 @@ select.inp option{background:#0a0a0f;color:#fff}
 <script>
 lucide.createIcons();
 
-const clData=[
-  {cat:'Pre-Loop Check',items:['P&ID verified against installation','Instrument tag number verified on nameplate','Instrument mounted correctly per hook-up drawing','Impulse lines / tubing installed & connected','Cable tray / routing verified','Cable tagged at both ends','Power supply verified (24VDC / 120VAC)','Grounding / shielding verified']},
-  {cat:'Loop Testing',items:['Continuity test passed (field to DCS)','Insulation resistance test passed','I/O check — DCS reading matches field signal','4mA zero verification — reading 0%','20mA span verification — reading 100%','Mid-range (12mA) verification — reading 50%','Alarm setpoints verified (HH, H, L, LL)','Fail-safe action verified (FO / FC)']},
-  {cat:'Functional Testing',items:['Control valve stroke test (0-25-50-75-100%)','Interlock / trip logic verified per C&E matrix','ESD function test completed','Final walk-through & punch list clearance']}
-];
-function renderCL(){
-  const c=document.getElementById('cl-container');if(!c)return;
-  c.innerHTML='';let idx=0;
-  clData.forEach(cat=>{
-    c.innerHTML+='<div class="text-[10px] font-semibold uppercase tracking-[.2em] text-emerald-400 mt-5 mb-2 px-3">'+cat.cat+'</div>';
-    cat.items.forEach(item=>{
-      c.innerHTML+='<div class="chk-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/3 cursor-pointer transition-all" data-idx="'+idx+'" onclick="toggleCL(this)"><div class="chk-box w-5 h-5 rounded border border-white/12 flex items-center justify-center shrink-0 transition-all"><i data-lucide="check" class="w-3 h-3 text-emerald-400 opacity-0 transition-opacity"></i></div><span class="text-sm text-slate-300 chk-text">'+item+'</span></div>';
-      idx++;
-    });
-  });
-  lucide.createIcons();updateCL();
-}
-function toggleCL(el){
-  el.classList.toggle('done');
-  const icon=el.querySelector('i'),box=el.querySelector('.chk-box');
-  if(el.classList.contains('done')){icon.style.opacity='1';box.style.background='rgba(16,185,129,.15)';box.style.borderColor='#10B981'}
-  else{icon.style.opacity='0';box.style.background='transparent';box.style.borderColor='rgba(255,255,255,.12)'}
-  updateCL();
-}
-function updateCL(){
-  const total=document.querySelectorAll('.chk-item').length,done=document.querySelectorAll('.chk-item.done').length;
-  const progEl=document.getElementById('cl-prog'),barEl=document.getElementById('cl-bar');
-  if(progEl)progEl.textContent=done+' / '+total;
-  if(barEl)barEl.style.width=(total?done/total*100:0)+'%';
-}
-function resetCL(){
-  document.querySelectorAll('.chk-item').forEach(el=>{
-    el.classList.remove('done');
-    el.querySelector('i').style.opacity='0';
-    const b=el.querySelector('.chk-box');b.style.background='transparent';b.style.borderColor='rgba(255,255,255,.12)';
-  });updateCL();showToast('Checklist reset!');
-}
-function exportCL(){
-  const tag=document.getElementById('cl-tag')?.value||'UNTITLED',date=new Date().toLocaleDateString();
-  let txt='LOOP CHECK REPORT\n'+'='.repeat(40)+'\nTag: '+tag+'\nDate: '+date+'\nEngineer: ________________\n\n';let idx=0;
-  clData.forEach(cat=>{txt+='\n'+cat.cat+'\n'+'-'.repeat(30)+'\n';cat.items.forEach(item=>{const el=document.querySelector('.chk-item[data-idx="'+idx+'"]');txt+=(el&&el.classList.contains('done')?'[\u2713]':'[ ]')+' '+item+'\n';idx++})});
-  const done=document.querySelectorAll('.chk-item.done').length,total=document.querySelectorAll('.chk-item').length;
-  txt+='\n'+'='.repeat(40)+'\nProgress: '+done+'/'+total+' ('+(done/total*100).toFixed(0)+'%)\n';
-  const b=new Blob([txt],{type:'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');
-  a.href=u;a.download='LoopCheck_'+tag+'_'+date.replace(/\//g,'-')+'.txt';a.click();URL.revokeObjectURL(u);showToast('Checklist exported!');
-}
-function showToast(m){
-  let t=document.getElementById('toast');
-  if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t)}
-  t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3000);
-}
+const clData=[{cat:'GATE 1: PRE-TEST INSPECTION',items:['P&amp;ID verified against installation','Instrument tag number verified on nameplate','Instrument mounted correctly per hook-up drawing','Impulse lines / tubing installed &amp; connected','Cable tray / routing verified','Cable tagged at both ends','Power supply verified (24VDC / 120VAC)','Grounding / shielding verified']},{cat:'GATE 2: COLD LOOP VERIFICATION',items:['Continuity test passed (field to DCS)','Insulation resistance test passed','I/O check — DCS reading matches field signal','4mA zero verification — reading 0%','20mA span verification — reading 100%','Mid-range (12mA) verification — reading 50%','Alarm setpoints verified (HH, H, L, LL)','Fail-safe action verified (FO / FC)']},{cat:'GATE 3: HOT FUNCTIONAL SIGN-OFF',items:['Control valve stroke test (0-25-50-75-100%)','Interlock / trip logic verified per C&amp;E matrix','ESD function test completed','Final walk-through &amp; punch list clearance']}];
+function saveState(){const state=[];document.querySelectorAll('.chk-item').forEach(el=>state.push(el.classList.contains('done')?1:0));localStorage.setItem('clState',JSON.stringify(state));if(document.getElementById('cl-tag'))localStorage.setItem('clTag',document.getElementById('cl-tag').value);}
+function loadState(){const saved=localStorage.getItem('clState');if(!saved)return;const state=JSON.parse(saved);document.querySelectorAll('.chk-item').forEach((el,i)=>{if(state[i]){el.classList.add('done');const icon=el.querySelector('i'),box=el.querySelector('.chk-box');if(icon)icon.style.opacity='1';if(box){box.style.background='rgba(16,185,129,.15)';box.style.borderColor='#10B981'}}});const tag=localStorage.getItem('clTag');if(tag&&document.getElementById('cl-tag'))document.getElementById('cl-tag').value=tag;updateCL();}
+function renderCL(){const c=document.getElementById('cl-container');if(!c)return;c.innerHTML='';let idx=0;clData.forEach(cat=>{c.innerHTML+='<div class="text-[9px] font-mono font-semibold uppercase tracking-[.2em] text-emerald-400 mt-5 mb-2 px-3">'+cat.cat+'</div>';cat.items.forEach(item=>{c.innerHTML+='<div class="chk-item flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/3 cursor-pointer transition-all" data-idx="'+idx+'" onclick="toggleCL(this)"><div class="chk-box w-5 h-5 rounded border border-white/12 flex items-center justify-center shrink-0 transition-all"><i data-lucide="check" class="w-3 h-3 text-emerald-400 opacity-0 transition-opacity"></i></div><span class="text-xs text-slate-300 chk-text">'+item+'</span></div>';idx++})});lucide.createIcons();updateCL();loadState();}
+function toggleCL(el){el.classList.toggle('done');const icon=el.querySelector('i'),box=el.querySelector('.chk-box');if(el.classList.contains('done')){icon.style.opacity='1';box.style.background='rgba(16,185,129,.15)';box.style.borderColor='#10B981'}else{icon.style.opacity='0';box.style.background='transparent';box.style.borderColor='rgba(255,255,255,.12)'}updateCL();saveState();}
+function updateCL(){const total=document.querySelectorAll('.chk-item').length,done=document.querySelectorAll('.chk-item.done').length;const p=document.getElementById('cl-prog'),b=document.getElementById('cl-bar');if(p)p.textContent=done+' / '+total;if(b)b.style.width=(total?done/total*100:0)+'%';}
+function resetCL(){if(!confirm('Reset all checklist progress?'))return;localStorage.removeItem('clState');document.querySelectorAll('.chk-item').forEach(el=>{el.classList.remove('done');const i=el.querySelector('i');if(i)i.style.opacity='0';const bx=el.querySelector('.chk-box');if(bx){bx.style.background='transparent';bx.style.borderColor='rgba(255,255,255,.12)'}});updateCL();showToast('Checklist reset');}
+function exportCL(){const tag=document.getElementById('cl-tag')?.value||'UNTITLED',date=new Date().toLocaleDateString();let txt='LOOP CHECK REPORT\n'+'='.repeat(50)+'\nTag: '+tag+'\nDate: '+date+'\nEngineer: ________________\n\n';let idx=0;clData.forEach(cat=>{txt+='\n'+cat.cat+'\n'+'='.repeat(40)+'\n';cat.items.forEach(item=>{const el=document.querySelector('.chk-item[data-idx="'+idx+'"]');txt+=(el&&el.classList.contains('done')?'[\u2713]':'[ ]')+' '+item.replace(/<[^>]*>/g,'')+'\n';idx++})});const done=document.querySelectorAll('.chk-item.done').length,total=document.querySelectorAll('.chk-item').length;txt+='\n'+'='.repeat(50)+'\nProgress: '+done+'/'+total+' ('+(done/total*100).toFixed(0)+'%)\n';const b=new Blob([txt],{type:'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='LoopCheck_'+tag+'_'+date.replace(/\//g,'-')+'.txt';a.click();URL.revokeObjectURL(u);showToast('Report exported');}
+function showToast(m){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.className='fixed bottom-6 right-6 px-5 py-3 rounded-xl text-xs font-mono font-semibold bg-emerald-500/90 text-black backdrop-blur shadow-lg';t.style.transition='all .4s cubic-bezier(.4,0,.2,1)';t.style.transform='translateY(80px)';t.style.opacity='0';t.style.zIndex='99999';document.body.appendChild(t)}t.textContent=m;t.style.transform='translateY(0)';t.style.opacity='1';setTimeout(function(){t.style.transform='translateY(80px)';t.style.opacity='0'},3000)}
 renderCL();
 </script>
 </body>

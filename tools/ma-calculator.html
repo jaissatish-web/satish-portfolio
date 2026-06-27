@@ -3,93 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>4-20mA Signal Calculator — Satish Jaiswal Portfolio</title>
-<meta name="description" content="Convert between percentage and mA signal values — essential for loop testing and DCS validation.">
+<title>4-20mA Signal Loop Calculator — Satish Jaiswal Portfolio</title>
+<meta name="description" content="Dual-direction signal conversion with interactive slider and preset loop testing targets.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
-tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],space:['Space Grotesk','sans-serif']}}}}
+tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:#0B0F19;color:#e2e8f0;overflow-x:hidden}
 ::selection{background:rgba(16,185,129,.3);color:#fff}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
-.glass{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
-.glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
-.glass-hover:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
-.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
+.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#e2e8f0;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'JetBrains Mono',monospace}
 .inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 4px rgba(16,185,129,.08);background:rgba(255,255,255,.06)}
-.inp::placeholder{color:rgba(255,255,255,.2)}
-select.inp option{background:#0a0a0f;color:#fff}
-.result-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:20px}
-.grad-text{background:linear-gradient(135deg,#fff 0%,#fff 40%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.grad-text-emerald{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.inp::placeholder{color:rgba(148,163,184,.3)}
+select.inp option{background:#111827;color:#e2e8f0}
+.result-box{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);border-radius:16px;padding:20px}
+.grad-text{background:linear-gradient(135deg,#fff 0%,#94a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-green{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.neon-border{box-shadow:inset 0 0 0 1px rgba(16,185,129,.12),0 0 15px rgba(16,185,129,.04)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .chk-item{transition:all .3s}
-.chk-item.done{opacity:.4}
-.chk-item.done .chk-text{text-decoration:line-through}
+.chk-item.done{opacity:.5}
+.chk-item.done .chk-text{text-decoration:line-through;color:rgba(148,163,184,.5)}
 .chk-item.done .chk-box{background:rgba(16,185,129,.2);border-color:#10B981}
-.toast{position:fixed;bottom:30px;right:30px;padding:14px 28px;border-radius:14px;font-size:13px;font-weight:500;z-index:99999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);background:rgba(16,185,129,.95);color:#fff;backdrop-filter:blur(10px)}
-.toast.show{transform:translateY(0);opacity:1}
-@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#10B981;cursor:pointer;border:3px solid #0B0F19;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
 
 <!-- Nav -->
-<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(5,5,7,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)">
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(11,15,19,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(16,185,129,.08)">
   <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
     <a href="../index.html" class="flex items-center gap-2.5 group">
       <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all">
-        <span class="text-emerald-400 font-bold text-[10px] font-space">SJ</span>
+        <span class="text-emerald-400 font-bold text-[10px] font-mono">[SJ]</span>
       </div>
-      <span class="text-xs text-slate-400 group-hover:text-white transition-colors">&larr; Back to Portfolio</span>
+      <span class="text-[10px] font-mono text-slate-500 group-hover:text-emerald-400 transition-colors">&larr; PORTFOLIO</span>
     </a>
-    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
-      <i data-lucide="file-text" class="w-3 h-3"></i> Resume
+    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[9px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
+      <i data-lucide="file-text" class="w-3 h-3"></i> CV
     </a>
   </div>
 </nav>
 
-<!-- Main Content -->
+<!-- Content -->
 <div class="min-h-screen flex items-center justify-center px-6 pt-14 pb-20">
   <div class="w-full max-w-2xl mx-auto" style="animation:fadeUp .6s ease forwards">
 
-    <!-- Tool Header -->
+    <!-- Header -->
     <div class="text-center mb-10 mt-8">
-      <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-5">
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-emerald-400/5 border border-emerald-500/20 flex items-center justify-center mx-auto mb-5">
         <i data-lucide="activity" class="w-7 h-7 text-emerald-400"></i>
       </div>
-      <h1 class="text-2xl md:text-3xl font-bold font-space grad-text">4-20mA Signal Calculator</h1>
-      <p class="text-sm text-slate-500 mt-2">Convert between percentage and mA signal values — essential for loop testing and DCS validation.</p>
+      <h1 class="text-2xl md:text-3xl font-bold font-mono tracking-tight grad-text">4-20mA Signal Loop Calculator</h1>
+      <p class="text-xs font-mono text-slate-500 mt-2 max-w-lg mx-auto">Dual-direction signal conversion with interactive slider and preset loop testing targets.</p>
     </div>
 
-    <!-- Tool Body -->
-    <div class="glass rounded-2xl p-6 md:p-8">
+    <!-- Body -->
+    <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
-      <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Percentage (%)</label><input type="number" class="inp" id="ma-pct" placeholder="0 - 100" min="0" max="100" oninput="calcMA()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Current (mA)</label><input type="number" class="inp" id="ma-val" placeholder="4 - 20" min="4" max="20" step="0.01" oninput="calcMArev()"></div>
+      <div class="mb-8">
+        <label class="text-[10px] font-mono text-slate-400 mb-3 block uppercase tracking-wider">Loop Current (mA)</label>
+        <input type="range" id="ma-slider" min="4" max="20" step="0.01" value="12" class="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-emerald-400 mb-4" oninput="maFromSlider()">
+        <div class="flex justify-between text-[9px] font-mono text-slate-600 px-1 mb-4"><span>4mA (0%)</span><span>12mA (50%)</span><span>20mA (100%)</span></div>
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+          <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Current (mA)</label><input type="number" class="inp" id="ma-val" value="12" min="4" max="20" step="0.01" oninput="calcMAfromMa()"></div>
+          <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Percentage (%)</label><input type="number" class="inp" id="ma-pct" value="50" min="0" max="100" step="0.1" oninput="calcMAfromPct()"></div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button onclick="setMA(4)" class="px-4 py-2 rounded-lg text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">4mA (0%)</button>
+        <button onclick="setMA(8)" class="px-4 py-2 rounded-lg text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">8mA (25%)</button>
+        <button onclick="setMA(12)" class="px-4 py-2 rounded-lg text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">12mA (50%)</button>
+        <button onclick="setMA(16)" class="px-4 py-2 rounded-lg text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">16mA (75%)</button>
+        <button onclick="setMA(20)" class="px-4 py-2 rounded-lg text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">20mA (100%)</button>
       </div>
       <div class="result-box">
         <div class="grid grid-cols-3 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mA Signal</div><div id="ma-r1" class="text-xl font-bold font-space grad-text-emerald">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="ma-r2" class="text-xl font-bold font-space text-white">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Span</div><div id="ma-r3" class="text-xl font-bold font-space text-blue-400">—</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">mA Signal</div><div id="ma-r1" class="text-2xl font-bold font-mono grad-green">12.000 mA</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="ma-r2" class="text-2xl font-bold font-mono text-white">50.0%</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Span</div><div id="ma-r3" class="text-2xl font-bold font-mono text-cyan-400">8.00 mA</div></div>
         </div>
       </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> mA = (% × 16 / 100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100 / 16</p></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[10px] font-mono text-slate-500">mA = (% × 16 / 100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100 / 16</p></div>
     </div>
 
-    <!-- Back Link -->
+    <!-- Back -->
     <div class="text-center mt-8">
-      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-400 transition-colors">
+      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-emerald-400 transition-colors">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
-        Back to all tools
+        Back to toolkit
       </a>
     </div>
 
@@ -99,22 +108,12 @@ select.inp option{background:#0a0a0f;color:#fff}
 <script>
 lucide.createIcons();
 
-function calcMA(){
-  const p=parseFloat(document.getElementById('ma-pct').value);if(isNaN(p))return;
-  const ma=(p*16/100)+4;
-  document.getElementById('ma-val').value=ma.toFixed(3);
-  document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';
-  document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';
-}
-function calcMArev(){
-  const ma=parseFloat(document.getElementById('ma-val').value);if(isNaN(ma))return;
-  const p=((ma-4)*100)/16;
-  document.getElementById('ma-pct').value=p.toFixed(2);
-  document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';
-  document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';
-}
+function setMA(m){document.getElementById('ma-val').value=m;calcMAfromMa();}
+function calcMAfromMa(){const ma=parseFloat(document.getElementById('ma-val').value);if(isNaN(ma))return;const p=((ma-4)*100)/16;document.getElementById('ma-pct').value=p.toFixed(1);document.getElementById('ma-slider').value=ma;updateMADisplay(ma,p);}
+function calcMAfromPct(){const p=parseFloat(document.getElementById('ma-pct').value);if(isNaN(p))return;const ma=(p*16/100)+4;document.getElementById('ma-val').value=ma.toFixed(2);document.getElementById('ma-slider').value=ma;updateMADisplay(ma,p);}
+function maFromSlider(){const ma=parseFloat(document.getElementById('ma-slider').value);document.getElementById('ma-val').value=ma.toFixed(2);const p=((ma-4)*100)/16;document.getElementById('ma-pct').value=p.toFixed(1);updateMADisplay(ma,p);}
+function updateMADisplay(ma,p){document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';}
+calcMAfromMa();
 </script>
 </body>
 </html>

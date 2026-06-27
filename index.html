@@ -3,367 +3,333 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Satish Kumar Jaiswal — Lead Instrumentation & Control Engineer | Portfolio</title>
-<meta name="description" content="Lead Instrumentation & Control Engineer with 15+ years in oil & gas commissioning. NEOM Green Hydrogen, ADNOC, Bechtel projects. 67K+ loop checks, Zero LTI.">
-<meta name="keywords" content="Instrumentation Engineer, Commissioning, DCS, SIS, NEOM, Green Hydrogen, Loop Testing, Saudi Arabia">
-<meta property="og:title" content="Satish Kumar Jaiswal — Lead Instrumentation & Control Engineer">
-<meta property="og:description" content="Engineering Precision at Unprecedented Scale. 15+ years, 67K+ loop checks, Zero LTI.">
+<title>Satish Kumar Jaiswal — Lead Instrumentation & Control Engineer | NEOM Green Hydrogen</title>
+<meta name="description" content="Lead Pre-Commissioning & Instrumentation Specialist. 15+ Years Mastery. Delivering the World's Largest USD 8.4B NEOM Green Hydrogen Complex. 67K+ loop checks, Zero LTI.">
+<meta name="keywords" content="Instrumentation Engineer, Commissioning, DCS, SIS, NEOM, Green Hydrogen, Loop Testing, Saudi Aramco, ADNOC">
+<meta property="og:title" content="Satish Kumar Jaiswal — Engineering Precision at Unprecedented Scale">
+<meta property="og:description" content="Lead Instrumentation & Control Engineer. 15+ years, 67K+ loop checks, Zero LTI. NEOM, ADNOC, Bechtel.">
 <meta property="og:image" content="assets/images/photo.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#10B981">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
-tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],space:['Space Grotesk','sans-serif']}}}}
+tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}
 </script>
 <style>
+/* ===== ROOT ===== */
+:root{--green:#10B981;--cyan:#06B6D4;--amber:#F59E0B;--slate-deep:#0B0F19;--slate-card:#111827;--slate-border:#1F2937}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hidden;cursor:none}
+body{font-family:'Inter',sans-serif;background:var(--slate-deep);color:#e2e8f0;overflow-x:hidden}
 ::selection{background:rgba(16,185,129,.3);color:#fff}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
 
-/* Custom Cursor */
-.cursor-dot{position:fixed;width:8px;height:8px;background:#10B981;border-radius:50%;pointer-events:none;z-index:99999;transition:transform .1s}
-.cursor-ring{position:fixed;width:40px;height:40px;border:1.5px solid rgba(16,185,129,.4);border-radius:50%;pointer-events:none;z-index:99998;transition:all .15s ease-out}
-.cursor-ring.hover{transform:scale(1.8);border-color:rgba(16,185,129,.8);background:rgba(16,185,129,.05)}
+/* ===== CYBER GRID BG ===== */
+.cyber-grid{background-image:linear-gradient(rgba(16,185,129,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,.03) 1px,transparent 1px);background-size:60px 60px}
+.cyber-grid-light{background-image:linear-gradient(rgba(16,185,129,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,.05) 1px,transparent 1px);background-size:40px 40px}
 
-/* Loader */
-#loader{position:fixed;inset:0;background:#050507;z-index:100000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .6s,visibility .6s}
-#loader.hidden{opacity:0;visibility:hidden}
-.loader-ring{width:60px;height:60px;border:2px solid rgba(16,185,129,.1);border-top-color:#10B981;border-radius:50%;animation:spin 1s linear infinite}
-.loader-text{margin-top:20px;font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:.3em;color:rgba(16,185,129,.6);text-transform:uppercase}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* Progress Bar */
-#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#10B981,#34D399,#6EE7B7);z-index:9999;transition:width .1s}
-
-/* Gradient Text */
-.grad-text{background:linear-gradient(135deg,#fff 0%,#fff 40%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.grad-text-emerald{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
-/* Glass */
-.glass{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
+/* ===== GLASS ===== */
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
 .glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
-.glass-hover:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
+.glass-hover:hover{background:rgba(255,255,255,.04);border-color:rgba(16,185,129,.2);transform:translateY(-2px);box-shadow:0 0 30px rgba(16,185,129,.06)}
 
-/* Animations */
+/* ===== NEON GLOW ===== */
+.neon-glow{box-shadow:0 0 20px rgba(16,185,129,.1),0 0 40px rgba(16,185,129,.05)}
+.neon-glow-cyan{box-shadow:0 0 20px rgba(6,182,212,.1),0 0 40px rgba(6,182,212,.05)}
+.neon-border{box-shadow:inset 0 0 0 1px rgba(16,185,129,.15),0 0 15px rgba(16,185,129,.05)}
+
+/* ===== GRADIENT TEXT ===== */
+.grad-text{background:linear-gradient(135deg,#fff 0%,#94a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-green{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-cyan{background:linear-gradient(135deg,#06B6D4,#22D3EE,#67E8F9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-amber{background:linear-gradient(135deg,#F59E0B,#FBBF24,#FCD34D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ===== TERMINAL BOOT ===== */
+#boot-screen{position:fixed;inset:0;background:#0B0F19;z-index:100000;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:2rem;transition:opacity .8s,visibility .8s}
+#boot-screen.done{opacity:0;visibility:hidden;pointer-events:none}
+.boot-output{max-width:640px;width:100%;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7;color:rgba(16,185,129,.8)}
+.boot-line{opacity:0;overflow:hidden;white-space:nowrap;border-right:2px solid transparent;animation:bootType .6s steps(40,end) forwards}
+.boot-line .highlight{color:#10B981;font-weight:600}
+.boot-line .cyan{color:#06B6D4}
+.boot-line .amber{color:#F59E0B}
+.boot-line .dim{color:rgba(148,163,184,.4)}
+.boot-cursor{border-right-color:#10B981;animation:blink .8s step-end infinite}
+@keyframes bootType{from{opacity:1;width:0}to{opacity:1;width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+.boot-progress{width:640px;max-width:90%;height:2px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:24px;overflow:hidden}
+.boot-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#10B981,#34D399);border-radius:2px;animation:bootProgress 2.5s ease forwards;animation-delay:.3s}
+@keyframes bootProgress{to{width:100%}}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
+
+/* ===== ANIMATIONS ===== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes pulse-glow{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.7;transform:scale(1.05)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes rotate-slow{to{transform:rotate(360deg)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-@keyframes borderGlow{0%,100%{border-color:rgba(16,185,129,.2)}50%{border-color:rgba(16,185,129,.5)}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-@keyframes orbit{from{transform:rotate(0deg) translateX(120px) rotate(0deg)}to{transform:rotate(360deg) translateX(120px) rotate(-360deg)}}
-@keyframes scaleIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes radarSpin{to{transform:rotate(360deg)}}
 
-.anim-fade-up{animation:fadeUp .8s cubic-bezier(.4,0,.2,1) forwards}
-.anim-fade-in{animation:fadeIn .6s ease forwards}
-.anim-slide-in{animation:slideIn .6s ease forwards}
-.anim-float{animation:float 6s ease-in-out infinite}
-.anim-pulse{animation:pulse-glow 4s ease-in-out infinite}
-.anim-rotate{animation:rotate-slow 25s linear infinite}
-.anim-orbit{animation:orbit 15s linear infinite}
-.anim-scale-in{animation:scaleIn .5s cubic-bezier(.4,0,.2,1) forwards}
-
-.shimmer{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.04) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 3s infinite}
-
-/* Reveal on Scroll */
+/* ===== REVEAL ===== */
 .reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.4,0,.2,1)}
 .reveal.active{opacity:1;transform:translateY(0)}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
-.reveal-delay-4{transition-delay:.4s}
-.reveal-delay-5{transition-delay:.5s}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+.reveal-d4{transition-delay:.4s}
 
-/* Photo - FIXED: object-position to show full face in circle */
-.photo-frame{position:relative;border-radius:50%;padding:3px;background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7,#10B981);background-size:300% 300%;animation:shimmer 4s ease infinite}
-.photo-frame::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(16,185,129,.15);animation:pulse-glow 3s ease-in-out infinite}
-.photo-frame img{border-radius:50%;display:block;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+/* ===== HUD METRICS ===== */
+.hud-card{position:relative;overflow:hidden}
+.hud-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);opacity:.5}
+.hud-value{font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:-.02em}
+.hud-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(148,163,184,.6)}
+.hud-tag{position:absolute;top:8px;right:10px;font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.1em;color:rgba(148,163,184,.25)}
+.hud-unit{font-size:.5em;font-weight:400;opacity:.6}
 
-/* Skill Bar */
-.skill-track{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
-.skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#10B981,#34D399);transform:scaleX(0);transform-origin:left;transition:transform 1.5s cubic-bezier(.4,0,.2,1)}
-.reveal.active .skill-fill{transform:scaleX(1)}
+/* ===== TIMELINE ===== */
+.tl-line{width:2px;background:linear-gradient(to bottom,rgba(16,185,129,.3),rgba(6,182,212,.1),transparent)}
+.tl-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--green);background:var(--slate-deep);z-index:2;transition:all .4s}
+.tl-dot.active{background:var(--green);box-shadow:0 0 20px rgba(16,185,129,.4)}
+.tl-dot.cyan{box-shadow:0 0 20px rgba(6,182,212,.4)}
+.tl-dot.cyan.active{background:var(--cyan);border-color:var(--cyan)}
+.tl-node{position:relative;padding-left:48px}
+.tl-node::before{content:'';position:absolute;left:16px;top:8px;bottom:-24px;width:2px;background:rgba(16,185,129,.15)}
+.tl-node:last-child::before{display:none}
 
-/* Timeline */
-.tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid #10B981;background:#050507;position:relative;z-index:2;transition:all .3s}
-.tl-dot.active{background:#10B981;box-shadow:0 0 20px rgba(16,185,129,.4)}
+/* ===== COUNTER ANIMATION ===== */
+.counter-digit{display:inline-block;font-family:'JetBrains Mono',monospace}
+.countup{animation:countUp .4s ease forwards}
 
+/* ===== COORDINATE TELEMETRY ===== */
+#coord-display{position:fixed;bottom:12px;right:16px;z-index:50;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(148,163,184,.25);pointer-events:none;letter-spacing:.05em}
+#coord-display span{display:inline-block;margin-left:12px}
 
-/* Inputs */
-.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
-.inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 4px rgba(16,185,129,.08);background:rgba(255,255,255,.06)}
-.inp::placeholder{color:rgba(255,255,255,.2)}
-select.inp option{background:#0a0a0f;color:#fff}
+/* ===== NAV SCROLL ===== */
+.nav-scrolled{background:rgba(11,15,25,.95)!important;border-bottom-color:rgba(16,185,129,.1)!important}
 
-/* Result */
-.result-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:20px}
-
-/* Magnetic Button */
-.mag-btn{position:relative;overflow:hidden;transition:all .3s}
-.mag-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(16,185,129,0));opacity:0;transition:opacity .3s}
-.mag-btn:hover::before{opacity:1}
-
-/* Marquee */
-.marquee-track{display:flex;gap:3rem;animation:marquee 30s linear infinite}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* Checklist */
-.chk-item{transition:all .3s}
-.chk-item.done{opacity:.4}
-.chk-item.done .chk-text{text-decoration:line-through}
-.chk-item.done .chk-box{background:rgba(16,185,129,.2);border-color:#10B981}
-
-/* Toast */
-.toast{position:fixed;bottom:30px;right:30px;padding:14px 28px;border-radius:14px;font-size:13px;font-weight:500;z-index:99999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);background:rgba(16,185,129,.95);color:#fff;backdrop-filter:blur(10px)}
-.toast.show{transform:translateY(0);opacity:1}
-
-/* Particles */
-#particles-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-
-/* Responsive */
-@media(max-width:768px){
-  body{cursor:auto}
-  .cursor-dot,.cursor-ring{display:none}
-}
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){.hud-card::before{height:1px}#coord-display{display:none}}
 </style>
 </head>
 <body>
 
-<!-- Loader -->
-<div id="loader">
-  <div class="loader-ring"></div>
-  <div class="loader-text">Initializing</div>
+<!-- ===== BOOT SCREEN ===== -->
+<div id="boot-screen">
+  <div class="boot-output" id="boot-output"></div>
+  <div class="boot-progress"><div class="boot-progress-bar"></div></div>
 </div>
 
-<!-- Scroll Progress -->
-<div id="scroll-progress"></div>
+<!-- ===== COORDINATE TELEMETRY ===== -->
+<div id="coord-display"><span id="coord-x">X: 0</span><span id="coord-y">Y: 0</span><span id="coord-time">T: --:--:--</span></div>
 
-<!-- Custom Cursor -->
-<div class="cursor-dot" id="cursor-dot"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
-
-<!-- Particle Canvas -->
-<canvas id="particles-canvas"></canvas>
-
-<!-- Toast -->
-<div id="toast" class="toast"></div>
-
-<!-- Navigation -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:rgba(5,5,7,.85);backdrop-filter:blur(16px);border-bottom:1px solid transparent">
+<!-- ===== NAV ===== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:rgba(11,15,19,.8);backdrop-filter:blur(20px);border-bottom:1px solid transparent">
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
     <a href="#hero" class="flex items-center gap-3 group">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all">
-        <span class="text-emerald-400 font-bold text-sm font-space">SJ</span>
+      <div class="relative w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500/15 to-cyan-500/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all overflow-hidden">
+        <span class="text-emerald-400 font-bold text-sm font-mono">[SJ]</span>
+        <div class="absolute inset-0 bg-emerald-400/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
       </div>
       <div class="hidden sm:block">
-        <div class="text-white font-medium text-sm tracking-tight">Satish Jaiswal</div>
-        <div class="text-[10px] text-slate-500 tracking-wide">INSTRUMENTATION ENGINEER</div>
+        <div class="flex items-center gap-2">
+          <span class="text-white font-medium text-sm font-sans">Satish Jaiswal</span>
+          <span class="text-[9px] font-mono text-emerald-500/60">| I&amp;C Lead</span>
+        </div>
+        <div class="flex items-center gap-1.5 mt-0.5">
+          <span class="relative flex h-1.5 w-1.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span></span>
+          <span class="text-[9px] font-mono tracking-wider text-emerald-500/60">STATUS: ONLINE // GCC AVAILABLE</span>
+        </div>
       </div>
     </a>
     <div class="hidden lg:flex items-center gap-1">
-      <a href="#hero" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Home</a>
-      <a href="#about" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">About</a>
-      <a href="#experience" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Experience</a>
-      <a href="#skills" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Skills</a>
-      <a href="#achievements" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Achievements</a>
-      <a href="#tools" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Tools</a>
-      <a href="#contact" class="nav-link px-4 py-2 text-sm text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all">Contact</a>
+      <a href="#hero" class="nav-link px-3 py-2 text-[11px] font-mono text-slate-500 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all">HOME</a>
+      <a href="#experience" class="nav-link px-3 py-2 text-[11px] font-mono text-slate-500 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all">TRACK</a>
+      <a href="#skills" class="nav-link px-3 py-2 text-[11px] font-mono text-slate-500 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all">COMPETENCIES</a>
+      <a href="#achievements" class="nav-link px-3 py-2 text-[11px] font-mono text-slate-500 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all">METRICS</a>
+      <a href="#tools" class="nav-link px-3 py-2 text-[11px] font-mono text-slate-500 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all">TOOLKIT</a>
+      <a href="#contact" class="nav-link px-3 py-2 text-[11px] font-mono text-slate-500 hover:text-emerald-400 rounded-lg hover:bg-white/5 transition-all">MOBILIZE</a>
     </div>
     <div class="flex items-center gap-3">
-      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-white/10 text-white text-xs font-semibold px-4 py-2.5 rounded-full hover:bg-white/15 transition-all duration-200 tracking-wide uppercase border border-white/10">
-        <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-        Resume
+      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-white/5 text-emerald-400 text-[10px] font-mono font-semibold px-4 py-2 rounded-full hover:bg-emerald-500/10 transition-all border border-emerald-500/20">
+        <i data-lucide="file-text" class="w-3 h-3"></i>
+        DOWNLOAD CV
       </a>
-      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-emerald-500 text-black text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-emerald-400 transition-all duration-200 tracking-wide uppercase">
-        Hire Me
+      <a href="#contact" class="inline-flex items-center gap-2 bg-emerald-500 text-black text-[10px] font-mono font-bold px-5 py-2.5 rounded-full hover:bg-emerald-400 transition-all tracking-wide">
+        <i data-lucide="zap" class="w-3 h-3"></i>
+        HIRE ME
       </a>
       <button id="mobile-btn" class="lg:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-all">
         <i data-lucide="menu" class="w-5 h-5"></i>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="lg:hidden hidden px-6 pb-4 border-t border-white/5 mt-1 pt-3">
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden hidden px-6 pb-4 border-t border-white/5 mt-1 pt-3 bg-[#0B0F19]">
     <div class="flex flex-col gap-1">
-      <a href="#hero" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Home</a>
-      <a href="#about" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">About</a>
-      <a href="#experience" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Experience</a>
-      <a href="#skills" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Skills</a>
-      <a href="#achievements" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Achievements</a>
-      <a href="#tools" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Tools</a>
-      <a href="#contact" class="mob-nav text-slate-400 text-sm py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-white transition-all">Contact</a>
+      <a href="#hero" class="mob-nav text-slate-400 text-xs font-mono py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-emerald-400 transition-all">HOME</a>
+      <a href="#experience" class="mob-nav text-slate-400 text-xs font-mono py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-emerald-400 transition-all">TRACK</a>
+      <a href="#skills" class="mob-nav text-slate-400 text-xs font-mono py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-emerald-400 transition-all">COMPETENCIES</a>
+      <a href="#achievements" class="mob-nav text-slate-400 text-xs font-mono py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-emerald-400 transition-all">METRICS</a>
+      <a href="#tools" class="mob-nav text-slate-400 text-xs font-mono py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-emerald-400 transition-all">TOOLKIT</a>
+      <a href="#contact" class="mob-nav text-slate-400 text-xs font-mono py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-emerald-400 transition-all">MOBILIZE</a>
     </div>
   </div>
 </nav>
 
-<!-- ==================== HERO ==================== -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-  <!-- Decorative Elements -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] md:w-[1000px] md:h-[1000px] anim-rotate opacity-[0.04] pointer-events-none">
-    <div class="w-full h-full rounded-full border border-white" style="border-style:dashed"></div>
+<!-- ===== HERO ===== -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden cyber-grid">
+  <!-- Radar Ring -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] md:w-[1100px] md:h-[1100px] pointer-events-none">
+    <div class="w-full h-full rounded-full border border-emerald-500/5" style="animation:radarSpin 30s linear infinite"></div>
+    <div class="absolute inset-[15%] rounded-full border border-emerald-500/5" style="animation:radarSpin 40s linear infinite reverse"></div>
+    <div class="absolute inset-[30%] rounded-full border border-cyan-500/5" style="animation:radarSpin 25s linear infinite"></div>
+    <div class="absolute inset-[45%] rounded-full border border-emerald-500/8"></div>
+    <!-- Scanner line -->
+    <div class="absolute top-0 left-1/2 w-[1px] h-1/2 bg-gradient-to-b from-emerald-400/20 to-transparent origin-bottom" style="animation:radarSpin 4s linear infinite"></div>
   </div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] anim-rotate opacity-[0.03] pointer-events-none" style="animation-direction:reverse;animation-duration:18s">
-    <div class="w-full h-full rounded-full border border-emerald-400" style="border-style:dotted"></div>
-  </div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
-    <div class="anim-orbit"><div class="w-2 h-2 rounded-full bg-emerald-400/30"></div></div>
-  </div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none hidden md:block">
-    <div class="anim-orbit" style="animation-duration:20s;animation-direction:reverse"><div class="w-1.5 h-1.5 rounded-full bg-emerald-300/20" style="transform:translateX(180px)"></div></div>
-  </div>
+
   <!-- Glow Orbs -->
-  <div class="absolute w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[120px] -top-32 -right-32 pointer-events-none"></div>
-  <div class="absolute w-[400px] h-[400px] rounded-full bg-emerald-600/4 blur-[100px] bottom-20 -left-32 pointer-events-none anim-pulse"></div>
+  <div class="absolute w-[600px] h-[600px] rounded-full bg-emerald-500/5 blur-[120px] -top-48 -right-48 pointer-events-none"></div>
+  <div class="absolute w-[400px] h-[400px] rounded-full bg-cyan-500/3 blur-[100px] bottom-20 -left-32 pointer-events-none" style="animation:pulse-glow 6s ease-in-out infinite"></div>
 
   <div class="relative z-10 max-w-6xl mx-auto text-center">
-    <!-- Photo - FIXED: using local image with proper object-position -->
-    <div class="mb-8 flex justify-center" style="animation:fadeUp .8s ease forwards;animation-delay:.1s;opacity:0">
-      <div class="photo-frame w-28 h-28 md:w-36 md:h-36">
-        <img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" loading="eager">
-      </div>
-    </div>
 
     <!-- Status Badge -->
-    <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass mb-8" style="animation:fadeUp .8s ease forwards;animation-delay:.2s;opacity:0">
-      <span class="relative flex h-2.5 w-2.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-      </span>
-      <span class="text-[11px] font-semibold tracking-[.2em] uppercase text-emerald-400">Immediately Available · GCC Ready</span>
+    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass neon-border mb-8" style="animation:fadeUp .8s ease forwards;opacity:0">
+      <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
+      <span class="text-[10px] font-mono tracking-[.2em] text-emerald-400">IMMEDIATELY AVAILABLE · GCC READY · ZERO NOTICE</span>
     </div>
 
     <!-- Name -->
-    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] mb-4 font-space" style="animation:fadeUp .8s ease forwards;animation-delay:.3s;opacity:0">
+    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.02] mb-4" style="animation:fadeUp .8s ease forwards;animation-delay:.15s;opacity:0">
       <span class="grad-text">Satish Kumar</span><br>
-      <span class="grad-text-emerald">Jaiswal</span>
+      <span class="grad-green">Jaiswal</span>
     </h1>
 
     <!-- Title -->
-    <div style="animation:fadeUp .8s ease forwards;animation-delay:.4s;opacity:0">
-      <p class="text-lg md:text-xl lg:text-2xl font-light text-slate-300 mb-3">
-        Lead Instrumentation & Control Engineer
+    <div style="animation:fadeUp .8s ease forwards;animation-delay:.3s;opacity:0">
+      <p class="text-lg md:text-xl lg:text-2xl font-light text-slate-300 mb-2">
+        Lead Instrumentation &amp; Control Engineer
       </p>
-      <p class="text-sm md:text-base text-slate-500 mb-6 max-w-2xl mx-auto">
-        Commissioning & Pre-Commissioning Specialist · 15+ Years · Oil & Gas · Petrochemical · Green Hydrogen · DCS/SIS/SCADA Validation
+      <p class="text-sm md:text-base text-slate-500/80 mb-6 max-w-3xl mx-auto font-mono tracking-wide">
+        PRE-COMMISSIONING &amp; COMMISSIONING SPECIALIST · 15+ YEARS · OIL &amp; GAS · PETROCHEMICAL · GREEN HYDROGEN · DCS/SIS/SCADA VALIDATION
       </p>
     </div>
 
-    <!-- Company Tags Marquee -->
-    <div style="animation:fadeUp .8s ease forwards;animation-delay:.5s;opacity:0">
-      <div class="overflow-hidden py-4 mb-8 relative">
-        <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#050507] to-transparent z-10"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#050507] to-transparent z-10"></div>
-        <div class="marquee-track">
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500/8 text-emerald-400 border border-emerald-500/15 whitespace-nowrap">Saudi Aramco</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-blue-500/8 text-blue-400 border border-blue-500/15 whitespace-nowrap">ADNOC</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-purple-500/8 text-purple-400 border border-purple-500/15 whitespace-nowrap">Bechtel</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 whitespace-nowrap">Air Products</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 whitespace-nowrap">NEOM</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap">Hyundai Engineering</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-white/50 border border-white/10 whitespace-nowrap">Zero LTI · 15+ Years</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500/8 text-emerald-400 border border-emerald-500/15 whitespace-nowrap">Saudi Aramco</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-blue-500/8 text-blue-400 border border-blue-500/15 whitespace-nowrap">ADNOC</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-purple-500/8 text-purple-400 border border-purple-500/15 whitespace-nowrap">Bechtel</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 whitespace-nowrap">Air Products</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 whitespace-nowrap">NEOM</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap">Hyundai Engineering</span>
-          <span class="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 text-white/50 border border-white/10 whitespace-nowrap">Zero LTI · 15+ Years</span>
+    <!-- Live Ticker -->
+    <div style="animation:fadeUp .8s ease forwards;animation-delay:.4s;opacity:0">
+      <div class="overflow-hidden py-4 mb-8 relative max-w-4xl mx-auto">
+        <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0B0F19] to-transparent z-10"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0B0F19] to-transparent z-10"></div>
+        <div class="flex gap-6" style="animation:marquee 40s linear infinite;width:max-content">
+          <!-- Duplicated for seamless loop -->
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-emerald-500/8 text-emerald-400 border border-emerald-500/15 whitespace-nowrap tracking-wider">SAUDI ARAMCO</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap tracking-wider">ADNOC</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-purple-500/8 text-purple-400 border border-purple-500/15 whitespace-nowrap tracking-wider">BECHTEL</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 whitespace-nowrap tracking-wider">AIR PRODUCTS</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 whitespace-nowrap tracking-wider">NEOM</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap tracking-wider">HYUNDAI ENGINEERING</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-white/5 text-white/40 border border-white/10 whitespace-nowrap tracking-wider">QATARENERGY</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-emerald-500/8 text-emerald-400 border border-emerald-500/15 whitespace-nowrap tracking-wider">SAUDI ARAMCO</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap tracking-wider">ADNOC</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-purple-500/8 text-purple-400 border border-purple-500/15 whitespace-nowrap tracking-wider">BECHTEL</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 whitespace-nowrap tracking-wider">AIR PRODUCTS</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 whitespace-nowrap tracking-wider">NEOM</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 whitespace-nowrap tracking-wider">HYUNDAI ENGINEERING</span>
+          <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-white/5 text-white/40 border border-white/10 whitespace-nowrap tracking-wider">QATARENERGY</span>
         </div>
       </div>
     </div>
 
-    <!-- CTA Buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" style="animation:fadeUp .8s ease forwards;animation-delay:.6s;opacity:0">
-      <a href="#experience" class="mag-btn inline-flex items-center gap-2.5 bg-white text-black text-sm font-semibold px-8 py-4 rounded-full hover:bg-slate-100 transition-all duration-200 group tracking-wide">
-        View Experience
+    <!-- CTA -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" style="animation:fadeUp .8s ease forwards;animation-delay:.5s;opacity:0">
+      <a href="#experience" class="inline-flex items-center gap-2.5 bg-white text-black text-sm font-semibold px-8 py-4 rounded-full hover:bg-slate-100 transition-all group tracking-wide">
+        VIEW MEGA-PROJECT TRACK
         <i data-lucide="arrow-down-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform"></i>
       </a>
-      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="mag-btn inline-flex items-center gap-2.5 text-sm font-medium px-8 py-4 rounded-full border border-white/12 hover:bg-white/5 hover:border-white/20 transition-all duration-200 text-white group">
-        <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i>
-        Download Resume
-        <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
+      <a href="#tools" class="inline-flex items-center gap-2.5 text-sm font-medium px-8 py-4 rounded-full border border-white/12 hover:bg-white/5 hover:border-emerald-500/30 transition-all text-white group">
+        <i data-lucide="wrench" class="w-4 h-4 text-emerald-400"></i>
+        LAUNCH TOOLKIT
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"></i>
       </a>
     </div>
   </div>
-
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 anim-float" style="animation-delay:1s">
-    <div class="w-5 h-8 rounded-full border border-white/15 flex items-start justify-center pt-1.5">
-      <div class="w-0.5 h-2 rounded-full bg-emerald-400/60" style="animation:blink 2s ease infinite"></div>
-    </div>
-  </div>
 </section>
 
-<!-- ==================== STATS ==================== -->
-<section class="relative py-6 border-y border-white/5 bg-black/30">
+<!-- ===== HUD METRICS ===== -->
+<section class="relative py-8 border-y border-white/5 bg-[#0B0F19]">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div class="text-center py-4 reveal">
-        <div class="text-2xl md:text-4xl font-bold font-space grad-text-emerald counter" data-target="67000">0</div>
-        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Loop Checks</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="hud-card glass rounded-xl p-5 reveal">
+        <span class="hud-tag">M-001</span>
+        <div class="hud-value text-3xl md:text-4xl grad-green mb-1 counter" data-target="67000" data-suffix="+">0</div>
+        <div class="hud-label">Loop Checks Executed</div>
+        <div class="text-[9px] font-mono text-slate-600 mt-1">Across 4 Countries · 8+ Projects</div>
       </div>
-      <div class="text-center py-4 reveal reveal-delay-1">
-        <div class="text-2xl md:text-4xl font-bold font-space text-white counter" data-target="15">0</div>
-        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Years Experience</div>
+      <div class="hud-card glass rounded-xl p-5 reveal reveal-d1">
+        <span class="hud-tag">M-002</span>
+        <div class="hud-value text-3xl md:text-4xl text-emerald-400 mb-1 counter" data-target="0" data-suffix="">0</div>
+        <div class="hud-label">Lost Time Incidents</div>
+        <div class="text-[9px] font-mono text-slate-600 mt-1">15+ Continuous Years</div>
       </div>
-      <div class="text-center py-4 reveal reveal-delay-2">
-        <div class="text-2xl md:text-4xl font-bold font-space grad-text-emerald counter" data-target="8">0</div>
-        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Mega Projects</div>
+      <div class="hud-card glass rounded-xl p-5 reveal reveal-d2">
+        <span class="hud-tag">M-003</span>
+        <div class="hud-value text-3xl md:text-4xl grad-green mb-1 counter" data-target="992" data-suffix="">0<div class="hud-unit">.2%</div></div>
+        <div class="hud-label">First-Pass Accuracy</div>
+        <div class="text-[9px] font-mono text-slate-600 mt-1">Pre-Commissioning &amp; Loop Verification</div>
       </div>
-      <div class="text-center py-4 reveal reveal-delay-3">
-        <div class="text-2xl md:text-4xl font-bold font-space text-white counter" data-target="4">0</div>
-        <div class="text-[10px] text-slate-500 mt-1 uppercase tracking-[.2em] font-medium">Countries</div>
+      <div class="hud-card glass rounded-xl p-5 reveal reveal-d3">
+        <span class="hud-tag">M-004</span>
+        <div class="hud-value text-3xl md:text-4xl grad-cyan mb-1"><span class="counter" data-target="84">0</span><span class="hud-unit"> .4B USD</span></div>
+        <div class="hud-label">Max Project Valuation</div>
+        <div class="text-[9px] font-mono text-slate-600 mt-1">NEOM Green Hydrogen Complex</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== ABOUT ==================== -->
-<section id="about" class="relative py-24 md:py-32 px-6">
+<!-- ===== ABOUT ===== -->
+<section id="about" class="relative py-24 md:py-32 px-6 cyber-grid">
   <div class="max-w-7xl mx-auto">
     <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
-      <!-- Left: Photo + Info -->
       <div class="md:col-span-2 reveal">
         <div class="relative">
-          <!-- Photo Card - FIXED: removed mix-blend-luminosity for better visibility -->
-          <div class="glass rounded-3xl overflow-hidden">
+          <div class="glass rounded-2xl overflow-hidden neon-border">
             <div class="relative aspect-[3/4]">
               <img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" class="w-full h-full object-cover object-top opacity-90 hover:opacity-100 transition-all duration-700">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#050507] via-transparent to-transparent"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6">
-                <div class="text-[10px] font-semibold tracking-[.25em] uppercase text-emerald-400 mb-2">Currently at</div>
-                <div class="text-xl font-semibold font-space text-white">NEOM Green Hydrogen</div>
-                <div class="text-sm text-slate-400 mt-0.5">USD 8.4B · World's Largest Green H₂</div>
+                <div class="text-[9px] font-mono tracking-[.2em] text-emerald-400 mb-2">CURRENT POSTING</div>
+                <div class="text-lg font-semibold text-white">NEOM Green Hydrogen</div>
+                <div class="text-xs font-mono text-slate-500 mt-0.5">USD 8.4B · World's Largest Green H₂</div>
               </div>
             </div>
           </div>
-          <!-- Floating Stats -->
-          <div class="absolute -top-4 -right-4 glass rounded-2xl p-4 anim-float z-10" style="animation-delay:.5s">
-            <div class="text-2xl font-bold font-space grad-text-emerald">99.2%</div>
-            <div class="text-[9px] text-slate-400 uppercase tracking-[.15em] font-medium mt-0.5">First-Pass Accuracy</div>
+          <div class="absolute -top-3 -right-3 glass rounded-xl p-3 anim-float z-10 neon-glow" style="animation-delay:.5s">
+            <div class="text-xl font-bold font-mono grad-green">99.2%</div>
+            <div class="text-[8px] font-mono text-slate-500 uppercase tracking-[.1em]">Accuracy</div>
           </div>
-          <div class="absolute -bottom-4 -left-4 glass rounded-2xl p-4 anim-float z-10" style="animation-delay:1.5s">
-            <div class="text-2xl font-bold font-space text-white">0</div>
-            <div class="text-[9px] text-emerald-400 uppercase tracking-[.15em] font-medium mt-0.5">Lost Time Incidents</div>
+          <div class="absolute -bottom-3 -left-3 glass rounded-xl p-3 anim-float z-10 neon-glow" style="animation-delay:1.5s">
+            <div class="text-xl font-bold font-mono text-emerald-400">ZERO</div>
+            <div class="text-[8px] font-mono text-slate-500 uppercase tracking-[.1em]">LTI · 15 Yrs</div>
           </div>
         </div>
       </div>
-
-      <!-- Right: Content -->
-      <div class="md:col-span-3 reveal reveal-delay-2">
+      <div class="md:col-span-3 reveal reveal-d2">
         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
-          <i data-lucide="user" class="w-3 h-3 text-emerald-400"></i>
-          <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">About Me</span>
+          <span class="text-[9px] font-mono tracking-[.2em] text-emerald-400">PROFILE // 0x01</span>
         </div>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight grad-text font-space leading-[1.1] mb-8">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight grad-text leading-[1.1] mb-8">
           Engineering Precision<br>at Unprecedented Scale
         </h2>
         <div class="space-y-5 text-slate-400 text-[15px] leading-[1.8]">
@@ -371,23 +337,21 @@ select.inp option{background:#0a0a0f;color:#fff}
           <p>My expertise spans the full commissioning lifecycle — from DCS/SIS validation and loop testing through to mechanical completion and system handover. I've completed <span class="text-white font-semibold">67,000+ loop checks</span> across 8+ mega-projects in 4 countries, maintaining an exceptional safety record with <span class="text-emerald-400 font-medium">Zero Lost Time Incidents</span>.</p>
           <p>Currently leading pre-commissioning at the world's largest green hydrogen facility under CCC / Air Products, supervising 12+ engineers and 90+ technicians delivering 50,000+ loop checks ahead of schedule.</p>
         </div>
-
-        <!-- Info Grid -->
         <div class="grid grid-cols-2 gap-3 mt-8">
-          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
-            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Location</span></div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Location</span></div>
             <div class="text-sm text-white font-medium">Duba, Saudi Arabia</div>
           </div>
-          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
-            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Visa</span></div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-400"></i><span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Visa</span></div>
             <div class="text-sm text-white font-medium">Transferable Iqama</div>
           </div>
-          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
-            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Availability</span></div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="zap" class="w-3.5 h-3.5 text-amber-400"></i><span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Availability</span></div>
             <div class="text-sm text-white font-medium">Immediate · No Notice</div>
           </div>
-          <div class="glass glass-hover rounded-xl p-4 cursor-pointer">
-            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Eligible</span></div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-1.5"><i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-400"></i><span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Eligible</span></div>
             <div class="text-sm text-white font-medium">All GCC Countries</div>
           </div>
         </div>
@@ -396,123 +360,122 @@ select.inp option{background:#0a0a0f;color:#fff}
   </div>
 </section>
 
-<!-- ==================== EXPERIENCE ==================== -->
+<!-- ===== EXPERIENCE ===== -->
 <section id="experience" class="relative py-24 md:py-32 px-6">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-20 reveal">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
-        <i data-lucide="briefcase" class="w-3 h-3 text-emerald-400"></i>
-        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Career Journey</span>
+        <span class="text-[9px] font-mono tracking-[.2em] text-emerald-400">COMMISSIONING TRACK // 0x02</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Professional Experience</h2>
-      <p class="text-slate-500 mt-4 max-w-xl mx-auto">15+ years delivering instrumentation excellence across the world's most complex industrial projects</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Professional Experience</h2>
+      <p class="text-slate-500 mt-4 max-w-xl mx-auto text-sm font-mono">15+ YEARS DELIVERING INSTRUMENTATION EXCELLENCE ACROSS MEGA-PROJECTS</p>
     </div>
 
-    <div class="relative">
-      <div class="hidden md:block absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/40 via-emerald-500/15 to-transparent"></div>
-      <div class="md:hidden absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/40 via-emerald-500/15 to-transparent"></div>
+    <div class="relative max-w-4xl mx-auto">
+      <!-- Timeline central line -->
+      <div class="absolute left-[23px] md:left-[31px] top-0 bottom-0 tl-line"></div>
 
-      <div class="space-y-6">
-        <!-- Experience 1 -->
-        <div class="relative pl-16 md:pl-20 reveal">
-          <div class="absolute left-5 md:left-5 top-8 tl-dot active"></div>
-          <div class="glass glass-hover rounded-2xl p-6 md:p-8 group">
-            <div class="flex flex-wrap items-center gap-2 mb-3">
-              <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">Current</span>
-              <span class="text-xs text-slate-500 font-medium">Jul 2024 – Present</span>
-            </div>
-            <h3 class="text-lg font-semibold text-white font-space mb-1 group-hover:text-emerald-400 transition-colors">Instrument Pre-Commissioning Engineer</h3>
-            <p class="text-emerald-400 text-sm font-medium mb-1">CCC — Air Products · NEOM Green Hydrogen Complex</p>
-            <p class="text-[11px] text-slate-500 mb-5">USD 8.4B · World's Largest Green H₂ Facility · Duba, Saudi Arabia</p>
-            <div class="grid sm:grid-cols-2 gap-3">
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>50,000+ loop checks ahead of schedule, 99.2% accuracy</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>DCS/SIS validation — Siemens S7, ESD, F&G, SCADA</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Fail-safe logic verification & C&E matrix sign-off</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Supervised 12+ engineers, 90+ technicians</span></div>
-            </div>
+      <!-- Current -->
+      <div class="tl-node reveal">
+        <div class="absolute left-[15px] md:left-[23px] top-2 tl-dot active"></div>
+        <div class="glass glass-hover rounded-2xl p-6 md:p-8 neon-border ml-4">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="px-2.5 py-1 rounded text-[9px] font-mono font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">ACTIVE</span>
+            <span class="text-[10px] font-mono text-slate-500">Jul 2024 – Present</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Instrument Pre-Commissioning Engineer</h3>
+          <p class="text-emerald-400 text-sm font-mono mb-1">CCC — Air Products · NEOM Green Hydrogen Complex</p>
+          <p class="text-[10px] font-mono text-slate-500 mb-5">USD 8.4B · World's Largest Green H₂ Facility · Duba, KSA</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>50,000+ loop checks ahead of schedule, 99.2% accuracy</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>DCS/SIS validation — Siemens S7, ESD, F&amp;G, SCADA</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Fail-safe logic verification &amp; C&amp;E matrix sign-off</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Supervised 12+ engineers, 90+ technicians</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- Experience 2 -->
-        <div class="relative pl-16 md:pl-20 reveal">
-          <div class="absolute left-5 md:left-5 top-8 tl-dot"></div>
-          <div class="glass glass-hover rounded-2xl p-6 md:p-8 group">
-            <div class="flex flex-wrap items-center gap-2 mb-3">
-              <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-blue-500/15 text-blue-400 border border-blue-500/20">Promoted</span>
-              <span class="text-xs text-slate-500 font-medium">Dec 2022 – Feb 2024</span>
-            </div>
-            <h3 class="text-lg font-semibold text-white font-space mb-1 group-hover:text-blue-400 transition-colors">Assistant Superintendent — Utility Maintenance</h3>
-            <p class="text-blue-400 text-sm font-medium mb-1">PEC Ltd · NSRP Refinery</p>
-            <p class="text-[11px] text-slate-500 mb-5">200,000 BPD · Asia's Largest Single-Train Refinery · Vietnam</p>
-            <div class="grid sm:grid-cols-2 gap-3">
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>Led full utility commissioning — GTGs, STGs, boilers</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>Honeywell Experion PKS — 8,000+ utility points</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>Supervised 30+ engineers, zero incidents</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i><span>F&G integrity, SIS, PLC interlock validation</span></div>
-            </div>
+      <!-- NSRP 1 -->
+      <div class="tl-node reveal mt-6">
+        <div class="absolute left-[15px] md:left-[23px] top-2 tl-dot"></div>
+        <div class="glass glass-hover rounded-2xl p-6 md:p-8 ml-4">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="px-2.5 py-1 rounded text-[9px] font-mono bg-cyan-500/15 text-cyan-400 border border-cyan-500/20">PROMOTED</span>
+            <span class="text-[10px] font-mono text-slate-500">Dec 2022 – Feb 2024</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Assistant Superintendent — Utility Maintenance</h3>
+          <p class="text-cyan-400 text-sm font-mono mb-1">PEC Ltd · NSRP Refinery · Vietnam</p>
+          <p class="text-[10px] font-mono text-slate-500 mb-5">200,000 BPD · Asia's Largest Single-Train Refinery</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span>Led full utility commissioning — GTGs, STGs, boilers</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span>Honeywell Experion PKS — 8,000+ utility points</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span>Supervised 30+ engineers, zero incidents</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span>F&amp;G integrity, SIS, PLC interlock validation</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- Experience 3 -->
-        <div class="relative pl-16 md:pl-20 reveal">
-          <div class="absolute left-5 md:left-5 top-8 tl-dot"></div>
-          <div class="glass glass-hover rounded-2xl p-6 md:p-8 group">
-            <div class="flex flex-wrap items-center gap-2 mb-3"><span class="text-xs text-slate-500 font-medium">Dec 2020 – Nov 2022</span></div>
-            <h3 class="text-lg font-semibold text-white font-space mb-1 group-hover:text-purple-400 transition-colors">Senior Instrument Engineer</h3>
-            <p class="text-purple-400 text-sm font-medium mb-1">PEC Ltd · NSRP Refinery · Vietnam</p>
-            <div class="grid sm:grid-cols-2 gap-3 mt-4">
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>12,000+ loop tests — DCS, SIS, SCADA</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>RCA reduced downtime by ~25%</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>3,000+ instruments optimised</span></div>
-              <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>Authored standardised maintenance procedures</span></div>
-            </div>
+      <!-- Senior Instrument Engineer -->
+      <div class="tl-node reveal mt-6">
+        <div class="absolute left-[15px] md:left-[23px] top-2 tl-dot"></div>
+        <div class="glass glass-hover rounded-2xl p-6 md:p-8 ml-4">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="text-[10px] font-mono text-slate-500">Dec 2020 – Nov 2022</span>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Senior Instrument Engineer</h3>
+          <p class="text-purple-400 text-sm font-mono mb-1">PEC Ltd · NSRP Refinery · Vietnam</p>
+          <div class="grid sm:grid-cols-2 gap-3 mt-4">
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>12,000+ loop tests — DCS, SIS, SCADA</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>RCA reduced downtime by ~25%</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>3,000+ instruments optimised</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-400"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>Authored standardised maintenance procedures</span></div>
           </div>
         </div>
+      </div>
 
-        <!-- Experience 4-8 compact -->
-        <div class="relative pl-16 md:pl-20 reveal">
-          <div class="absolute left-5 md:left-5 top-8 tl-dot"></div>
-          <div class="space-y-3">
-            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                <h4 class="text-sm font-semibold text-white group-hover:text-amber-400 transition-colors">Instrumentation & Control Engineer</h4>
-                <span class="text-[10px] text-slate-500 font-medium">2018 – 2020</span>
-              </div>
-              <p class="text-xs text-amber-400">PEC Ltd · NSRP Refinery · Vietnam</p>
-              <p class="text-xs text-slate-500 mt-1">5,000+ loop checks, HART/Fieldbus validation</p>
+      <!-- Historical compact -->
+      <div class="tl-node reveal mt-6">
+        <div class="absolute left-[15px] md:left-[23px] top-2 tl-dot"></div>
+        <div class="space-y-3 ml-4">
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <h4 class="text-sm font-semibold text-white">Instrumentation &amp; Control Engineer</h4>
+              <span class="text-[9px] font-mono text-slate-500">2018–2020</span>
             </div>
-            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                <h4 class="text-sm font-semibold text-white group-hover:text-rose-400 transition-colors">I&C Pre-Commissioning Engineer</h4>
-                <span class="text-[10px] text-slate-500 font-medium">2018</span>
-              </div>
-              <p class="text-xs text-rose-400">Bechtel · Al Taweelah Alumina · UAE</p>
-              <p class="text-xs text-slate-500 mt-1">Honeywell Experion PKS, SILbus, C&E matrices</p>
+            <p class="text-xs text-amber-400 font-mono">PEC Ltd · NSRP Refinery · Vietnam</p>
+            <p class="text-[10px] text-slate-500 mt-1 font-mono">5,000+ loop checks, HART/Fieldbus validation</p>
+          </div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <h4 class="text-sm font-semibold text-white">I&amp;C Pre-Commissioning Engineer</h4>
+              <span class="text-[9px] font-mono text-slate-500">2018</span>
             </div>
-            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                <h4 class="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">I&C Commissioning & Maintenance Engineer</h4>
-                <span class="text-[10px] text-slate-500 font-medium">2016 – 2018</span>
-              </div>
-              <p class="text-xs text-cyan-400">JGCS (JV) · NSRP Refinery · Vietnam</p>
-              <p class="text-xs text-slate-500 mt-1">Plant startup — SCADA, Allen Bradley PLC, SIS</p>
+            <p class="text-xs text-rose-400 font-mono">Bechtel · Al Taweelah Alumina · UAE</p>
+            <p class="text-[10px] text-slate-500 mt-1 font-mono">Honeywell Experion PKS, SILbus, C&amp;E matrices · ADNOC standards</p>
+          </div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <h4 class="text-sm font-semibold text-white">I&amp;C Commissioning &amp; Maintenance Engineer</h4>
+              <span class="text-[9px] font-mono text-slate-500">2016–2018</span>
             </div>
-            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                <h4 class="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">Instrument Commissioning Engineer</h4>
-                <span class="text-[10px] text-slate-500 font-medium">2014 – 2016</span>
-              </div>
-              <p class="text-xs text-emerald-400">Hyundai Engineering · ADNOC/TAKREER · UAE</p>
-              <p class="text-xs text-slate-500 mt-1">Foxboro DCS, Triconex ESD, BMS — ADNOC standards</p>
+            <p class="text-xs text-cyan-400 font-mono">JGCS (JV) · NSRP Refinery · Vietnam</p>
+            <p class="text-[10px] text-slate-500 mt-1 font-mono">SCADA, Allen Bradley PLC, SIS, ESD logic development</p>
+          </div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <h4 class="text-sm font-semibold text-white">Instrument Commissioning Engineer</h4>
+              <span class="text-[9px] font-mono text-slate-500">2014–2016</span>
             </div>
-            <div class="glass glass-hover rounded-xl p-5 group cursor-pointer">
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
-                <h4 class="text-sm font-semibold text-white group-hover:text-slate-300 transition-colors">Instrument & Control Engineer</h4>
-                <span class="text-[10px] text-slate-500 font-medium">2011 – 2014</span>
-              </div>
-              <p class="text-xs text-slate-400">Sulzer Ltd & UB Engineering · India</p>
-              <p class="text-xs text-slate-500 mt-1">DCS/SCADA checkout, calibration, field commissioning</p>
+            <p class="text-xs text-emerald-400 font-mono">Hyundai Engineering · ADNOC/TAKREER · UAE</p>
+            <p class="text-[10px] text-slate-500 mt-1 font-mono">Foxboro DCS, Triconex ESD, BMS · Direct ADNOC project delivery</p>
+          </div>
+          <div class="glass glass-hover rounded-xl p-4">
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <h4 class="text-sm font-semibold text-white">Instrument &amp; Control Engineer</h4>
+              <span class="text-[9px] font-mono text-slate-500">2011–2014</span>
             </div>
+            <p class="text-xs text-slate-400 font-mono">Sulzer Ltd &amp; UB Engineering · India</p>
+            <p class="text-[10px] text-slate-500 mt-1 font-mono">DCS/SCADA checkout, calibration, field commissioning</p>
           </div>
         </div>
       </div>
@@ -520,408 +483,372 @@ select.inp option{background:#0a0a0f;color:#fff}
   </div>
 </section>
 
-<!-- ==================== SKILLS ==================== -->
-<section id="skills" class="relative py-24 md:py-32 px-6">
+<!-- ===== COMPETENCIES ===== -->
+<section id="skills" class="relative py-24 md:py-32 px-6 cyber-grid">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16 reveal">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
-        <i data-lucide="cpu" class="w-3 h-3 text-emerald-400"></i>
-        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Technical Arsenal</span>
+        <span class="text-[9px] font-mono tracking-[.2em] text-emerald-400">CORE COMPETENCIES // 0x03</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Core Competencies</h2>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Technical Arsenal</h2>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       <!-- DCS -->
-      <div class="glass glass-hover rounded-2xl p-7 reveal">
-        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-5">
-          <i data-lucide="cpu" class="w-5 h-5 text-emerald-400"></i>
+      <div class="glass glass-hover rounded-xl p-6 reveal neon-border">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="cpu" class="w-5 h-5 text-emerald-400"></i></div>
+          <div><h3 class="text-sm font-semibold text-white">Control Systems (DCS)</h3><span class="text-[8px] font-mono text-slate-500">SYSTEM-LEVEL VALIDATION</span></div>
         </div>
-        <h3 class="text-base font-semibold text-white font-space mb-4">Control Systems (DCS)</h3>
-        <div class="space-y-3">
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Siemens S7</span><span class="text-emerald-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Honeywell TPS / Experion PKS</span><span class="text-emerald-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Foxboro / Yokogawa CENTUM VP</span><span class="text-emerald-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Siemens S7</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Honeywell Experion PKS</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Foxboro</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Yokogawa CENTUM VP</span>
         </div>
       </div>
+
       <!-- SIS -->
-      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-1">
-        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5">
-          <i data-lucide="shield-alert" class="w-5 h-5 text-red-400"></i>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d1 neon-glow-cyan">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center"><i data-lucide="shield-alert" class="w-5 h-5 text-red-400"></i></div>
+          <div><h3 class="text-sm font-semibold text-white">Safety Systems (ESD/SIS)</h3><span class="text-[8px] font-mono text-slate-500">CRITICAL SAFETY INTEGRITY</span></div>
         </div>
-        <h3 class="text-base font-semibold text-white font-space mb-4">Safety Systems (ESD/SIS)</h3>
-        <div class="space-y-3">
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Triconex TS3000</span><span class="text-red-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Honeywell Safety Builder / FSC</span><span class="text-red-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">FGS / BMS / HIPS</span><span class="text-red-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-red-500/10 text-red-300 border border-red-500/20">Triconex TS3000</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-red-500/10 text-red-300 border border-red-500/20">Honeywell Safety Builder</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-red-500/10 text-red-300 border border-red-500/20">FSC</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-red-500/10 text-red-300 border border-red-500/20">FGS / BMS / HIPS</span>
         </div>
       </div>
+
       <!-- PLC/SCADA -->
-      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-2">
-        <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-5">
-          <i data-lucide="network" class="w-5 h-5 text-blue-400"></i>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><i data-lucide="network" class="w-5 h-5 text-blue-400"></i></div>
+          <div><h3 class="text-sm font-semibold text-white">Automation &amp; ICSS</h3><span class="text-[8px] font-mono text-slate-500">SYSTEM INTEGRATION</span></div>
         </div>
-        <h3 class="text-base font-semibold text-white font-space mb-4">Automation & ICSS</h3>
-        <div class="space-y-3">
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Allen Bradley PLC</span><span class="text-blue-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:88%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">Siemens PLC</span><span class="text-blue-400 font-medium">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-400">SCADA / HMI / ICSS</span><span class="text-blue-400 font-medium">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">Allen Bradley PLC</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">Siemens PLC</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">SCADA / HMI</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">ICSS Integration</span>
         </div>
       </div>
+
       <!-- Commissioning -->
-      <div class="glass glass-hover rounded-2xl p-7 reveal">
-        <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-5">
-          <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
+      <div class="glass glass-hover rounded-xl p-6 reveal">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="settings" class="w-5 h-5 text-amber-400"></i></div>
+          <div><h3 class="text-sm font-semibold text-white">Commissioning Lifecycle</h3><span class="text-[8px] font-mono text-slate-500">END-TO-END DELIVERY</span></div>
         </div>
-        <h3 class="text-base font-semibold text-white font-space mb-4">Commissioning Lifecycle</h3>
         <div class="flex flex-wrap gap-1.5">
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Pre-Commissioning</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Dry/Wet Testing</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Loop Testing</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">FAT/SAT</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Functional Testing</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">ITR/ICAPS</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">PSSR</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Handover</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">Pre-Commissioning</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">Dry/Wet Testing</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">Loop Testing</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">FAT/SAT</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">ITR/ICAPS</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">PSSR</span>
         </div>
       </div>
+
       <!-- Field Instruments -->
-      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-1">
-        <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-5">
-          <i data-lucide="gauge" class="w-5 h-5 text-purple-400"></i>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d1">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><i data-lucide="gauge" class="w-5 h-5 text-purple-400"></i></div>
+          <div><h3 class="text-sm font-semibold text-white">Field Instruments</h3><span class="text-[8px] font-mono text-slate-500">PROTOCOLS &amp; DEVICES</span></div>
         </div>
-        <h3 class="text-base font-semibold text-white font-space mb-4">Field Instruments</h3>
         <div class="flex flex-wrap gap-1.5">
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">HART</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Fieldbus</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Control Valves</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Solenoid Valves</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Positioners</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Analysers</span>
-          <span class="px-2.5 py-1 rounded-lg text-[11px] bg-white/4 text-slate-300 border border-white/5">Vibration</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/20">HART</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/20">Fieldbus</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/20">Control Valves</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-purple-500/10 text-purple-300 border border-purple-500/20">Analysers</span>
         </div>
       </div>
+
       <!-- Functional Safety -->
-      <div class="glass glass-hover rounded-2xl p-7 reveal reveal-delay-2">
-        <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-5">
-          <i data-lucide="shield-check" class="w-5 h-5 text-cyan-400"></i>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="shield-check" class="w-5 h-5 text-cyan-400"></i></div>
+          <div><h3 class="text-sm font-semibold text-white">Functional Safety</h3><span class="text-[8px] font-mono text-slate-500">COMPLIANCE &amp; STANDARDS</span></div>
         </div>
-        <h3 class="text-base font-semibold text-white font-space mb-4">Functional Safety</h3>
-        <div class="space-y-2.5">
-          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>HAZOP Participation</div>
-          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>SIL/LOPA Assessment</div>
-          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>IEC 61511 / IEC 61508</div>
-          <div class="flex items-center gap-2.5 text-sm text-slate-400"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0"></i>Fail-Safe Logic Verification</div>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">HAZOP</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">SIL/LOPA</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">IEC 61511</span>
+          <span class="px-2.5 py-1 rounded text-[10px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">IEC 61508</span>
         </div>
       </div>
     </div>
 
-    <!-- Standards & Software -->
-    <div class="grid md:grid-cols-2 gap-5 mt-6">
-      <div class="glass rounded-2xl p-7 reveal">
-        <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2 font-space"><i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i>Standards & Codes</h3>
+    <!-- Standards -->
+    <div class="grid md:grid-cols-2 gap-4 mt-6">
+      <div class="glass rounded-xl p-6 reveal">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="file-text" class="w-4 h-4 text-emerald-400"></i>
+          <span class="text-[10px] font-mono text-white font-semibold">STANDARDS &amp; CODES</span>
+        </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500/8 text-emerald-400 border border-emerald-500/15">Saudi Aramco SAES/SAEP</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-500/8 text-blue-400 border border-blue-500/15">ADNOC</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-amber-500/8 text-amber-400 border border-amber-500/15">Bechtel</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-purple-500/8 text-purple-400 border border-purple-500/15">Shell DEP</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">API</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">IEC</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">ISA</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/50 border border-white/8">NEMA</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-emerald-500/8 text-emerald-400 border border-emerald-500/15">SAUDI ARAMCO SAES/SAEP</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-cyan-500/8 text-cyan-400 border border-cyan-500/15">ADNOC</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-amber-500/8 text-amber-400 border border-amber-500/15">BECHTEL</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-purple-500/8 text-purple-400 border border-purple-500/15">SHELL DEP</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-white/5 text-white/40 border border-white/8">API</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-white/5 text-white/40 border border-white/8">IEC · ISA · NEMA</span>
         </div>
       </div>
-      <div class="glass rounded-2xl p-7 reveal reveal-delay-1">
-        <h3 class="text-sm font-semibold text-white mb-4 flex items-center gap-2 font-space"><i data-lucide="monitor" class="w-4 h-4 text-emerald-400"></i>Software & Tools</h3>
+      <div class="glass rounded-xl p-6 reveal reveal-d1">
+        <div class="flex items-center gap-2 mb-4">
+          <i data-lucide="monitor" class="w-4 h-4 text-emerald-400"></i>
+          <span class="text-[10px] font-mono text-white font-semibold">SOFTWARE &amp; TOOLS</span>
+        </div>
         <div class="flex flex-wrap gap-2">
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">SPI/INtools</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">ICAPS</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">Emerson AMS</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">SAP PM</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">CMMS</span>
-          <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/60 border border-white/8">MS Office</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-white/5 text-white/50 border border-white/8">SPI/INtools</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-white/5 text-white/50 border border-white/8">ICAPS</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-white/5 text-white/50 border border-white/8">Emerson AMS</span>
+          <span class="px-3 py-1.5 rounded text-[10px] font-mono bg-white/5 text-white/50 border border-white/8">SAP PM · CMMS</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== ACHIEVEMENTS ==================== -->
+<!-- ===== ACHIEVEMENTS ===== -->
 <section id="achievements" class="relative py-24 md:py-32 px-6">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-16 reveal">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
-        <i data-lucide="trophy" class="w-3 h-3 text-emerald-400"></i>
-        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Milestones</span>
+        <span class="text-[9px] font-mono tracking-[.2em] text-emerald-400">KEY METRICS // 0x04</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Key Achievements</h2>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Key Achievements</h2>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div class="glass glass-hover rounded-2xl p-7 group reveal text-center">
-        <div class="text-4xl md:text-5xl font-bold font-space grad-text-emerald mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">50K+</div>
-        <div class="text-sm font-semibold text-white mb-2">Loop Checks at NEOM NGHC</div>
-        <p class="text-xs text-slate-500 leading-relaxed">Ahead of schedule with 99.2% first-pass accuracy at the USD 8.4B green hydrogen facility</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="glass glass-hover rounded-xl p-6 reveal text-center neon-border">
+        <div class="text-3xl md:text-4xl font-bold font-mono grad-green mb-2 group-hover:scale-110 transition-transform">50K+</div>
+        <div class="text-sm font-semibold text-white mb-1">Loop Checks</div>
+        <p class="text-[10px] font-mono text-slate-500">Ahead of schedule, 99.2% accuracy at NEOM NGHC</p>
       </div>
-      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-1 text-center">
-        <div class="text-4xl md:text-5xl font-bold font-space text-white mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">67K+</div>
-        <div class="text-sm font-semibold text-white mb-2">Total Loop Checks</div>
-        <p class="text-xs text-slate-500 leading-relaxed">Across 8+ mega-projects in 4 countries — oil & gas, petrochemical, alumina, green hydrogen</p>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d1 text-center">
+        <div class="text-3xl md:text-4xl font-bold font-mono text-white mb-2">67K+</div>
+        <div class="text-sm font-semibold text-white mb-1">Total Loop Checks</div>
+        <p class="text-[10px] font-mono text-slate-500">Across 8+ mega-projects in 4 countries</p>
       </div>
-      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-2 text-center">
-        <div class="text-4xl md:text-5xl font-bold font-space grad-text-emerald mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">Zero</div>
-        <div class="text-sm font-semibold text-white mb-2">Lost Time Incidents</div>
-        <p class="text-xs text-slate-500 leading-relaxed">Across 15+ years supervising teams of 30+ engineers — safety-first leadership</p>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d2 text-center neon-border">
+        <div class="text-3xl md:text-4xl font-bold font-mono grad-green mb-2">ZERO</div>
+        <div class="text-sm font-semibold text-white mb-1">Lost Time Incidents</div>
+        <p class="text-[10px] font-mono text-slate-500">15+ years · Safety-first leadership</p>
       </div>
-      <div class="glass glass-hover rounded-2xl p-7 group reveal text-center">
-        <div class="text-4xl md:text-5xl font-bold font-space text-white mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">25%</div>
-        <div class="text-sm font-semibold text-white mb-2">Downtime Reduction</div>
-        <p class="text-xs text-slate-500 leading-relaxed">Through Root Cause Analysis implementation at NSRP Refinery</p>
+      <div class="glass glass-hover rounded-xl p-6 reveal text-center">
+        <div class="text-3xl md:text-4xl font-bold font-mono text-white mb-2">25%</div>
+        <div class="text-sm font-semibold text-white mb-1">Downtime Reduction</div>
+        <p class="text-[10px] font-mono text-slate-500">RCA implementation at NSRP Refinery</p>
       </div>
-      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-1 text-center">
-        <div class="text-4xl md:text-5xl font-bold font-space grad-text-emerald mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">100%</div>
-        <div class="text-sm font-semibold text-white mb-2">System Handover On Time</div>
-        <p class="text-xs text-slate-500 leading-relaxed">All milestones achieved on schedule at NEOM Green Hydrogen Complex</p>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d1 text-center neon-border">
+        <div class="text-3xl md:text-4xl font-bold font-mono grad-cyan mb-2">100%</div>
+        <div class="text-sm font-semibold text-white mb-1">System Handover On Time</div>
+        <p class="text-[10px] font-mono text-slate-500">All milestones on schedule at NEOM NGHC</p>
       </div>
-      <div class="glass glass-hover rounded-2xl p-7 group reveal reveal-delay-2 text-center">
-        <div class="text-4xl md:text-5xl font-bold font-space text-white mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">5+</div>
-        <div class="text-sm font-semibold text-white mb-2">Client Standards Mastered</div>
-        <p class="text-xs text-slate-500 leading-relaxed">Saudi Aramco, ADNOC, Bechtel, Shell DEP, QatarEnergy</p>
+      <div class="glass glass-hover rounded-xl p-6 reveal reveal-d2 text-center">
+        <div class="text-3xl md:text-4xl font-bold font-mono text-white mb-2">5+</div>
+        <div class="text-sm font-semibold text-white mb-1">Client Standards</div>
+        <p class="text-[10px] font-mono text-slate-500">Saudi Aramco, ADNOC, Bechtel, Shell DEP, QatarEnergy</p>
       </div>
     </div>
 
     <!-- Education & Certs -->
-    <div class="grid md:grid-cols-2 gap-5 mt-8">
-      <div class="glass rounded-2xl p-7 reveal">
+    <div class="grid md:grid-cols-2 gap-4 mt-8">
+      <div class="glass rounded-xl p-6 reveal">
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-400"></i></div>
-          <h3 class="text-base font-semibold text-white font-space">Education</h3>
+          <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-400"></i></div>
+          <h3 class="text-sm font-semibold text-white">Education</h3>
         </div>
-        <div class="text-sm font-semibold text-white">B.Tech — Electronics & Communication Engineering</div>
-        <div class="text-xs text-slate-400 mt-1">Uttar Pradesh Technical University (UPTU), India · 2012</div>
+        <div class="text-sm font-semibold text-white">B.Tech — Electronics &amp; Communication Engineering</div>
+        <div class="text-[10px] font-mono text-slate-400 mt-1">Uttar Pradesh Technical University (UPTU), India · 2012</div>
       </div>
-      <div class="glass rounded-2xl p-7 reveal reveal-delay-1">
+      <div class="glass rounded-xl p-6 reveal reveal-d1">
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="award" class="w-5 h-5 text-amber-400"></i></div>
-          <h3 class="text-base font-semibold text-white font-space">Certifications</h3>
+          <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="award" class="w-5 h-5 text-amber-400"></i></div>
+          <h3 class="text-sm font-semibold text-white">Certifications</h3>
         </div>
-        <div class="space-y-2.5">
-          <div class="flex items-center gap-2.5 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>Industrial Automation & Instrumentation Engineering — 2012</div>
-          <div class="flex items-center gap-2.5 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>Functional Safety SIS Awareness — TÜV/Industry Standard</div>
-          <div class="flex items-center gap-2.5 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>HAZOP Study Participation — Certified 2019</div>
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>Industrial Automation &amp; Instrumentation Engineering</div>
+          <div class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>Functional Safety SIS Awareness</div>
+          <div class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0"></i>HAZOP Study Participation — Certified 2019</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== INSTRUMENTATION TOOLS ==================== -->
-<section id="tools" class="relative py-24 md:py-32 px-6">
-  <div class="max-w-6xl mx-auto">
+<!-- ===== TOOLS ===== -->
+<section id="tools" class="relative py-24 md:py-32 px-6 cyber-grid">
+  <div class="max-w-7xl mx-auto">
     <div class="text-center mb-14 reveal">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
-        <i data-lucide="wrench" class="w-3 h-3 text-emerald-400"></i>
-        <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Free Online Tools</span>
+        <span class="text-[9px] font-mono tracking-[.2em] text-emerald-400">ENGINEERING TOOLKIT // 0x05</span>
       </div>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text font-space">Instrumentation Toolkit</h2>
-      <p class="text-slate-500 mt-4 max-w-xl mx-auto text-sm">Essential calculators and converters for instrumentation engineers — each tool on its own dedicated page for focused work</p>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Instrumentation Toolkit</h2>
+      <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-sm font-mono">SPECIALISED CALCULATORS &amp; CONVERTERS — EACH TOOL ON ITS OWN DEDICATED PAGE FOR PLANT-FLOOR EXECUTION</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 reveal">
-      <a href="tools/ma-calculator.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/ma-calculator.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block neon-border">
+        <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="activity" class="w-6 h-6 text-emerald-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-emerald-400 transition-colors">4-20mA Signal</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Percentage ↔ mA conversion for loop testing</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-emerald-400/60 group-hover:text-emerald-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-emerald-400 transition-colors tracking-wide">4-20mA SIGNAL</h3>
+        <p class="text-[9px] font-mono text-slate-500">Loop percentage ↔ mA conversion</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-emerald-400/50 group-hover:text-emerald-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/pv-calculator.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/pv-calculator.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block">
+        <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="gauge" class="w-6 h-6 text-blue-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-blue-400 transition-colors">PV Calculator</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">mA signal ↔ engineering units conversion</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-blue-400/60 group-hover:text-blue-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-blue-400 transition-colors tracking-wide">PV SCALER</h3>
+        <p class="text-[9px] font-mono text-slate-500">mA → engineering units conversion</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-blue-400/50 group-hover:text-blue-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/dp-flow.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/dp-flow.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block neon-border">
+        <div class="w-12 h-12 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="waves" class="w-6 h-6 text-purple-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-purple-400 transition-colors">DP Flow</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Flow from differential pressure (√ extraction)</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-purple-400/60 group-hover:text-purple-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-purple-400 transition-colors tracking-wide">DP FLOW</h3>
+        <p class="text-[9px] font-mono text-slate-500">√ extraction flow calculator</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-purple-400/50 group-hover:text-purple-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/rtd-pt100.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/rtd-pt100.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block">
+        <div class="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="thermometer" class="w-6 h-6 text-amber-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-amber-400 transition-colors">RTD (Pt100)</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Resistance ↔ Temperature per IEC 60751</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-amber-400/60 group-hover:text-amber-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-amber-400 transition-colors tracking-wide">RTD Pt100</h3>
+        <p class="text-[9px] font-mono text-slate-500">Resistance ↔ Temperature (IEC 60751)</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-amber-400/50 group-hover:text-amber-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/thermocouple.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/thermocouple.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block neon-border">
+        <div class="w-12 h-12 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="flame" class="w-6 h-6 text-orange-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-orange-400 transition-colors">Thermocouple</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Type K mV output approximation</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-orange-400/60 group-hover:text-orange-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-orange-400 transition-colors tracking-wide">THERMOCOUPLE</h3>
+        <p class="text-[9px] font-mono text-slate-500">Type-K mV generator (ITS-90)</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-orange-400/50 group-hover:text-orange-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/valve-cv.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/valve-cv.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block">
+        <div class="w-12 h-12 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="settings" class="w-6 h-6 text-cyan-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-cyan-400 transition-colors">Valve Cv</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Flow coefficient per ISA-75.01</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-cyan-400/60 group-hover:text-cyan-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-cyan-400 transition-colors tracking-wide">VALVE Cv</h3>
+        <p class="text-[9px] font-mono text-slate-500">ISA-75.01 flow coefficient</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-cyan-400/50 group-hover:text-cyan-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/ohms-law.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/ohms-law.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block neon-border">
+        <div class="w-12 h-12 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="zap" class="w-6 h-6 text-yellow-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-yellow-400 transition-colors">Ohm's Law</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">V, I, R, P from any two values</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-yellow-400/60 group-hover:text-yellow-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-yellow-400 transition-colors tracking-wide">OHM'S LAW</h3>
+        <p class="text-[9px] font-mono text-slate-500">V, I, R, P workstation</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-yellow-400/50 group-hover:text-yellow-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/unit-converter.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/unit-converter.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block">
+        <div class="w-12 h-12 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="repeat" class="w-6 h-6 text-rose-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-rose-400 transition-colors">Unit Converter</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Pressure, temp, flow, length, mass</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-rose-400/60 group-hover:text-rose-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-rose-400 transition-colors tracking-wide">UNIT CONVERTER</h3>
+        <p class="text-[9px] font-mono text-slate-500">Pressure, temp, flow, mass</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-rose-400/50 group-hover:text-rose-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/cable-sizing.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/cable-sizing.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block neon-border">
+        <div class="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="cable" class="w-6 h-6 text-indigo-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-indigo-400 transition-colors">Cable Sizing</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Voltage drop for instrument cable runs</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-indigo-400/60 group-hover:text-indigo-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-indigo-400 transition-colors tracking-wide">CABLE SIZING</h3>
+        <p class="text-[9px] font-mono text-slate-500">Voltage drop analyzer</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-indigo-400/50 group-hover:text-indigo-400">LAUNCH →</span>
       </a>
 
-      <a href="tools/loop-checklist.html" target="_blank" class="group glass glass-hover rounded-2xl p-6 text-center block">
-        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+      <a href="tools/loop-checklist.html" target="_blank" class="group glass glass-hover rounded-xl p-5 text-center block">
+        <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
           <i data-lucide="check-square" class="w-6 h-6 text-emerald-400"></i>
         </div>
-        <h3 class="text-sm font-semibold text-white font-space mb-1.5 group-hover:text-emerald-400 transition-colors">Loop Checklist</h3>
-        <p class="text-[10px] text-slate-500 leading-relaxed">Interactive pre-comm checklist with export</p>
-        <div class="mt-3 inline-flex items-center gap-1 text-[10px] text-emerald-400/60 group-hover:text-emerald-400 transition-colors">
-          <span>Open Tool</span>
-          <i data-lucide="external-link" class="w-3 h-3"></i>
-        </div>
+        <h3 class="text-xs font-semibold text-white font-mono mb-1.5 group-hover:text-emerald-400 transition-colors tracking-wide">LOOP CHECKLIST</h3>
+        <p class="text-[9px] font-mono text-slate-500">Pre-comm with export</p>
+        <span class="inline-block mt-3 text-[9px] font-mono text-emerald-400/50 group-hover:text-emerald-400">LAUNCH →</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ==================== CONTACT ==================== -->
+<!-- ===== CONTACT ===== -->
 <section id="contact" class="relative py-24 md:py-32 px-6">
   <div class="max-w-7xl mx-auto">
     <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start">
-      <!-- Left -->
       <div class="md:col-span-2 reveal">
         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/8 border border-emerald-500/15 mb-6">
-          <i data-lucide="mail" class="w-3 h-3 text-emerald-400"></i>
-          <span class="text-[10px] font-semibold tracking-[.2em] uppercase text-emerald-400">Get In Touch</span>
+          <span class="text-[9px] font-mono tracking-[.2em] text-emerald-400">MOBILIZATION PORTAL // 0x06</span>
         </div>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight grad-text font-space leading-[1.1] mb-6">Let's Build Something Great</h2>
-        <p class="text-slate-400 text-sm leading-relaxed mb-8">Available immediately for instrumentation & control engineering roles across the GCC. Transferable Iqama, no notice period.</p>
-
-        <div class="space-y-3">
-          <a href="tel:+966554803735" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group cursor-pointer">
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i></div>
-            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Phone</div><div class="text-sm text-white font-medium group-hover:text-emerald-400 transition-colors">+966 554803735</div></div>
-          </a>
-          <a href="mailto:jaissatish@gmail.com" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group cursor-pointer">
-            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-4 h-4 text-blue-400"></i></div>
-            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Email</div><div class="text-sm text-white font-medium group-hover:text-blue-400 transition-colors">jaissatish@gmail.com</div></div>
-          </a>
-          <a href="https://linkedin.com/in/jaissatish" target="_blank" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group cursor-pointer">
-            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0"><i data-lucide="external-link" class="w-4 h-4 text-purple-400"></i></div>
-            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">LinkedIn</div><div class="text-sm text-white font-medium group-hover:text-purple-400 transition-colors">linkedin.com/in/jaissatish</div></div>
-          </a>
-          <div class="flex items-center gap-4 glass rounded-xl p-4">
-            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0"><i data-lucide="map-pin" class="w-4 h-4 text-amber-400"></i></div>
-            <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium">Location</div><div class="text-sm text-white font-medium">Duba, Tabuk, Saudi Arabia</div></div>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight grad-text leading-[1.1] mb-6">Initiate Mobilization</h2>
+        <div class="glass rounded-xl p-5 mb-8 neon-border">
+          <div class="grid grid-cols-2 gap-4">
+            <div><span class="text-[9px] font-mono text-slate-500">AVAILABILITY</span><div class="text-sm text-emerald-400 font-mono font-semibold">IMMEDIATE</div></div>
+            <div><span class="text-[9px] font-mono text-slate-500">VISA STATUS</span><div class="text-sm text-cyan-400 font-mono font-semibold">TRANSFERABLE IQAMA</div></div>
+            <div><span class="text-[9px] font-mono text-slate-500">DEPLOYMENT</span><div class="text-sm text-amber-400 font-mono font-semibold">ALL GCC</div></div>
+            <div><span class="text-[9px] font-mono text-slate-500">NOTICE</span><div class="text-sm text-emerald-400 font-mono font-semibold">ZERO</div></div>
           </div>
         </div>
-
-        <!-- Languages -->
-        <div class="mt-6 glass rounded-xl p-5">
-          <div class="text-[10px] text-slate-500 uppercase tracking-wider font-medium mb-3">Languages</div>
-          <div class="flex gap-2">
-            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/70 border border-white/8">English (Fluent)</span>
-            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 text-white/70 border border-white/8">Hindi (Native)</span>
-            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-500/8 text-emerald-400 border border-emerald-500/15">Arabic (Open)</span>
+        <div class="space-y-3">
+          <a href="tel:+966554803735" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group">
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i></div>
+            <div><div class="text-[9px] font-mono text-slate-500 tracking-wider">PHONE</div><div class="text-sm text-white font-medium group-hover:text-emerald-400 transition-colors">+966 554803735</div></div>
+          </a>
+          <a href="mailto:jaissatish@gmail.com" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-4 h-4 text-blue-400"></i></div>
+            <div><div class="text-[9px] font-mono text-slate-500 tracking-wider">EMAIL</div><div class="text-sm text-white font-medium group-hover:text-blue-400 transition-colors">jaissatish@gmail.com</div></div>
+          </a>
+          <a href="https://linkedin.com/in/jaissatish" target="_blank" class="flex items-center gap-4 glass glass-hover rounded-xl p-4 group">
+            <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0"><i data-lucide="external-link" class="w-4 h-4 text-purple-400"></i></div>
+            <div><div class="text-[9px] font-mono text-slate-500 tracking-wider">LINKEDIN</div><div class="text-sm text-white font-medium group-hover:text-purple-400 transition-colors">linkedin.com/in/jaissatish</div></div>
+          </a>
+          <div class="flex items-center gap-4 glass rounded-xl p-4">
+            <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0"><i data-lucide="map-pin" class="w-4 h-4 text-amber-400"></i></div>
+            <div><div class="text-[9px] font-mono text-slate-500 tracking-wider">LOCATION</div><div class="text-sm text-white font-medium">Duba, Tabuk, Saudi Arabia</div></div>
           </div>
         </div>
       </div>
 
-      <!-- Right: Form -->
-      <div class="md:col-span-3 reveal reveal-delay-2">
-        <form id="contact-form" class="glass rounded-2xl p-8" onsubmit="handleSubmit(event)">
-          <h3 class="text-lg font-semibold text-white font-space mb-6">Send a Message</h3>
+      <div class="md:col-span-3 reveal reveal-d2">
+        <form id="contact-form" class="glass rounded-2xl p-8 neon-border" onsubmit="handleSubmit(event)">
+          <div class="flex items-center gap-2 mb-6">
+            <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i>
+            <span class="text-[10px] font-mono text-white font-semibold">SEND COMMAND // CONTACT FORM</span>
+          </div>
           <div class="space-y-4">
             <div class="grid sm:grid-cols-2 gap-4">
-              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Full Name</label><input type="text" class="inp" placeholder="Your name" required></div>
-              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Email</label><input type="email" class="inp" placeholder="your@email.com" required></div>
+              <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Full Name</label><input type="text" class="inp" placeholder="Your name" required></div>
+              <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Email</label><input type="email" class="inp" placeholder="your@email.com" required></div>
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
-              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Company</label><input type="text" class="inp" placeholder="Company name"></div>
-              <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Project Type</label>
+              <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Company / Client</label><input type="text" class="inp" placeholder="Company name"></div>
+              <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Project Scope</label>
                 <select class="inp">
-                  <option value="">Select type...</option>
-                  <option>Oil & Gas</option>
-                  <option>Petrochemical</option>
-                  <option>Green Hydrogen</option>
-                  <option>Refinery</option>
-                  <option>Power Generation</option>
-                  <option>Other</option>
+                  <option value="">Select scope...</option>
+                  <option>Oil & Gas</option><option>Petrochemical</option><option>Green Hydrogen</option><option>Refinery</option><option>Power Generation</option><option>Other</option>
                 </select>
               </div>
             </div>
-            <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Message</label>
-              <textarea rows="4" class="inp" style="resize:none" placeholder="Tell me about your project..." required></textarea>
+            <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Message / Technical Inquiry</label>
+              <textarea rows="4" class="inp" style="resize:none" placeholder="Describe your project requirements, scope, and target mobilization date..." required></textarea>
             </div>
-            <button type="submit" class="w-full bg-emerald-500 text-black text-sm font-semibold py-4 rounded-xl hover:bg-emerald-400 transition-all duration-200 flex items-center justify-center gap-2 tracking-wide uppercase">
-              Send Message <i data-lucide="send" class="w-4 h-4"></i>
+            <button type="submit" class="w-full bg-emerald-500 text-black text-sm font-bold font-mono py-4 rounded-xl hover:bg-emerald-400 transition-all flex items-center justify-center gap-2 tracking-wide">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              TRANSMIT MESSAGE
             </button>
           </div>
         </form>
@@ -931,107 +858,136 @@ select.inp option{background:#0a0a0f;color:#fff}
 </section>
 
 <!-- Footer -->
-<footer class="border-t border-white/5 py-10 px-6">
+<footer class="border-t border-white/5 py-8 px-6 cyber-grid-light">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center"><span class="text-emerald-400 font-bold text-xs font-space">SJ</span></div>
-      <span class="text-xs text-slate-500">© 2025 Satish Kumar Jaiswal. All rights reserved.</span>
+      <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center"><span class="text-emerald-400 font-bold text-xs font-mono">[SJ]</span></div>
+      <span class="text-[10px] font-mono text-slate-600">&copy; 2025 SATISH KUMAR JAISWAL // ALL RIGHTS RESERVED</span>
     </div>
     <div class="flex items-center gap-4">
-      <a href="tel:+966554803735" class="text-slate-600 hover:text-emerald-400 transition-colors" title="Phone"><i data-lucide="phone" class="w-4 h-4"></i></a>
-      <a href="mailto:jaissatish@gmail.com" class="text-slate-600 hover:text-emerald-400 transition-colors" title="Email"><i data-lucide="mail" class="w-4 h-4"></i></a>
-      <a href="https://linkedin.com/in/jaissatish" target="_blank" class="text-slate-600 hover:text-emerald-400 transition-colors" title="LinkedIn"><i data-lucide="external-link" class="w-4 h-4"></i></a>
-      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="text-slate-600 hover:text-emerald-400 transition-colors" title="Download Resume"><i data-lucide="file-text" class="w-4 h-4"></i></a>
+      <a href="tel:+966554803735" class="text-slate-600 hover:text-emerald-400 transition-colors"><i data-lucide="phone" class="w-4 h-4"></i></a>
+      <a href="mailto:jaissatish@gmail.com" class="text-slate-600 hover:text-emerald-400 transition-colors"><i data-lucide="mail" class="w-4 h-4"></i></a>
+      <a href="https://linkedin.com/in/jaissatish" target="_blank" class="text-slate-600 hover:text-emerald-400 transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i></a>
+      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="text-slate-600 hover:text-emerald-400 transition-colors"><i data-lucide="file-text" class="w-4 h-4"></i></a>
     </div>
   </div>
 </footer>
 
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 right-6 px-5 py-3 rounded-xl text-xs font-mono font-semibold z-[99999] translate-y-20 opacity-0 transition-all duration-400 bg-emerald-500/90 text-black backdrop-blur shadow-lg" style="transition:all .4s cubic-bezier(.4,0,.2,1)">---</div>
+
 <script>
-// ====== INIT ======
+// ====== BOOT SEQUENCE ======
+const bootLines = [
+  { text: '[<span class="highlight">OK</span>] SYS: INITIALIZING I&C COMMISSIONING KERNEL v4.2.1', delay: 200 },
+  { text: '[<span class="highlight">OK</span>] SYS: LOADING CORE COMPETENCIES — DCS/SIS/SCADA', delay: 300 },
+  { text: '[<span class="cyan">>></span>] MEM: 67,000+ LOOP CHECK RECORDS LOADED', delay: 400 },
+  { text: '[<span class="cyan">>></span>] MEM: 15+ YEARS CONTINUOUS ZERO-LTI OPERATION', delay: 400 },
+  { text: '[<span class="amber">!!</span>] NET: ESTABLISHING LINK TO NEOM NGHC — SECURE CONNECTION', delay: 500 },
+  { text: '[<span class="highlight">OK</span>] NET: GCC AVAILABILITY BROADCAST — IMMEDIATE', delay: 400 },
+  { text: '[<span class="highlight">OK</span>] DSP: RENDERING PERFORMANCE HUD &mdash; ALL METRICS ONLINE', delay: 500 },
+  { text: '[<span class="highlight">OK</span>] SYS: PORTFOLIO INITIALIZED — WELCOME, RECRUITER', delay: 400, last: true }
+];
+
+async function bootSequence() {
+  const container = document.getElementById('boot-output');
+  container.innerHTML = '';
+  for (let i = 0; i < bootLines.length; i++) {
+    const line = bootLines[i];
+    const div = document.createElement('div');
+    div.className = 'boot-line boot-cursor';
+    div.innerHTML = line.text;
+    container.appendChild(div);
+    await new Promise(r => setTimeout(r, line.delay));
+  }
+  // Remove cursor from last line
+  const lastLine = container.lastElementChild;
+  if (lastLine) lastLine.classList.remove('boot-cursor');
+  // Hide boot screen
+  setTimeout(() => {
+    document.getElementById('boot-screen').classList.add('done');
+  }, 800);
+}
+bootSequence();
+
+// ====== LUCIDE ======
 lucide.createIcons();
 
-// ====== LOADER ======
-window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hidden')},1200)});
-
-// ====== CUSTOM CURSOR ======
-const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,dx=0,dy=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx-4+'px';dot.style.top=my-4+'px'});
-function animCursor(){dx+=(mx-dx)*.15;dy+=(my-dy)*.15;ring.style.left=dx-20+'px';ring.style.top=dy-20+'px';requestAnimationFrame(animCursor)}
-animCursor();
-document.querySelectorAll('a,button,input,select,textarea,.glass-hover').forEach(el=>{
-  el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
-  el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+// ====== COORDINATE TELEMETRY ======
+document.addEventListener('mousemove', e => {
+  document.getElementById('coord-x').textContent = 'X: ' + e.clientX;
+  document.getElementById('coord-y').textContent = 'Y: ' + e.clientY;
 });
+setInterval(() => {
+  const now = new Date();
+  document.getElementById('coord-time').textContent = 'T: ' + now.toTimeString().slice(0,8);
+}, 1000);
 
-// ====== PARTICLES ======
-const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
-let particles=[];
-function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
-resizeCanvas();window.addEventListener('resize',resizeCanvas);
-for(let i=0;i<60;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,a:Math.random()*.3+.05})}
-function drawParticles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
-    if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(16,185,129,${p.a})`;ctx.fill();
-  });
-  particles.forEach((a,i)=>{
-    for(let j=i+1;j<particles.length;j++){
-      const b=particles[j],d=Math.hypot(a.x-b.x,a.y-b.y);
-      if(d<150){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(16,185,129,${.06*(1-d/150)})`;ctx.lineWidth=.5;ctx.stroke()}
-    }
-  });
-  requestAnimationFrame(drawParticles);
-}
-drawParticles();
-
-// ====== SCROLL PROGRESS ======
-window.addEventListener('scroll',()=>{
-  const h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('scroll-progress').style.width=(window.scrollY/h*100)+'%';
-  document.getElementById('navbar').style.borderBottomColor=window.scrollY>50?'rgba(255,255,255,.05)':'transparent';
+// ====== NAV SCROLL ======
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) nav.classList.add('nav-scrolled');
+  else nav.classList.remove('nav-scrolled');
 });
 
 // ====== SCROLL REVEAL ======
-const revealObs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');revealObs.unobserve(e.target)}});
-},{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revealObs.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 // ====== COUNTERS ======
-const counterObs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const el=e.target,target=parseInt(el.dataset.target);
-      let start=0;const dur=2000,startTime=performance.now();
-      function anim(now){
-        const prog=Math.min((now-startTime)/dur,1),ease=1-Math.pow(1-prog,3);
-        el.textContent=Math.floor(ease*target).toLocaleString()+(target>100?'+':'+');
-        if(prog<1)requestAnimationFrame(anim);
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target, target = parseFloat(el.dataset.target), suffix = el.dataset.suffix || '+';
+      const dur = 2000, startTime = performance.now();
+      function anim(now) {
+        const prog = Math.min((now - startTime) / dur, 1), ease = 1 - Math.pow(1 - prog, 3);
+        if (target === 0) {
+          el.textContent = '0' + (suffix || '');
+        } else if (target === 992) {
+          el.textContent = Math.floor(99 + ease * 0.2) + '.2%';
+        } else {
+          el.textContent = Math.floor(ease * target).toLocaleString() + suffix;
+        }
+        if (prog < 1) requestAnimationFrame(anim);
       }
-      requestAnimationFrame(anim);counterObs.unobserve(el);
+      requestAnimationFrame(anim); counterObs.unobserve(el);
     }
   });
-},{threshold:.5});
-document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
+}, { threshold: .5 });
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
 
 // ====== MOBILE MENU ======
-document.getElementById('mobile-btn').addEventListener('click',()=>document.getElementById('mobile-menu').classList.toggle('hidden'));
-document.querySelectorAll('.mob-nav').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobile-menu').classList.add('hidden')));
+document.getElementById('mobile-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+document.querySelectorAll('.mob-nav').forEach(a => a.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden')));
 
 // ====== SMOOTH SCROLL ======
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
 
-// ====== TOAST ======
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
-
-// ====== CONTACT FORM ======
-function handleSubmit(e){e.preventDefault();showToast('Thank you! Message received. Satish will respond soon.');e.target.reset()}
-
-
+// ====== TOAST / CONTACT FORM ======
+function showToast(m) {
+  const t = document.getElementById('toast');
+  t.textContent = m;
+  t.classList.remove('translate-y-20', 'opacity-0');
+  t.classList.add('translate-y-0', 'opacity-100');
+  setTimeout(() => {
+    t.classList.add('translate-y-20', 'opacity-0');
+    t.classList.remove('translate-y-0', 'opacity-100');
+  }, 3000);
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  showToast('MESSAGE TRANSMITTED // SATISH WILL RESPOND WITHIN 24HRS');
+  e.target.reset();
+}
 </script>
 </body>
 </html>

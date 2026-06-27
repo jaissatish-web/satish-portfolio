@@ -3,97 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Process Variable (PV) Calculator — Satish Jaiswal Portfolio</title>
-<meta name="description" content="Convert between mA signal and engineering units — key for transmitter calibration and DCS point validation.">
+<title>PV Engineering Units Scaler — Satish Jaiswal Portfolio</title>
+<meta name="description" content="Map mA signal to custom engineering units using linear interpolation with LRV/URV configuration.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
-tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif'],space:['Space Grotesk','sans-serif']}}}}
+tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#050507;color:#fff;overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:#0B0F19;color:#e2e8f0;overflow-x:hidden}
 ::selection{background:rgba(16,185,129,.3);color:#fff}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(16,185,129,.3);border-radius:2px}
-.glass{background:rgba(255,255,255,.02);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
-.glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
-.glass-hover:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);transform:translateY(-2px)}
-.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#fff;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Inter',sans-serif}
+.glass{background:rgba(17,24,39,.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.06)}
+.inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#e2e8f0;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'JetBrains Mono',monospace}
 .inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 4px rgba(16,185,129,.08);background:rgba(255,255,255,.06)}
-.inp::placeholder{color:rgba(255,255,255,.2)}
-select.inp option{background:#0a0a0f;color:#fff}
-.result-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);border-radius:16px;padding:20px}
-.grad-text{background:linear-gradient(135deg,#fff 0%,#fff 40%,rgba(255,255,255,.4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.grad-text-emerald{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.inp::placeholder{color:rgba(148,163,184,.3)}
+select.inp option{background:#111827;color:#e2e8f0}
+.result-box{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.12);border-radius:16px;padding:20px}
+.grad-text{background:linear-gradient(135deg,#fff 0%,#94a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-green{background:linear-gradient(135deg,#10B981,#34D399,#6EE7B7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.neon-border{box-shadow:inset 0 0 0 1px rgba(16,185,129,.12),0 0 15px rgba(16,185,129,.04)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .chk-item{transition:all .3s}
-.chk-item.done{opacity:.4}
-.chk-item.done .chk-text{text-decoration:line-through}
+.chk-item.done{opacity:.5}
+.chk-item.done .chk-text{text-decoration:line-through;color:rgba(148,163,184,.5)}
 .chk-item.done .chk-box{background:rgba(16,185,129,.2);border-color:#10B981}
-.toast{position:fixed;bottom:30px;right:30px;padding:14px 28px;border-radius:14px;font-size:13px;font-weight:500;z-index:99999;transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);background:rgba(16,185,129,.95);color:#fff;backdrop-filter:blur(10px)}
-.toast.show{transform:translateY(0);opacity:1}
-@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#10B981;cursor:pointer;border:3px solid #0B0F19;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
 
 <!-- Nav -->
-<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(5,5,7,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)">
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(11,15,19,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(16,185,129,.08)">
   <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
     <a href="../index.html" class="flex items-center gap-2.5 group">
       <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 border border-emerald-500/30 flex items-center justify-center group-hover:border-emerald-400/60 transition-all">
-        <span class="text-emerald-400 font-bold text-[10px] font-space">SJ</span>
+        <span class="text-emerald-400 font-bold text-[10px] font-mono">[SJ]</span>
       </div>
-      <span class="text-xs text-slate-400 group-hover:text-white transition-colors">&larr; Back to Portfolio</span>
+      <span class="text-[10px] font-mono text-slate-500 group-hover:text-emerald-400 transition-colors">&larr; PORTFOLIO</span>
     </a>
-    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
-      <i data-lucide="file-text" class="w-3 h-3"></i> Resume
+    <a href="../assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="inline-flex items-center gap-1.5 text-[9px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full hover:bg-emerald-500/20 transition-all">
+      <i data-lucide="file-text" class="w-3 h-3"></i> CV
     </a>
   </div>
 </nav>
 
-<!-- Main Content -->
+<!-- Content -->
 <div class="min-h-screen flex items-center justify-center px-6 pt-14 pb-20">
   <div class="w-full max-w-2xl mx-auto" style="animation:fadeUp .6s ease forwards">
 
-    <!-- Tool Header -->
+    <!-- Header -->
     <div class="text-center mb-10 mt-8">
-      <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-5">
+      <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-400/5 border border-blue-500/20 flex items-center justify-center mx-auto mb-5">
         <i data-lucide="gauge" class="w-7 h-7 text-blue-400"></i>
       </div>
-      <h1 class="text-2xl md:text-3xl font-bold font-space grad-text">Process Variable (PV) Calculator</h1>
-      <p class="text-sm text-slate-500 mt-2">Convert between mA signal and engineering units — key for transmitter calibration and DCS point validation.</p>
+      <h1 class="text-2xl md:text-3xl font-bold font-mono tracking-tight grad-text">PV Engineering Units Scaler</h1>
+      <p class="text-xs font-mono text-slate-500 mt-2 max-w-lg mx-auto">Map mA signal to custom engineering units using linear interpolation with LRV/URV configuration.</p>
     </div>
 
-    <!-- Tool Body -->
-    <div class="glass rounded-2xl p-6 md:p-8">
+    <!-- Body -->
+    <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
       <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">LRV (Lower Range Value)</label><input type="number" class="inp" id="pv-lrv" placeholder="e.g., 0" step="any"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">URV (Upper Range Value)</label><input type="number" class="inp" id="pv-urv" placeholder="e.g., 100" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">LRV (Lower Range Value)</label><input type="number" class="inp" id="pv-lrv" value="0" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">URV (Upper Range Value)</label><input type="number" class="inp" id="pv-urv" value="100" step="any"></div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">mA Signal (4-20)</label><input type="number" class="inp" id="pv-ma" placeholder="4 - 20" step="0.01" oninput="calcPV()"></div>
-        <div><label class="text-[10px] text-slate-400 mb-2 block uppercase tracking-wider font-medium">Process Variable (EU)</label><input type="number" class="inp" id="pv-eu" placeholder="Engineering Units" step="any" oninput="calcPVrev()"></div>
+        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">mA Signal (4-20)</label><input type="number" class="inp" id="pv-ma" value="12" step="0.01" oninput="calcPV()"></div>
+        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Process Variable (EU)</label><input type="number" class="inp" id="pv-eu" value="50" step="any" oninput="calcPVrev()"></div>
       </div>
       <div class="result-box">
         <div class="grid grid-cols-3 gap-4 text-center">
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">PV (EU)</div><div id="pv-r1" class="text-lg font-bold font-space grad-text-emerald">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">mA</div><div id="pv-r2" class="text-lg font-bold font-space text-white">—</div></div>
-          <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="pv-r3" class="text-lg font-bold font-space text-blue-400">—</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">PV (EU)</div><div id="pv-r1" class="text-xl font-bold font-mono grad-green">—</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">mA</div><div id="pv-r2" class="text-xl font-bold font-mono text-white">—</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="pv-r3" class="text-xl font-bold font-mono text-cyan-400">—</div></div>
         </div>
       </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[11px] text-slate-500"><strong class="text-slate-400">Formula:</strong> PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[10px] font-mono text-slate-500">PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>
     </div>
 
-    <!-- Back Link -->
+    <!-- Back -->
     <div class="text-center mt-8">
-      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-400 transition-colors">
+      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-emerald-400 transition-colors">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
-        Back to all tools
+        Back to toolkit
       </a>
     </div>
 
@@ -103,24 +100,9 @@ select.inp option{background:#0a0a0f;color:#fff}
 <script>
 lucide.createIcons();
 
-function calcPV(){
-  const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),ma=parseFloat(document.getElementById('pv-ma').value);
-  if(isNaN(lrv)||isNaN(urv)||isNaN(ma))return;
-  const pv=lrv+((ma-4)*(urv-lrv))/16,pct=((ma-4)*100)/16;
-  document.getElementById('pv-eu').value=pv.toFixed(3);
-  document.getElementById('pv-r1').textContent=pv.toFixed(2)+' EU';
-  document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';
-}
-function calcPVrev(){
-  const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),eu=parseFloat(document.getElementById('pv-eu').value);
-  if(isNaN(lrv)||isNaN(urv)||isNaN(eu))return;
-  const ma=4+((eu-lrv)/(urv-lrv))*16,pct=((ma-4)*100)/16;
-  document.getElementById('pv-ma').value=ma.toFixed(3);
-  document.getElementById('pv-r1').textContent=eu.toFixed(2)+' EU';
-  document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';
-  document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';
-}
+function calcPV(){const l=parseFloat(document.getElementById('pv-lrv').value),u=parseFloat(document.getElementById('pv-urv').value),ma=parseFloat(document.getElementById('pv-ma').value);if(isNaN(l)||isNaN(u)||isNaN(ma))return;const pv=l+((ma-4)*(u-l))/16,pct=((ma-4)*100)/16;document.getElementById('pv-eu').value=pv.toFixed(3);document.getElementById('pv-r1').textContent=pv.toFixed(2);document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';}
+function calcPVrev(){const l=parseFloat(document.getElementById('pv-lrv').value),u=parseFloat(document.getElementById('pv-urv').value),eu=parseFloat(document.getElementById('pv-eu').value);if(isNaN(l)||isNaN(u)||isNaN(eu))return;const ma=4+((eu-l)/(u-l))*16,pct=((ma-4)*100)/16;document.getElementById('pv-ma').value=ma.toFixed(3);document.getElementById('pv-r1').textContent=eu.toFixed(2);document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';}
+calcPV();
 </script>
 </body>
 </html>
