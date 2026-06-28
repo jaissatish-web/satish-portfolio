@@ -1,0 +1,52 @@
+<!-- GLOBAL HEADER -->
+<a href="#main-content" class="skip-nav">Skip to content</a>
+<header id="global-header" role="banner">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="index.html" class="header-logo" aria-label="Home">
+      <div class="header-logo-bracket">SJ</div>
+      <div class="header-logo-text">
+        <span class="header-logo-name">Satish Jaiswal</span>
+        <span class="header-logo-role">I&amp;C LEAD ENGINEER</span>
+      </div>
+    </a>
+
+    <!-- Status -->
+    <div class="header-status" aria-live="polite">
+      <span class="pulse"></span>
+      <span>ONLINE // GCC READY</span>
+    </div>
+
+    <!-- Nav -->
+    <nav class="header-nav" aria-label="Primary">
+      <a href="index.html" class="active" data-nav="portfolio">Portfolio</a>
+      <a href="tools.html" data-nav="tools">Toolkit</a>
+      <a href="index.html#experience" data-nav="track">Track</a>
+      <a href="index.html#contact" data-nav="contact">Contact</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="header-actions">
+      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="btn-cv" title="Download Premium CV">
+        <i data-lucide="file-text" style="width:12px;height:12px"></i>
+        <span>CV</span>
+      </a>
+      <button id="cmd-palette-trigger" class="btn-cv" title="Command Palette (Ctrl+K)" onclick="togglePalette()">
+        <i data-lucide="search" style="width:12px;height:12px"></i>
+        <span id="cmd-hint">⌘K</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- COMMAND PALETTE -->
+<div id="command-palette" role="dialog" aria-label="Command Palette" onclick="if(event.target===this)togglePalette()">
+  <div class="cp-box">
+    <div class="cp-input-row">
+      <i data-lucide="search" style="width:16px;height:16px;color:var(--text-dim)"></i>
+      <input type="text" id="cp-input" placeholder="Type a command or search..." autocomplete="off" spellcheck="false" aria-label="Command input">
+      <span class="cp-hint">ESC</span>
+    </div>
+    <div class="cp-list" id="cp-list"></div>
+  </div>
+</div>

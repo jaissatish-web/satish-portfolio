@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Toolkit — Satish Jaiswal Portfolio</title>
+<meta name="description" content="10 dedicated instrumentation engineering tools: 4-20mA calculator, PV scaler, DP flow, RTD, thermocouple, valve Cv, Ohm's law, unit converter, cable sizing, loop checklist.">
+<meta name="theme-color" content="#10B981">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}</script>
+<style>
+/* ===== TOOLS PAGE SPECIFIC ===== */
+.cyber-grid{background-image:linear-gradient(rgba(16,185,129,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,.03) 1px,transparent 1px);background-size:60px 60px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.tool-card{transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(16,185,129,.4),transparent);opacity:0;transition:opacity .3s}
+.tool-card:hover::before{opacity:1}
+.tool-card:hover{border-color:rgba(16,185,129,.25);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+
+.tool-card .tool-icon{transition:all .4s}
+.tool-card:hover .tool-icon{transform:scale(1.1);box-shadow:0 0 20px rgba(16,185,129,.15)}
+
+.tool-card .tool-launch{opacity:0;transform:translateY(8px);transition:all .3s}
+.tool-card:hover .tool-launch{opacity:1;transform:translateY(0)}
+
+/* Module status indicator */
+.module-status{position:absolute;top:12px;right:12px;width:6px;height:6px;border-radius:50%;background:#10B981;box-shadow:0 0 8px rgba(16,185,129,.4)}
+
+/* Category divider */
+.cat-divider{display:flex;align-items:center;gap:16px;margin:40px 0 20px}
+.cat-divider::before,.cat-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)}
+.cat-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:#64748b;text-transform:uppercase;white-space:nowrap}
+
+/* Mobile landscape optimization */
+@media(max-width:768px) and (orientation:landscape){
+  .tools-grid{grid-template-columns:repeat(3,1fr)!important}
+}
+@media(max-width:768px){
+  .tools-grid{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+
+<!-- GLOBAL HEADER -->
+<a href="#main" class="skip-nav">Skip to content</a>
+<header id="global-header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">
+      <div class="header-logo-bracket">SJ</div>
+      <div class="header-logo-text"><span class="header-logo-name">Satish Jaiswal</span><span class="header-logo-role">I&amp;C LEAD</span></div>
+    </a>
+    <div class="header-status"><span class="pulse"></span><span>TOOLKIT // ONLINE</span></div>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="index.html">Portfolio</a>
+      <a href="tools.html" class="active">Toolkit</a>
+      <a href="index.html#experience">Track</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="btn-cv"><i data-lucide="download" style="width:12px;height:12px"></i><span>CV</span></a>
+      <button class="btn-cv" onclick="togglePalette()"><i data-lucide="search" style="width:12px;height:12px"></i><span style="font-size:9px">⌘K</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Command Palette -->
+<div id="command-palette" role="dialog"><div class="cp-box"><div class="cp-input-row"><i data-lucide="search" style="width:16px;height:16px;color:#64748b"></i><input type="text" id="cp-input" placeholder="Type command..." autocomplete="off"><span class="cp-hint">ESC</span></div><div class="cp-list" id="cp-list"></div></div></div>
+
+<main id="main">
+
+<!-- ===== TOOLS HERO ===== -->
+<section class="relative py-20 md:py-28 px-6 cyber-grid">
+  <div class="max-w-6xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 reveal">
+      <span class="text-[10px] font-mono tracking-[.18em] text-emerald-400">// ENGINEERING TOOLKIT · 10 MODULES</span>
+    </div>
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-4 reveal reveal-d1"><span class="grad-text">Instrumentation</span><br><span class="grad-green">Toolkit</span></h1>
+    <p class="text-sm md:text-base text-slate-500 max-w-2xl mx-auto reveal reveal-d2 font-mono">DEDICATED CALCULATORS &amp; CONVERTERS — OPTIMIZED FOR PLANT-FLOOR EXECUTION</p>
+  </div>
+</section>
+
+<!-- ===== TOOLS GRID ===== -->
+<section class="relative pb-24 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Signal & Process -->
+    <div class="cat-divider reveal"><span class="cat-label">Signal &amp; Process</span></div>
+    <div class="tools-grid grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+      <a href="tools/ma-calculator.html" id="ma-calculator" class="tool-card glass rounded-xl p-6 block reveal">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4"><i data-lucide="activity" style="width:20px;height:20px;color:#10B981"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">4-20mA Signal</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">Loop current ↔ percentage converter with slider &amp; presets</p>
+        <div class="tool-launch text-[9px] font-mono text-emerald-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+
+      <a href="tools/pv-calculator.html" id="pv-calculator" class="tool-card glass rounded-xl p-6 block reveal reveal-d1">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4"><i data-lucide="gauge" style="width:20px;height:20px;color:#3B82F6"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">PV Scaler</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">mA signal → engineering units with LRV/URV config</p>
+        <div class="tool-launch text-[9px] font-mono text-blue-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+
+      <a href="tools/dp-flow.html" id="dp-flow" class="tool-card glass rounded-xl p-6 block reveal reveal-d2">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4"><i data-lucide="waves" style="width:20px;height:20px;color:#A855F7"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">DP Flow Extractor</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">Linear &amp; square root extraction with live curve</p>
+        <div class="tool-launch text-[9px] font-mono text-purple-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+
+      <a href="tools/ohms-law.html" class="tool-card glass rounded-xl p-6 block reveal reveal-d3">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mb-4"><i data-lucide="zap" style="width:20px;height:20px;color:#F59E0B"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">Ohm's Law</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">V, I, R, P solver with power threshold warnings</p>
+        <div class="tool-launch text-[9px] font-mono text-yellow-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+    </div>
+
+    <!-- Temperature -->
+    <div class="cat-divider reveal"><span class="cat-label">Temperature</span></div>
+    <div class="tools-grid grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+      <a href="tools/rtd-pt100.html" id="rtd-pt100" class="tool-card glass rounded-xl p-6 block reveal">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4"><i data-lucide="thermometer" style="width:20px;height:20px;color:#F59E0B"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">RTD Pt100</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">IEC 60751 resistance ↔ temperature, 3-decimal</p>
+        <div class="tool-launch text-[9px] font-mono text-amber-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+
+      <a href="tools/thermocouple.html" class="tool-card glass rounded-xl p-6 block reveal reveal-d1">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4"><i data-lucide="flame" style="width:20px;height:20px;color:#F97316"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">Thermocouple Type-K</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">NIST ITS-90 mV generator with CJC compensation</p>
+        <div class="tool-launch text-[9px] font-mono text-orange-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+    </div>
+
+    <!-- Valve & Cable -->
+    <div class="cat-divider reveal"><span class="cat-label">Valve &amp; Cable</span></div>
+    <div class="tools-grid grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+      <a href="tools/valve-cv.html" id="valve-cv" class="tool-card glass rounded-xl p-6 block reveal">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4"><i data-lucide="settings" style="width:20px;height:20px;color:#06B6D4"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">Valve Cv Sizing</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">ISA-75.01 flow coefficient with choked detection</p>
+        <div class="tool-launch text-[9px] font-mono text-cyan-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+
+      <a href="tools/cable-sizing.html" id="cable-sizing" class="tool-card glass rounded-xl p-6 block reveal reveal-d1">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4"><i data-lucide="cable" style="width:20px;height:20px;color:#6366F1"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">Cable Voltage Drop</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">Loop resistance &amp; pass/fail at 5% tolerance</p>
+        <div class="tool-launch text-[9px] font-mono text-indigo-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+    </div>
+
+    <!-- Conversion & QA -->
+    <div class="cat-divider reveal"><span class="cat-label">Conversion &amp; QA</span></div>
+    <div class="tools-grid grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+      <a href="tools/unit-converter.html" class="tool-card glass rounded-xl p-6 block reveal">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mb-4"><i data-lucide="repeat" style="width:20px;height:20px;color:#F43F5E"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">Unit Converter</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">Pressure, temp, flow, mass — simultaneous update</p>
+        <div class="tool-launch text-[9px] font-mono text-rose-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+
+      <a href="tools/loop-checklist.html" id="loop-checklist" class="tool-card glass rounded-xl p-6 block reveal reveal-d1">
+        <div class="module-status"></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4"><i data-lucide="check-square" style="width:20px;height:20px;color:#10B981"></i></div>
+        <h3 class="text-sm font-semibold text-white mb-1">Loop Checklist</h3>
+        <p class="text-[10px] font-mono text-slate-500 mb-3">3-gate pre-comm with LocalStorage &amp; export</p>
+        <div class="tool-launch text-[9px] font-mono text-emerald-400 tracking-wider">LAUNCH MODULE →</div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/5 py-6 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3"><div class="flex items-center gap-2"><span class="text-emerald-400 font-mono text-xs font-bold">[SJ]</span><span class="text-[10px] font-mono text-slate-600">&copy; 2025 · 10 TOOLS ONLINE</span></div><a href="index.html" class="text-[10px] font-mono text-slate-600 hover:text-emerald-400">← BACK TO PORTFOLIO</a></div></footer>
+
+<script src="assets/js/global.js"></script>
+<script>
+/* Coord display */
+document.addEventListener('mousemove',e=>{document.getElementById('coord-x').textContent='X:'+e.clientX;document.getElementById('coord-y').textContent='Y:'+e.clientY});setInterval(()=>{document.getElementById('coord-t').textContent='T:'+new Date().toTimeString().slice(0,8)},1000);
+</script>
+</body>
+</html>
