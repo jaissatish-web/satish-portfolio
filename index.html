@@ -8,7 +8,7 @@
 <meta property="og:title" content="Satish Kumar Jaiswal — Engineering Precision at Unprecedented Scale">
 <meta property="og:description" content="Lead I&C Engineer. 15+ years, 67K+ loop checks, Zero LTI. NEOM, ADNOC, Bechtel.">
 <meta property="og:image" content="assets/images/photo.jpg">
-<meta name="theme-color" content="#818cf8">
+<meta name="theme-color" content="#6366f1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/global.css">
@@ -16,71 +16,11 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}</script>
 <style>
-/* ===== PAGE-SPECIFIC ===== */
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-
-/* Subtle dot pattern instead of cyber-grid */
-.dot-pattern{background-image:radial-gradient(rgba(148,163,184,.06) 1px,transparent 1px);background-size:24px 24px}
-
-/* Timeline */
-.tl-line{width:2px;background:linear-gradient(to bottom,rgba(129,140,248,.25),rgba(168,85,247,.1),transparent)}
-.tl-dot{width:14px;height:14px;border-radius:50%;border:2px solid #818cf8;background:#0f172a;position:relative;z-index:2;transition:all .4s}
-.tl-dot.active{background:#818cf8;box-shadow:0 0 16px rgba(129,140,248,.35)}
-.tl-dot.cyan{border-color:#38bdf8}
-.tl-dot.cyan.active{background:#38bdf8;box-shadow:0 0 16px rgba(56,189,248,.35)}
-.tl-dot.purple{border-color:#c084fc}
-.tl-dot.purple.active{background:#c084fc;box-shadow:0 0 16px rgba(192,132,252,.35)}
-.tl-node{position:relative;padding-left:52px}
-.tl-node::before{content:'';position:absolute;left:19px;top:28px;bottom:-20px;width:2px;background:linear-gradient(to bottom,rgba(129,140,248,.15),transparent)}
-.tl-node:last-child::before{display:none}
-
-/* HUD Cards — Clean premium style */
-.hud-card{position:relative;overflow:hidden}
-.hud-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(129,140,248,.3),transparent);opacity:.6}
-.hud-tag{position:absolute;top:10px;right:12px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;color:rgba(148,163,184,.15)}
-.hud-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(148,163,184,.5)}
-
-/* Boot Screen */
-#boot-screen{position:fixed;inset:0;background:#0f172a;z-index:100000;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:2rem;transition:opacity .8s,visibility .8s}
-#boot-screen.done{opacity:0;visibility:hidden;pointer-events:none}
-.boot-output{max-width:600px;width:100%;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8}
-.boot-line{opacity:0;overflow:hidden;white-space:nowrap;border-right:2px solid transparent;animation:bootType .5s steps(40,end) forwards;color:rgba(129,140,248,.7)}
-.boot-line .hl{color:#818cf8;font-weight:600}
-.boot-line .cy{color:#38bdf8}
-.boot-line .am{color:#fbbf24}
-.boot-cursor{border-right-color:#818cf8;animation:blink .8s step-end infinite}
-@keyframes bootType{from{opacity:1;width:0}to{opacity:1;width:100%}}
-@keyframes blink{50%{border-color:transparent}}
-.boot-progress{width:600px;max-width:90%;height:2px;background:rgba(255,255,255,.04);border-radius:2px;margin-top:28px;overflow:hidden}
-.boot-progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#818cf8,#c084fc);border-radius:2px;animation:bootProgress 2.6s ease forwards;animation-delay:.2s}
-@keyframes bootProgress{to{width:100%}}
-
-/* Coord Telemetry */
-#coord-display{position:fixed;bottom:10px;right:18px;z-index:50;font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(148,163,184,.15);pointer-events:none;letter-spacing:.04em}
-#coord-display span{display:inline-block;margin-left:14px}
-
-/* Hero gradient orbs */
-.hero-orb-1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(129,140,248,.08) 0%,transparent 70%);top:-10%;right:-5%;pointer-events:none}
-.hero-orb-2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(192,132,252,.06) 0%,transparent 70%);bottom:5%;left:-8%;pointer-events:none}
-.hero-orb-3{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(244,114,182,.04) 0%,transparent 70%);top:30%;left:20%;pointer-events:none}
-
-/* Shimmer CTA */
-.shimmer-btn{position:relative;overflow:hidden}
-.shimmer-btn::after{content:'';position:absolute;top:0;left:-200%;width:200%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);animation:shimmer 3s infinite}
-
-/* Tool card */
-.tool-card-card{transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
-.tool-card-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(129,140,248,.3),transparent);opacity:0;transition:opacity .3s}
-.tool-card-card:hover::before{opacity:1}
-.tool-card-card:hover{border-color:rgba(129,140,248,.2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-
-@media(max-width:768px){.tl-node{padding-left:40px}.tl-dot{width:12px;height:12px}html body .tl-node::before{left:15px}}
 </style>
 </head>
-<body>
+<body class="dot-pattern">
 
 <!-- GLOBAL HEADER -->
 <a href="#main" class="skip-nav">Skip to content</a>
@@ -88,7 +28,7 @@
   <div class="header-inner">
     <a href="index.html" class="header-logo">
       <div class="header-logo-bracket">SJ</div>
-      <div class="header-logo-text"><span class="header-logo-name">Satish Jaiswal</span><span class="header-logo-role">I&amp;C LEAD</span></div>
+      <div class="header-logo-text"><span class="header-logo-name">Satish Jaiswal</span><span class="header-logo-role">I&C LEAD</span></div>
     </a>
     <div class="header-status"><span class="pulse"></span><span>ONLINE · GCC</span></div>
     <nav class="header-nav" aria-label="Primary">
@@ -108,7 +48,7 @@
 <div id="boot-screen"><div class="boot-output" id="boot-output"></div><div class="boot-progress"><div class="boot-progress-bar"></div></div></div>
 
 <!-- Command Palette -->
-<div id="command-palette" role="dialog"><div class="cp-box"><div class="cp-input-row"><i data-lucide="search" style="width:16px;height:16px;color:#64748b"></i><input type="text" id="cp-input" placeholder="Type command..." autocomplete="off"><span class="cp-hint">ESC</span></div><div class="cp-list" id="cp-list"></div></div></div>
+<div id="command-palette" role="dialog"><div class="cp-box"><div class="cp-input-row"><i data-lucide="search" style="width:16px;height:16px;color:#64748b"></i><input type="text" id="cp-input" placeholder="Type to search..." autocomplete="off"><span class="cp-hint">ESC</span></div><div class="cp-list" id="cp-list"></div></div></div>
 
 <!-- Coord Telemetry -->
 <div id="coord-display"><span id="coord-x">X:0</span><span id="coord-y">Y:0</span><span id="coord-t">T:--:--:--</span></div>
@@ -116,60 +56,62 @@
 <main id="main">
 
 <!-- ===== HERO ===== -->
-<section class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden dot-pattern">
-  <div class="hero-orb-1"></div>
-  <div class="hero-orb-2"></div>
-  <div class="hero-orb-3"></div>
+<section class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <div class="hero-orb-1"></div>
+    <div class="hero-orb-2"></div>
+    <div class="hero-orb-3"></div>
+  </div>
 
   <div class="relative z-10 max-w-6xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 reveal">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 reveal" style="border-color:rgba(99,102,241,.15)">
       <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
-      <span class="text-[10px] font-mono tracking-[.15em] text-emerald-400">IMMEDIATE · GCC READY · ZERO NOTICE</span>
+      <span class="text-[10px] font-mono tracking-[.18em] text-emerald-400">IMMEDIATE · GCC READY · ZERO NOTICE</span>
     </div>
 
-    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.02] mb-4 reveal reveal-d1"><span class="grad-text">Satish Kumar</span><br><span class="text-white">Jaiswal</span></h1>
+    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.02] mb-4 reveal reveal-d1"><span class="grad-text">Satish Kumar</span><br><span class="text-slate-900">Jaiswal</span></h1>
 
     <div class="reveal reveal-d2">
-      <p class="text-lg md:text-xl text-slate-300 mb-2">Lead Instrumentation &amp; Control Engineer</p>
+      <p class="text-lg md:text-xl text-slate-600 mb-2">Lead Instrumentation &amp; Control Engineer</p>
       <p class="text-xs md:text-sm text-slate-500 mb-6 max-w-3xl mx-auto font-mono tracking-wide">PRE-COMMISSIONING SPECIALIST · 15+ YEARS MASTERY · USD 8.4B NEOM GREEN HYDROGEN · DCS/SIS/SCADA</p>
     </div>
 
     <div class="overflow-hidden py-4 mb-8 relative reveal reveal-d3">
-      <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#0f172a] to-transparent z-10"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#0f172a] to-transparent z-10"></div>
+      <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
       <div class="flex gap-4" style="animation:marquee 45s linear infinite;width:max-content">
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-indigo-500/8 text-indigo-400 border border-indigo-500/15 tracking-wider">SAUDI ARAMCO</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-sky-500/8 text-sky-400 border border-sky-500/15 tracking-wider">ADNOC</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-violet-500/8 text-violet-400 border border-violet-500/15 tracking-wider">BECHTEL</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 tracking-wider">AIR PRODUCTS</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 tracking-wider">NEOM</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 tracking-wider">HYUNDAI ENG</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-white/5 text-white/40 border border-white/10 tracking-wider">QATARENERGY</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-indigo-500/8 text-indigo-400 border border-indigo-500/15 tracking-wider">SAUDI ARAMCO</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-sky-500/8 text-sky-400 border border-sky-500/15 tracking-wider">ADNOC</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-violet-500/8 text-violet-400 border border-violet-500/15 tracking-wider">BECHTEL</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-400 border border-amber-500/15 tracking-wider">AIR PRODUCTS</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-400 border border-rose-500/15 tracking-wider">NEOM</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-400 border border-cyan-500/15 tracking-wider">HYUNDAI ENG</span>
-        <span class="px-4 py-2 rounded-lg text-[10px] font-mono font-semibold bg-white/5 text-white/40 border border-white/10 tracking-wider">QATARENERGY</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-indigo-500/8 text-indigo-600 border border-indigo-500/15 tracking-wider">SAUDI ARAMCO</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-sky-500/8 text-sky-600 border border-sky-500/15 tracking-wider">ADNOC</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-violet-500/8 text-violet-600 border border-violet-500/15 tracking-wider">BECHTEL</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-600 border border-amber-500/15 tracking-wider">AIR PRODUCTS</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-600 border border-rose-500/15 tracking-wider">NEOM</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-600 border border-cyan-500/15 tracking-wider">HYUNDAI ENG</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-slate-500/8 text-slate-600 border border-slate-500/15 tracking-wider">QATARENERGY</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-indigo-500/8 text-indigo-600 border border-indigo-500/15 tracking-wider">SAUDI ARAMCO</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-sky-500/8 text-sky-600 border border-sky-500/15 tracking-wider">ADNOC</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-violet-500/8 text-violet-600 border border-violet-500/15 tracking-wider">BECHTEL</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-600 border border-amber-500/15 tracking-wider">AIR PRODUCTS</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-600 border border-rose-500/15 tracking-wider">NEOM</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-600 border border-cyan-500/15 tracking-wider">HYUNDAI ENG</span>
+        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-slate-500/8 text-slate-600 border border-slate-500/15 tracking-wider">QATARENERGY</span>
       </div>
     </div>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal reveal-d3">
-      <a href="#experience" class="shimmer-btn inline-flex items-center gap-2 text-sm font-semibold px-8 py-4 rounded-full transition-all font-mono tracking-wide" style="font-size:12px;background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff">VIEW EXPERIENCE<i data-lucide="arrow-down-right" style="width:14px;height:14px"></i></a>
-      <a href="tools.html" class="inline-flex items-center gap-2 text-sm px-8 py-4 rounded-full border border-white/10 hover:border-indigo-500/30 transition-all text-white" style="font-size:12px"><i data-lucide="wrench" style="width:16px;height:16px;color:#818cf8"></i>OPEN TOOLKIT</a>
+      <a href="#experience" class="shimmer-btn inline-flex items-center gap-2 text-[11px] font-mono font-semibold px-8 py-4 rounded-full transition-all tracking-wide" style="color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)">VIEW EXPERIENCE<i data-lucide="arrow-down-right" style="width:14px;height:14px"></i></a>
+      <a href="tools.html" class="inline-flex items-center gap-2 text-[11px] font-mono font-semibold px-8 py-4 rounded-full border border-slate-300 text-slate-700 hover:border-indigo-500/30 transition-all" style="background:rgba(248,250,252,.5)"><i data-lucide="wrench" style="width:16px;height:16px;color:#6366f1"></i>OPEN TOOLKIT</a>
     </div>
   </div>
 </section>
 
 <!-- ===== HUD METRICS ===== -->
-<section class="relative py-8 border-y border-white/5 bg-[#0f172a]">
+<section class="relative py-8 border-y border-slate-200 bg-white/50">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="hud-card glass rounded-xl p-5 reveal"><span class="hud-tag">M-001</span><div class="text-3xl md:text-4xl font-bold grad-text mb-1 mono" data-target="67000" data-decimals="0" data-suffix="+">0</div><div class="hud-label">Loop Checks</div><div class="text-[9px] font-mono text-slate-600 mt-1.5">4 Countries · 8+ Projects</div></div>
-      <div class="hud-card glass rounded-xl p-5 reveal reveal-d1"><span class="hud-tag">M-002</span><div class="text-3xl md:text-4xl font-bold text-emerald-400 mb-1 mono" data-target="0" data-decimals="0" data-suffix="">0</div><div class="hud-label">LTI (15+ Yrs)</div><div class="text-[9px] font-mono text-slate-600 mt-1.5">Zero Lost Time Incidents</div></div>
-      <div class="hud-card glass rounded-xl p-5 reveal reveal-d2"><span class="hud-tag">M-003</span><div class="text-3xl md:text-4xl font-bold grad-text mb-1 mono" data-target="99.2" data-decimals="1" data-suffix="%">0</div><div class="hud-label">First-Pass Accuracy</div><div class="text-[9px] font-mono text-slate-600 mt-1.5">Pre-Commissioning Verification</div></div>
-      <div class="hud-card glass rounded-xl p-5 reveal reveal-d3"><span class="hud-tag">M-004</span><div class="text-3xl md:text-4xl font-bold mono mb-1"><span class="grad-blue" data-target="8.4" data-decimals="1" data-suffix="">0</span><span style="font-size:.45em;font-weight:400;opacity:.5">  B USD</span></div><div class="hud-label">Max Project Value</div><div class="text-[9px] font-mono text-slate-600 mt-1.5">NEOM · World's Largest Green H₂</div></div>
+      <div class="hud-card glass rounded-xl p-5 reveal"><span class="hud-tag">M-001</span><div class="text-3xl md:text-4xl font-bold grad-text mb-1 mono" data-target="67000" data-decimals="0" data-suffix="+">0</div><div class="hud-label">Loop Checks</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">4 Countries · 8+ Projects</div></div>
+      <div class="hud-card glass rounded-xl p-5 reveal reveal-d1"><span class="hud-tag">M-002</span><div class="text-3xl md:text-4xl font-bold text-emerald-500 mb-1 mono" data-target="0" data-decimals="0" data-suffix="">0</div><div class="hud-label">LTI (15+ Yrs)</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">Zero Lost Time Incidents</div></div>
+      <div class="hud-card glass rounded-xl p-5 reveal reveal-d2"><span class="hud-tag">M-003</span><div class="text-3xl md:text-4xl font-bold grad-text mb-1 mono" data-target="99.2" data-decimals="1" data-suffix="%">0</div><div class="hud-label">First-Pass Accuracy</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">Pre-Commissioning Verification</div></div>
+      <div class="hud-card glass rounded-xl p-5 reveal reveal-d3"><span class="hud-tag">M-004</span><div class="text-3xl md:text-4xl font-bold mono mb-1"><span class="grad-green text-white" data-target="8.4" data-decimals="1" data-suffix="">0</span><span style="font-size:.45em;font-weight:400;opacity:.6"> B USD</span></div><div class="hud-label">Max Project Value</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">NEOM · World's Largest Green H₂</div></div>
     </div>
   </div>
 </section>
@@ -180,30 +122,30 @@
     <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
       <div class="md:col-span-2 reveal">
         <div class="relative max-w-xs mx-auto md:mx-0">
-          <div class="glass rounded-2xl overflow-hidden" style="box-shadow:0 20px 60px rgba(0,0,0,.3),inset 0 0 0 1px rgba(129,140,248,.08)">
-            <div class="aspect-[3/4]"><img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" class="w-full h-full object-cover object-top"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent">
-              <div class="text-[8px] font-mono text-indigo-400 tracking-[.15em] mb-1">CURRENT</div>
-              <div class="text-sm font-semibold text-white">NEOM Green Hydrogen</div>
+          <div class="rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/5" style="border:1px solid rgba(99,102,241,.08)">
+            <div class="aspect-[3/4]"><img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" class="w-full h-full object-cover object-center"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-white via-white/90 to-transparent">
+              <div class="text-[8px] font-mono text-indigo-500 tracking-[.15em] mb-1">CURRENT</div>
+              <div class="text-sm font-semibold text-slate-900">NEOM Green Hydrogen</div>
               <div class="text-[10px] font-mono text-slate-500 mt-0.5">USD 8.4B · World's Largest</div>
             </div>
           </div>
-          <div class="absolute -top-3 -right-3 glass rounded-lg p-3 z-10" style="animation:float 4s ease-in-out infinite;animation-delay:.5s"><div class="text-lg font-bold font-mono grad-text">99.2%</div><div class="text-[7px] font-mono text-slate-500">Accuracy</div></div>
-          <div class="absolute -bottom-3 -left-3 glass rounded-lg p-3 z-10" style="animation:float 4s ease-in-out infinite;animation-delay:1.5s"><div class="text-lg font-bold font-mono text-emerald-400">ZERO</div><div class="text-[7px] font-mono text-slate-500">LTI · 15Y</div></div>
+          <div class="absolute -top-3 -right-3 glass rounded-xl p-3 z-10" style="animation:float 4s ease-in-out infinite;animation-delay:.5s"><div class="text-lg font-bold font-mono grad-text">99.2%</div><div class="text-[7px] font-mono text-slate-500">Accuracy</div></div>
+          <div class="absolute -bottom-3 -left-3 glass rounded-xl p-3 z-10" style="animation:float 4s ease-in-out infinite;animation-delay:1.5s"><div class="text-lg font-bold font-mono text-emerald-500">ZERO</div><div class="text-[7px] font-mono text-slate-500">LTI · 15Y</div></div>
         </div>
       </div>
       <div class="md:col-span-3 reveal reveal-d2">
-        <div class="text-[10px] font-mono text-indigo-400 tracking-[.2em] mb-6">ABOUT</div>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.1] mb-8">Engineering Precision<br><span class="grad-text">at Unprecedented Scale</span></h2>
-        <div class="space-y-4 text-sm text-slate-400 leading-[1.8]">
-          <p>With over <strong class="text-white">15 years</strong> in instrumentation commissioning &amp; pre-commissioning, I've delivered across the world's most demanding environments — from the <span class="text-indigo-400">USD 8.4B NEOM Green Hydrogen Complex</span> to Asia's largest single-train refinery.</p>
-          <p>I've completed <strong class="text-white">67,000+ loop checks</strong> across 8+ mega-projects in 4 countries, maintaining <span class="text-emerald-400">Zero Lost Time Incidents</span> throughout my career.</p>
+        <div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">ABOUT</div>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-8">Engineering Precision<br><span class="grad-text">at Unprecedented Scale</span></h2>
+        <div class="space-y-4 text-sm text-slate-600 leading-[1.8]">
+          <p>With over <strong class="text-slate-900">15 years</strong> in instrumentation commissioning &amp; pre-commissioning, I've delivered across the world's most demanding environments — from the <span class="text-indigo-500">USD 8.4B NEOM Green Hydrogen Complex</span> to Asia's largest single-train refinery.</p>
+          <p>I've completed <strong class="text-slate-900">67,000+ loop checks</strong> across 8+ mega-projects in 4 countries, maintaining <span class="text-emerald-500">Zero Lost Time Incidents</span> throughout my career.</p>
         </div>
         <div class="grid grid-cols-2 gap-3 mt-8">
-          <div class="glass rounded-lg p-3 reveal"><div class="flex items-center gap-2 mb-1"><i data-lucide="map-pin" style="width:12px;height:12px;color:#818cf8"></i><span class="text-[9px] font-mono text-slate-500">LOCATION</span></div><div class="text-xs text-white font-medium">Duba, KSA</div></div>
-          <div class="glass rounded-lg p-3 reveal reveal-d1"><div class="flex items-center gap-2 mb-1"><i data-lucide="shield-check" style="width:12px;height:12px;color:#38bdf8"></i><span class="text-[9px] font-mono text-slate-500">VISA</span></div><div class="text-xs text-white font-medium">Transferable Iqama</div></div>
-          <div class="glass rounded-lg p-3 reveal reveal-d2"><div class="flex items-center gap-2 mb-1"><i data-lucide="zap" style="width:12px;height:12px;color:#fbbf24"></i><span class="text-[9px] font-mono text-slate-500">STATUS</span></div><div class="text-xs text-white font-medium">Immediate · No Notice</div></div>
-          <div class="glass rounded-lg p-3 reveal reveal-d3"><div class="flex items-center gap-2 mb-1"><i data-lucide="globe" style="width:12px;height:12px;color:#818cf8"></i><span class="text-[9px] font-mono text-slate-500">ELIGIBLE</span></div><div class="text-xs text-white font-medium">All GCC</div></div>
+          <div class="glass rounded-xl p-3 reveal" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="map-pin" style="width:12px;height:12px;color:#6366f1"></i><span class="text-[9px] font-mono text-slate-500">LOCATION</span></div><div class="text-xs text-slate-900 font-medium">Duba, KSA</div></div>
+          <div class="glass rounded-xl p-3 reveal reveal-d1" style="border-color:rgba(6,182,212,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="shield-check" style="width:12px;height:12px;color:#06b6d4"></i><span class="text-[9px] font-mono text-slate-500">VISA</span></div><div class="text-xs text-slate-900 font-medium">Transferable Iqama</div></div>
+          <div class="glass rounded-xl p-3 reveal reveal-d2" style="border-color:rgba(245,158,11,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="zap" style="width:12px;height:12px;color:#f59e0b"></i><span class="text-[9px] font-mono text-slate-500">STATUS</span></div><div class="text-xs text-slate-900 font-medium">Immediate · No Notice</div></div>
+          <div class="glass rounded-xl p-3 reveal reveal-d3" style="border-color:rgba(16,185,129,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="globe" style="width:12px;height:12px;color:#10b981"></i><span class="text-[9px] font-mono text-slate-500">ELIGIBLE</span></div><div class="text-xs text-slate-900 font-medium">All GCC</div></div>
         </div>
       </div>
     </div>
@@ -213,21 +155,21 @@
 <!-- ===== EXPERIENCE ===== -->
 <section id="experience" class="relative py-24 md:py-32 px-6">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-20 reveal"><div class="text-[10px] font-mono text-indigo-400 tracking-[.2em] mb-6">EXPERIENCE</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Professional Track</h2></div>
+    <div class="text-center mb-20 reveal"><div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">EXPERIENCE</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Professional Track</h2></div>
 
     <div class="relative max-w-4xl mx-auto"><div class="absolute left-[23px] md:left-[27px] top-0 bottom-0 tl-line"></div>
 
-    <div class="tl-node reveal"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot active"></div><div class="glass rounded-xl p-6 ml-4" style="box-shadow:0 8px 32px rgba(0,0,0,.2),inset 0 0 0 1px rgba(129,140,248,.08)"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-indigo-500/15 text-indigo-400">ACTIVE</span><span class="text-[10px] font-mono text-slate-500">Jul 2024–Now</span></div><h3 class="text-base font-semibold text-white mb-1">Instrument Pre-Commissioning Engineer</h3><p class="text-indigo-400 text-sm font-mono mb-0.5">CCC — Air Products · NEOM NGHC</p><p class="text-[9px] font-mono text-slate-500 mb-4">USD 8.4B · World's Largest Green H₂ · KSA</p><div class="grid sm:grid-cols-2 gap-2"><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-indigo-400 font-mono mt-px">›</span><span>50K+ loop checks ahead of schedule, 99.2% accuracy</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-indigo-400 font-mono mt-px">›</span><span>DCS/SIS — Siemens S7, ESD, F&amp;G, SCADA</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-indigo-400 font-mono mt-px">›</span><span>Fail-safe logic &amp; C&amp;E matrix verification</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-indigo-400 font-mono mt-px">›</span><span>12+ engineers, 90+ technicians supervised</span></div></div></div></div>
+    <div class="tl-node reveal"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot active"></div><div class="glass rounded-xl p-6 ml-4" style="border-color:rgba(99,102,241,.1)"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-indigo-500/10 text-indigo-500">ACTIVE</span><span class="text-[10px] font-mono text-slate-500">Jul 2024–Now</span></div><h3 class="text-base font-semibold text-slate-900 mb-1">Instrument Pre-Commissioning Engineer</h3><p class="text-indigo-500 text-sm font-mono mb-0.5">CCC — Air Products · NEOM NGHC</p><p class="text-[9px] font-mono text-slate-500 mb-4">USD 8.4B · World's Largest Green H₂ · KSA</p><div class="grid sm:grid-cols-2 gap-2"><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>50K+ loop checks ahead of schedule, 99.2% accuracy</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>DCS/SIS — Siemens S7, ESD, F&amp;G, SCADA</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>Fail-safe logic &amp; C&amp;E matrix verification</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>12+ engineers, 90+ technicians supervised</span></div></div></div></div>
 
-    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot cyan"></div><div class="glass rounded-xl p-6 ml-4"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-sky-500/15 text-sky-400">PROMOTED</span><span class="text-[10px] font-mono text-slate-500">Dec 2022–Feb 2024</span></div><h3 class="text-base font-semibold text-white mb-1">Assistant Superintendent — Utility</h3><p class="text-sky-400 text-sm font-mono mb-0.5">PEC Ltd · NSRP Refinery, Vietnam</p><p class="text-[9px] font-mono text-slate-500 mb-4">200,000 BPD · Asia's Largest Single-Train Refinery</p><div class="grid sm:grid-cols-2 gap-2"><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-sky-400 font-mono mt-px">›</span><span>Utility commissioning — GTGs, STGs, boilers</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-sky-400 font-mono mt-px">›</span><span>Honeywell Experion PKS — 8,000+ points</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-sky-400 font-mono mt-px">›</span><span>30+ engineers supervised, zero incidents</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-sky-400 font-mono mt-px">›</span><span>F&amp;G integrity, SIS, PLC interlock testing</span></div></div></div></div>
+    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot cyan"></div><div class="glass rounded-xl p-6 ml-4" style="border-color:rgba(6,182,212,.1)"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-sky-500/10 text-sky-500">PROMOTED</span><span class="text-[10px] font-mono text-slate-500">Dec 2022–Feb 2024</span></div><h3 class="text-base font-semibold text-slate-900 mb-1">Assistant Superintendent — Utility</h3><p class="text-sky-500 text-sm font-mono mb-0.5">PEC Ltd · NSRP Refinery, Vietnam</p><p class="text-[9px] font-mono text-slate-500 mb-4">200,000 BPD · Asia's Largest Single-Train Refinery</p><div class="grid sm:grid-cols-2 gap-2"><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>Utility commissioning — GTGs, STGs, boilers</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>Honeywell Experion PKS — 8,000+ points</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>30+ engineers supervised, zero incidents</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>F&amp;G integrity, SIS, PLC interlock testing</span></div></div></div></div>
 
-    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot purple"></div><div class="glass rounded-xl p-6 ml-4"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="text-[10px] font-mono text-slate-500">Dec 2020–Nov 2022</span></div><h3 class="text-base font-semibold text-white mb-1">Senior Instrument Engineer</h3><p class="text-violet-400 text-sm font-mono mb-0.5">PEC Ltd · NSRP Refinery, Vietnam</p><div class="grid sm:grid-cols-2 gap-2 mt-3"><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-violet-400 font-mono mt-px">›</span><span>12K+ loop tests — DCS, SIS, SCADA</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-violet-400 font-mono mt-px">›</span><span>RCA reduced downtime by ~25%</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-violet-400 font-mono mt-px">›</span><span>3,000+ instruments optimised</span></div><div class="text-xs text-slate-400 flex gap-1.5"><span class="text-violet-400 font-mono mt-px">›</span><span>Authored standardised procedures</span></div></div></div></div>
+    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot purple"></div><div class="glass rounded-xl p-6 ml-4" style="border-color:rgba(139,92,246,.1)"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="text-[10px] font-mono text-slate-500">Dec 2020–Nov 2022</span></div><h3 class="text-base font-semibold text-slate-900 mb-1">Senior Instrument Engineer</h3><p class="text-violet-500 text-sm font-mono mb-0.5">PEC Ltd · NSRP Refinery, Vietnam</p><div class="grid sm:grid-cols-2 gap-2 mt-3"><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>12K+ loop tests — DCS, SIS, SCADA</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>RCA reduced downtime by ~25%</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>3,000+ instruments optimised</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>Authored standardised procedures</span></div></div></div></div>
 
-    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot" style="border-color:#fbbf24"></div><div class="space-y-3 ml-4">
-      <div class="glass rounded-lg p-3"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-white">I&amp;C Engineer</span><span class="text-[8px] font-mono text-slate-500">2018-2020</span></div><div class="text-[10px] font-mono text-amber-400">PEC Ltd · NSRP, Vietnam — 5K+ loops, HART/Fieldbus</div></div>
-      <div class="glass rounded-lg p-3"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-white">I&amp;C Pre-Commissioning Engineer</span><span class="text-[8px] font-mono text-slate-500">2018</span></div><div class="text-[10px] font-mono text-rose-400">Bechtel · Al Taweelah Alumina, UAE — ADNOC Standards</div></div>
-      <div class="glass rounded-lg p-3"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-white">I&amp;C Commissioning &amp; Maintenance</span><span class="text-[8px] font-mono text-slate-500">2016-2018</span></div><div class="text-[10px] font-mono text-cyan-400">JGCS (JV) · NSRP, Vietnam — SCADA, PLC, ESD</div></div>
-      <div class="glass rounded-lg p-3"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-white">Instrument Commissioning Engineer</span><span class="text-[8px] font-mono text-slate-500">2014-2016</span></div><div class="text-[10px] font-mono text-indigo-400">Hyundai Eng · ADNOC/TAKREER, UAE — Foxboro, Triconex</div></div>
+    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot" style="border-color:#f59e0b"></div><div class="space-y-3 ml-4">
+      <div class="glass rounded-xl p-3" style="border-color:rgba(245,158,11,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">I&amp;C Engineer</span><span class="text-[8px] font-mono text-slate-500">2018-2020</span></div><div class="text-[10px] font-mono text-amber-500">PEC Ltd · NSRP, Vietnam — 5K+ loops, HART/Fieldbus</div></div>
+      <div class="glass rounded-xl p-3" style="border-color:rgba(244,63,94,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">I&amp;C Pre-Commissioning Engineer</span><span class="text-[8px] font-mono text-slate-500">2018</span></div><div class="text-[10px] font-mono text-rose-500">Bechtel · Al Taweelah Alumina, UAE — ADNOC Standards</div></div>
+      <div class="glass rounded-xl p-3" style="border-color:rgba(6,182,212,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">I&amp;C Commissioning &amp; Maintenance</span><span class="text-[8px] font-mono text-slate-500">2016-2018</span></div><div class="text-[10px] font-mono text-cyan-500">JGCS (JV) · NSRP, Vietnam — SCADA, PLC, ESD</div></div>
+      <div class="glass rounded-xl p-3" style="border-color:rgba(99,102,241,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">Instrument Commissioning Engineer</span><span class="text-[8px] font-mono text-slate-500">2014-2016</span></div><div class="text-[10px] font-mono text-indigo-500">Hyundai Eng · ADNOC/TAKREER, UAE — Foxboro, Triconex</div></div>
     </div></div>
     </div>
   </div>
@@ -236,18 +178,18 @@
 <!-- ===== SKILLS ===== -->
 <section id="skills" class="relative py-24 md:py-32 px-6 dot-pattern">
   <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16 reveal"><div class="text-[10px] font-mono text-indigo-400 tracking-[.2em] mb-6">COMPETENCIES</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Technical Arsenal</h2></div>
+    <div class="text-center mb-16 reveal"><div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">COMPETENCIES</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Technical Arsenal</h2></div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="glass rounded-xl p-6 reveal"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center"><i data-lucide="cpu" style="width:16px;height:16px;color:#818cf8"></i></div><div><div class="text-sm font-semibold text-white text-[13px]">Control Systems (DCS)</div><div class="text-[8px] font-mono text-slate-600">SYSTEM-LEVEL</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Siemens S7</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Honeywell PKS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Foxboro</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">Yokogawa VP</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center"><i data-lucide="shield-alert" style="width:16px;height:16px;color:#fb7185"></i></div><div><div class="text-sm font-semibold text-white text-[13px]">Safety Systems (ESD/SIS)</div><div class="text-[8px] font-mono text-slate-600">CRITICAL INTEGRITY</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/10 text-rose-300 border border-rose-500/20">Triconex TS3000</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/10 text-rose-300 border border-rose-500/20">Honeywell SB</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/10 text-rose-300 border border-rose-500/20">FSC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/10 text-rose-300 border border-rose-500/20">FGS/BMS</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center"><i data-lucide="network" style="width:16px;height:16px;color:#38bdf8"></i></div><div><div class="text-sm font-semibold text-white text-[13px]">Automation &amp; ICSS</div><div class="text-[8px] font-mono text-slate-600">INTEGRATION</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20">Allen Bradley</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20">Siemens PLC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20">SCADA/HMI</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/10 text-sky-300 border border-sky-500/20">ICSS</span></div></div>
-      <div class="glass rounded-xl p-6 reveal"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="settings" style="width:16px;height:16px;color:#fbbf24"></i></div><div><div class="text-sm font-semibold text-white text-[13px]">Commissioning Lifecycle</div><div class="text-[8px] font-mono text-slate-600">END-TO-END</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">Pre-Comm</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">Dry/Wet Test</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">Loop Test</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">FAT/SAT</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-300 border border-amber-500/20">PSSR</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center"><i data-lucide="gauge" style="width:16px;height:16px;color:#c084fc"></i></div><div><div class="text-sm font-semibold text-white text-[13px]">Field Instruments</div><div class="text-[8px] font-mono text-slate-600">PROTOCOLS</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/10 text-violet-300 border border-violet-500/20">HART</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/10 text-violet-300 border border-violet-500/20">Fieldbus</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/10 text-violet-300 border border-violet-500/20">Control Valves</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/10 text-violet-300 border border-violet-500/20">Analysers</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="shield-check" style="width:16px;height:16px;color:#22d3ee"></i></div><div><div class="text-sm font-semibold text-white text-[13px]">Functional Safety</div><div class="text-[8px] font-mono text-slate-600">COMPLIANCE</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">HAZOP</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">SIL/LOPA</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">IEC 61511</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">IEC 61508</span></div></div>
+      <div class="glass rounded-xl p-6 reveal" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center"><i data-lucide="cpu" style="width:16px;height:16px;color:#6366f1"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Control Systems (DCS)</div><div class="text-[8px] font-mono text-slate-500">SYSTEM-LEVEL</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Siemens S7</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Honeywell PKS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Foxboro</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Yokogawa VP</span></div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d1" style="border-color:rgba(244,63,94,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center"><i data-lucide="shield-alert" style="width:16px;height:16px;color:#f43f5e"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Safety Systems (ESD/SIS)</div><div class="text-[8px] font-mono text-slate-500">CRITICAL INTEGRITY</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">Triconex TS3000</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">Honeywell SB</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">FSC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">FGS/BMS</span></div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d2" style="border-color:rgba(6,182,212,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center"><i data-lucide="network" style="width:16px;height:16px;color:#06b6d4"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Automation &amp; ICSS</div><div class="text-[8px] font-mono text-slate-500">INTEGRATION</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">Allen Bradley</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">Siemens PLC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">SCADA/HMI</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">ICSS</span></div></div>
+      <div class="glass rounded-xl p-6 reveal" style="border-color:rgba(245,158,11,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="settings" style="width:16px;height:16px;color:#f59e0b"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Commissioning Lifecycle</div><div class="text-[8px] font-mono text-slate-500">END-TO-END</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">Pre-Comm</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">Dry/Wet Test</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">Loop Test</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">FAT/SAT</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">PSSR</span></div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d1" style="border-color:rgba(139,92,246,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center"><i data-lucide="gauge" style="width:16px;height:16px;color:#8b5cf6"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Field Instruments</div><div class="text-[8px] font-mono text-slate-500">PROTOCOLS</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">HART</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">Fieldbus</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">Control Valves</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">Analysers</span></div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d2" style="border-color:rgba(6,182,212,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="shield-check" style="width:16px;height:16px;color:#06b6d4"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Functional Safety</div><div class="text-[8px] font-mono text-slate-500">COMPLIANCE</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">HAZOP</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">SIL/LOPA</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">IEC 61511</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">IEC 61508</span></div></div>
     </div>
     <div class="grid md:grid-cols-2 gap-4 mt-4">
-      <div class="glass rounded-xl p-5 reveal"><div class="flex items-center gap-2 mb-3"><i data-lucide="file-text" style="width:14px;height:14px;color:#818cf8"></i><span class="text-[10px] font-mono text-white font-semibold">STANDARDS</span></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-400 border border-indigo-500/15">SAUDI ARAMCO</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-400 border border-sky-500/15">ADNOC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-400 border border-amber-500/15">BECHTEL</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-400 border border-violet-500/15">SHELL DEP</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-white/40 border border-white/8">API · IEC</span></div></div>
-      <div class="glass rounded-xl p-5 reveal reveal-d1"><div class="flex items-center gap-2 mb-3"><i data-lucide="monitor" style="width:14px;height:14px;color:#818cf8"></i><span class="text-[10px] font-mono text-white font-semibold">SOFTWARE</span></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-white/50 border border-white/8">SPI/INtools</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-white/50 border border-white/8">ICAPS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-white/50 border border-white/8">Emerson AMS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-white/50 border border-white/8">SAP PM</span></div></div>
+      <div class="glass rounded-xl p-5 reveal" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-2 mb-3"><i data-lucide="file-text" style="width:14px;height:14px;color:#6366f1"></i><span class="text-[10px] font-mono text-slate-900 font-semibold">STANDARDS</span></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">SAUDI ARAMCO</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">ADNOC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">BECHTEL</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">SHELL DEP</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">API · IEC</span></div></div>
+      <div class="glass rounded-xl p-5 reveal reveal-d1" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-2 mb-3"><i data-lucide="monitor" style="width:14px;height:14px;color:#6366f1"></i><span class="text-[10px] font-mono text-slate-900 font-semibold">SOFTWARE</span></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">SPI/INtools</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">ICAPS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">Emerson AMS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">SAP PM</span></div></div>
     </div>
   </div>
 </section>
@@ -255,14 +197,14 @@
 <!-- ===== ACHIEVEMENTS ===== -->
 <section id="achievements" class="relative py-24 md:py-32 px-6">
   <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16 reveal"><div class="text-[10px] font-mono text-indigo-400 tracking-[.2em] mb-6">KEY METRICS</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Key Achievements</h2></div>
+    <div class="text-center mb-16 reveal"><div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">KEY METRICS</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Key Achievements</h2></div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="glass rounded-xl p-6 reveal text-center"><div class="text-3xl font-bold font-mono grad-text mb-1" data-target="50000" data-decimals="0" data-suffix="K+">0</div><div class="text-sm font-semibold text-white mb-1">Loop Checks (NGHC)</div><div class="text-[9px] font-mono text-slate-500">Ahead of schedule</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1 text-center"><div class="text-3xl font-bold font-mono text-white mb-1" data-target="67000" data-decimals="0" data-suffix="K+">0</div><div class="text-sm font-semibold text-white mb-1">Total Loop Checks</div><div class="text-[9px] font-mono text-slate-500">Across 4 countries</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2 text-center"><div class="text-3xl font-bold font-mono text-emerald-400 mb-1">ZERO</div><div class="text-sm font-semibold text-white mb-1">Lost Time Incidents</div><div class="text-[9px] font-mono text-slate-500">15+ years</div></div>
-      <div class="glass rounded-xl p-6 reveal text-center"><div class="text-3xl font-bold font-mono text-amber-400 mb-1" data-target="25" data-decimals="0" data-suffix="%">0</div><div class="text-sm font-semibold text-white mb-1">Downtime Reduction</div><div class="text-[9px] font-mono text-slate-500">Via RCA at NSRP</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1 text-center"><div class="text-3xl font-bold font-mono text-sky-400 mb-1" data-target="100" data-decimals="0" data-suffix="%">0</div><div class="text-sm font-semibold text-white mb-1">On-Time Handover</div><div class="text-[9px] font-mono text-slate-500">All milestones at NGHC</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2 text-center"><div class="text-3xl font-bold font-mono grad-text mb-1" data-target="5" data-decimals="0" data-suffix="+">0</div><div class="text-sm font-semibold text-white mb-1">Client Standards</div><div class="text-[9px] font-mono text-slate-500">Aramco, ADNOC, Bechtel</div></div>
+      <div class="glass rounded-xl p-6 reveal text-center" style="border-color:rgba(99,102,241,.1)"><div class="text-3xl font-bold font-mono grad-text mb-1" data-target="50000" data-decimals="0" data-suffix="K+">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Loop Checks (NGHC)</div><div class="text-[9px] font-mono text-slate-500">Ahead of schedule</div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d1 text-center" style="border-color:rgba(99,102,241,.1)"><div class="text-3xl font-bold font-mono text-slate-900 mb-1" data-target="67000" data-decimals="0" data-suffix="K+">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Total Loop Checks</div><div class="text-[9px] font-mono text-slate-500">Across 4 countries</div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d2 text-center" style="border-color:rgba(16,185,129,.1)"><div class="text-3xl font-bold font-mono text-emerald-500 mb-1">ZERO</div><div class="text-sm font-semibold text-slate-900 mb-1">Lost Time Incidents</div><div class="text-[9px] font-mono text-slate-500">15+ years</div></div>
+      <div class="glass rounded-xl p-6 reveal text-center" style="border-color:rgba(245,158,11,.1)"><div class="text-3xl font-bold font-mono text-amber-500 mb-1" data-target="25" data-decimals="0" data-suffix="%">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Downtime Reduction</div><div class="text-[9px] font-mono text-slate-500">Via RCA at NSRP</div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d1 text-center" style="border-color:rgba(6,182,212,.1)"><div class="text-3xl font-bold font-mono text-sky-500 mb-1" data-target="100" data-decimals="0" data-suffix="%">0</div><div class="text-sm font-semibold text-slate-900 mb-1">On-Time Handover</div><div class="text-[9px] font-mono text-slate-500">All milestones at NGHC</div></div>
+      <div class="glass rounded-xl p-6 reveal reveal-d2 text-center" style="border-color:rgba(99,102,241,.1)"><div class="text-3xl font-bold font-mono grad-text mb-1" data-target="5" data-decimals="0" data-suffix="+">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Client Standards</div><div class="text-[9px] font-mono text-slate-500">Aramco, ADNOC, Bechtel</div></div>
     </div>
   </div>
 </section>
@@ -270,10 +212,10 @@
 <!-- ===== TOOLKIT CTA ===== -->
 <section class="relative py-20 px-6 dot-pattern">
   <div class="max-w-4xl mx-auto text-center reveal">
-    <div class="text-[10px] font-mono text-indigo-400 tracking-[.2em] mb-6">ENGINEERING TOOLKIT</div>
+    <div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">ENGINEERING TOOLKIT</div>
     <h2 class="text-2xl md:text-3xl font-bold tracking-tight grad-text mb-4">10 Dedicated Tool Modules</h2>
     <p class="text-sm text-slate-500 mb-8 font-mono">4-20mA · PV Scaler · DP Flow · RTD · Thermocouple · Valve Cv · Ohm's Law · Unit Converter · Cable Sizing · Loop Checklist</p>
-    <a href="tools.html" class="shimmer-btn inline-flex items-center gap-2 text-[11px] font-mono font-bold px-8 py-3.5 rounded-full transition-all tracking-wide" style="background:linear-gradient(135deg,#818cf8,#6366f1);color:#fff">
+    <a href="tools.html" class="shimmer-btn inline-flex items-center gap-2 text-[11px] font-mono font-semibold px-8 py-3.5 rounded-full transition-all tracking-wide" style="color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)">
       <i data-lucide="wrench" style="width:14px;height:14px"></i>
       OPEN FULL TOOLKIT
       <i data-lucide="arrow-right" style="width:14px;height:14px"></i>
@@ -286,24 +228,24 @@
   <div class="max-w-7xl mx-auto">
     <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start">
       <div class="md:col-span-2 reveal">
-        <div class="text-[10px] font-mono text-indigo-400 tracking-[.2em] mb-6">CONTACT</div>
-        <h2 class="text-3xl font-bold tracking-tight text-white mb-6 leading-tight">Initiate <span class="grad-text">Mobilization</span></h2>
-        <div class="glass rounded-xl p-5 mb-6">
+        <div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">CONTACT</div>
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">Initiate <span class="grad-text">Mobilization</span></h2>
+        <div class="glass rounded-xl p-5 mb-6" style="border-color:rgba(99,102,241,.1)">
           <div class="grid grid-cols-2 gap-4 text-[10px] font-mono">
-            <div><span style="color:#64748b">AVAIL</span><br><span style="color:#34d399;font-weight:600">IMMEDIATE</span></div>
-            <div><span style="color:#64748b">VISA</span><br><span style="color:#38bdf8;font-weight:600">IQAMA</span></div>
-            <div><span style="color:#64748b">DEPLOY</span><br><span style="color:#fbbf24;font-weight:600">ALL GCC</span></div>
-            <div><span style="color:#64748b">NOTICE</span><br><span style="color:#34d399;font-weight:600">ZERO</span></div>
+            <div><span style="color:#64748b">AVAIL</span><br><span style="color:#10b981;font-weight:600">IMMEDIATE</span></div>
+            <div><span style="color:#64748b">VISA</span><br><span style="color:#06b6d4;font-weight:600">IQAMA</span></div>
+            <div><span style="color:#64748b">DEPLOY</span><br><span style="color:#f59e0b;font-weight:600">ALL GCC</span></div>
+            <div><span style="color:#64748b">NOTICE</span><br><span style="color:#10b981;font-weight:600">ZERO</span></div>
           </div>
         </div>
         <div class="space-y-3">
-          <a href="mailto:jaissatish@gmail.com" class="flex items-center gap-3 glass rounded-lg p-3 text-sm text-white hover:border-indigo-500/20 transition-all"><i data-lucide="mail" style="width:16px;height:16px;color:#818cf8"></i>jaissatish@gmail.com</a>
-          <a href="tel:+966554803735" class="flex items-center gap-3 glass rounded-lg p-3 text-sm text-white hover:border-indigo-500/20 transition-all"><i data-lucide="phone" style="width:16px;height:16px;color:#818cf8"></i>+966 554803735</a>
-          <a href="https://linkedin.com/in/jaissatish" target="_blank" class="flex items-center gap-3 glass rounded-lg p-3 text-sm text-white hover:border-indigo-500/20 transition-all"><i data-lucide="external-link" style="width:16px;height:16px;color:#38bdf8"></i>linkedin.com/in/jaissatish</a>
+          <a href="mailto:jaissatish@gmail.com" class="flex items-center gap-3 glass rounded-xl p-3 text-sm text-slate-700 hover:border-indigo-500/20 transition-all" style="border-color:rgba(226,232,240,.8)"><i data-lucide="mail" style="width:16px;height:16px;color:#6366f1"></i>jaissatish@gmail.com</a>
+          <a href="tel:+966****3735" class="flex items-center gap-3 glass rounded-xl p-3 text-sm text-slate-700 hover:border-indigo-500/20 transition-all" style="border-color:rgba(226,232,240,.8)"><i data-lucide="phone" style="width:16px;height:16px;color:#6366f1"></i>+966 554803735</a>
+          <a href="https://linkedin.com/in/jaissatish" target="_blank" class="flex items-center gap-3 glass rounded-xl p-3 text-sm text-slate-700 hover:border-indigo-500/20 transition-all" style="border-color:rgba(226,232,240,.8)"><i data-lucide="external-link" style="width:16px;height:16px;color:#06b6d4"></i>linkedin.com/in/jaissatish</a>
         </div>
       </div>
       <div class="md:col-span-3 reveal reveal-d2">
-        <form class="glass rounded-xl p-6" onsubmit="event.preventDefault();this.querySelector('button').textContent='SENT ✓';"><div class="text-[10px] font-mono text-white mb-4 flex items-center gap-2"><i data-lucide="terminal" style="width:12px;height:12px;color:#818cf8"></i>SEND MESSAGE</div><div class="space-y-3"><div class="grid sm:grid-cols-2 gap-3"><input type="text" placeholder="Name" class="bg-white/3 border border-white/8 px-4 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><input type="email" placeholder="Email" class="bg-white/3 border border-white/8 px-4 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"></div><div class="grid sm:grid-cols-2 gap-3"><input type="text" placeholder="Company" class="bg-white/3 border border-white/8 px-4 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><select class="bg-white/3 border border-white/8 px-4 py-2.5 rounded-lg text-sm text-slate-400 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><option>Project Scope</option><option>O&amp;G</option><option>Green Hydrogen</option><option>Refinery</option></select></div><textarea rows="3" placeholder="Message..." class="bg-white/3 border border-white/8 px-4 py-2.5 rounded-lg text-sm text-white placeholder-slate-600 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%;resize:none"></textarea><button type="submit" class="w-full text-white font-mono text-xs font-bold py-3 rounded-lg transition-all tracking-wide" style="background:linear-gradient(135deg,#818cf8,#6366f1)">TRANSMIT</button></div></form>
+        <form class="glass rounded-xl p-6" style="border-color:rgba(226,232,240,.8)" onsubmit="event.preventDefault();this.querySelector('button').textContent='SENT ✓';"><div class="text-[10px] font-mono text-slate-900 mb-4 flex items-center gap-2"><i data-lucide="terminal" style="width:12px;height:12px;color:#6366f1"></i>SEND MESSAGE</div><div class="space-y-3"><div class="grid sm:grid-cols-2 gap-3"><input type="text" placeholder="Name" class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><input type="email" placeholder="Email" class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"></div><div class="grid sm:grid-cols-2 gap-3"><input type="text" placeholder="Company" class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><select class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-600 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><option>Project Scope</option><option>O&amp;G</option><option>Green Hydrogen</option><option>Refinery</option></select></div><textarea rows="3" placeholder="Message..." class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%;resize:none"></textarea><button type="submit" class="w-full text-white font-mono text-xs font-semibold py-3 rounded-xl transition-all tracking-wide" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">TRANSMIT</button></div></form>
       </div>
     </div>
   </div>
@@ -312,7 +254,7 @@
 </main>
 
 <!-- FOOTER -->
-<footer class="border-t border-white/5 py-6 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3"><div class="flex items-center gap-2"><span class="text-indigo-400 font-mono text-xs font-bold">[SJ]</span><span class="text-[10px] font-mono text-slate-600">&copy; 2025</span></div><div class="flex gap-3"><a href="mailto:jaissatish@gmail.com" class="text-slate-600 hover:text-indigo-400 transition-colors"><i data-lucide="mail" style="width:14px;height:14px"></i></a><a href="https://linkedin.com/in/jaissatish" class="text-slate-600 hover:text-indigo-400 transition-colors"><i data-lucide="external-link" style="width:14px;height:14px"></i></a></div></div></footer>
+<footer class="border-t border-slate-200 py-6 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3"><div class="flex items-center gap-2"><span class="text-indigo-500 font-mono text-xs font-bold">[SJ]</span><span class="text-[10px] font-mono text-slate-500">&copy; 2025</span></div><div class="flex gap-3"><a href="mailto:jaissatish@gmail.com" class="text-slate-500 hover:text-indigo-500 transition-colors"><i data-lucide="mail" style="width:14px;height:14px"></i></a><a href="https://linkedin.com/in/jaissatish" class="text-slate-500 hover:text-indigo-500 transition-colors"><i data-lucide="external-link" style="width:14px;height:14px"></i></a></div></div></footer>
 
 <script src="assets/js/global.js"></script>
 <script>

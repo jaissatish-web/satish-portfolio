@@ -13,7 +13,7 @@ tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],
 </script>
 <link rel="stylesheet" href="../assets/css/global.css">
 <style>
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #0f172a;box-shadow:0 0 10px rgba(16,185,129,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #fff;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
@@ -58,21 +58,21 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
       <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">LRV (Lower Range Value)</label><input type="number" class="inp" id="pv-lrv" value="0" step="any"></div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">URV (Upper Range Value)</label><input type="number" class="inp" id="pv-urv" value="100" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">LRV (Lower Range Value)</label><input type="number" class="inp" id="pv-lrv" value="0" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">URV (Upper Range Value)</label><input type="number" class="inp" id="pv-urv" value="100" step="any"></div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">mA Signal (4-20)</label><input type="number" class="inp" id="pv-ma" value="12" step="0.01" oninput="calcPV()"></div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Process Variable (EU)</label><input type="number" class="inp" id="pv-eu" value="50" step="any" oninput="calcPVrev()"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">mA Signal (4-20)</label><input type="number" class="inp" id="pv-ma" value="12" step="0.01" oninput="calcPV()"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Process Variable (EU)</label><input type="number" class="inp" id="pv-eu" value="50" step="any" oninput="calcPVrev()"></div>
       </div>
       <div class="result-box">
         <div class="grid grid-cols-3 gap-4 text-center">
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">PV (EU)</div><div id="pv-r1" class="text-xl font-bold font-mono grad-green">—</div></div>
-          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">mA</div><div id="pv-r2" class="text-xl font-bold font-mono text-white">—</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">mA</div><div id="pv-r2" class="text-xl font-bold font-mono text-slate-900">—</div></div>
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Percentage</div><div id="pv-r3" class="text-xl font-bold font-mono text-cyan-400">—</div></div>
         </div>
       </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[10px] font-mono text-slate-500">PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-slate-200"><p class="text-[10px] font-mono text-slate-500">PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>
     </div>
 
     <!-- Back -->

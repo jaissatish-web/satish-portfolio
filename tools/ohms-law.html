@@ -13,7 +13,7 @@ tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],
 </script>
 <link rel="stylesheet" href="../assets/css/global.css">
 <style>
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #0f172a;box-shadow:0 0 10px rgba(16,185,129,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #fff;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
@@ -58,15 +58,15 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
       <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Voltage V (Volts)</label><input type="number" class="inp" id="ohm-v" placeholder="Volts" step="any" oninput="calcOhm()"></div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Current I (Amps)</label><input type="number" class="inp" id="ohm-i" placeholder="Amps" step="any" oninput="calcOhm()"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Voltage V (Volts)</label><input type="number" class="inp" id="ohm-v" placeholder="Volts" step="any" oninput="calcOhm()"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Current I (Amps)</label><input type="number" class="inp" id="ohm-i" placeholder="Amps" step="any" oninput="calcOhm()"></div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Resistance R (Ohms)</label><input type="number" class="inp" id="ohm-r" placeholder="Ohms" step="any" oninput="calcOhm()"></div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Power P (Watts)</label><input type="number" class="inp" id="ohm-p" placeholder="Watts" step="any" oninput="calcOhmRev()"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Resistance R (Ohms)</label><input type="number" class="inp" id="ohm-r" placeholder="Ohms" step="any" oninput="calcOhm()"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Power P (Watts)</label><input type="number" class="inp" id="ohm-p" placeholder="Watts" step="any" oninput="calcOhmRev()"></div>
       </div>
       <div id="ohm-warning" class="hidden mb-4 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-mono text-center">⚠ POWER THRESHOLD EXCEEDED — CHECK CIRCUIT RATINGS</div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[10px] font-mono text-slate-500">V = I×R &nbsp;|&nbsp; I = V/R &nbsp;|&nbsp; R = V/I &nbsp;|&nbsp; P = V×I &nbsp;|&nbsp; Enter any 2 values</p></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-slate-200"><p class="text-[10px] font-mono text-slate-500">V = I×R &nbsp;|&nbsp; I = V/R &nbsp;|&nbsp; R = V/I &nbsp;|&nbsp; P = V×I &nbsp;|&nbsp; Enter any 2 values</p></div>
     </div>
 
     <!-- Back -->

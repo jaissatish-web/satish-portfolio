@@ -13,7 +13,7 @@ tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],
 </script>
 <link rel="stylesheet" href="../assets/css/global.css">
 <style>
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #0f172a;box-shadow:0 0 10px rgba(16,185,129,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #fff;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
@@ -57,19 +57,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     <!-- Body -->
     <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
-      <div class="mb-4"><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Fluid State</label>
+      <div class="mb-4"><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Fluid State</label>
         <div class="flex gap-2">
           <button id="cv-fluid-liquid" class="cv-fluid-btn px-4 py-2 rounded-lg text-[10px] font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 transition-all" onclick="setFluid('liquid')">Liquid</button>
-          <button id="cv-fluid-gas" class="cv-fluid-btn px-4 py-2 rounded-lg text-[10px] font-mono bg-white/5 text-slate-400 border border-white/10 hover:bg-white/10 transition-all" onclick="setFluid('gas')">Gas</button>
+          <button id="cv-fluid-gas" class="cv-fluid-btn px-4 py-2 rounded-lg text-[10px] font-mono bg-white/5 text-slate-600 border border-white/10 hover:bg-white/10 transition-all" onclick="setFluid('gas')">Gas</button>
         </div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Flow Rate Q (US GPM / SCFH)</label><input type="number" class="inp" id="cv-q" value="100" step="any"></div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Inlet Pressure P1 (psia)</label><input type="number" class="inp" id="cv-p1" value="100" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Flow Rate Q (US GPM / SCFH)</label><input type="number" class="inp" id="cv-q" value="100" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Inlet Pressure P1 (psia)</label><input type="number" class="inp" id="cv-p1" value="100" step="any"></div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Outlet Pressure P2 (psia)</label><input type="number" class="inp" id="cv-p2" value="50" step="any"></div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Specific Gravity</label><input type="number" class="inp" id="cv-sg" value="1" step="0.01"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Outlet Pressure P2 (psia)</label><input type="number" class="inp" id="cv-p2" value="50" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Specific Gravity</label><input type="number" class="inp" id="cv-sg" value="1" step="0.01"></div>
       </div>
       <button onclick="calcCv()" class="w-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/25 rounded-xl py-3.5 text-sm font-mono font-semibold hover:bg-cyan-500/25 transition-all">CALCULATE Cv</button>
       <div class="result-box mt-4">
@@ -78,7 +78,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Status</div><div id="cv-r2" class="text-lg font-bold font-mono text-indigo-400">—</div></div>
         </div>
       </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[10px] font-mono text-slate-500">Cv = Q × √(G / ΔP) &nbsp;|&nbsp; Choked: P<sub>2</sub> ≤ 0.5 × P<sub>1</sub></p></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-slate-200"><p class="text-[10px] font-mono text-slate-500">Cv = Q × √(G / ΔP) &nbsp;|&nbsp; Choked: P<sub>2</sub> ≤ 0.5 × P<sub>1</sub></p></div>
     </div>
 
     <!-- Back -->
@@ -96,7 +96,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 lucide.createIcons();
 
 let cvFluid='liquid';
-function setFluid(f){cvFluid=f;document.querySelectorAll('.cv-fluid-btn').forEach(b=>{b.classList.remove('bg-cyan-500/10','text-cyan-400','border-cyan-500/20');b.classList.add('bg-white/5','text-slate-400','border-white/10')});const btn=document.getElementById('cv-fluid-'+f);btn.classList.remove('bg-white/5','text-slate-400','border-white/10');btn.classList.add('bg-cyan-500/10','text-cyan-400','border-cyan-500/20');}
+function setFluid(f){cvFluid=f;document.querySelectorAll('.cv-fluid-btn').forEach(b=>{b.classList.remove('bg-cyan-500/10','text-cyan-400','border-cyan-500/20');b.classList.add('bg-white/5','text-slate-600','border-white/10')});const btn=document.getElementById('cv-fluid-'+f);btn.classList.remove('bg-white/5','text-slate-600','border-white/10');btn.classList.add('bg-cyan-500/10','text-cyan-400','border-cyan-500/20');}
 function calcCv(){const q=parseFloat(document.getElementById('cv-q').value),p1=parseFloat(document.getElementById('cv-p1').value),p2=parseFloat(document.getElementById('cv-p2').value),sg=parseFloat(document.getElementById('cv-sg').value)||1;if(isNaN(q)||isNaN(p1)||isNaN(p2))return;const dp=p1-p2;if(dp<=0){document.getElementById('cv-r1').textContent='INVALID';document.getElementById('cv-r2').textContent='FAIL // NO DP';return;}const cv=q*Math.sqrt(sg/dp);const choked=p2<=p1*0.5;document.getElementById('cv-r1').textContent=cv.toFixed(2);document.getElementById('cv-r2').textContent=choked?'CHOKED FLOW // CHECK SIZING':'NORMAL FLOW // OK';document.getElementById('cv-r2').style.color=choked?'#F59E0B':'#818cf8';}
 </script>
 <script src="../assets/js/global.js"></script>

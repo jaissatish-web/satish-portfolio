@@ -13,7 +13,7 @@ tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],
 </script>
 <link rel="stylesheet" href="../assets/css/global.css">
 <style>
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #0f172a;box-shadow:0 0 10px rgba(16,185,129,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #fff;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
@@ -58,7 +58,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
       <div class="mb-4">
-        <label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Cold Junction Compensation</label>
+        <label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Cold Junction Compensation</label>
         <select class="inp" id="tc-cjc" onchange="calcTC()">
           <option value="0">0°C (Ice Bath Reference)</option>
           <option value="22">22°C (Room Temperature)</option>
@@ -66,15 +66,15 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
           <option value="50">50°C (Hot Ambient)</option>
         </select>
       </div>
-      <div class="mb-6"><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Hot Junction Temperature (°C)</label><input type="number" class="inp" id="tc-t" value="500" step="1" oninput="calcTC()"></div>
+      <div class="mb-6"><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Hot Junction Temperature (°C)</label><input type="number" class="inp" id="tc-t" value="500" step="1" oninput="calcTC()"></div>
       <div class="result-box">
         <div class="grid grid-cols-3 gap-4 text-center">
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">mV Output</div><div id="tc-r1" class="text-2xl font-bold font-mono text-orange-400">—</div></div>
-          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Type</div><div id="tc-r2" class="text-2xl font-bold font-mono text-white">K</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Type</div><div id="tc-r2" class="text-2xl font-bold font-mono text-slate-900">K</div></div>
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">CJC</div><div id="tc-r3" class="text-2xl font-bold font-mono text-cyan-400">—</div></div>
         </div>
       </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[10px] font-mono text-slate-500">mV ≈ 0.041 × T<sub>hot</sub> − 0.001 × T²/1000 − mV<sub>CJC</sub> (Type-K, NIST ITS-90 approximation)</p></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-slate-200"><p class="text-[10px] font-mono text-slate-500">mV ≈ 0.041 × T<sub>hot</sub> − 0.001 × T²/1000 − mV<sub>CJC</sub> (Type-K, NIST ITS-90 approximation)</p></div>
     </div>
 
     <!-- Back -->

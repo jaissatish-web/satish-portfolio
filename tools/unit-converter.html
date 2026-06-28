@@ -13,7 +13,7 @@ tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],
 </script>
 <link rel="stylesheet" href="../assets/css/global.css">
 <style>
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #0f172a;box-shadow:0 0 10px rgba(16,185,129,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #fff;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
@@ -57,7 +57,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     <!-- Body -->
     <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
-      <div class="mb-4"><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Category</label>
+      <div class="mb-4"><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Category</label>
         <select class="inp" id="uc-type" onchange="updateUC()">
           <option value="pressure">Pressure</option>
           <option value="temperature">Temperature</option>
@@ -65,7 +65,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
           <option value="mass">Mass</option>
         </select>
       </div>
-      <div class="mb-4"><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Input Value</label><input type="number" class="inp" id="uc-val" value="1" step="any" oninput="doUC()"></div>
+      <div class="mb-4"><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Input Value</label><input type="number" class="inp" id="uc-val" value="1" step="any" oninput="doUC()"></div>
       <div class="result-box" id="uc-results"></div>
     </div>
 
@@ -85,7 +85,7 @@ lucide.createIcons();
 
 const ucData={pressure:{units:['bar','psi','kPa','MPa','kg/cm\u00b2','mmH2O','inH2O','mmHg'],base:{'bar':1,'psi':0.0689476,'kPa':0.01,'MPa':10,'kg/cm\u00b2':0.980665,'mmH2O':9.80665e-5,'inH2O':0.00249089,'mmHg':0.00133322}},temperature:{units:['\u00b0C','\u00b0F','K'],special:true},flow:{units:['m\u00b3/h','GPM','L/min','L/s','bbl/d'],base:{'m\u00b3/h':1,'GPM':0.227124,'L/min':0.06,'L/s':3.6,'bbl/d':0.0066245}},mass:{units:['kg','lb','g','ton','oz'],base:{'kg':1,'lb':0.453592,'g':0.001,'ton':1000,'oz':0.0283495}}};
 function updateUC(){const type=document.getElementById('uc-type').value,data=ucData[type];doUC();}
-function doUC(){const type=document.getElementById('uc-type').value,data=ucData[type],val=parseFloat(document.getElementById('uc-val').value);const c=document.getElementById('uc-results');if(isNaN(val)){c.innerHTML='<div class="text-center text-slate-500 text-sm font-mono">Enter a value</div>';return}c.innerHTML='<div class="grid grid-cols-2 gap-3">';data.units.forEach(u=>{let r;if(type==='temperature'){let cels=val;if(u==='\u00b0F')cels=(val-32)*5/9;else if(u==='K')cels=val-273.15;if(data.units[0]==='\u00b0C'){let conv=cels;if(u==='\u00b0F')conv=cels*9/5+32;else if(u==='K')conv=cels+273.15;r=conv}else{r=val}}else{r=val*data.base[u]/data.base[data.units[0]]}c.innerHTML+='<div class="bg-white/3 rounded-lg p-3 text-center"><div class="text-[9px] font-mono text-slate-500">'+u+'</div><div class="text-sm font-bold font-mono text-white mt-0.5">'+(r<0.001?r.toExponential(4):r.toFixed(4))+'</div></div>'});c.innerHTML+='</div>';}
+function doUC(){const type=document.getElementById('uc-type').value,data=ucData[type],val=parseFloat(document.getElementById('uc-val').value);const c=document.getElementById('uc-results');if(isNaN(val)){c.innerHTML='<div class="text-center text-slate-500 text-sm font-mono">Enter a value</div>';return}c.innerHTML='<div class="grid grid-cols-2 gap-3">';data.units.forEach(u=>{let r;if(type==='temperature'){let cels=val;if(u==='\u00b0F')cels=(val-32)*5/9;else if(u==='K')cels=val-273.15;if(data.units[0]==='\u00b0C'){let conv=cels;if(u==='\u00b0F')conv=cels*9/5+32;else if(u==='K')conv=cels+273.15;r=conv}else{r=val}}else{r=val*data.base[u]/data.base[data.units[0]]}c.innerHTML+='<div class="bg-white/3 rounded-lg p-3 text-center"><div class="text-[9px] font-mono text-slate-500">'+u+'</div><div class="text-sm font-bold font-mono text-slate-900 mt-0.5">'+(r<0.001?r.toExponential(4):r.toFixed(4))+'</div></div>'});c.innerHTML+='</div>';}
 updateUC();
 </script>
 <script src="../assets/js/global.js"></script>

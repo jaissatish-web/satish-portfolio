@@ -13,7 +13,7 @@ tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],
 </script>
 <link rel="stylesheet" href="../assets/css/global.css">
 <style>
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #0f172a;box-shadow:0 0 10px rgba(16,185,129,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #fff;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
@@ -58,14 +58,14 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
     <div class="glass rounded-2xl p-6 md:p-8 neon-border">
       
       <div class="grid md:grid-cols-2 gap-4 mb-4">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Loop Current (mA)</label><input type="number" class="inp" id="cab-i" value="20" step="any"></div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Cable Length (m) one-way</label><input type="number" class="inp" id="cab-l" value="500" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Loop Current (mA)</label><input type="number" class="inp" id="cab-i" value="20" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Cable Length (m) one-way</label><input type="number" class="inp" id="cab-l" value="500" step="any"></div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mb-6">
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Cable Size (mm\u00b2)</label>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Cable Size (mm\u00b2)</label>
           <select class="inp" id="cab-mm"><option value="0.5">0.5 mm\u00b2</option><option value="0.75">0.75 mm\u00b2</option><option value="1.0" selected>1.0 mm\u00b2</option><option value="1.5">1.5 mm\u00b2</option><option value="2.5">2.5 mm\u00b2</option><option value="4.0">4.0 mm\u00b2</option></select>
         </div>
-        <div><label class="text-[9px] font-mono text-slate-400 mb-2 block uppercase tracking-wider">Supply Voltage (VDC)</label><input type="number" class="inp" id="cab-v" value="24" step="any"></div>
+        <div><label class="text-[9px] font-mono text-slate-600 mb-2 block uppercase tracking-wider">Supply Voltage (VDC)</label><input type="number" class="inp" id="cab-v" value="24" step="any"></div>
       </div>
       <button onclick="calcCable()" class="w-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/25 rounded-xl py-3.5 text-sm font-mono font-semibold hover:bg-indigo-500/25 transition-all">CALCULATE VOLTAGE DROP</button>
       <div class="result-box mt-4">
@@ -75,7 +75,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Status</div><div id="cab-r3" class="text-lg font-bold font-mono">—</div></div>
         </div>
       </div>
-      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-white/5"><p class="text-[10px] font-mono text-slate-500">V<sub>drop</sub> = 2 × L × (ρ / A) × I &nbsp;·&nbsp; ρ(copper) = 0.0175 Ω·mm²/m &nbsp;·&nbsp; Tolerance: 5% max</p></div>
+      <div class="mt-4 p-4 rounded-xl bg-white/2 border border-slate-200"><p class="text-[10px] font-mono text-slate-500">V<sub>drop</sub> = 2 × L × (ρ / A) × I &nbsp;·&nbsp; ρ(copper) = 0.0175 Ω·mm²/m &nbsp;·&nbsp; Tolerance: 5% max</p></div>
     </div>
 
     <!-- Back -->
