@@ -3,267 +3,976 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Satish Kumar Jaiswal — Lead I&C Engineer | NEOM Green Hydrogen</title>
+<title>Satish Kumar Jaiswal | Lead Instrumentation Engineer</title>
 <meta name="description" content="Lead Pre-Commissioning & Instrumentation Specialist. 15+ Years Mastery. Delivering the World's Largest USD 8.4B NEOM Green Hydrogen Complex.">
 <meta property="og:title" content="Satish Kumar Jaiswal — Engineering Precision at Unprecedented Scale">
 <meta property="og:description" content="Lead I&C Engineer. 15+ years, 67K+ loop checks, Zero LTI. NEOM, ADNOC, Bechtel.">
 <meta property="og:image" content="assets/images/photo.jpg">
-<meta name="theme-color" content="#6366f1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/global.css">
+<meta name="theme-color" content="#10B981">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<script>tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{fontFamily:{jakarta:['Plus Jakarta Sans','sans-serif']}}}}
+</script>
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#F8FAFC;color:#0F172A;overflow-x:hidden}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#F8FAFC}
+::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#94A3B8}
+
+/* Premium Mesh Gradient Background */
+.mesh-bg{background-color:#F8FAFC;background-image:radial-gradient(at 0% 0%,rgba(16,185,129,0.08) 0px,transparent 50%),radial-gradient(at 98% 1%,rgba(59,130,246,0.08) 0px,transparent 50%),radial-gradient(at 50% 100%,rgba(139,92,246,0.05) 0px,transparent 50%)}
+
+/* Premium Gradient Text */
+.text-gradient{background:linear-gradient(135deg,#0F172A 0%,#334155 40%,#10B981 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.text-gradient-emerald{background:linear-gradient(135deg,#10B981 0%,#34D399 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Glass Cards */
+.glass-card{background:rgba(255,255,255,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.8);box-shadow:0 10px 40px -10px rgba(15,23,42,0.05)}
+.glass-hover{transition:all .4s cubic-bezier(.4,0,.2,1)}
+.glass-hover:hover{background:rgba(255,255,255,0.8);box-shadow:0 20px 50px -10px rgba(15,23,42,0.08);transform:translateY(-4px);border-color:rgba(16,185,129,0.3)}
+
+/* Premium Button */
+.btn-primary{background:#0F172A;color:#fff;transition:all .3s ease;position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:.5s}
+.btn-primary:hover::before{left:100%}
+.btn-primary:hover{background:#10B981;box-shadow:0 10px 30px -5px rgba(16,185,129,0.3)}
+
+/* Reveal Animation */
+.reveal{opacity:0;transform:translateY(30px);transition:all 1s cubic-bezier(.4,0,.2,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* Skill Bar */
+.skill-track{height:6px;background:#E2E8F0;border-radius:4px;overflow:hidden}
+.skill-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#10B981,#34D399);transform:scaleX(0);transform-origin:left;transition:transform 1.5s cubic-bezier(.4,0,.2,1)}
+.reveal.active .skill-fill{transform:scaleX(1)}
+
+/* Timeline */
+.tl-line{position:absolute;left:24px;top:0;bottom:0;width:2px;background:#E2E8F0}
+.tl-dot{width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #10B981;box-shadow:0 0 0 4px rgba(16,185,129,0.1);position:relative;z-index:2}
+
+/* Tool Dashboard Grid */
+.tool-card-icon{transition:transform .3s ease}
+.tool-card:hover .tool-card-icon{transform:scale(1.1) rotate(-5deg)}
+
+/* Inputs */
+.inp{background:#fff;border:1px solid #E2E8F0;color:#0F172A;padding:12px 16px;border-radius:12px;font-size:14px;transition:all .3s;outline:none;width:100%;font-family:'Plus Jakarta Sans',sans-serif}
+.inp:focus{border-color:#10B981;box-shadow:0 0 0 4px rgba(16,185,129,0.1)}
+.inp::placeholder{color:#94A3B8}
+
+/* Result Box */
+.result-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:16px;padding:20px}
+
+/* Page Transitions */
+.view{display:none;animation:fadeIn .5s ease forwards}
+.view.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Marquee */
+.marquee-track{display:flex;gap:3rem;animation:marquee 30s linear infinite}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Float Animation */
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.anim-float{animation:float 6s ease-in-out infinite}
+
+/* Photo Frame */
+.photo-frame{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -15px rgba(15,23,42,0.2)}
+.photo-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(255,255,255,0.8) 0%,transparent 30%)}
+
+/* Toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#0F172A;color:#fff;padding:14px 28px;border-radius:14px;font-size:14px;font-weight:500;z-index:9999;opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 10px 30px -5px rgba(0,0,0,0.2)}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* Particles */
+#particles-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 </style>
 </head>
-<body class="dot-pattern">
+<body class="mesh-bg">
 
-<!-- GLOBAL HEADER -->
-<a href="#main" class="skip-nav">Skip to content</a>
-<header id="global-header">
-  <div class="header-inner">
-    <a href="index.html" class="header-logo">
-      <div class="header-logo-bracket">SJ</div>
-      <div class="header-logo-text"><span class="header-logo-name">Satish Jaiswal</span><span class="header-logo-role">I&C LEAD</span></div>
+<canvas id="particles-canvas"></canvas>
+<div id="toast" class="toast"></div>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background:rgba(248,250,252,0.8);backdrop-filter:blur(16px);border-bottom:1px solid rgba(226,232,240,0.8)">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="javascript:void(0)" onclick="switchView('home')" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-sm transition-all group-hover:bg-emerald-500">SJ</div>
+      <div class="hidden sm:block">
+        <div class="text-slate-900 font-bold text-sm tracking-tight">Satish Jaiswal</div>
+        <div class="text-[10px] text-slate-500 tracking-wide uppercase">Instrumentation Engineer</div>
+      </div>
     </a>
-    <div class="header-status"><span class="pulse"></span><span>ONLINE · GCC</span></div>
-    <nav class="header-nav" aria-label="Primary">
-      <a href="index.html" class="active">Portfolio</a>
-      <a href="tools.html">Toolkit</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="header-actions">
-      <a href="assets/docs/Satish_Jaiswal_Resume.pdf" target="_blank" class="btn-cv"><i data-lucide="download" style="width:12px;height:12px"></i><span>CV</span></a>
-      <button class="btn-cv" onclick="togglePalette()"><i data-lucide="search" style="width:12px;height:12px"></i><span style="font-size:9px">⌘K</span></button>
+    <div class="hidden lg:flex items-center gap-1">
+      <button onclick="switchView('home')" class="nav-home px-4 py-2 text-sm text-slate-600 hover:text-slate-900 font-medium transition-all">Home</button>
+      <a href="#about" onclick="switchView('home')" class="px-4 py-2 text-sm text-slate-600 hover:text-slate-900 font-medium transition-all">About</a>
+      <a href="#experience" onclick="switchView('home')" class="px-4 py-2 text-sm text-slate-600 hover:text-slate-900 font-medium transition-all">Experience</a>
+      <a href="#skills" onclick="switchView('home')" class="px-4 py-2 text-sm text-slate-600 hover:text-slate-900 font-medium transition-all">Skills</a>
+      <button onclick="switchView('tools')" class="nav-tools px-4 py-2 text-sm text-slate-600 hover:text-slate-900 font-medium transition-all flex items-center gap-1.5">
+        <i data-lucide="wrench" class="w-4 h-4"></i> Tools Hub
+      </button>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="switchView('tools')" class="hidden sm:inline-flex items-center gap-2 bg-slate-900 text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-emerald-500 transition-all duration-200 uppercase tracking-wide">
+        Launch Tools
+      </button>
+      <button id="mobile-btn" class="lg:hidden text-slate-900 p-2 hover:bg-slate-100 rounded-lg transition-all">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
     </div>
   </div>
-</header>
+</nav>
 
-<!-- Terminal Boot -->
-<div id="boot-screen"><div class="boot-output" id="boot-output"></div><div class="boot-progress"><div class="boot-progress-bar"></div></div></div>
+<!-- ========================================== -->
+<!-- VIEW 1: HOME / PORTFOLIO                   -->
+<!-- ========================================== -->
+<div id="view-home" class="view active relative z-10 pt-20">
 
-<!-- Command Palette -->
-<div id="command-palette" role="dialog"><div class="cp-box"><div class="cp-input-row"><i data-lucide="search" style="width:16px;height:16px;color:#64748b"></i><input type="text" id="cp-input" placeholder="Type to search..." autocomplete="off"><span class="cp-hint">ESC</span></div><div class="cp-list" id="cp-list"></div></div></div>
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex items-center px-6 py-12">
+    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-slate-200 mb-8">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span class="text-xs font-bold tracking-widest uppercase text-slate-700">Immediately Available · GCC Ready</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6">
+          <span class="text-gradient block">Satish Kumar</span>
+          <span class="text-gradient-emerald block">Jaiswal</span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl font-medium text-slate-700 mb-4">
+          Lead Instrumentation & Control Engineer
+        </p>
+        <p class="text-base text-slate-500 mb-8 max-w-2xl leading-relaxed">
+          15+ years delivering instrumentation excellence across the world's most complex industrial projects. Specializing in DCS/SIS/SCADA validation, loop testing, and system handover for Oil & Gas, Petrochemical, and Green Hydrogen mega-projects.
+        </p>
 
-<!-- Coord Telemetry -->
-<div id="coord-display"><span id="coord-x">X:0</span><span id="coord-y">Y:0</span><span id="coord-t">T:--:--:--</span></div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" onclick="switchView('home')" class="btn-primary inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-sm font-semibold tracking-wide uppercase">
+            View Experience <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <button onclick="switchView('tools')" class="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-wide border border-slate-300 bg-white/50 text-slate-900 hover:bg-white transition-all">
+            <i data-lucide="wrench" class="w-4 h-4 text-emerald-600"></i> Instrument Tools
+          </button>
+        </div>
+      </div>
 
-<main id="main">
-
-<!-- ===== HERO ===== -->
-<section class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-  <div class="absolute inset-0 -z-10">
-    <div class="hero-orb-1"></div>
-    <div class="hero-orb-2"></div>
-    <div class="hero-orb-3"></div>
-  </div>
-
-  <div class="relative z-10 max-w-6xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 reveal" style="border-color:rgba(99,102,241,.15)">
-      <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
-      <span class="text-[10px] font-mono tracking-[.18em] text-emerald-400">IMMEDIATE · GCC READY · ZERO NOTICE</span>
-    </div>
-
-    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.02] mb-4 reveal reveal-d1"><span class="grad-text">Satish Kumar</span><br><span class="text-slate-900">Jaiswal</span></h1>
-
-    <div class="reveal reveal-d2">
-      <p class="text-lg md:text-xl text-slate-600 mb-2">Lead Instrumentation &amp; Control Engineer</p>
-      <p class="text-xs md:text-sm text-slate-500 mb-6 max-w-3xl mx-auto font-mono tracking-wide">PRE-COMMISSIONING SPECIALIST · 15+ YEARS MASTERY · USD 8.4B NEOM GREEN HYDROGEN · DCS/SIS/SCADA</p>
-    </div>
-
-    <div class="overflow-hidden py-4 mb-8 relative reveal reveal-d3">
-      <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
-      <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
-      <div class="flex gap-4" style="animation:marquee 45s linear infinite;width:max-content">
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-indigo-500/8 text-indigo-600 border border-indigo-500/15 tracking-wider">SAUDI ARAMCO</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-sky-500/8 text-sky-600 border border-sky-500/15 tracking-wider">ADNOC</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-violet-500/8 text-violet-600 border border-violet-500/15 tracking-wider">BECHTEL</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-600 border border-amber-500/15 tracking-wider">AIR PRODUCTS</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-600 border border-rose-500/15 tracking-wider">NEOM</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-600 border border-cyan-500/15 tracking-wider">HYUNDAI ENG</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-slate-500/8 text-slate-600 border border-slate-500/15 tracking-wider">QATARENERGY</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-indigo-500/8 text-indigo-600 border border-indigo-500/15 tracking-wider">SAUDI ARAMCO</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-sky-500/8 text-sky-600 border border-sky-500/15 tracking-wider">ADNOC</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-violet-500/8 text-violet-600 border border-violet-500/15 tracking-wider">BECHTEL</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-amber-500/8 text-amber-600 border border-amber-500/15 tracking-wider">AIR PRODUCTS</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-rose-500/8 text-rose-600 border border-rose-500/15 tracking-wider">NEOM</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-cyan-500/8 text-cyan-600 border border-cyan-500/15 tracking-wider">HYUNDAI ENG</span>
-        <span class="px-4 py-2 rounded-xl text-[10px] font-mono font-semibold bg-slate-500/8 text-slate-600 border border-slate-500/15 tracking-wider">QATARENERGY</span>
+      <div class="lg:col-span-5 reveal active" style="transition-delay:.2s">
+        <div class="relative">
+          <div class="photo-frame aspect-[3/4] max-w-md mx-auto">
+            <img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="absolute -bottom-6 -left-6 glass-card rounded-2xl p-5 anim-float">
+            <div class="text-3xl font-extrabold text-gradient-emerald">15+</div>
+            <div class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mt-1">Years Experience</div>
+          </div>
+          <div class="absolute -top-6 -right-6 glass-card rounded-2xl p-5 anim-float" style="animation-delay:1s">
+            <div class="text-3xl font-extrabold text-slate-900">Zero</div>
+            <div class="text-[10px] text-emerald-600 uppercase tracking-widest font-bold mt-1">LTI in 15 Years</div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal reveal-d3">
-      <a href="#experience" class="shimmer-btn inline-flex items-center gap-2 text-[11px] font-mono font-semibold px-8 py-4 rounded-full transition-all tracking-wide" style="color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)">VIEW EXPERIENCE<i data-lucide="arrow-down-right" style="width:14px;height:14px"></i></a>
-      <a href="tools.html" class="inline-flex items-center gap-2 text-[11px] font-mono font-semibold px-8 py-4 rounded-full border border-slate-300 text-slate-700 hover:border-indigo-500/30 transition-all" style="background:rgba(248,250,252,.5)"><i data-lucide="wrench" style="width:16px;height:16px;color:#6366f1"></i>OPEN TOOLKIT</a>
+  <!-- Stats / Marquee -->
+  <section class="py-8 border-y border-slate-200 bg-white/50">
+    <div class="overflow-hidden relative">
+      <div class="marquee-track">
+        <span class="text-xl font-bold text-slate-300">Saudi Aramco</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">ADNOC</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">Bechtel</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">Air Products</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">NEOM</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">Hyundai Engineering</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">Saudi Aramco</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">ADNOC</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">Bechtel</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+        <span class="text-xl font-bold text-slate-300">Air Products</span>
+        <span class="text-xl font-bold text-emerald-500">•</span>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== HUD METRICS ===== -->
-<section class="relative py-8 border-y border-slate-200 bg-white/50">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="hud-card glass rounded-xl p-5 reveal"><span class="hud-tag">M-001</span><div class="text-3xl md:text-4xl font-bold grad-text mb-1 mono" data-target="67000" data-decimals="0" data-suffix="+">0</div><div class="hud-label">Loop Checks</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">4 Countries · 8+ Projects</div></div>
-      <div class="hud-card glass rounded-xl p-5 reveal reveal-d1"><span class="hud-tag">M-002</span><div class="text-3xl md:text-4xl font-bold text-emerald-500 mb-1 mono" data-target="0" data-decimals="0" data-suffix="">0</div><div class="hud-label">LTI (15+ Yrs)</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">Zero Lost Time Incidents</div></div>
-      <div class="hud-card glass rounded-xl p-5 reveal reveal-d2"><span class="hud-tag">M-003</span><div class="text-3xl md:text-4xl font-bold grad-text mb-1 mono" data-target="99.2" data-decimals="1" data-suffix="%">0</div><div class="hud-label">First-Pass Accuracy</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">Pre-Commissioning Verification</div></div>
-      <div class="hud-card glass rounded-xl p-5 reveal reveal-d3"><span class="hud-tag">M-004</span><div class="text-3xl md:text-4xl font-bold mono mb-1"><span class="grad-green text-white" data-target="8.4" data-decimals="1" data-suffix="">0</span><span style="font-size:.45em;font-weight:400;opacity:.6"> B USD</span></div><div class="hud-label">Max Project Value</div><div class="text-[9px] font-mono text-slate-500 mt-1.5">NEOM · World's Largest Green H₂</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section class="relative py-24 md:py-32 px-6 dot-pattern">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
-      <div class="md:col-span-2 reveal">
-        <div class="relative max-w-xs mx-auto md:mx-0">
-          <div class="rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/5" style="border:1px solid rgba(99,102,241,.08)">
-            <div class="aspect-[3/4]"><img src="assets/images/photo.jpg" alt="Satish Kumar Jaiswal" class="w-full h-full object-cover object-center"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-white via-white/90 to-transparent">
-              <div class="text-[8px] font-mono text-indigo-500 tracking-[.15em] mb-1">CURRENT</div>
-              <div class="text-sm font-semibold text-slate-900">NEOM Green Hydrogen</div>
-              <div class="text-[10px] font-mono text-slate-500 mt-0.5">USD 8.4B · World's Largest</div>
+  <!-- About Section -->
+  <section id="about" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <div class="text-xs font-bold tracking-[.25em] uppercase text-emerald-600 mb-4">About Me</div>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient mb-6 leading-tight">
+            Engineering Precision at Unprecedented Scale
+          </h2>
+          <p class="text-slate-600 text-base leading-relaxed mb-4">
+            With over 15 years of specialized experience in instrumentation commissioning and pre-commissioning, I've delivered critical systems across the world's most demanding industrial environments — from the USD 8.4B NEOM Green Hydrogen Complex to Asia's largest single-train refinery.
+          </p>
+          <p class="text-slate-600 text-base leading-relaxed mb-8">
+            My expertise spans the full commissioning lifecycle — from DCS/SIS validation and loop testing through to mechanical completion and system handover. I've completed 67,000+ loop checks across 8+ mega-projects in 4 countries, maintaining an exceptional safety record with Zero Lost Time Incidents.
+          </p>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div class="glass-card glass-hover rounded-xl p-4 cursor-pointer">
+              <div class="flex items-center gap-2 mb-1"><i data-lucide="map-pin" class="w-4 h-4 text-emerald-600"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Location</span></div>
+              <div class="text-sm text-slate-900 font-semibold">Duba, Saudi Arabia</div>
+            </div>
+            <div class="glass-card glass-hover rounded-xl p-4 cursor-pointer">
+              <div class="flex items-center gap-2 mb-1"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i><span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Visa</span></div>
+              <div class="text-sm text-slate-900 font-semibold">Transferable Iqama</div>
             </div>
           </div>
-          <div class="absolute -top-3 -right-3 glass rounded-xl p-3 z-10" style="animation:float 4s ease-in-out infinite;animation-delay:.5s"><div class="text-lg font-bold font-mono grad-text">99.2%</div><div class="text-[7px] font-mono text-slate-500">Accuracy</div></div>
-          <div class="absolute -bottom-3 -left-3 glass rounded-xl p-3 z-10" style="animation:float 4s ease-in-out infinite;animation-delay:1.5s"><div class="text-lg font-bold font-mono text-emerald-500">ZERO</div><div class="text-[7px] font-mono text-slate-500">LTI · 15Y</div></div>
         </div>
-      </div>
-      <div class="md:col-span-3 reveal reveal-d2">
-        <div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">ABOUT</div>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-8">Engineering Precision<br><span class="grad-text">at Unprecedented Scale</span></h2>
-        <div class="space-y-4 text-sm text-slate-600 leading-[1.8]">
-          <p>With over <strong class="text-slate-900">15 years</strong> in instrumentation commissioning &amp; pre-commissioning, I've delivered across the world's most demanding environments — from the <span class="text-indigo-500">USD 8.4B NEOM Green Hydrogen Complex</span> to Asia's largest single-train refinery.</p>
-          <p>I've completed <strong class="text-slate-900">67,000+ loop checks</strong> across 8+ mega-projects in 4 countries, maintaining <span class="text-emerald-500">Zero Lost Time Incidents</span> throughout my career.</p>
-        </div>
-        <div class="grid grid-cols-2 gap-3 mt-8">
-          <div class="glass rounded-xl p-3 reveal" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="map-pin" style="width:12px;height:12px;color:#6366f1"></i><span class="text-[9px] font-mono text-slate-500">LOCATION</span></div><div class="text-xs text-slate-900 font-medium">Duba, KSA</div></div>
-          <div class="glass rounded-xl p-3 reveal reveal-d1" style="border-color:rgba(6,182,212,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="shield-check" style="width:12px;height:12px;color:#06b6d4"></i><span class="text-[9px] font-mono text-slate-500">VISA</span></div><div class="text-xs text-slate-900 font-medium">Transferable Iqama</div></div>
-          <div class="glass rounded-xl p-3 reveal reveal-d2" style="border-color:rgba(245,158,11,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="zap" style="width:12px;height:12px;color:#f59e0b"></i><span class="text-[9px] font-mono text-slate-500">STATUS</span></div><div class="text-xs text-slate-900 font-medium">Immediate · No Notice</div></div>
-          <div class="glass rounded-xl p-3 reveal reveal-d3" style="border-color:rgba(16,185,129,.1)"><div class="flex items-center gap-2 mb-1"><i data-lucide="globe" style="width:12px;height:12px;color:#10b981"></i><span class="text-[9px] font-mono text-slate-500">ELIGIBLE</span></div><div class="text-xs text-slate-900 font-medium">All GCC</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== EXPERIENCE ===== -->
-<section id="experience" class="relative py-24 md:py-32 px-6">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-20 reveal"><div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">EXPERIENCE</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Professional Track</h2></div>
-
-    <div class="relative max-w-4xl mx-auto"><div class="absolute left-[23px] md:left-[27px] top-0 bottom-0 tl-line"></div>
-
-    <div class="tl-node reveal"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot active"></div><div class="glass rounded-xl p-6 ml-4" style="border-color:rgba(99,102,241,.1)"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-indigo-500/10 text-indigo-500">ACTIVE</span><span class="text-[10px] font-mono text-slate-500">Jul 2024–Now</span></div><h3 class="text-base font-semibold text-slate-900 mb-1">Instrument Pre-Commissioning Engineer</h3><p class="text-indigo-500 text-sm font-mono mb-0.5">CCC — Air Products · NEOM NGHC</p><p class="text-[9px] font-mono text-slate-500 mb-4">USD 8.4B · World's Largest Green H₂ · KSA</p><div class="grid sm:grid-cols-2 gap-2"><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>50K+ loop checks ahead of schedule, 99.2% accuracy</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>DCS/SIS — Siemens S7, ESD, F&amp;G, SCADA</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>Fail-safe logic &amp; C&amp;E matrix verification</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-indigo-500 font-mono mt-px">›</span><span>12+ engineers, 90+ technicians supervised</span></div></div></div></div>
-
-    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot cyan"></div><div class="glass rounded-xl p-6 ml-4" style="border-color:rgba(6,182,212,.1)"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[8px] font-mono font-bold bg-sky-500/10 text-sky-500">PROMOTED</span><span class="text-[10px] font-mono text-slate-500">Dec 2022–Feb 2024</span></div><h3 class="text-base font-semibold text-slate-900 mb-1">Assistant Superintendent — Utility</h3><p class="text-sky-500 text-sm font-mono mb-0.5">PEC Ltd · NSRP Refinery, Vietnam</p><p class="text-[9px] font-mono text-slate-500 mb-4">200,000 BPD · Asia's Largest Single-Train Refinery</p><div class="grid sm:grid-cols-2 gap-2"><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>Utility commissioning — GTGs, STGs, boilers</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>Honeywell Experion PKS — 8,000+ points</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>30+ engineers supervised, zero incidents</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-sky-500 font-mono mt-px">›</span><span>F&amp;G integrity, SIS, PLC interlock testing</span></div></div></div></div>
-
-    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot purple"></div><div class="glass rounded-xl p-6 ml-4" style="border-color:rgba(139,92,246,.1)"><div class="flex flex-wrap items-center gap-2 mb-3"><span class="text-[10px] font-mono text-slate-500">Dec 2020–Nov 2022</span></div><h3 class="text-base font-semibold text-slate-900 mb-1">Senior Instrument Engineer</h3><p class="text-violet-500 text-sm font-mono mb-0.5">PEC Ltd · NSRP Refinery, Vietnam</p><div class="grid sm:grid-cols-2 gap-2 mt-3"><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>12K+ loop tests — DCS, SIS, SCADA</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>RCA reduced downtime by ~25%</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>3,000+ instruments optimised</span></div><div class="text-xs text-slate-600 flex gap-1.5"><span class="text-violet-500 font-mono mt-px">›</span><span>Authored standardised procedures</span></div></div></div></div>
-
-    <div class="tl-node reveal mt-6"><div class="absolute left-[15px] md:left-[19px] top-2 tl-dot" style="border-color:#f59e0b"></div><div class="space-y-3 ml-4">
-      <div class="glass rounded-xl p-3" style="border-color:rgba(245,158,11,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">I&amp;C Engineer</span><span class="text-[8px] font-mono text-slate-500">2018-2020</span></div><div class="text-[10px] font-mono text-amber-500">PEC Ltd · NSRP, Vietnam — 5K+ loops, HART/Fieldbus</div></div>
-      <div class="glass rounded-xl p-3" style="border-color:rgba(244,63,94,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">I&amp;C Pre-Commissioning Engineer</span><span class="text-[8px] font-mono text-slate-500">2018</span></div><div class="text-[10px] font-mono text-rose-500">Bechtel · Al Taweelah Alumina, UAE — ADNOC Standards</div></div>
-      <div class="glass rounded-xl p-3" style="border-color:rgba(6,182,212,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">I&amp;C Commissioning &amp; Maintenance</span><span class="text-[8px] font-mono text-slate-500">2016-2018</span></div><div class="text-[10px] font-mono text-cyan-500">JGCS (JV) · NSRP, Vietnam — SCADA, PLC, ESD</div></div>
-      <div class="glass rounded-xl p-3" style="border-color:rgba(99,102,241,.08)"><div class="flex items-center justify-between mb-0.5"><span class="text-xs font-semibold text-slate-900">Instrument Commissioning Engineer</span><span class="text-[8px] font-mono text-slate-500">2014-2016</span></div><div class="text-[10px] font-mono text-indigo-500">Hyundai Eng · ADNOC/TAKREER, UAE — Foxboro, Triconex</div></div>
-    </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SKILLS ===== -->
-<section id="skills" class="relative py-24 md:py-32 px-6 dot-pattern">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16 reveal"><div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">COMPETENCIES</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Technical Arsenal</h2></div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="glass rounded-xl p-6 reveal" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center"><i data-lucide="cpu" style="width:16px;height:16px;color:#6366f1"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Control Systems (DCS)</div><div class="text-[8px] font-mono text-slate-500">SYSTEM-LEVEL</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Siemens S7</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Honeywell PKS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Foxboro</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">Yokogawa VP</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1" style="border-color:rgba(244,63,94,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center"><i data-lucide="shield-alert" style="width:16px;height:16px;color:#f43f5e"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Safety Systems (ESD/SIS)</div><div class="text-[8px] font-mono text-slate-500">CRITICAL INTEGRITY</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">Triconex TS3000</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">Honeywell SB</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">FSC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/8 text-rose-600 border border-rose-500/15">FGS/BMS</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2" style="border-color:rgba(6,182,212,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center"><i data-lucide="network" style="width:16px;height:16px;color:#06b6d4"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Automation &amp; ICSS</div><div class="text-[8px] font-mono text-slate-500">INTEGRATION</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">Allen Bradley</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">Siemens PLC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">SCADA/HMI</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">ICSS</span></div></div>
-      <div class="glass rounded-xl p-6 reveal" style="border-color:rgba(245,158,11,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><i data-lucide="settings" style="width:16px;height:16px;color:#f59e0b"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Commissioning Lifecycle</div><div class="text-[8px] font-mono text-slate-500">END-TO-END</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">Pre-Comm</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">Dry/Wet Test</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">Loop Test</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">FAT/SAT</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">PSSR</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1" style="border-color:rgba(139,92,246,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center"><i data-lucide="gauge" style="width:16px;height:16px;color:#8b5cf6"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Field Instruments</div><div class="text-[8px] font-mono text-slate-500">PROTOCOLS</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">HART</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">Fieldbus</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">Control Valves</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">Analysers</span></div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2" style="border-color:rgba(6,182,212,.1)"><div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center"><i data-lucide="shield-check" style="width:16px;height:16px;color:#06b6d4"></i></div><div><div class="text-sm font-semibold text-slate-900 text-[13px]">Functional Safety</div><div class="text-[8px] font-mono text-slate-500">COMPLIANCE</div></div></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">HAZOP</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">SIL/LOPA</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">IEC 61511</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-cyan-500/8 text-cyan-600 border border-cyan-500/15">IEC 61508</span></div></div>
-    </div>
-    <div class="grid md:grid-cols-2 gap-4 mt-4">
-      <div class="glass rounded-xl p-5 reveal" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-2 mb-3"><i data-lucide="file-text" style="width:14px;height:14px;color:#6366f1"></i><span class="text-[10px] font-mono text-slate-900 font-semibold">STANDARDS</span></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-indigo-500/8 text-indigo-600 border border-indigo-500/15">SAUDI ARAMCO</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-sky-500/8 text-sky-600 border border-sky-500/15">ADNOC</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/8 text-amber-600 border border-amber-500/15">BECHTEL</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-violet-500/8 text-violet-600 border border-violet-500/15">SHELL DEP</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">API · IEC</span></div></div>
-      <div class="glass rounded-xl p-5 reveal reveal-d1" style="border-color:rgba(99,102,241,.1)"><div class="flex items-center gap-2 mb-3"><i data-lucide="monitor" style="width:14px;height:14px;color:#6366f1"></i><span class="text-[10px] font-mono text-slate-900 font-semibold">SOFTWARE</span></div><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">SPI/INtools</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">ICAPS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">Emerson AMS</span><span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/50 text-slate-500 border border-slate-300">SAP PM</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ACHIEVEMENTS ===== -->
-<section id="achievements" class="relative py-24 md:py-32 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16 reveal"><div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">KEY METRICS</div><h2 class="text-3xl md:text-5xl font-bold tracking-tight grad-text">Key Achievements</h2></div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="glass rounded-xl p-6 reveal text-center" style="border-color:rgba(99,102,241,.1)"><div class="text-3xl font-bold font-mono grad-text mb-1" data-target="50000" data-decimals="0" data-suffix="K+">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Loop Checks (NGHC)</div><div class="text-[9px] font-mono text-slate-500">Ahead of schedule</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1 text-center" style="border-color:rgba(99,102,241,.1)"><div class="text-3xl font-bold font-mono text-slate-900 mb-1" data-target="67000" data-decimals="0" data-suffix="K+">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Total Loop Checks</div><div class="text-[9px] font-mono text-slate-500">Across 4 countries</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2 text-center" style="border-color:rgba(16,185,129,.1)"><div class="text-3xl font-bold font-mono text-emerald-500 mb-1">ZERO</div><div class="text-sm font-semibold text-slate-900 mb-1">Lost Time Incidents</div><div class="text-[9px] font-mono text-slate-500">15+ years</div></div>
-      <div class="glass rounded-xl p-6 reveal text-center" style="border-color:rgba(245,158,11,.1)"><div class="text-3xl font-bold font-mono text-amber-500 mb-1" data-target="25" data-decimals="0" data-suffix="%">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Downtime Reduction</div><div class="text-[9px] font-mono text-slate-500">Via RCA at NSRP</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d1 text-center" style="border-color:rgba(6,182,212,.1)"><div class="text-3xl font-bold font-mono text-sky-500 mb-1" data-target="100" data-decimals="0" data-suffix="%">0</div><div class="text-sm font-semibold text-slate-900 mb-1">On-Time Handover</div><div class="text-[9px] font-mono text-slate-500">All milestones at NGHC</div></div>
-      <div class="glass rounded-xl p-6 reveal reveal-d2 text-center" style="border-color:rgba(99,102,241,.1)"><div class="text-3xl font-bold font-mono grad-text mb-1" data-target="5" data-decimals="0" data-suffix="+">0</div><div class="text-sm font-semibold text-slate-900 mb-1">Client Standards</div><div class="text-[9px] font-mono text-slate-500">Aramco, ADNOC, Bechtel</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TOOLKIT CTA ===== -->
-<section class="relative py-20 px-6 dot-pattern">
-  <div class="max-w-4xl mx-auto text-center reveal">
-    <div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">ENGINEERING TOOLKIT</div>
-    <h2 class="text-2xl md:text-3xl font-bold tracking-tight grad-text mb-4">10 Dedicated Tool Modules</h2>
-    <p class="text-sm text-slate-500 mb-8 font-mono">4-20mA · PV Scaler · DP Flow · RTD · Thermocouple · Valve Cv · Ohm's Law · Unit Converter · Cable Sizing · Loop Checklist</p>
-    <a href="tools.html" class="shimmer-btn inline-flex items-center gap-2 text-[11px] font-mono font-semibold px-8 py-3.5 rounded-full transition-all tracking-wide" style="color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)">
-      <i data-lucide="wrench" style="width:14px;height:14px"></i>
-      OPEN FULL TOOLKIT
-      <i data-lucide="arrow-right" style="width:14px;height:14px"></i>
-    </a>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="relative py-24 md:py-32 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-start">
-      <div class="md:col-span-2 reveal">
-        <div class="text-[10px] font-mono text-indigo-500 tracking-[.2em] mb-6">CONTACT</div>
-        <h2 class="text-3xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">Initiate <span class="grad-text">Mobilization</span></h2>
-        <div class="glass rounded-xl p-5 mb-6" style="border-color:rgba(99,102,241,.1)">
-          <div class="grid grid-cols-2 gap-4 text-[10px] font-mono">
-            <div><span style="color:#64748b">AVAIL</span><br><span style="color:#10b981;font-weight:600">IMMEDIATE</span></div>
-            <div><span style="color:#64748b">VISA</span><br><span style="color:#06b6d4;font-weight:600">IQAMA</span></div>
-            <div><span style="color:#64748b">DEPLOY</span><br><span style="color:#f59e0b;font-weight:600">ALL GCC</span></div>
-            <div><span style="color:#64748b">NOTICE</span><br><span style="color:#10b981;font-weight:600">ZERO</span></div>
+        <div class="reveal grid grid-cols-2 gap-6">
+          <div class="glass-card rounded-2xl p-8 text-center mt-12">
+            <div class="text-5xl font-extrabold text-gradient-emerald mb-2">67K+</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Loop Checks</div>
+          </div>
+          <div class="glass-card rounded-2xl p-8 text-center">
+            <div class="text-5xl font-extrabold text-slate-900 mb-2">8+</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Mega Projects</div>
+          </div>
+          <div class="glass-card rounded-2xl p-8 text-center">
+            <div class="text-5xl font-extrabold text-slate-900 mb-2">4</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Countries</div>
+          </div>
+          <div class="glass-card rounded-2xl p-8 text-center mt-12">
+            <div class="text-5xl font-extrabold text-gradient-emerald mb-2">99.2%</div>
+            <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">First-Pass Accuracy</div>
           </div>
         </div>
-        <div class="space-y-3">
-          <a href="mailto:jaissatish@gmail.com" class="flex items-center gap-3 glass rounded-xl p-3 text-sm text-slate-700 hover:border-indigo-500/20 transition-all" style="border-color:rgba(226,232,240,.8)"><i data-lucide="mail" style="width:16px;height:16px;color:#6366f1"></i>jaissatish@gmail.com</a>
-          <a href="tel:+966****3735" class="flex items-center gap-3 glass rounded-xl p-3 text-sm text-slate-700 hover:border-indigo-500/20 transition-all" style="border-color:rgba(226,232,240,.8)"><i data-lucide="phone" style="width:16px;height:16px;color:#6366f1"></i>+966 554803735</a>
-          <a href="https://linkedin.com/in/jaissatish" target="_blank" class="flex items-center gap-3 glass rounded-xl p-3 text-sm text-slate-700 hover:border-indigo-500/20 transition-all" style="border-color:rgba(226,232,240,.8)"><i data-lucide="external-link" style="width:16px;height:16px;color:#06b6d4"></i>linkedin.com/in/jaissatish</a>
-        </div>
-      </div>
-      <div class="md:col-span-3 reveal reveal-d2">
-        <form class="glass rounded-xl p-6" style="border-color:rgba(226,232,240,.8)" onsubmit="event.preventDefault();this.querySelector('button').textContent='SENT ✓';"><div class="text-[10px] font-mono text-slate-900 mb-4 flex items-center gap-2"><i data-lucide="terminal" style="width:12px;height:12px;color:#6366f1"></i>SEND MESSAGE</div><div class="space-y-3"><div class="grid sm:grid-cols-2 gap-3"><input type="text" placeholder="Name" class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><input type="email" placeholder="Email" class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"></div><div class="grid sm:grid-cols-2 gap-3"><input type="text" placeholder="Company" class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><select class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-600 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%"><option>Project Scope</option><option>O&amp;G</option><option>Green Hydrogen</option><option>Refinery</option></select></div><textarea rows="3" placeholder="Message..." class="bg-white/50 border border-slate-300 px-4 py-2.5 rounded-xl text-sm text-slate-900 placeholder-slate-500 outline-none focus:border-indigo-500/40 transition-colors" style="width:100%;resize:none"></textarea><button type="submit" class="w-full text-white font-mono text-xs font-semibold py-3 rounded-xl transition-all tracking-wide" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">TRANSMIT</button></div></form>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-</main>
+  <!-- Experience Section -->
+  <section id="experience" class="py-24 px-6 bg-white/40 border-y border-slate-200">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs font-bold tracking-[.25em] uppercase text-emerald-600 mb-4">Career Journey</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient">Professional Experience</h2>
+      </div>
 
-<!-- FOOTER -->
-<footer class="border-t border-slate-200 py-6 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3"><div class="flex items-center gap-2"><span class="text-indigo-500 font-mono text-xs font-bold">[SJ]</span><span class="text-[10px] font-mono text-slate-500">&copy; 2025</span></div><div class="flex gap-3"><a href="mailto:jaissatish@gmail.com" class="text-slate-500 hover:text-indigo-500 transition-colors"><i data-lucide="mail" style="width:14px;height:14px"></i></a><a href="https://linkedin.com/in/jaissatish" class="text-slate-500 hover:text-indigo-500 transition-colors"><i data-lucide="external-link" style="width:14px;height:14px"></i></a></div></div></footer>
+      <div class="relative pl-12">
+        <div class="tl-line"></div>
+        
+        <!-- Item 1 -->
+        <div class="relative mb-10 reveal">
+          <div class="absolute -left-12 top-2 tl-dot"></div>
+          <div class="glass-card glass-hover rounded-2xl p-8">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700">Current</span>
+              <span class="text-xs text-slate-500 font-medium">Jul 2024 – Present</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Instrument Pre-Commissioning Engineer</h3>
+            <p class="text-emerald-600 text-sm font-semibold mb-4">CCC — Air Products · NEOM Green Hydrogen Complex</p>
+            <div class="grid sm:grid-cols-2 gap-3 text-sm text-slate-600">
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>50,000+ loop checks ahead of schedule, 99.2% accuracy</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>DCS/SIS validation — Siemens S7, ESD, F&G, SCADA</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>Fail-safe logic verification & C&E matrix sign-off</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>Supervised 12+ engineers, 90+ technicians</div>
+            </div>
+          </div>
+        </div>
 
-<script src="assets/js/global.js"></script>
+        <!-- Item 2 -->
+        <div class="relative mb-10 reveal">
+          <div class="absolute -left-12 top-2 tl-dot"></div>
+          <div class="glass-card glass-hover rounded-2xl p-8">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-700">Promoted</span>
+              <span class="text-xs text-slate-500 font-medium">Dec 2022 – Feb 2024</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Assistant Superintendent — Utility Maintenance</h3>
+            <p class="text-blue-600 text-sm font-semibold mb-4">PEC Ltd · NSRP Refinery · Vietnam</p>
+            <div class="grid sm:grid-cols-2 gap-3 text-sm text-slate-600">
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>Led full utility commissioning — GTGs, STGs, boilers</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>Honeywell Experion PKS — 8,000+ utility points</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>Supervised 30+ engineers, zero incidents</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>F&G integrity, SIS, PLC interlock validation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="relative mb-10 reveal">
+          <div class="absolute -left-12 top-2 tl-dot"></div>
+          <div class="glass-card glass-hover rounded-2xl p-8">
+            <div class="flex flex-wrap items-center gap-2 mb-3"><span class="text-xs text-slate-500 font-medium">Dec 2020 – Nov 2022</span></div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Senior Instrument Engineer</h3>
+            <p class="text-purple-600 text-sm font-semibold mb-4">PEC Ltd · NSRP Refinery · Vietnam</p>
+            <div class="grid sm:grid-cols-2 gap-3 text-sm text-slate-600">
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>12,000+ loop tests — DCS, SIS, SCADA</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>RCA reduced downtime by ~25%</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>3,000+ instruments optimised</div>
+              <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>Authored standardised maintenance procedures</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compact Items -->
+        <div class="relative mb-10 reveal">
+          <div class="absolute -left-12 top-2 tl-dot"></div>
+          <div class="space-y-4">
+            <div class="glass-card glass-hover rounded-xl p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-bold text-slate-900">Instrumentation & Control Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-bold">2018 – 2020</span>
+              </div>
+              <p class="text-xs text-amber-600 font-semibold">PEC Ltd · NSRP Refinery · Vietnam</p>
+              <p class="text-xs text-slate-500 mt-1">5,000+ loop checks, HART/Fieldbus validation</p>
+            </div>
+            <div class="glass-card glass-hover rounded-xl p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-bold text-slate-900">I&C Pre-Commissioning Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-bold">2018</span>
+              </div>
+              <p class="text-xs text-rose-600 font-semibold">Bechtel · Al Taweelah Alumina · UAE</p>
+              <p class="text-xs text-slate-500 mt-1">Honeywell Experion PKS, SILbus, C&E matrices</p>
+            </div>
+            <div class="glass-card glass-hover rounded-xl p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-bold text-slate-900">I&C Commissioning & Maintenance Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-bold">2016 – 2018</span>
+              </div>
+              <p class="text-xs text-cyan-600 font-semibold">JGCS (JV) · NSRP Refinery · Vietnam</p>
+              <p class="text-xs text-slate-500 mt-1">Plant startup — SCADA, Allen Bradley PLC, SIS</p>
+            </div>
+            <div class="glass-card glass-hover rounded-xl p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                <h4 class="text-sm font-bold text-slate-900">Instrument Commissioning Engineer</h4>
+                <span class="text-[10px] text-slate-500 font-bold">2014 – 2016</span>
+              </div>
+              <p class="text-xs text-emerald-600 font-semibold">Hyundai Engineering · ADNOC/TAKREER · UAE</p>
+              <p class="text-xs text-slate-500 mt-1">Foxboro DCS, Triconex ESD, BMS — ADNOC standards</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs font-bold tracking-[.25em] uppercase text-emerald-600 mb-4">Technical Arsenal</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient">Core Competencies</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5">
+            <i data-lucide="cpu" class="w-6 h-6 text-emerald-600"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Control Systems (DCS)</h3>
+          <div class="space-y-4">
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">Siemens S7</span><span class="text-emerald-600 font-bold">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">Honeywell Experion PKS</span><span class="text-emerald-600 font-bold">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:95%"></div></div></div>
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">Foxboro / Yokogawa</span><span class="text-emerald-600 font-bold">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
+          </div>
+        </div>
+        
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal" style="transition-delay:.1s">
+          <div class="w-12 h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center mb-5">
+            <i data-lucide="shield-alert" class="w-6 h-6 text-red-500"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Safety Systems (ESD/SIS)</h3>
+          <div class="space-y-4">
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">Triconex TS3000</span><span class="text-red-500 font-bold">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">Honeywell Safety Builder</span><span class="text-red-500 font-bold">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">FGS / BMS / HIPS</span><span class="text-red-500 font-bold">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal" style="transition-delay:.2s">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5">
+            <i data-lucide="network" class="w-6 h-6 text-blue-600"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Automation & ICSS</h3>
+          <div class="space-y-4">
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">Allen Bradley PLC</span><span class="text-blue-600 font-bold">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:88%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">Siemens PLC</span><span class="text-blue-600 font-bold">Advanced</span></div><div class="skill-track"><div class="skill-fill" style="width:85%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
+            <div><div class="flex justify-between text-xs mb-1.5"><span class="text-slate-600 font-medium">SCADA / HMI</span><span class="text-blue-600 font-bold">Expert</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:linear-gradient(90deg,#3B82F6,#60A5FA)"></div></div></div>
+          </div>
+        </div>
+
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center mb-5">
+            <i data-lucide="settings" class="w-6 h-6 text-amber-600"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Commissioning Lifecycle</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Pre-Commissioning</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Dry/Wet Testing</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Loop Testing</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">FAT/SAT</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Functional Testing</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">ITR/ICAPS</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">PSSR</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Handover</span>
+          </div>
+        </div>
+
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal" style="transition-delay:.1s">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center mb-5">
+            <i data-lucide="gauge" class="w-6 h-6 text-purple-600"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Field Instruments</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">HART</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Fieldbus</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Control Valves</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Solenoid Valves</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Positioners</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Analysers</span>
+            <span class="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 text-slate-700 font-medium">Vibration</span>
+          </div>
+        </div>
+
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal" style="transition-delay:.2s">
+          <div class="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center mb-5">
+            <i data-lucide="shield-check" class="w-6 h-6 text-cyan-600"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Functional Safety</h3>
+          <div class="space-y-2.5">
+            <div class="flex items-center gap-2.5 text-sm text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-600 shrink-0"></i>HAZOP Participation</div>
+            <div class="flex items-center gap-2.5 text-sm text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-600 shrink-0"></i>SIL/LOPA Assessment</div>
+            <div class="flex items-center gap-2.5 text-sm text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-600 shrink-0"></i>IEC 61511 / IEC 61508</div>
+            <div class="flex items-center gap-2.5 text-sm text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-600 shrink-0"></i>Fail-Safe Logic Verification</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Standards & Software -->
+      <div class="grid md:grid-cols-2 gap-6 mt-8">
+        <div class="glass-card rounded-2xl p-8 reveal">
+          <h3 class="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2"><i data-lucide="file-text" class="w-4 h-4 text-emerald-600"></i>Standards & Codes</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-100">Saudi Aramco SAES/SAEP</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">ADNOC</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-amber-50 text-amber-700 border border-amber-100">Bechtel</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-purple-50 text-purple-700 border border-purple-100">Shell DEP</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">API</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">IEC</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">ISA</span>
+          </div>
+        </div>
+        <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay:.1s">
+          <h3 class="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2"><i data-lucide="monitor" class="w-4 h-4 text-emerald-600"></i>Software & Tools</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">SPI/INtools</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">ICAPS</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">Emerson AMS</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">SAP PM</span>
+            <span class="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">CMMS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" class="py-24 px-6 bg-white/40 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs font-bold tracking-[.25em] uppercase text-emerald-600 mb-4">Milestones</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient">Key Achievements</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal text-center">
+          <div class="text-4xl md:text-5xl font-extrabold text-gradient-emerald mb-3">50K+</div>
+          <div class="text-sm font-bold text-slate-900 mb-2">Loop Checks at NEOM NGHC</div>
+          <p class="text-xs text-slate-500">Ahead of schedule with 99.2% first-pass accuracy at the USD 8.4B green hydrogen facility</p>
+        </div>
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal text-center" style="transition-delay:.1s">
+          <div class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-3">67K+</div>
+          <div class="text-sm font-bold text-slate-900 mb-2">Total Loop Checks</div>
+          <p class="text-xs text-slate-500">Across 8+ mega-projects in 4 countries — oil, gas, petrochemical, alumina, H2</p>
+        </div>
+        <div class="glass-card glass-hover rounded-2xl p-8 reveal text-center" style="transition-delay:.2s">
+          <div class="text-4xl md:text-5xl font-extrabold text-gradient-emerald mb-3">Zero</div>
+          <div class="text-sm font-bold text-slate-900 mb-2">Lost Time Incidents</div>
+          <p class="text-xs text-slate-500">Across 15+ years supervising teams of 30+ engineers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="reveal">
+          <div class="text-xs font-bold tracking-[.25em] uppercase text-emerald-600 mb-4">Get In Touch</div>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient mb-6 leading-tight">Let's Build Something Great</h2>
+          <p class="text-slate-600 text-sm leading-relaxed mb-8">Available immediately for instrumentation & control engineering roles across the GCC. Transferable Iqama, no notice period.</p>
+          <div class="space-y-3">
+            <a href="tel:+966554803735" class="flex items-center gap-4 glass-card glass-hover rounded-xl p-4 cursor-pointer">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-4 h-4 text-emerald-600"></i></div>
+              <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Phone</div><div class="text-sm text-slate-900 font-semibold">+966 554803735</div></div>
+            </a>
+            <a href="mailto:jaissatish@gmail.com" class="flex items-center gap-4 glass-card glass-hover rounded-xl p-4 cursor-pointer">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-4 h-4 text-blue-600"></i></div>
+              <div><div class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Email</div><div class="text-sm text-slate-900 font-semibold">jaissatish@gmail.com</div></div>
+            </a>
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay:.2s">
+          <form id="contact-form" class="glass-card rounded-2xl p-8" onsubmit="handleSubmit(event)">
+            <h3 class="text-lg font-bold text-slate-900 mb-6">Send a Message</h3>
+            <div class="space-y-4">
+              <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Full Name</label><input type="text" class="inp" placeholder="Your name" required></div>
+              <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Email</label><input type="email" class="inp" placeholder="your@email.com" required></div>
+              <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Message</label><textarea rows="4" class="inp" style="resize:none" placeholder="Tell me about your project..." required></textarea></div>
+              <button type="submit" class="w-full btn-primary py-4 rounded-xl text-sm font-semibold uppercase tracking-wide flex items-center justify-center gap-2">Send Message <i data-lucide="send" class="w-4 h-4"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 py-10 px-6 bg-white/50">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-bold text-xs">SJ</div>
+        <span class="text-xs text-slate-500 font-medium">© 2025 Satish Kumar Jaiswal. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- VIEW 2: INSTRUMENTATION TOOLS HUB          -->
+<!-- ========================================== -->
+<div id="view-tools" class="view relative z-10 pt-20">
+  
+  <!-- Tools Hero -->
+  <section class="py-16 px-6 border-b border-slate-200 bg-white/40">
+    <div class="max-w-7xl mx-auto">
+      <button onclick="switchView('home')" class="flex items-center gap-2 text-slate-500 hover:text-slate-900 text-sm font-medium mb-8 transition-all">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Portfolio
+      </button>
+      <div class="text-xs font-bold tracking-[.25em] uppercase text-emerald-600 mb-4 reveal active">Product Suite</div>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gradient mb-4 reveal active">Instrumentation Tools Hub</h1>
+      <p class="text-lg text-slate-600 max-w-2xl reveal active">A premium suite of free online calculators and checklists for instrumentation and control engineers.</p>
+    </div>
+  </section>
+
+  <!-- Tool Dashboard -->
+  <section id="tools-dashboard" class="py-16 px-6">
+    <div class="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <div onclick="openTool('ma')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active">
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="activity" class="w-6 h-6 text-emerald-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">4-20mA Signal</h3>
+        <p class="text-sm text-slate-500">Convert between percentage and mA signal values.</p>
+      </div>
+
+      <div onclick="openTool('pv')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.05s">
+        <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="gauge" class="w-6 h-6 text-blue-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">PV Calculator</h3>
+        <p class="text-sm text-slate-500">Convert mA signal to Engineering Units (EU) with LRV/URV.</p>
+      </div>
+
+      <div onclick="openTool('dp')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.1s">
+        <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="waves" class="w-6 h-6 text-purple-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">DP Flow</h3>
+        <p class="text-sm text-slate-500">Calculate flow from differential pressure (√ extraction).</p>
+      </div>
+
+      <div onclick="openTool('rtd')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.15s">
+        <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="thermometer" class="w-6 h-6 text-amber-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">RTD (Pt100)</h3>
+        <p class="text-sm text-slate-500">Convert Resistance (Ω) to Temperature (°C) IEC 60751.</p>
+      </div>
+
+      <div onclick="openTool('tc')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.2s">
+        <div class="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="flame" class="w-6 h-6 text-orange-500"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Thermocouple</h3>
+        <p class="text-sm text-slate-500">Approximate mV output for Type K thermocouples.</p>
+      </div>
+
+      <div onclick="openTool('cv')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.25s">
+        <div class="w-12 h-12 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="settings" class="w-6 h-6 text-cyan-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Valve Cv</h3>
+        <p class="text-sm text-slate-500">Liquid service flow coefficient (ISA-75.01).</p>
+      </div>
+
+      <div onclick="openTool('ohm')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.3s">
+        <div class="w-12 h-12 rounded-xl bg-yellow-50 border border-yellow-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="zap" class="w-6 h-6 text-yellow-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Ohm's Law</h3>
+        <p class="text-sm text-slate-500">Calculate Voltage, Current, Resistance, and Power.</p>
+      </div>
+
+      <div onclick="openTool('unit')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.35s">
+        <div class="w-12 h-12 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="repeat" class="w-6 h-6 text-rose-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Unit Converter</h3>
+        <p class="text-sm text-slate-500">Pressure, Temp, Flow, Length, Mass conversions.</p>
+      </div>
+
+      <div onclick="openTool('cable')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.4s">
+        <div class="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="cable" class="w-6 h-6 text-indigo-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Cable Sizing</h3>
+        <p class="text-sm text-slate-500">Voltage drop estimation for instrument cable runs.</p>
+      </div>
+
+      <div onclick="openTool('checklist')" class="tool-card glass-card glass-hover rounded-2xl p-8 cursor-pointer reveal active" style="transition-delay:.45s">
+        <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center mb-5 tool-card-icon"><i data-lucide="check-square" class="w-6 h-6 text-teal-600"></i></div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Loop Checklist</h3>
+        <p class="text-sm text-slate-500">Interactive pre-commissioning loop test checklist.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Tool Display Area (Hidden by default) -->
+  <section id="tool-display-area" class="hidden py-16 px-6 min-h-[80vh]">
+    <div class="max-w-4xl mx-auto">
+      <button onclick="closeTool()" class="flex items-center gap-2 text-slate-500 hover:text-slate-900 text-sm font-medium mb-8 transition-all">
+        <i data-lucide="grid-3x3" class="w-4 h-4"></i> All Tools
+      </button>
+      <div id="tool-content" class="glass-card rounded-3xl p-8 md:p-12"></div>
+    </div>
+  </section>
+</div>
+
+
 <script>
-/* Boot Sequence */
-const bootLines=[{t:'[<span class=hl>OK</span>] SYS: I&C KERNEL v4.2.1',d:200},{t:'[<span class=hl>OK</span>] SYS: LOADING DCS/SIS MODULES',d:300},{t:'[<span class=cy>>></span>] MEM: 67,000+ LOOP RECORDS LOADED',d:400},{t:'[<span class=cy>>></span>] MEM: 15+ YEARS ZERO-LTI OPERATION',d:400},{t:'[<span class=am>!!</span>] NET: LINK TO NEOM NGHC ESTABLISHED',d:500},{t:'[<span class=hl>OK</span>] NET: GCC AVAILABILITY BROADCAST',d:400},{t:'[<span class=hl>OK</span>] DSP: HUD ONLINE',d:500},{t:'[<span class=hl>OK</span>] READY',d:300,l:1}];
-async function boot(){const c=document.getElementById('boot-output');for(let i=0;i<bootLines.length;i++){const l=document.createElement('div');l.className='boot-line boot-cursor';l.innerHTML=bootLines[i].t;c.appendChild(l);await new Promise(r=>setTimeout(r,bootLines[i].d));}c.lastElementChild.classList.remove('boot-cursor');setTimeout(()=>document.getElementById('boot-screen').classList.add('done'),700);}
-boot();
-/* Coord display */
-document.addEventListener('mousemove',e=>{document.getElementById('coord-x').textContent='X:'+e.clientX;document.getElementById('coord-y').textContent='Y:'+e.clientY});setInterval(()=>{document.getElementById('coord-t').textContent='T:'+new Date().toTimeString().slice(0,8)},1000);
+lucide.createIcons();
+
+// ====== VIEW SWITCHING (Multi-page feel) ======
+function switchView(view) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + view).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if(view === 'home') {
+    setTimeout(() => initRevealObserver(), 100);
+  }
+}
+
+// ====== SCROLL REVEAL ======
+let revealObs;
+function initRevealObserver() {
+  revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('active');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.reveal:not(.active)').forEach(el => revealObs.observe(el));
+}
+initRevealObserver();
+
+// ====== TOAST ======
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+
+// ====== CONTACT FORM ======
+function handleSubmit(e){e.preventDefault();showToast('Thank you! Message received. Satish will respond soon.');e.target.reset()}
+
+// ====== INSTRUMENTATION TOOLS LOGIC ======
+const toolTemplates={
+  ma:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center"><i data-lucide="activity" class="w-6 h-6 text-emerald-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">4-20mA Signal Calculator</h3><p class="text-sm text-slate-500">Convert between percentage and mA signal values</p></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Percentage (%)</label><input type="number" class="inp" id="ma-pct" placeholder="0 - 100" min="0" max="100" oninput="calcMA()"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Current (mA)</label><input type="number" class="inp" id="ma-val" placeholder="4 - 20" min="4" max="20" step="0.01" oninput="calcMArev()"></div>
+    </div>
+    <div class="result-box mb-6">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">mA Signal</div><div id="ma-r1" class="text-xl font-extrabold text-gradient-emerald">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Percentage</div><div id="ma-r2" class="text-xl font-extrabold text-slate-900">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Span</div><div id="ma-r3" class="text-xl font-extrabold text-blue-600">—</div></div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Formula:</strong> mA = (% × 16 / 100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100 / 16</p></div>`,
+  pv:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center"><i data-lucide="gauge" class="w-6 h-6 text-blue-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">Process Variable (PV) Calculator</h3><p class="text-sm text-slate-500">Convert between mA signal and engineering units</p></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-5">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">LRV (Lower Range Value)</label><input type="number" class="inp" id="pv-lrv" placeholder="e.g., 0" step="any"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">URV (Upper Range Value)</label><input type="number" class="inp" id="pv-urv" placeholder="e.g., 100" step="any"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">mA Signal (4-20)</label><input type="number" class="inp" id="pv-ma" placeholder="4 - 20" step="0.01" oninput="calcPV()"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Process Variable (EU)</label><input type="number" class="inp" id="pv-eu" placeholder="Engineering Units" step="any" oninput="calcPVrev()"></div>
+    </div>
+    <div class="result-box mb-6">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">PV (EU)</div><div id="pv-r1" class="text-lg font-extrabold text-gradient-emerald">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">mA</div><div id="pv-r2" class="text-lg font-extrabold text-slate-900">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Percentage</div><div id="pv-r3" class="text-lg font-extrabold text-blue-600">—</div></div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Formula:</strong> PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>`,
+  dp:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center"><i data-lucide="waves" class="w-6 h-6 text-purple-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">DP Flow Calculator</h3><p class="text-sm text-slate-500">Calculate flow from differential pressure using √ extraction</p></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-5">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Design Flow Qmax</label><input type="number" class="inp" id="dp-qmax" placeholder="e.g., 1000" step="any"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Design DP DPmax (%)</label><input type="number" class="inp" id="dp-dpmax" placeholder="e.g., 100" step="any"></div>
+    </div>
+    <div class="mb-8"><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Measured DP (% of DPmax)</label><input type="number" class="inp" id="dp-meas" placeholder="0 - 100" step="0.01" oninput="calcDP()"></div>
+    <div class="result-box mb-6">
+      <div class="grid grid-cols-2 gap-4 text-center">
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Actual Flow</div><div id="dp-r1" class="text-xl font-extrabold text-purple-600">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Flow % of Qmax</div><div id="dp-r2" class="text-xl font-extrabold text-slate-900">—</div></div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Formula:</strong> Q = Qmax × √(DPmeasured / DPmax)</p></div>`,
+  rtd:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center"><i data-lucide="thermometer" class="w-6 h-6 text-amber-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">Pt100 RTD Calculator</h3><p class="text-sm text-slate-500">Resistance ↔ Temperature (IEC 60751)</p></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Resistance (Ω)</label><input type="number" class="inp" id="rtd-r" placeholder="e.g., 100" step="0.01" oninput="calcRTD()"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Temperature (°C)</label><input type="number" class="inp" id="rtd-t" placeholder="e.g., 0" step="0.01" oninput="calcRTDrev()"></div>
+    </div>
+    <div class="result-box mb-6">
+      <div class="grid grid-cols-2 gap-4 text-center">
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Temperature</div><div id="rtd-r1" class="text-xl font-extrabold text-amber-600">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Resistance</div><div id="rtd-r2" class="text-xl font-extrabold text-slate-900">—</div></div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Reference:</strong> R₀ = 100Ω at 0°C · α = 0.00385 Ω/Ω/°C · R = R₀(1 + αT)</p></div>`,
+  tc:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center"><i data-lucide="flame" class="w-6 h-6 text-orange-500"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">Thermocouple mV Calculator</h3><p class="text-sm text-slate-500">Approximate mV output for Type K thermocouple</p></div>
+    </div>
+    <div class="mb-8"><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Temperature (°C)</label><input type="number" class="inp" id="tc-t" placeholder="e.g., 500" step="1" oninput="calcTC()"></div>
+    <div class="result-box mb-6">
+      <div class="grid grid-cols-2 gap-4 text-center">
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">mV Output (approx)</div><div id="tc-r1" class="text-xl font-extrabold text-orange-500">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Type</div><div id="tc-r2" class="text-xl font-extrabold text-slate-900">K</div></div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Approx:</strong> mV ≈ 0.041 × T − 0.001 × T²/1000 (Type K, simplified linear approximation)</p></div>`,
+  cv:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center"><i data-lucide="settings" class="w-6 h-6 text-cyan-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">Control Valve Cv Calculator</h3><p class="text-sm text-slate-500">Liquid service flow coefficient (ISA-75.01)</p></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-5">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Flow Rate Q (US GPM)</label><input type="number" class="inp" id="cv-q" placeholder="e.g., 100" step="any"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Pressure Drop ΔP (psi)</label><input type="number" class="inp" id="cv-dp" placeholder="e.g., 10" step="any"></div>
+    </div>
+    <div class="mb-8"><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Specific Gravity (G)</label><input type="number" class="inp" id="cv-sg" value="1" step="0.01"></div>
+    <button onclick="calcCv()" class="w-full bg-slate-900 text-white rounded-xl py-4 text-sm font-bold hover:bg-emerald-600 transition-all uppercase tracking-wide mb-6">Calculate Cv</button>
+    <div class="result-box text-center mb-6"><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Flow Coefficient (Cv)</div><div id="cv-r1" class="text-2xl font-extrabold text-cyan-600">—</div></div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Formula:</strong> Cv = Q × √(G / ΔP)</p></div>`,
+  ohm:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-yellow-50 border border-yellow-100 flex items-center justify-center"><i data-lucide="zap" class="w-6 h-6 text-yellow-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">Ohm's Law Calculator</h3><p class="text-sm text-slate-500">Calculate V, I, or R from any two known values</p></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 mb-8">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Voltage V (Volts)</label><input type="number" class="inp" id="ohm-v" placeholder="Volts" step="any" oninput="calcOhm()"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Current I (Amps)</label><input type="number" class="inp" id="ohm-i" placeholder="Amps" step="any" oninput="calcOhm()"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Resistance R (Ohms)</label><input type="number" class="inp" id="ohm-r" placeholder="Ohms" step="any" oninput="calcOhm()"></div>
+    </div>
+    <div class="result-box mb-6">
+      <div class="grid grid-cols-4 gap-4 text-center">
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Voltage</div><div id="ohm-r1" class="text-lg font-extrabold text-yellow-600">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Current</div><div id="ohm-r2" class="text-lg font-extrabold text-slate-900">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Resistance</div><div id="ohm-r3" class="text-lg font-extrabold text-emerald-600">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Power</div><div id="ohm-r4" class="text-lg font-extrabold text-blue-600">—</div></div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Formulas:</strong> V = I×R · I = V/R · R = V/I · P = V×I</p></div>`,
+  unit:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center"><i data-lucide="repeat" class="w-6 h-6 text-rose-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">Unit Converter</h3><p class="text-sm text-slate-500">Common engineering unit conversions</p></div>
+    </div>
+    <div class="mb-5"><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Category</label>
+      <select class="inp" id="uc-type" onchange="updateUC()">
+        <option value="pressure">Pressure</option><option value="temperature">Temperature</option><option value="flow">Flow Rate</option><option value="length">Length</option><option value="mass">Mass</option>
+      </select>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5 mb-8 items-end">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">From</label><select class="inp" id="uc-from" onchange="doUC()"></select></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Value</label><input type="number" class="inp" id="uc-val" placeholder="Enter value" step="any" oninput="doUC()"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">To</label><select class="inp" id="uc-to" onchange="doUC()"></select></div>
+    </div>
+    <div class="result-box text-center mb-6"><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Result</div><div id="uc-r1" class="text-2xl font-extrabold text-rose-600">—</div></div>`,
+  cable:()=>`
+    <div class="flex items-center gap-4 mb-8">
+      <div class="w-14 h-14 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center"><i data-lucide="cable" class="w-6 h-6 text-indigo-600"></i></div>
+      <div><h3 class="text-2xl font-bold text-slate-900">Instrument Cable Sizing</h3><p class="text-sm text-slate-500">Estimate voltage drop for instrument cable runs</p></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-5">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Current (mA)</label><input type="number" class="inp" id="cab-i" placeholder="e.g., 20" step="any"></div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Cable Length (m) one-way</label><input type="number" class="inp" id="cab-l" placeholder="e.g., 500" step="any"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 mb-8">
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Cable Size (mm²)</label>
+        <select class="inp" id="cab-mm">
+          <option value="0.5">0.5 mm²</option><option value="0.75">0.75 mm²</option><option value="1.0" selected>1.0 mm²</option><option value="1.5">1.5 mm²</option><option value="2.5">2.5 mm²</option>
+        </select>
+      </div>
+      <div><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Supply Voltage (VDC)</label><input type="number" class="inp" id="cab-v" placeholder="e.g., 24" step="any"></div>
+    </div>
+    <button onclick="calcCable()" class="w-full bg-slate-900 text-white rounded-xl py-4 text-sm font-bold hover:bg-emerald-600 transition-all uppercase tracking-wide mb-6">Calculate Voltage Drop</button>
+    <div class="result-box mb-6">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Vdrop (V)</div><div id="cab-r1" class="text-lg font-extrabold text-indigo-600">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">V at Load</div><div id="cab-r2" class="text-lg font-extrabold text-emerald-600">—</div></div>
+        <div><div class="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-bold">Drop %</div><div id="cab-r3" class="text-lg font-extrabold text-slate-900">—</div></div>
+      </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200"><p class="text-[11px] text-slate-500"><strong class="text-slate-700">Formula:</strong> Vdrop = 2 × L × (ρ / A) × I &nbsp;·&nbsp; ρ(copper) ≈ 0.0175 Ω·mm²/m</p></div>`,
+  checklist:()=>`
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center"><i data-lucide="check-square" class="w-6 h-6 text-teal-600"></i></div>
+        <div><h3 class="text-2xl font-bold text-slate-900">Loop Check Checklist</h3><p class="text-sm text-slate-500">Interactive pre-commissioning checklist</p></div>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="resetCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider border border-slate-300 text-slate-600 hover:bg-slate-100 transition-all">Reset</button>
+        <button onclick="exportCL()" class="px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-slate-900 text-white hover:bg-emerald-600 transition-all">Export</button>
+      </div>
+    </div>
+    <div class="mb-6">
+      <div class="flex justify-between text-xs mb-2"><span class="text-slate-500 font-bold">Progress</span><span id="cl-prog" class="text-emerald-600 font-bold">0 / 20</span></div>
+      <div class="h-2.5 bg-slate-200 rounded-full overflow-hidden"><div id="cl-bar" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-500" style="width:0%"></div></div>
+    </div>
+    <div class="mb-6"><label class="text-[10px] text-slate-500 mb-2 block uppercase tracking-wider font-bold">Loop Tag Number</label><input type="text" class="inp max-w-xs" id="cl-tag" placeholder="e.g., FT-1001-A"></div>
+    <div id="cl-container"></div>`
+};
+
+const clData=[
+  {cat:'Pre-Loop Check',items:['P&ID verified against installation','Instrument tag number verified on nameplate','Instrument mounted correctly per hook-up drawing','Impulse lines / tubing installed & connected','Cable tray / routing verified','Cable tagged at both ends','Power supply verified (24VDC / 120VAC)','Grounding / shielding verified']},
+  {cat:'Loop Testing',items:['Continuity test passed (field to DCS)','Insulation resistance test passed','I/O check — DCS reading matches field signal','4mA zero verification — reading 0%','20mA span verification — reading 100%','Mid-range (12mA) verification — reading 50%','Alarm setpoints verified (HH, H, L, LL)','Fail-safe action verified (FO / FC)']},
+  {cat:'Functional Testing',items:['Control valve stroke test (0-25-50-75-100%)','Interlock / trip logic verified per C&E matrix','ESD function test completed','Final walk-through & punch list clearance']}
+];
+
+function openTool(toolId) {
+  document.getElementById('tools-dashboard').classList.add('hidden');
+  const displayArea = document.getElementById('tool-display-area');
+  displayArea.classList.remove('hidden');
+  document.getElementById('tool-content').innerHTML = toolTemplates[toolId]();
+  lucide.createIcons();
+  if(toolId==='checklist') renderCL();
+  if(toolId==='unit') updateUC();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function closeTool() {
+  document.getElementById('tool-display-area').classList.add('hidden');
+  document.getElementById('tools-dashboard').classList.remove('hidden');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function renderCL(){
+  const c=document.getElementById('cl-container');if(!c)return;
+  c.innerHTML='';let idx=0;
+  clData.forEach(cat=>{
+    c.innerHTML+=`<div class="text-[10px] font-bold uppercase tracking-[.2em] text-emerald-600 mt-6 mb-2 px-3">${cat.cat}</div>`;
+    cat.items.forEach(item=>{
+      c.innerHTML+=`<div class="chk-item flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-slate-50 cursor-pointer transition-all border border-transparent hover:border-slate-200" data-idx="${idx}" onclick="toggleCL(this)"><div class="chk-box w-5 h-5 rounded border border-slate-300 flex items-center justify-center shrink-0 transition-all"><i data-lucide="check" class="w-3 h-3 text-white opacity-0 transition-opacity"></i></div><span class="text-sm text-slate-700 chk-text font-medium">${item}</span></div>`;
+      idx++;
+    });
+  });
+  lucide.createIcons();updateCL();
+}
+
+function toggleCL(el){
+  el.classList.toggle('done');
+  const icon=el.querySelector('i'),box=el.querySelector('.chk-box');
+  if(el.classList.contains('done')){icon.style.opacity='1';box.style.background='#10B981';box.style.borderColor='#10B981'}
+  else{icon.style.opacity='0';box.style.background='transparent';box.style.borderColor='#CBD5E1'}
+  updateCL();
+}
+
+function updateCL(){
+  const total=document.querySelectorAll('.chk-item').length,done=document.querySelectorAll('.chk-item.done').length;
+  const progEl=document.getElementById('cl-prog'),barEl=document.getElementById('cl-bar');
+  if(progEl)progEl.textContent=`${done} / ${total}`;
+  if(barEl)barEl.style.width=(total?done/total*100:0)+'%';
+}
+
+function resetCL(){
+  document.querySelectorAll('.chk-item').forEach(el=>{
+    el.classList.remove('done');
+    el.querySelector('i').style.opacity='0';
+    const b=el.querySelector('.chk-box');b.style.background='transparent';b.style.borderColor='#CBD5E1';
+  });updateCL();showToast('Checklist reset!');
+}
+
+function exportCL(){
+  const tag=document.getElementById('cl-tag')?.value||'UNTITLED',date=new Date().toLocaleDateString();
+  let txt=`LOOP CHECK REPORT\n${'='.repeat(40)}\nTag: ${tag}\nDate: ${date}\nEngineer: Satish Kumar Jaiswal\n\n`;let idx=0;
+  clData.forEach(cat=>{txt+=`\n${cat.cat}\n${'-'.repeat(30)}\n`;cat.items.forEach(item=>{const el=document.querySelector(`.chk-item[data-idx="${idx}"]`);txt+=`${el&&el.classList.contains('done')?'[✓]':'[ ]'} ${item}\n`;idx++})});
+  const done=document.querySelectorAll('.chk-item.done').length,total=document.querySelectorAll('.chk-item').length;
+  txt+=`\n${'='.repeat(40)}\nProgress: ${done}/${total} (${(done/total*100).toFixed(0)}%)\n`;
+  const b=new Blob([txt],{type:'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');
+  a.href=u;a.download=`LoopCheck_${tag}_${date.replace(/\//g,'-')}.txt`;a.click();URL.revokeObjectURL(u);showToast('Checklist exported!');
+}
+
+// ====== TOOL CALC FUNCTIONS ======
+function calcMA(){const p=parseFloat(document.getElementById('ma-pct').value);if(isNaN(p))return;const ma=(p*16/100)+4;document.getElementById('ma-val').value=ma.toFixed(3);document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';}
+function calcMArev(){const ma=parseFloat(document.getElementById('ma-val').value);if(isNaN(ma))return;const p=((ma-4)*100)/16;document.getElementById('ma-pct').value=p.toFixed(2);document.getElementById('ma-r1').textContent=ma.toFixed(3)+' mA';document.getElementById('ma-r2').textContent=p.toFixed(1)+'%';document.getElementById('ma-r3').textContent=(ma-4).toFixed(2)+' mA span';}
+function calcPV(){const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),ma=parseFloat(document.getElementById('pv-ma').value);if(isNaN(lrv)||isNaN(urv)||isNaN(ma))return;const pv=lrv+((ma-4)*(urv-lrv))/16,pct=((ma-4)*100)/16;document.getElementById('pv-eu').value=pv.toFixed(3);document.getElementById('pv-r1').textContent=pv.toFixed(2)+' EU';document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';}
+function calcPVrev(){const lrv=parseFloat(document.getElementById('pv-lrv').value),urv=parseFloat(document.getElementById('pv-urv').value),eu=parseFloat(document.getElementById('pv-eu').value);if(isNaN(lrv)||isNaN(urv)||isNaN(eu))return;const ma=4+((eu-lrv)/(urv-lrv))*16,pct=((ma-4)*100)/16;document.getElementById('pv-ma').value=ma.toFixed(3);document.getElementById('pv-r1').textContent=eu.toFixed(2)+' EU';document.getElementById('pv-r2').textContent=ma.toFixed(3)+' mA';document.getElementById('pv-r3').textContent=pct.toFixed(1)+'%';}
+function calcDP(){const qm=parseFloat(document.getElementById('dp-qmax').value),dm=parseFloat(document.getElementById('dp-dpmax').value),meas=parseFloat(document.getElementById('dp-meas').value);if(isNaN(qm)||isNaN(dm)||isNaN(meas))return;const flow=qm*Math.sqrt(meas/dm),pct=(flow/qm)*100;document.getElementById('dp-r1').textContent=flow.toFixed(2);document.getElementById('dp-r2').textContent=pct.toFixed(1)+'%';}
+function calcRTD(){const r=parseFloat(document.getElementById('rtd-r').value);if(isNaN(r))return;const t=(r/100-1)/0.00385;document.getElementById('rtd-t').value=t.toFixed(2);document.getElementById('rtd-r1').textContent=t.toFixed(2)+' °C';document.getElementById('rtd-r2').textContent=r.toFixed(2)+' Ω';}
+function calcRTDrev(){const t=parseFloat(document.getElementById('rtd-t').value);if(isNaN(t))return;const r=100*(1+0.00385*t);document.getElementById('rtd-r').value=r.toFixed(2);document.getElementById('rtd-r1').textContent=t.toFixed(2)+' °C';document.getElementById('rtd-r2').textContent=r.toFixed(2)+' Ω';}
+function calcTC(){const t=parseFloat(document.getElementById('tc-t').value);if(isNaN(t))return;const mv=0.041*t-0.000001*t*t;document.getElementById('tc-r1').textContent=mv.toFixed(3)+' mV';}
+function calcCv(){const q=parseFloat(document.getElementById('cv-q').value),dp=parseFloat(document.getElementById('cv-dp').value),sg=parseFloat(document.getElementById('cv-sg').value)||1;if(isNaN(q)||isNaN(dp)||dp===0)return;document.getElementById('cv-r1').textContent=(q*Math.sqrt(sg/dp)).toFixed(2);}
+function calcOhm(){const v=parseFloat(document.getElementById('ohm-v').value),i=parseFloat(document.getElementById('ohm-i').value),r=parseFloat(document.getElementById('ohm-r').value);let rv=v,ri=i,rr=r,rp=NaN;if(!isNaN(v)&&!isNaN(i)){rr=v/i;rp=v*i}else if(!isNaN(v)&&!isNaN(r)){ri=v/r;rp=v*v/r}else if(!isNaN(i)&&!isNaN(r)){rv=i*r;rp=i*i*r}else return;document.getElementById('ohm-r1').textContent=isNaN(rv)?'—':rv.toFixed(3)+' V';document.getElementById('ohm-r2').textContent=isNaN(ri)?'—':ri.toFixed(4)+' A';document.getElementById('ohm-r3').textContent=isNaN(rr)?'—':rr.toFixed(3)+' Ω';document.getElementById('ohm-r4').textContent=isNaN(rp)?'—':rp.toFixed(3)+' W';}
+function calcCable(){const i=parseFloat(document.getElementById('cab-i').value)/1000,l=parseFloat(document.getElementById('cab-l').value),a=parseFloat(document.getElementById('cab-mm').value),vs=parseFloat(document.getElementById('cab-v').value);if(isNaN(i)||isNaN(l)||isNaN(a)||isNaN(vs))return;const rho=0.0175,vdrop=2*l*(rho/a)*i,vload=vs-vdrop,pct=(vdrop/vs)*100;document.getElementById('cab-r1').textContent=vdrop.toFixed(4)+' V';document.getElementById('cab-r2').textContent=vload.toFixed(2)+' V';document.getElementById('cab-r3').textContent=pct.toFixed(2)+'%';}
+
+const ucData={pressure:{units:['bar','psi','kPa','MPa','kg/cm²','mmH2O','inH2O','mmHg'],base:{'bar':1,'psi':.0689476,'kPa':.01,'MPa':10,'kg/cm²':.980665,'mmH2O':.0000980665,'inH2O':.00249089,'mmHg':.00133322}},temperature:{units:['°C','°F','K'],special:true},flow:{units:['m³/h','GPM','L/min','L/s','bbl/d'],base:{'m³/h':1,'GPM':.227124,'L/min':.06,'L/s':3.6,'bbl/d':.0066245}},length:{units:['mm','inch','m','ft','cm','micron'],base:{'mm':1,'inch':25.4,'m':1000,'ft':304.8,'cm':10,'micron':.001}},mass:{units:['kg','lb','g','ton','oz'],base:{'kg':1,'lb':.453592,'g':.001,'ton':1000,'oz':.0283495}}};
+function updateUC(){const type=document.getElementById('uc-type').value,data=ucData[type],fs=document.getElementById('uc-from'),ts=document.getElementById('uc-to');fs.innerHTML='';ts.innerHTML='';data.units.forEach((u,i)=>{fs.innerHTML+=`<option value="${u}">${u}</option>`;ts.innerHTML+=`<option value="${u}" ${i===1?'selected':''}>${u}</option>`});doUC();}
+function doUC(){const type=document.getElementById('uc-type').value,from=document.getElementById('uc-from').value,to=document.getElementById('uc-to').value,val=parseFloat(document.getElementById('uc-val').value);if(isNaN(val)){document.getElementById('uc-r1').textContent='—';return}if(type==='temperature'){let c=val;if(from==='°F')c=(val-32)*5/9;else if(from==='K')c=val-273.15;let r=c;if(to==='°F')r=c*9/5+32;else if(to==='K')r=c+273.15;document.getElementById('uc-r1').textContent=r.toFixed(4)+' '+to;return}const data=ucData[type],bv=val*data.base[from],r=bv/data.base[to];document.getElementById('uc-r1').textContent=r.toFixed(6)+' '+to;}
+
+// ====== PARTICLES (Subtle Light Theme) ======
+const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
+let particles=[];
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resizeCanvas();window.addEventListener('resize',resizeCanvas);
+for(let i=0;i<40;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*1.5+.5})}
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(16,185,129,0.15)';ctx.fill();
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 </script>
 </body>
 </html>
