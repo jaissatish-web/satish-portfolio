@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Engineering Toolkit — Satish Jaiswal Portfolio</title>
 <meta name="description" content="10 dedicated instrumentation engineering tools: 4-20mA calculator, PV scaler, DP flow, RTD, thermocouple, valve Cv, Ohm's law, unit converter, cable sizing, loop checklist.">
-<meta name="theme-color" content="#10B981">
+<meta name="theme-color" content="#818cf8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/global.css">
@@ -14,7 +14,7 @@
 <script>tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],sans:['Inter','sans-serif']}}}}</script>
 <style>
 /* ===== TOOLS PAGE SPECIFIC ===== */
-.cyber-grid{background-image:linear-gradient(rgba(16,185,129,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,.03) 1px,transparent 1px);background-size:60px 60px}
+.dot-pattern{background-image:linear-gradient(rgba(16,185,129,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(16,185,129,.03) 1px,transparent 1px);background-size:60px 60px}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
@@ -30,7 +30,7 @@
 .tool-card:hover .tool-launch{opacity:1;transform:translateY(0)}
 
 /* Module status indicator */
-.module-status{position:absolute;top:12px;right:12px;width:6px;height:6px;border-radius:50%;background:#10B981;box-shadow:0 0 8px rgba(16,185,129,.4)}
+.module-status{position:absolute;top:12px;right:12px;width:6px;height:6px;border-radius:50%;background:#818cf8;box-shadow:0 0 8px rgba(16,185,129,.4)}
 
 /* Category divider */
 .cat-divider{display:flex;align-items:center;gap:16px;margin:40px 0 20px}
@@ -76,12 +76,12 @@
 <main id="main">
 
 <!-- ===== TOOLS HERO ===== -->
-<section class="relative py-20 md:py-28 px-6 cyber-grid">
+<section class="relative py-20 md:py-28 px-6 dot-pattern">
   <div class="max-w-6xl mx-auto text-center">
     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 reveal">
-      <span class="text-[10px] font-mono tracking-[.18em] text-emerald-400">// ENGINEERING TOOLKIT · 10 MODULES</span>
+      <span class="text-[10px] font-mono tracking-[.18em] text-indigo-400">// ENGINEERING TOOLKIT · 10 MODULES</span>
     </div>
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-4 reveal reveal-d1"><span class="grad-text">Instrumentation</span><br><span class="grad-green">Toolkit</span></h1>
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-4 reveal reveal-d1"><span class="grad-text">Instrumentation</span><br><span class="text-white">Toolkit</span></h1>
     <p class="text-sm md:text-base text-slate-500 max-w-2xl mx-auto reveal reveal-d2 font-mono">DEDICATED CALCULATORS &amp; CONVERTERS — OPTIMIZED FOR PLANT-FLOOR EXECUTION</p>
   </div>
 </section>
@@ -96,34 +96,34 @@
 
       <a href="tools/ma-calculator.html" id="ma-calculator" class="tool-card glass rounded-xl p-6 block reveal">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4"><i data-lucide="activity" style="width:20px;height:20px;color:#10B981"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4"><i data-lucide="activity" style="width:20px;height:20px;color:#818cf8"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">4-20mA Signal</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">Loop current ↔ percentage converter with slider &amp; presets</p>
-        <div class="tool-launch text-[9px] font-mono text-emerald-400 tracking-wider">LAUNCH MODULE →</div>
+        <div class="tool-launch text-[9px] font-mono text-indigo-400 tracking-wider">LAUNCH MODULE →</div>
       </a>
 
       <a href="tools/pv-calculator.html" id="pv-calculator" class="tool-card glass rounded-xl p-6 block reveal reveal-d1">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4"><i data-lucide="gauge" style="width:20px;height:20px;color:#3B82F6"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mb-4"><i data-lucide="gauge" style="width:20px;height:20px;color:#38bdf8"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">PV Scaler</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">mA signal → engineering units with LRV/URV config</p>
-        <div class="tool-launch text-[9px] font-mono text-blue-400 tracking-wider">LAUNCH MODULE →</div>
+        <div class="tool-launch text-[9px] font-mono text-sky-400 tracking-wider">LAUNCH MODULE →</div>
       </a>
 
       <a href="tools/dp-flow.html" id="dp-flow" class="tool-card glass rounded-xl p-6 block reveal reveal-d2">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4"><i data-lucide="waves" style="width:20px;height:20px;color:#A855F7"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-4"><i data-lucide="waves" style="width:20px;height:20px;color:#c084fc"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">DP Flow Extractor</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">Linear &amp; square root extraction with live curve</p>
-        <div class="tool-launch text-[9px] font-mono text-purple-400 tracking-wider">LAUNCH MODULE →</div>
+        <div class="tool-launch text-[9px] font-mono text-violet-400 tracking-wider">LAUNCH MODULE →</div>
       </a>
 
       <a href="tools/ohms-law.html" class="tool-card glass rounded-xl p-6 block reveal reveal-d3">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mb-4"><i data-lucide="zap" style="width:20px;height:20px;color:#F59E0B"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4"><i data-lucide="zap" style="width:20px;height:20px;color:#F59E0B"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">Ohm's Law</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">V, I, R, P solver with power threshold warnings</p>
-        <div class="tool-launch text-[9px] font-mono text-yellow-400 tracking-wider">LAUNCH MODULE →</div>
+        <div class="tool-launch text-[9px] font-mono text-amber-400 tracking-wider">LAUNCH MODULE →</div>
       </a>
     </div>
 
@@ -154,7 +154,7 @@
 
       <a href="tools/valve-cv.html" id="valve-cv" class="tool-card glass rounded-xl p-6 block reveal">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4"><i data-lucide="settings" style="width:20px;height:20px;color:#06B6D4"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4"><i data-lucide="settings" style="width:20px;height:20px;color:#38bdf8"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">Valve Cv Sizing</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">ISA-75.01 flow coefficient with choked detection</p>
         <div class="tool-launch text-[9px] font-mono text-cyan-400 tracking-wider">LAUNCH MODULE →</div>
@@ -162,7 +162,7 @@
 
       <a href="tools/cable-sizing.html" id="cable-sizing" class="tool-card glass rounded-xl p-6 block reveal reveal-d1">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4"><i data-lucide="cable" style="width:20px;height:20px;color:#6366F1"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4"><i data-lucide="cable" style="width:20px;height:20px;color:#818cf8"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">Cable Voltage Drop</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">Loop resistance &amp; pass/fail at 5% tolerance</p>
         <div class="tool-launch text-[9px] font-mono text-indigo-400 tracking-wider">LAUNCH MODULE →</div>
@@ -175,7 +175,7 @@
 
       <a href="tools/unit-converter.html" class="tool-card glass rounded-xl p-6 block reveal">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mb-4"><i data-lucide="repeat" style="width:20px;height:20px;color:#F43F5E"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mb-4"><i data-lucide="repeat" style="width:20px;height:20px;color:#fb7185"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">Unit Converter</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">Pressure, temp, flow, mass — simultaneous update</p>
         <div class="tool-launch text-[9px] font-mono text-rose-400 tracking-wider">LAUNCH MODULE →</div>
@@ -183,10 +183,10 @@
 
       <a href="tools/loop-checklist.html" id="loop-checklist" class="tool-card glass rounded-xl p-6 block reveal reveal-d1">
         <div class="module-status"></div>
-        <div class="tool-icon w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-4"><i data-lucide="check-square" style="width:20px;height:20px;color:#10B981"></i></div>
+        <div class="tool-icon w-11 h-11 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4"><i data-lucide="check-square" style="width:20px;height:20px;color:#818cf8"></i></div>
         <h3 class="text-sm font-semibold text-white mb-1">Loop Checklist</h3>
         <p class="text-[10px] font-mono text-slate-500 mb-3">3-gate pre-comm with LocalStorage &amp; export</p>
-        <div class="tool-launch text-[9px] font-mono text-emerald-400 tracking-wider">LAUNCH MODULE →</div>
+        <div class="tool-launch text-[9px] font-mono text-indigo-400 tracking-wider">LAUNCH MODULE →</div>
       </a>
     </div>
 
@@ -196,7 +196,7 @@
 </main>
 
 <!-- FOOTER -->
-<footer class="border-t border-white/5 py-6 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3"><div class="flex items-center gap-2"><span class="text-emerald-400 font-mono text-xs font-bold">[SJ]</span><span class="text-[10px] font-mono text-slate-600">&copy; 2025 · 10 TOOLS ONLINE</span></div><a href="index.html" class="text-[10px] font-mono text-slate-600 hover:text-emerald-400">← BACK TO PORTFOLIO</a></div></footer>
+<footer class="border-t border-white/5 py-6 px-6"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3"><div class="flex items-center gap-2"><span class="text-indigo-400 font-mono text-xs font-bold">[SJ]</span><span class="text-[10px] font-mono text-slate-600">&copy; 2025 · 10 TOOLS ONLINE</span></div><a href="index.html" class="text-[10px] font-mono text-slate-600 hover:text-indigo-400">← BACK TO PORTFOLIO</a></div></footer>
 
 <script src="assets/js/global.js"></script>
 <script>

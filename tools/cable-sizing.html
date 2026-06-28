@@ -13,7 +13,7 @@ tailwind.config={theme:{extend:{fontFamily:{mono:['JetBrains Mono','monospace'],
 </script>
 <link rel="stylesheet" href="../assets/css/global.css">
 <style>
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#10B981;cursor:pointer;border:3px solid #0a0e14;box-shadow:0 0 10px rgba(16,185,129,.3)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#818cf8;cursor:pointer;border:3px solid #0f172a;box-shadow:0 0 10px rgba(16,185,129,.3)}
 </style>
 </head>
 <body>
@@ -71,7 +71,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
       <div class="result-box mt-4">
         <div class="grid grid-cols-3 gap-4 text-center">
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">V<sub>drop</sub> (V)</div><div id="cab-r1" class="text-xl font-bold font-mono text-indigo-400">—</div></div>
-          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">V at Load</div><div id="cab-r2" class="text-xl font-bold font-mono text-emerald-400">—</div></div>
+          <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">V at Load</div><div id="cab-r2" class="text-xl font-bold font-mono text-indigo-400">—</div></div>
           <div><div class="text-[9px] font-mono text-slate-500 uppercase tracking-wider mb-1">Status</div><div id="cab-r3" class="text-lg font-bold font-mono">—</div></div>
         </div>
       </div>
@@ -80,7 +80,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
     <!-- Back -->
     <div class="text-center mt-8">
-      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-emerald-400 transition-colors">
+      <a href="../index.html#tools" class="inline-flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-indigo-400 transition-colors">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
         Back to toolkit
       </a>
@@ -92,7 +92,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 <script>
 lucide.createIcons();
 
-function calcCable(){const i=parseFloat(document.getElementById('cab-i').value)/1000,l=parseFloat(document.getElementById('cab-l').value),a=parseFloat(document.getElementById('cab-mm').value),vs=parseFloat(document.getElementById('cab-v').value);if(isNaN(i)||isNaN(l)||isNaN(a)||isNaN(vs))return;const rho=0.0175,vdrop=2*l*(rho/a)*i,vload=vs-vdrop,pct=(vdrop/vs)*100;document.getElementById('cab-r1').textContent=vdrop.toFixed(4)+' V';document.getElementById('cab-r2').textContent=vload.toFixed(2)+' V';const el=document.getElementById('cab-r3');if(pct<=5){el.textContent='PASS // '+(pct.toFixed(1))+'% drop';el.style.color='#10B981'}else{el.textContent='FAIL // '+(pct.toFixed(1))+'% drop';el.style.color='#EF4444'}}
+function calcCable(){const i=parseFloat(document.getElementById('cab-i').value)/1000,l=parseFloat(document.getElementById('cab-l').value),a=parseFloat(document.getElementById('cab-mm').value),vs=parseFloat(document.getElementById('cab-v').value);if(isNaN(i)||isNaN(l)||isNaN(a)||isNaN(vs))return;const rho=0.0175,vdrop=2*l*(rho/a)*i,vload=vs-vdrop,pct=(vdrop/vs)*100;document.getElementById('cab-r1').textContent=vdrop.toFixed(4)+' V';document.getElementById('cab-r2').textContent=vload.toFixed(2)+' V';const el=document.getElementById('cab-r3');if(pct<=5){el.textContent='PASS // '+(pct.toFixed(1))+'% drop';el.style.color='#818cf8'}else{el.textContent='FAIL // '+(pct.toFixed(1))+'% drop';el.style.color='#fb7185'}}
 </script>
 <script src="../assets/js/global.js"></script>
 </body>
