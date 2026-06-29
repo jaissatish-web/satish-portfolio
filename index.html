@@ -693,27 +693,34 @@ footer{
           <div class="dcs-sys">ICSS · Siemens PCS7 · NGHC Unit 200</div>
           <div class="dcs-status"><span class="dcs-led"></span>RUNNING</div>
         </div>
-        <div class="dcs-tag">FT-201-001A</div>
-        <div class="dcs-desc">H₂ Compressor Suction Flow</div>
-        <div class="gauge-wrap">
-          <svg class="gauge-svg" viewBox="0 0 180 180">
-            <circle cx="90" cy="90" r="70" fill="none" stroke="#1A2640" stroke-width="10"/>
-            <circle cx="90" cy="90" r="70" fill="none" stroke="#F5A800" stroke-width="10"
-              stroke-dasharray="350 440" stroke-dashoffset="-55"
-              stroke-linecap="round" opacity=".15"/>
-            <circle cx="90" cy="90" r="70" fill="none" stroke="#F5A800" stroke-width="10"
-              stroke-dasharray="0 440" stroke-dashoffset="-55"
-              stroke-linecap="round" id="gauge-arc"/>
-            <circle cx="90" cy="90" r="58" fill="rgba(7,8,13,.7)"/>
-            <text x="90" y="88" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="22" font-weight="600" fill="#F5A800" id="gauge-txt">0.0</text>
-            <text x="90" y="106" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#8A95B0">FLOW %</text>
-            <text x="28" y="155" font-family="JetBrains Mono,monospace" font-size="9" fill="#3A4560">0</text>
-            <text x="144" y="155" font-family="JetBrains Mono,monospace" font-size="9" fill="#3A4560">100</text>
-          </svg>
+        <div class="dcs-tag">FIC-201-001A</div>
+        <div class="dcs-desc">H₂ Compressor Suction Flow · PID Control</div>
+        <!-- PID TREND GRAPH -->
+        <div class="gauge-wrap" style="background:rgba(0,0,0,.3);border:1px solid var(--edge);border-radius:8px;padding:10px 6px 6px;margin-bottom:14px">
+          <canvas id="pid-canvas" width="420" height="150" style="width:100%;height:150px;display:block"></canvas>
+          <div style="display:flex;justify-content:space-between;margin-top:4px;padding:0 4px;font-family:var(--mono);font-size:8px;color:var(--ghost)">
+            <span><span style="color:#F5A800">●</span> PV <span style="color:#3D8EFF">●</span> SP <span style="color:#00E090">●</span> OUT</span>
+            <span id="pid-time">00:00</span>
+          </div>
         </div>
         <div class="dcs-pv">
           <div class="dcs-pv-val" id="dcs-pv">—</div>
-          <div class="dcs-pv-unit">Nm³/h · SP: 4250.0 · ERR: 0.0</div>
+          <div class="dcs-pv-unit" id="pid-params">SP: 75.0% · PV: — · ERR: —</div>
+        </div>
+        <!-- PID TUNING PARAMS -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:14px">
+          <div style="background:rgba(0,0,0,.3);border:1px solid var(--edge);border-radius:5px;padding:7px 6px;text-align:center">
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ghost);letter-spacing:.1em;margin-bottom:2px">Kp</div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--amber)" id="pid-kp">2.40</div>
+          </div>
+          <div style="background:rgba(0,0,0,.3);border:1px solid var(--edge);border-radius:5px;padding:7px 6px;text-align:center">
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ghost);letter-spacing:.1em;margin-bottom:2px">Ki</div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--green)" id="pid-ki">0.15</div>
+          </div>
+          <div style="background:rgba(0,0,0,.3);border:1px solid var(--edge);border-radius:5px;padding:7px 6px;text-align:center">
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ghost);letter-spacing:.1em;margin-bottom:2px">Kd</div>
+            <div style="font-family:var(--mono);font-size:13px;font-weight:600;color:var(--blue)" id="pid-kd">0.80</div>
+          </div>
         </div>
         <div class="dcs-modes">
           <div class="dcs-mode m-auto">AUTO</div>
@@ -722,19 +729,19 @@ footer{
         </div>
         <div class="dcs-alarms">
           <div class="dcs-alarm">
-            <span class="da-tag">PT-201-003</span>
-            <span class="da-val">12.4 bar</span>
-            <span class="da-state da-ok">NORM</span>
+            <span class="da-tag">PV TRACKING</span>
+            <span class="da-val" id="alm-pv">STABLE</span>
+            <span class="da-state da-ok">OK</span>
           </div>
           <div class="dcs-alarm">
-            <span class="da-tag">TT-201-017</span>
-            <span class="da-val" id="dcs-t2">—</span>
-            <span class="da-state da-hi" id="dcs-hi">HI</span>
+            <span class="da-tag">OVERSHOOT</span>
+            <span class="da-val" id="alm-os">0.0%</span>
+            <span class="da-state da-ok" id="alm-os-st">OK</span>
           </div>
           <div class="dcs-alarm">
-            <span class="da-tag">LSH-201-002</span>
-            <span class="da-val">ACTIVE</span>
-            <span class="da-state da-ok">NORM</span>
+            <span class="da-tag">TUNING MODE</span>
+            <span class="da-val">AUTO-ZN</span>
+            <span class="da-state da-ok">ACTIVE</span>
           </div>
         </div>
       </div>
@@ -1074,23 +1081,149 @@ function openMob(){$('mob').classList.add('on')}
 function closeMob(){$('mob').classList.remove('on')}
 window.addEventListener('scroll',()=>$('nav').classList.toggle('sol',scrollY>40));
 
-/* ── DCS FACEPLATE ANIMATION ───────────────────────────────── */
+/* ── PID CONTROLLER REAL-TIME SIMULATION ───────────────────── */
 (()=>{
-  const arc=$('gauge-arc'), pvTxt=$('gauge-txt'), pvBox=$('dcs-pv'), t2=$('dcs-t2');
-  let pv=0, target=72.4, dir=1, temp=118.3;
-  const maxDash=350, dashOff=-55;
+  const canvas=$('pid-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width, H=canvas.height;
+  const MAX_PTS=200;
+  const pvData=[], spData=[], outData=[];
+  // PID state
+  let pv=42.0, sp=75.0, out=50.0;
+  let integral=0, lastErr=0;
+  let kp=2.4, ki=0.15, kd=0.80;
+  let tick=0, elapsed=0;
+  // Disturbance
+  let disturbance=0, nextDistAt=300+Math.random()*400;
+  // Setpoint change schedule
+  let nextSPAt=500+Math.random()*300;
+  function resizeCanvas(){
+    const rect=canvas.parentElement.getBoundingClientRect();
+    canvas.width=Math.floor(rect.width-12);
+    ctx.canvas.width=canvas.width;
+  }
   function step(){
-    pv += (target-pv)*.03 + (Math.random()-.5)*.15;
-    if(Math.random()<.008){target=40+Math.random()*55; dir*=-1}
-    temp += (Math.random()-.5)*.08;
-    const frac=Math.min(Math.max(pv/100,0),1);
-    arc.setAttribute('stroke-dasharray',`${frac*maxDash} ${440-frac*maxDash}`);
-    arc.setAttribute('stroke-dashoffset',dashOff);
-    pvTxt.textContent=pv.toFixed(1);
-    pvBox.textContent=(pv*42.5+1250).toFixed(1);
-    if(t2)t2.textContent=temp.toFixed(1)+' °C';
+    tick++;
+    elapsed+=1/60;
+    // SP schedule changes
+    if(tick>=nextSPAt){
+      sp=30+Math.random()*55;
+      nextSPAt=tick+400+Math.random()*500;
+    }
+    // Disturbance injection
+    if(tick>=nextDistAt){
+      disturbance=-(8+Math.random()*15);
+      nextDistAt=tick+350+Math.random()*400;
+    }
+    disturbance*=0.98;
+    // PID math
+    const err=sp-pv;
+    integral+=err*0.016;
+    integral=Math.max(-50,Math.min(50,integral)); // anti-windup
+    const deriv=(err-lastErr)/0.016;
+    lastErr=err;
+    out=kp*err+ki*integral+kd*deriv+disturbance;
+    out=Math.max(0,Math.min(100,out));
+    // Plant (first-order lag)
+    pv+=(out-pv)*0.04+(Math.random()-.5)*0.4;
+    pv=Math.max(0,Math.min(100,pv));
+    // Store data
+    pvData.push(pv);spData.push(sp);outData.push(out);
+    if(pvData.length>MAX_PTS){pvData.shift();spData.shift();outData.shift();}
+    // Update displays
+    const errVal=sp-pv;
+    const overshoot = sp > 0 ? Math.max(0, (pv - sp) / sp * 100) : 0;
+    $('dcs-pv').textContent=pv.toFixed(1)+' %';
+    $('pid-params').textContent=`SP: ${sp.toFixed(1)}% · PV: ${pv.toFixed(1)}% · ERR: ${errVal>=0?'+':''}${errVal.toFixed(2)}`;
+    $('pid-kp').textContent=kp.toFixed(2);
+    $('pid-ki').textContent=ki.toFixed(2);
+    $('pid-kd').textContent=kd.toFixed(2);
+    // Update alarms
+    if($('alm-os')) $('alm-os').textContent=overshoot.toFixed(1)+'%';
+    if($('alm-os-st')){
+      if(overshoot > 20){ $('alm-os-st').textContent='HH'; $('alm-os-st').className='da-state da-hh'; }
+      else if(overshoot > 10){ $('alm-os-st').textContent='HI'; $('alm-os-st').className='da-state da-hi'; }
+      else { $('alm-os-st').textContent='OK'; $('alm-os-st').className='da-state da-ok'; }
+    }
+    if($('alm-pv')){
+      if(Math.abs(errVal) < 2){ $('alm-pv').textContent='LOCKED'; }
+      else if(Math.abs(errVal) < 8){ $('alm-pv').textContent='TRACKING'; }
+      else { $('alm-pv').textContent='RESPONDING'; }
+    }
+    // Time display
+    const mins=Math.floor(elapsed/60), secs=Math.floor(elapsed%60);
+    $('pid-time').textContent=`${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+    // Draw
+    drawGraph();
     requestAnimationFrame(step);
   }
+  function drawGraph(){
+    const w=canvas.width, h=canvas.height;
+    ctx.clearRect(0,0,w,h);
+    // Grid
+    ctx.strokeStyle='rgba(255,255,255,.05)';
+    ctx.lineWidth=.5;
+    for(let i=0;i<=4;i++){
+      const y=h*i/4;
+      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();
+    }
+    for(let i=0;i<10;i++){
+      const x=w*i/10;
+      ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();
+    }
+    // Y-axis labels
+    ctx.fillStyle='#3A4560';
+    ctx.font='8px JetBrains Mono,monospace';
+    ctx.fillText('100',2,10);
+    ctx.fillText('50',5,h/2+3);
+    ctx.fillText('0',5,h-3);
+    if(pvData.length<2)return;
+    const n=pvData.length;
+    const xScale=w/MAX_PTS;
+    // Draw line helper
+    const drawLine=(data,color,fill)=>{
+      ctx.beginPath();
+      for(let i=0;i<n;i++){
+        const x=i*xScale+(w-n*xScale);
+        const y=h-(data[i]/100)*h;
+        if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle=color;
+      ctx.lineWidth=1.5;
+      ctx.stroke();
+      if(fill){
+        ctx.lineTo((n-1)*xScale+(w-n*xScale),h);
+        ctx.lineTo(0*xScale+(w-n*xScale),h);
+        ctx.closePath();
+        ctx.fillStyle=fill;
+        ctx.fill();
+      }
+    };
+    // SP line (blue dashed)
+    ctx.setLineDash([4,3]);
+    drawLine(spData,'#3D8EFF',null);
+    ctx.setLineDash([]);
+    // OUT line (green)
+    drawLine(outData,'#00E090',null);
+    // PV line (amber, filled)
+    drawLine(pvData,'#F5A800','rgba(245,168,0,.06)');
+    // SP target marker (right edge)
+    const lastSP=spData[n-1];
+    const spY=h-(lastSP/100)*h;
+    ctx.fillStyle='#3D8EFF';
+    ctx.fillRect(w-30,spY-1,30,2);
+    ctx.font='8px JetBrains Mono,monospace';
+    ctx.fillStyle='#3D8EFF';
+    ctx.fillText(`SP:${lastSP.toFixed(0)}`,w-28,spY-4);
+  }
+  // Disturbance click
+  canvas.parentElement.style.cursor='pointer';
+  canvas.parentElement.title='Click to inject disturbance';
+  canvas.parentElement.addEventListener('click',()=>{
+    disturbance=-(10+Math.random()*20);
+  });
+  // Kick off
   step();
 })();
 
