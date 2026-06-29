@@ -78,7 +78,7 @@ button,a{cursor:pointer;text-decoration:none;color:inherit}
 .ham span{display:block;width:20px;height:1.5px;background:var(--mist);border-radius:2px;transition:.3s}
 /* mob overlay */
 #mob{
-  position:fixed;inset:0;z-index:290;
+  position:fixed;inset:0;z-index:400;
   background:rgba(7,8,13,.97);backdrop-filter:blur(20px);
   flex-direction:column;align-items:center;justify-content:center;gap:4px;
   display:none;
@@ -1129,6 +1129,7 @@ function homeV(){
   setTimeout(initReveal,80);
 }
 function openTools(){
+  closeMob();
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   $('view-tools').classList.add('on');
   $('tgrid').style.display='grid';
@@ -1141,6 +1142,7 @@ function openTools(){
 var _heroBtn = document.querySelector('.hbtns .btn-wire');
 if(_heroBtn) _heroBtn.addEventListener('click', function(){ openTools(); });
 function gt(id){
+  closeMob();
   homeV();
   setTimeout(()=>{const e=$(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},120);
 }
