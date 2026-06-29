@@ -1474,3 +1474,7 @@ function exportCL(){
   const blob=new Blob([txt],{type:'text/plain'}),url=URL.createObjectURL(blob),a=document.createElement('a');
   a.href=url;a.download=`LoopCheck_${tag.replace(/[^a-z0-9]/gi,'_')}_${date.replace(/\//g,'-')}.txt`;a.click();URL.revokeObjectURL(url);showToast('✓ Report exported!');
 }
+</script>
+</body>
+</html>
+
