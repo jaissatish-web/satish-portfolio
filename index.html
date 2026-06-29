@@ -1134,7 +1134,10 @@ function openTools(){
   $('view-tools').classList.add('on');
   $('tgrid').style.display='grid';
   $('tarea').style.display='none';
-  window.scrollTo({top:0,behavior:'smooth'});
+  // Reset scroll to top
+  window.scrollTo({top:0,behavior:'instant'});
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
 function gt(id){
   homeV();
