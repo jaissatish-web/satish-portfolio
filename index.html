@@ -1355,7 +1355,7 @@ initReveal();
 function revealInView(){
   document.querySelectorAll('.r:not(.vis)').forEach(el=>{
     const rect=el.getBoundingClientRect();
-    if(rect.top<window.innerHeight&&rect.bottom>0){
+    if(rect.top<window.innerHeight+200&&rect.bottom>-50){
       el.classList.add('vis');
       el.querySelectorAll('.bar-fi').forEach(b=>{b.style.transform=`scaleX(${b.dataset.w||1})`;});
     }
