@@ -533,6 +533,10 @@ footer{
 .qref td:first-child{color:var(--ghost);width:40%}
 .qref td:last-child{color:var(--amber)}
 
+/* Blinking lamp animation for critical alarms */
+@keyframes blink-lamp{0%,100%{opacity:1;box-shadow:0 0 8px currentColor}50%{opacity:0.4;box-shadow:0 0 2px currentColor}}
+.btnk{animation:blink-lamp 0.8s ease-in-out infinite}
+
 /* Alarm lines on signal bar */
 .alarm-line{position:absolute;top:-6px;bottom:-6px;width:2px;z-index:5;pointer-events:none}
 .alarm-line.hh{background:var(--red);box-shadow:0 0 6px rgba(255,59,92,.6)}
@@ -1826,14 +1830,17 @@ function maFromPv(){
   if(isN(ah)){const pos=Math.max(0,Math.min(100,((ah-lrv)/span)*100));if(pos>=0&&pos<=100){const d=document.createElement('div');d.className='alarm-line h';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label h';l.style.left=pos+'%';l.textContent='H';bar.appendChild(l);}}
   if(isN(al)){const pos=Math.max(0,Math.min(100,((al-lrv)/span)*100));if(pos>=0&&pos<=100){const d=document.createElement('div');d.className='alarm-line l';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label l';l.style.left=pos+'%';l.textContent='L';bar.appendChild(l);}}
   if(isN(all)){const pos=Math.max(0,Math.min(100,((all-lrv)/span)*100));if(pos>=0&&pos<=100){const d=document.createElement('div');d.className='alarm-line ll';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label ll';l.style.left=pos+'%';l.textContent='LL';bar.appendChild(l);}}
-  // Auto alarm detection (priority: HH > H > L > LL — most severe first)
+  // Auto alarm detection — most critical alarm takes priority
   let st='',msg='';
-  if(isN(ahh)&&pv>=ahh){st='<span class="badge badge-err">🚨 HH ALARM</span>';msg='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';}
+  if((isN(ahh)&&pv>=ahh)||(isN(all)&&pv<=all)){
+    // CRITICAL — blinking red lamp
+    if(isN(ahh)&&pv>=ahh){st='<span class="badge badge-err btnk">🚨 HH ALARM</span>';msg='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';}
+    else{st='<span class="badge badge-err btnk">🚨 LL ALARM</span>';msg='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';}
+  }
   else if(isN(ah)&&pv>=ah){st='<span class="badge badge-warn">⚠️ HIGH</span>';msg='<div class="alarm-msg h">⚠️ HIGH ALARM: PV '+pv.toFixed(2)+' ≥ '+ah+' (High) — Process Above Normal</div>';}
   else if(isN(al)&&pv<=al){st='<span class="badge badge-warn">⚠️ LOW</span>';msg='<div class="alarm-msg l">⚠️ LOW ALARM: PV '+pv.toFixed(2)+' ≤ '+al+' (Low) — Process Below Normal</div>';}
-  else if(isN(all)&&pv<=all){st='<span class="badge badge-err">🚨 LL ALARM</span>';msg='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';}
-  else if(mA<3.8){st='<span class="badge badge-err">⚠ WIRE BREAK</span>';msg='<div class="alarm-msg hh">⚠️ SIGNAL FAULT: mA='+mA.toFixed(3)+' &lt; 3.8mA — Possible Wire Break / Open Circuit</div>';}
-  else if(mA>20.5){st='<span class="badge badge-err">⚠ OVER_RANGE</span>';msg='<div class="alarm-msg hh">⚠️ SIGNAL FAULT: mA='+mA.toFixed(3)+' &gt; 20.5mA — Possible Short Circuit</div>';}
+  else if(mA<3.8){st='<span class="badge badge-err btnk">⚠ SIGNAL FAULT</span>';msg='<div class="alarm-msg hh">⚠️ SIGNAL FAULT: mA='+mA.toFixed(3)+' &lt; 3.8mA — Wire Break / Open Circuit</div>';}
+  else if(mA>20.5){st='<span class="badge badge-err btnk">⚠ SIGNAL FAULT</span>';msg='<div class="alarm-msg hh">⚠️ SIGNAL FAULT: mA='+mA.toFixed(3)+' &gt; 20.5mA — Short Circuit</div>';}
   else{st='<span class="badge badge-ok">● Normal</span>';msg='<div class="alarm-msg ok">✅ No Alarms — PV '+pv.toFixed(2)+' within normal operating range ('+mA.toFixed(2)+'mA)</div>';}
   $('ma-r4').innerHTML=st;
   $('ma-alarm-result').innerHTML=msg;
