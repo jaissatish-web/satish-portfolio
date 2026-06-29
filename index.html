@@ -1134,11 +1134,13 @@ function openTools(){
   $('view-tools').classList.add('on');
   $('tgrid').style.display='grid';
   $('tarea').style.display='none';
-  // Reset scroll to top
   window.scrollTo({top:0,behavior:'instant'});
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+// Backup: also wire up hero button via JS (some browsers don't fire inline onclick reliably)
+var _heroBtn = document.querySelector('.hbtns .btn-wire');
+if(_heroBtn) _heroBtn.addEventListener('click', function(){ openTools(); });
 function gt(id){
   homeV();
   setTimeout(()=>{const e=$(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},120);
