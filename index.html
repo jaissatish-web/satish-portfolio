@@ -494,9 +494,44 @@ footer{
 .backbtn:hover{color:var(--amber)}
 .tpanel{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:clamp(26px,4vw,42px)}
 .tph{display:flex;align-items:center;gap:14px;padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--edge)}
+.tph-pb{padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--edge);display:flex;align-items:center;gap:14px}
 .tpi{font-size:26px}
 .tptit{font-family:var(--disp);font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--ice)}
 .tpsub{font-size:13px;color:var(--ghost);margin-top:2px}
+.tptit-g{font-family:var(--disp);font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--ice)}
+.tpsub-g{font-size:14px;color:var(--mist);margin-top:4px}
+
+/* New Signal Bar visualization */
+.sigbar{height:24px;background:var(--void);border-radius:6px;border:1px solid var(--edge);overflow:hidden;position:relative;margin:16px 0}
+.sigbar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--amber));border-radius:5px;transition:width .4s ease}
+.sigbar-marker{position:absolute;top:-20px;transform:translateX(-50%);font-family:var(--mono);font-size:9px;color:var(--ghost)}
+.sigbar-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ghost);margin-top:4px}
+
+/* Animated loop diagram */
+.loop-diag{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0;padding:12px;background:var(--void);border-radius:8px;border:1px solid var(--edge)}
+.loop-node{padding:6px 10px;background:var(--raise);border:1px solid var(--edge);border-radius:6px;font-family:var(--mono);font-size:10px;color:var(--mist);white-space:nowrap}
+.loop-arrow{color:var(--ghost);font-size:14px}
+.loop-node.active{border-color:var(--amber);color:var(--amber)}
+.loop-node.output{border-color:var(--green);color:var(--green)}
+
+/* Tier tags */
+.tctag{font-family:var(--mono);font-size:9px;color:var(--ghost);text-transform:uppercase;letter-spacing:.15em;margin:20px 0 12px;padding-left:4px}
+
+/* Status badges */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:4px;font-family:var(--mono);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.badge-ok{background:rgba(0,224,144,.12);color:var(--green);border:1px solid rgba(0,224,144,.25)}
+.badge-warn{background:rgba(245,168,0,.15);color:var(--amber);border:1px solid rgba(245,168,0,.3)}
+.badge-err{background:rgba(255,59,92,.15);color:var(--red);border:1px solid rgba(255,59,92,.3)}
+
+/* Tool specific: canvas wrapper */
+.tool-canvas-wrap{position:relative;width:100%;height:260px;background:var(--void);border:1px solid var(--edge);border-radius:10px;overflow:hidden;margin:16px 0}
+.tool-canvas-wrap canvas{width:100%;height:100%}
+
+/* Quick ref table */
+.qref{width:100%;border-collapse:collapse;margin:12px 0}
+.qref td{padding:6px 10px;font-family:var(--mono);font-size:11px;border:1px solid var(--edge)}
+.qref td:first-child{color:var(--ghost);width:40%}
+.qref td:last-child;color:var(--amber)}
 
 /* form inside tool panels */
 .frow{display:grid;gap:14px;margin-bottom:14px}
@@ -1091,17 +1126,59 @@ footer{
   </div>
 
   <div class="tgrid" id="tgrid">
-    <div class="tcrd" onclick="openTool('ma')"><div class="tco">〰</div><div class="tcn">4–20 mA Signal</div><div class="tcd">Convert percentage ↔ milliamp in both directions. Essential for loop verification.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('pv')"><div class="tco">🌡</div><div class="tcn">PV Calculator</div><div class="tcd">Convert mA signal to Engineering Units using LRV and URV span values.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('dp')"><div class="tco">〜</div><div class="tcn">DP Flow</div><div class="tcd">Calculate actual flow from differential pressure using square-root extraction.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('rtd')"><div class="tco">📟</div><div class="tcn">RTD Pt100</div><div class="tcd">Resistance ↔ Temperature conversion per IEC 60751 standard.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('tc')"><div class="tco">🔥</div><div class="tcn">Thermocouple mV</div><div class="tcd">Type K thermocouple mV output from temperature input.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('cv')"><div class="tco">⚙</div><div class="tcn">Valve Cv / Kv</div><div class="tcd">Liquid service flow coefficient per ISA-75.01 with Kv equivalent output.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('ohm')"><div class="tco">⚡</div><div class="tcn">Ohm's Law</div><div class="tcd">Solve for V, I, R, or Power from any two known values.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('unit')"><div class="tco">↔</div><div class="tcn">Unit Converter</div><div class="tcd">Pressure · Temperature · Flow · Length · Mass conversions.</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('cable')"><div class="tco">🔌</div><div class="tcn">Cable Sizing</div><div class="tcd">Voltage drop estimation for instrument cable runs (copper, 2-wire).</div><div class="tcopen">Open Calculator</div></div>
-    <div class="tcrd" onclick="openTool('checklist')"><div class="tco">✅</div><div class="tcn">Loop Checklist</div><div class="tcd">Interactive pre-commissioning checklist with progress tracking and export.</div><div class="tcopen">Open Checklist</div></div>
+    <div class="tcrd" onclick="openTool('ma')">
+      <div class="tco">〰</div>
+      <div class="tcn">4–20 mA Signal</div>
+      <div class="tcd">Bidirectional percentage ↔ milliamp converter. Live error detection for loop verification.</div>
+      <div class="tcopen">Open Calculator →</div>
+    </div>
+    <div class="tcrd" onclick="openTool('pv')">
+      <div class="tco">🌡</div>
+      <div class="tcn">PV Scaling Calculator</div>
+      <div class="tcd">Convert mA signal to Engineering Units using LRV/URV. Bidirectional with live scaling.</div>
+      <div class="tcopen">Open Calculator →</div>
+    </div>
+    <div class="tcrd" onclick="openTool('dp')">
+      <div class="tco">〜</div>
+      <div class="tcn">DP Flow Calculator</div>
+      <div class="tcd">Square-root extraction from differential pressure. Orifice plate flow measurement.</div>
+      <div class="tcopen">Open Calculator →</div>
+    </div>
+    <div class="tcrd" onclick="openTool('pid')">
+      <div class="tco">📊</div>
+      <div class="tcn">PID Loop Simulator</div>
+      <div class="tcd">Interactive PID control simulation. Tune Kp, Ki, Kd and watch live response.</div>
+      <div class="tcopen">Open Simulator →</div>
+    </div>
   </div>
+  <div class="tctag">TIER 1 — Signal & Loop Fundamentals</div>
+  <div class="tgrid" id="tgrid2" style="margin-top:10px">
+    <div class="tcrd" onclick="openTool('rtd')">
+      <div class="tco">📟</div>
+      <div class="tcn">RTD Pt100</div>
+      <div class="tcd">Resistance ↔ Temperature per IEC 60751. Cable compensation included.</div>
+      <div class="tcopen">Coming Soon</div>
+    </div>
+    <div class="tcrd" onclick="openTool('tc')">
+      <div class="tco">🔥</div>
+      <div class="tcn">Thermocouple mV</div>
+      <div class="tcd">Type K/J/T/E/N mV ↔ Temperature with cold junction compensation.</div>
+      <div class="tcopen">Coming Soon</div>
+    </div>
+    <div class="tcrd" onclick="openTool('cv')">
+      <div class="tco">⚙</div>
+      <div class="tcn">Valve Cv / Kv</div>
+      <div class="tcd">ISA-75.01 liquid service flow coefficient with Kv equivalent.</div>
+      <div class="tcopen">Coming Soon</div>
+    </div>
+    <div class="tcrd" onclick="openTool('ohm')">
+      <div class="tco">⚡</div>
+      <div class="tcn">Ohm's Law & Power</div>
+      <div class="tcd">Solve V, I, R, P from any two knowns. 4-20mA loop context.</div>
+      <div class="tcopen">Coming Soon</div>
+    </div>
+  </div>
+  <div class="tctag">TIER 2 — Sensors & Valves (Coming Soon)</div>
 
   <div class="tarea" id="tarea">
     <button class="backbtn" onclick="closeTool()">All Tools</button>
@@ -1417,9 +1494,10 @@ function getCDD(id){ return $('cdd-lbl-'+id)?$('cdd-lbl-'+id).textContent.trim()
 
 /* ── TOOL OPEN/CLOSE ───────────────────────────────────────── */
 const TMETA={
-  ma:{ico:'〰',t:'4–20 mA Signal Calculator',s:'Convert percentage ↔ milliamp · bidirectional'},
-  pv:{ico:'🌡',t:'Process Variable (PV) Calculator',s:'mA → Engineering Units using LRV / URV span'},
-  dp:{ico:'〜',t:'DP Flow Calculator',s:'Flow from differential pressure · √ extraction method'},
+  ma:{ico:'〰',t:'4–20 mA Signal Calculator',s:'Bidirectional % ↔ mA with live error detection'},
+  pv:{ico:'🌡',t:'PV Scaling Calculator',s:'mA → Engineering Units using LRV/URV span'},
+  dp:{ico:'〜',t:'DP Flow Calculator',s:'Square-root extraction from differential pressure'},
+  pid:{ico:'📊',t:'PID Loop Simulator',s:'Interactive PID control with live response graph'},
   rtd:{ico:'📟',t:'RTD Pt100 Calculator',s:'Resistance ↔ Temperature · IEC 60751 standard'},
   tc:{ico:'🔥',t:'Thermocouple mV Calculator',s:'Type K · mV approximation from temperature input'},
   cv:{ico:'⚙',t:'Control Valve Cv / Kv Calculator',s:'Liquid service · ISA-75.01 · Kv equivalent'},
@@ -1431,11 +1509,12 @@ const TMETA={
 
 function openTool(id){
   $('tgrid').style.display='none';
+  $('tgrid2').style.display='none';
   $('tarea').style.display='block';
-  const m=TMETA[id];
+  const m=TMETA[id]||{ico:'📊',t:'PID Loop Simulator',s:'Interactive PID control with live response graph'};
   $('tph').innerHTML=`<div class="tpi">${m.ico}</div><div><div class="tptit">${m.t}</div><div class="tpsub">${m.s}</div></div>`;
   $('tpb').innerHTML=buildTool(id);
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0,behavior:'instant'});
   if(id==='checklist')renderCL();
   if(id==='unit'){setTimeout(initUC,50)}
   if(id==='cable'){setTimeout(()=>{
@@ -1453,56 +1532,110 @@ function openTool(id){
     catWrap.innerHTML='';catWrap.appendChild(cddCat);
     setTimeout(initUC,30);
   },50)}
+  if(id==='pid'){setTimeout(initPID,100);}
+  if(id==='ma'){setTimeout(()=>{if($('ma-p'))$('ma-p').focus()},100);}
+  if(id==='pv'){setTimeout(()=>{if($('pv-lrv'))$('pv-lrv').focus()},100);}
 }
 function closeTool(){
   $('tarea').style.display='none';
   $('tgrid').style.display='grid';
-  window.scrollTo({top:0,behavior:'smooth'});
+  $('tgrid2').style.display='grid';
+  window.scrollTo({top:0,behavior:'instant'});
 }
 
 /* ── TOOL HTML ─────────────────────────────────────────────── */
 function buildTool(id){
   const T={
     ma:`
+      <div class="loop-diag">
+        <div class="loop-node active">FIELD</div><span class="loop-arrow">→</span>
+        <div class="loop-node">JB</div><span class="loop-arrow">→</span>
+        <div class="loop-node">DCS</div><span class="loop-arrow">→</span>
+        <div class="loop-node output">HMI</div>
+      </div>
       <div class="frow c2">
         <div class="fw"><div class="fl">Percentage (%)</div><input class="fi" type="number" id="ma-p" placeholder="0 – 100" oninput="maPct()"></div>
         <div class="fw"><div class="fl">Current (mA)</div><input class="fi" type="number" id="ma-m" placeholder="4 – 20" step=".001" oninput="maMA()"></div>
       </div>
+      <div class="sigbar"><div class="sigbar-fill" id="ma-bar" style="width:0%"></div><div class="sigbar-marker" id="ma-marker" style="left:0%">0%</div></div>
+      <div class="sigbar-scale"><span>4mA (0%)</span><span>12mA (50%)</span><span>20mA (100%)</span></div>
       <div class="resbox"><div class="rg c3">
         <div class="ri"><div class="rl">mA Signal</div><div class="rv a" id="ma-r1">—</div></div>
         <div class="ri"><div class="rl">Percentage</div><div class="rv w" id="ma-r2">—</div></div>
-        <div class="ri"><div class="rl">Span Used</div><div class="rv b" id="ma-r3">—</div></div>
+        <div class="ri"><div class="rl">Status</div><div class="rv" id="ma-r3"><span class="badge badge-ok">Ready</span></div></div>
       </div></div>
-      <div class="fnote"><p><strong>Formula:</strong> mA = (% × 16/100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100/16<br>
-      4mA=0% · 8mA=25% · 12mA=50% · 16mA=75% · 20mA=100%</p></div>`,
+      <table class="qref"><tr><td>4 mA</td><td>0% (LRV)</td></tr><tr><td>8 mA</td><td>25%</td></tr><tr><td>12 mA</td><td>50% (Mid)</td></tr><tr><td>16 mA</td><td>75%</td></tr><tr><td>20 mA</td><td>100% (URV)</td></tr><tr><td>&lt;3.8 mA</td><td><span style="color:var(--red)">Underrange / Wire Break</span></td></tr><tr><td>&gt;20.5 mA</td><td><span style="color:var(--red)">Overrange / Short</span></td></tr></table>
+      <div class="fnote"><p><strong>Formula:</strong> mA = (% × 16/100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100/16<br><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01</p></div>`,
 
     pv:`
+      <div class="loop-diag">
+        <div class="loop-node active">TRANSMITTER</div><span class="loop-arrow">→</span>
+        <div class="loop-node">mA SIGNAL</div><span class="loop-arrow">→</span>
+        <div class="loop-node output">DCS / HMI</div>
+      </div>
       <div class="frow c2">
-        <div class="fw"><div class="fl">LRV</div><input class="fi" type="number" id="pv-lrv" placeholder="e.g. 0" step="any"></div>
-        <div class="fw"><div class="fl">URV</div><input class="fi" type="number" id="pv-urv" placeholder="e.g. 100" step="any"></div>
+        <div class="fw"><div class="fl">LRV (4mA value)</div><input class="fi" type="number" id="pv-lrv" placeholder="e.g. 0" step="any"></div>
+        <div class="fw"><div class="fl">URV (20mA value)</div><input class="fi" type="number" id="pv-urv" placeholder="e.g. 100" step="any"></div>
       </div>
       <div class="frow c2">
         <div class="fw"><div class="fl">mA Signal (4–20)</div><input class="fi" type="number" id="pv-m" placeholder="4 – 20" step=".001" oninput="pvMA()"></div>
         <div class="fw"><div class="fl">Process Variable (EU)</div><input class="fi" type="number" id="pv-e" placeholder="Engineering Units" step="any" oninput="pvEU()"></div>
       </div>
+      <div class="sigbar"><div class="sigbar-fill" id="pv-bar" style="width:0%"></div><div class="sigbar-marker" id="pv-marker" style="left:0%">0%</div></div>
+      <div class="sigbar-scale"><span id="pv-scale-lrv">LRV</span><span>50%</span><span id="pv-scale-urv">URV</span></div>
       <div class="resbox"><div class="rg c3">
         <div class="ri"><div class="rl">PV (EU)</div><div class="rv a" id="pv-r1">—</div></div>
         <div class="ri"><div class="rl">mA Signal</div><div class="rv w" id="pv-r2">—</div></div>
-        <div class="ri"><div class="rl">Percentage</div><div class="rv b" id="pv-r3">—</div></div>
+        <div class="ri"><div class="rl">Status</div><div class="rv" id="pv-r3"><span class="badge badge-ok">Ready</span></div></div>
       </div></div>
-      <div class="fnote"><p><strong>Formula:</strong> PV = LRV + (mA − 4) × (URV − LRV) / 16</p></div>`,
+      <table class="qref"><tr><td>PV Formula</td><td>LRV + (mA − 4) × (URV − LRV) / 16</td></tr><tr><td>mA Formula</td><td>4 + (PV − LRV) × 16 / (URV − LRV)</td></tr><tr><td>Span</td><td>URV − LRV</td></tr><tr><td>Zero Elevation</td><td>LRV (if &gt; 0)</td></tr></table>
+      <div class="fnote"><p><strong>Common Ranges:</strong> 0–100°C · 0–50 bar · 0–200 m³/h · −50 to 150°C<br><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01</p></div>`,
 
     dp:`
+      <div class="loop-diag">
+        <div class="loop-node active">ORIFICE</div><span class="loop-arrow">→</span>
+        <div class="loop-node">DP TRANSMITTER</div><span class="loop-arrow">→</span>
+        <div class="loop-node">√ EXTRACTION</div><span class="loop-arrow">→</span>
+        <div class="loop-node output">FLOW (EU)</div>
+      </div>
       <div class="frow c2">
         <div class="fw"><div class="fl">Design Max Flow (Qmax)</div><input class="fi" type="number" id="dp-q" placeholder="e.g. 1000" step="any"></div>
         <div class="fw"><div class="fl">Design DPmax (%, usually 100)</div><input class="fi" type="number" id="dp-d" placeholder="100" step="any"></div>
       </div>
       <div class="frow c1"><div class="fw"><div class="fl">Measured DP (% of DPmax)</div><input class="fi" type="number" id="dp-m" placeholder="0 – 100" step=".01" oninput="calcDP()"></div></div>
+      <div class="sigbar"><div class="sigbar-fill" id="dp-bar" style="width:0%"></div><div class="sigbar-marker" id="dp-marker" style="left:0%">0%</div></div>
+      <div class="sigbar-scale"><span>0%</span><span>50%</span><span>100%</span></div>
       <div class="resbox"><div class="rg c2">
         <div class="ri"><div class="rl">Actual Flow</div><div class="rv a" id="dp-r1">—</div></div>
         <div class="ri"><div class="rl">% of Qmax</div><div class="rv w" id="dp-r2">—</div></div>
       </div></div>
-      <div class="fnote"><p><strong>Formula:</strong> Q = Qmax × √(DPmeasured / DPmax)<br>DP transmitters output proportional to pressure, not flow. Square root extracts actual flow.</p></div>`,
+      <table class="qref"><tr><td>Flow Formula</td><td>Q = Qmax × √(DPmeasured / DPmax)</td></tr><tr><td>DP at 50% flow</td><td>25% of DPmax</td></tr><tr><td>DP at 80% flow</td><td>64% of DPmax</td></tr><tr><td>DP at 100% flow</td><td>100% of DPmax</td></tr></table>
+      <div class="fnote"><p><strong>ISA-19.52 / ISO 5167:</strong> Square root extraction converts DP (proportional to pressure) to flow (proportional to velocity²).<br><strong>Critical:</strong> If √ extraction is disabled, readings will be non-linear and incorrect.</p></div>`,
+    pid:`
+      <div class="loop-diag">
+        <div class="loop-node active">PROCESS</div><span class="loop-arrow">→</span>
+        <div class="loop-node">TRANSMITTER</div><span class="loop-arrow">→</span>
+        <div class="loop-node">PID</div><span class="loop-arrow">→</span>
+        <div class="loop-node output">VALVE</div>
+      </div>
+      <div class="tool-canvas-wrap"><canvas id="pid-canvas"></canvas></div>
+      <div class="frow c3">
+        <div class="fw"><div class="fl">Kp (Proportional)</div><input class="fi" type="number" id="pid-kp" value="1.8" step="0.1" min="0" max="10" oninput="updatePID()"></div>
+        <div class="fw"><div class="fl">Ki (Integral)</div><input class="fi" type="number" id="pid-ki" value="0.25" step="0.01" min="0" max="5" oninput="updatePID()"></div>
+        <div class="fw"><div class="fl">Kd (Derivative)</div><input class="fi" type="number" id="pid-kd" value="0.4" step="0.05" min="0" max="5" oninput="updatePID()"></div>
+      </div>
+      <div class="frow c2">
+        <div class="fw"><div class="fl">Setpoint (SP %)</div><input class="fi" type="number" id="pid-sp" value="70" step="1" min="0" max="100" oninput="updatePID()"></div>
+        <div class="fw"><div class="fl">Disturbance</div><button class="calcbtn" style="margin:0" onclick="injectPID()">Inject Disturbance</button></div>
+      </div>
+      <div class="resbox"><div class="rg c4">
+        <div class="ri"><div class="rl">PV</div><div class="rv a" id="pid-pv">—</div></div>
+        <div class="ri"><div class="rl">SP</div><div class="rv w" id="pid-sp-disp">—</div></div>
+        <div class="ri"><div class="rl">OUT</div><div class="rv g" id="pid-out">—</div></div>
+        <div class="ri"><div class="rl">Error</div><div class="rv r" id="pid-err">—</div></div>
+      </div></div>
+      <table class="qref"><tr><td>P Term</td><td>Kp × Error</td></tr><tr><td>I Term</td><td>Ki × ∫Error dt</td></tr><tr><td>D Term</td><td>Kd × dError/dt</td></tr><tr><td>Output</td><td>P + I + D</td></tr></table>
+      <div class="fnote"><p><strong>Tuning Tips:</strong> Start with Kp only. Add Ki to eliminate offset. Add Kd to reduce overshoot.<br><strong>Ziegler-Nichols:</strong> Ku = ultimate gain, Pu = oscillation period. Kp=0.6Ku, Ki=2Kp/Pu, Kd=KpPu/8</p></div>`,
 
     rtd:`
       <div class="frow c2">
@@ -1597,11 +1730,12 @@ function buildTool(id){
 }
 
 /* ── CALCULATOR FUNCTIONS ──────────────────────────────────── */
-function maPct(){const p=parseFloat($('ma-p').value);if(isNaN(p))return;const m=(p*16/100)+4;$('ma-m').value=m.toFixed(3);set('ma-r1',m.toFixed(3)+' mA');set('ma-r2',p.toFixed(2)+'%');set('ma-r3',(m-4).toFixed(3)+' mA')}
-function maMA(){const m=parseFloat($('ma-m').value);if(isNaN(m))return;const p=((m-4)*100)/16;$('ma-p').value=p.toFixed(2);set('ma-r1',m.toFixed(3)+' mA');set('ma-r2',p.toFixed(2)+'%');set('ma-r3',(m-4).toFixed(3)+' mA')}
-function pvMA(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),m=parseFloat($('pv-m').value);if([l,u,m].some(isNaN))return;const pv=l+((m-4)*(u-l))/16,pc=((m-4)*100)/16;$('pv-e').value=pv.toFixed(3);set('pv-r1',pv.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');set('pv-r3',pc.toFixed(2)+'%')}
-function pvEU(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),e=parseFloat($('pv-e').value);if([l,u,e].some(isNaN))return;const m=4+((e-l)/(u-l))*16,pc=((m-4)*100)/16;$('pv-m').value=m.toFixed(3);set('pv-r1',e.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');set('pv-r3',pc.toFixed(2)+'%')}
-function calcDP(){const q=parseFloat($('dp-q').value),d=parseFloat($('dp-d').value),m=parseFloat($('dp-m').value);if([q,d,m].some(isNaN)||d===0)return;const f=q*Math.sqrt(m/d);set('dp-r1',f.toFixed(3));set('dp-r2',((f/q)*100).toFixed(2)+'%')}
+function maPct(){const p=parseFloat($('ma-p').value);if(isNaN(p))return;const m=(p*16/100)+4;$('ma-m').value=m.toFixed(3);maShow(m,p)}
+function maMA(){const m=parseFloat($('ma-m').value);if(isNaN(m))return;const p=((m-4)*100)/16;$('ma-p').value=p.toFixed(2);maShow(m,p)}
+function maShow(m,p){set('ma-r1',m.toFixed(3)+' mA');set('ma-r2',p.toFixed(2)+'%');const pct=Math.max(0,Math.min(100,p));$('ma-bar').style.width=pct+'%';$('ma-marker').style.left=pct+'%';$('ma-marker').textContent=p.toFixed(1)+'%';let s='<span class="badge badge-ok">Normal</span>';if(m<3.8)s='<span class="badge badge-err">Underrange / Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">Overrange / Short</span>';else if(m<4||m>20)s='<span class="badge badge-warn">Out of Linear Range</span>';$('ma-r3').innerHTML=s}
+function pvMA(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),m=parseFloat($('pv-m').value);if([l,u,m].some(isNaN))return;const pv=l+((m-4)*(u-l))/16,pc=((m-4)*100)/16;$('pv-e').value=pv.toFixed(3);set('pv-r1',pv.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');const pct=Math.max(0,Math.min(100,pc));$('pv-bar').style.width=pct+'%';$('pv-marker').style.left=pct+'%';$('pv-marker').textContent=pc.toFixed(1)+'%';$('pv-scale-lrv').textContent=l;$('pv-scale-urv').textContent=u;let s='<span class="badge badge-ok">Normal</span>';if(m<3.8)s='<span class="badge badge-err">Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">Short</span>';else if(m<4||m>20)s='<span class="badge badge-warn">Out of Range</span>';$('pv-r3').innerHTML=s}
+function pvEU(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),e=parseFloat($('pv-e').value);if([l,u,e].some(isNaN))return;const m=4+((e-l)/(u-l))*16,pc=((m-4)*100)/16;$('pv-m').value=m.toFixed(3);set('pv-r1',e.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');const pct=Math.max(0,Math.min(100,pc));$('pv-bar').style.width=pct+'%';$('pv-marker').style.left=pct+'%';$('pv-marker').textContent=pc.toFixed(1)+'%';$('pv-scale-lrv').textContent=l;$('pv-scale-urv').textContent=u;let s='<span class="badge badge-ok">Normal</span>';if(m<3.8)s='<span class="badge badge-err">Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">Short</span>';else if(m<4||m>20)s='<span class="badge badge-warn">Out of Range</span>';$('pv-r3').innerHTML=s}
+function calcDP(){const q=parseFloat($('dp-q').value),d=parseFloat($('dp-d').value),m=parseFloat($('dp-m').value);if([q,d,m].some(isNaN)||d===0)return;const f=q*Math.sqrt(m/d);set('dp-r1',f.toFixed(3));set('dp-r2',((f/q)*100).toFixed(2)+'%');const pct=Math.max(0,Math.min(100,m));$('dp-bar').style.width=pct+'%';$('dp-marker').style.left=pct+'%';$('dp-marker').textContent=m.toFixed(1)+'%'}
 function rtdR(){const r=parseFloat($('rtd-r').value);if(isNaN(r))return;const t=(r-100)/(100*0.00385);$('rtd-t').value=t.toFixed(2);set('rtd-r1',t.toFixed(2)+' °C');set('rtd-r2',r.toFixed(2)+' Ω')}
 function rtdT(){const t=parseFloat($('rtd-t').value);if(isNaN(t))return;const r=100*(1+0.00385*t);$('rtd-r').value=r.toFixed(2);set('rtd-r1',t.toFixed(2)+' °C');set('rtd-r2',r.toFixed(2)+' Ω')}
 function calcTC(){const t=parseFloat($('tc-t').value);if(isNaN(t))return;set('tc-r1',(0.041*t).toFixed(3)+' mV')}
@@ -1661,6 +1795,66 @@ function calcCable(){
   if([i,l,vs,a].some(isNaN)||isNaN(a))return;
   const vd=2*l*(0.0175/a)*i,vload=vs-vd,pct=(vd/vs)*100;
   set('cab-r1',vd.toFixed(4)+' V');set('cab-r2',vload.toFixed(4)+' V');set('cab-r3',pct.toFixed(3)+'%');
+}
+
+/* ── PID LOOP SIMULATOR ───────────────────────────────────── */
+let pidAnimId=null, pidPv=25, pidSp=70, pidKp=1.8, pidKi=0.25, pidKd=0.4;
+let pidInt=0, pidPrevErr=0, pidHistory=[], pidSpHist=[], pidOutHist=[];
+function initPID(){
+  const c=$('pid-canvas');if(!c)return;
+  const dpr=window.devicePixelRatio||1;
+  c.width=c.offsetWidth*dpr;c.height=c.offsetHeight*dpr;
+  const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
+  pidPv=25;pidSp=70;pidInt=0;pidPrevErr=0;pidHistory=[];pidSpHist=[];pidOutHist=[];
+  if(pidAnimId)cancelAnimationFrame(pidAnimId);
+  pidLoop();
+}
+function updatePID(){
+  pidKp=parseFloat($('pid-kp').value)||1.8;
+  pidKi=parseFloat($('pid-ki').value)||0.25;
+  pidKd=parseFloat($('pid-kd').value)||0.4;
+  pidSp=parseFloat($('pid-sp').value)||70;
+}
+function injectPID(){pidPv-=15+Math.random()*10}
+function pidLoop(){
+  const c=$('pid-canvas');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.offsetWidth,H=c.offsetHeight;
+  const err=pidSp-pidPv;
+  pidInt+=err*0.05;pidInt=Math.max(-50,Math.min(50,pidInt));
+  const deriv=(err-pidPrevErr)/0.05;pidPrevErr=err;
+  const out=pidKp*err+pidKi*pidInt+pidKd*deriv;
+  pidPv+=(out-pidPv)*0.025;
+  pidPv+=Math.sin(Date.now()/3000)*0.3;
+  pidHistory.push(pidPv);pidSpHist.push(pidSp);pidOutHist.push(out);
+  if(pidHistory.length>200){pidHistory.shift();pidSpHist.shift();pidOutHist.shift();}
+  ctx.fillStyle='#07080D';ctx.fillRect(0,0,W,H);
+  // Grid
+  ctx.strokeStyle='#1A2640';ctx.lineWidth=0.5;
+  for(let i=0;i<=10;i++){const y=H*i/10;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  for(let i=0;i<=20;i++){const x=W*i/20;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+  // SP line
+  ctx.strokeStyle='#3D8EFF';ctx.lineWidth=1.5;ctx.setLineDash([5,5]);
+  ctx.beginPath();ctx.moveTo(0,H-pidSp/100*H);ctx.lineTo(W,H-pidSp/100*H);ctx.stroke();
+  ctx.setLineDash([]);
+  // PV line
+  ctx.strokeStyle='#F5A800';ctx.lineWidth=2;
+  ctx.beginPath();
+  pidHistory.forEach((v,i)=>{const x=i/pidHistory.length*W;const y=H-v/100*H;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
+  ctx.stroke();
+  // OUT line
+  ctx.strokeStyle='#00E090';ctx.lineWidth=1;
+  ctx.beginPath();
+  pidOutHist.forEach((v,i)=>{const x=i/pidOutHist.length*W;const y=H-Math.min(100,Math.max(0,v))/100*H;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
+  ctx.stroke();
+  // Labels
+  ctx.fillStyle='#F5A800';ctx.font='11px JetBrains Mono';ctx.fillText('PV: '+pidPv.toFixed(1)+'%',10,20);
+  ctx.fillStyle='#3D8EFF';ctx.fillText('SP: '+pidSp.toFixed(1)+'%',10,36);
+  ctx.fillStyle='#00E090';ctx.fillText('OUT: '+(pidKp*err+pidKi*pidInt+pidKd*deriv).toFixed(1)+'%',10,52);
+  // Update displays
+  set('pid-pv',pidPv.toFixed(1)+'%');set('pid-sp-disp',pidSp.toFixed(1)+'%');
+  set('pid-out',(pidKp*err+pidKi*pidInt+pidKd*deriv).toFixed(1)+'%');set('pid-err',err.toFixed(1)+'%');
+  pidAnimId=requestAnimationFrame(pidLoop);
 }
 
 /* ── CHECKLIST ─────────────────────────────────────────────── */
