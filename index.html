@@ -531,7 +531,17 @@ footer{
 .qref{width:100%;border-collapse:collapse;margin:12px 0}
 .qref td{padding:6px 10px;font-family:var(--mono);font-size:11px;border:1px solid var(--edge)}
 .qref td:first-child{color:var(--ghost);width:40%}
-.qref td:last-child;color:var(--amber)}
+.qref td:last-child{color:var(--amber)}
+
+/* Alarm section */
+.alarm-section{margin:16px 0;padding:16px;background:rgba(245,168,0,.03);border:1px solid rgba(245,168,0,.15);border-radius:10px}
+.alarm-title{font-family:var(--disp);font-size:14px;font-weight:800;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.alarm-msg{padding:8px 12px;border-radius:6px;margin:4px 0;font-family:var(--mono);font-size:11px;display:flex;align-items:center;gap:8px}
+.alarm-msg.hh{background:rgba(255,59,92,.15);border:1px solid rgba(255,59,92,.3);color:var(--red)}
+.alarm-msg.h{background:rgba(245,168,0,.15);border:1px solid rgba(245,168,0,.3);color:var(--amber)}
+.alarm-msg.l{background:rgba(245,168,0,.15);border:1px solid rgba(245,168,0,.3);color:var(--amber)}
+.alarm-msg.ll{background:rgba(255,59,92,.15);border:1px solid rgba(255,59,92,.3);color:var(--red)}
+.alarm-msg.ok{background:rgba(0,224,144,.1);border:1px solid rgba(0,224,144,.2);color:var(--green)}
 
 /* form inside tool panels */
 .frow{display:grid;gap:14px;margin-bottom:14px}
@@ -1554,18 +1564,35 @@ function buildTool(id){
         <div class="loop-node output">HMI</div>
       </div>
       <div class="frow c2">
+        <div class="fw"><div class="fl">LRV (4mA Engineering Value)</div><input class="fi" type="number" id="ma-lrv" placeholder="e.g. 0" step="any" value="0"></div>
+        <div class="fw"><div class="fl">URV (20mA Engineering Value)</div><input class="fi" type="number" id="ma-urv" placeholder="e.g. 100" step="any" value="100"></div>
+      </div>
+      <div class="frow c2">
         <div class="fw"><div class="fl">Percentage (%)</div><input class="fi" type="number" id="ma-p" placeholder="0 – 100" oninput="maPct()"></div>
         <div class="fw"><div class="fl">Current (mA)</div><input class="fi" type="number" id="ma-m" placeholder="4 – 20" step=".001" oninput="maMA()"></div>
       </div>
       <div class="sigbar"><div class="sigbar-fill" id="ma-bar" style="width:0%"></div><div class="sigbar-marker" id="ma-marker" style="left:0%">0%</div></div>
       <div class="sigbar-scale"><span>4mA (0%)</span><span>12mA (50%)</span><span>20mA (100%)</span></div>
-      <div class="resbox"><div class="rg c3">
+      <div class="resbox"><div class="rg c4">
         <div class="ri"><div class="rl">mA Signal</div><div class="rv a" id="ma-r1">—</div></div>
         <div class="ri"><div class="rl">Percentage</div><div class="rv w" id="ma-r2">—</div></div>
-        <div class="ri"><div class="rl">Status</div><div class="rv" id="ma-r3"><span class="badge badge-ok">Ready</span></div></div>
+        <div class="ri"><div class="rl">PV (Eng Units)</div><div class="rv b" id="ma-r3">—</div></div>
+        <div class="ri"><div class="rl">Status</div><div class="rv" id="ma-r4"><span class="badge badge-ok">Ready</span></div></div>
       </div></div>
+      <div class="alarm-section" id="ma-alarm-section" style="display:none">
+        <div class="alarm-title">⚠ Alarm Setpoints</div>
+        <div class="frow c4">
+          <div class="fw"><div class="fl">L (Low)</div><input class="fi" type="number" id="ma-al" placeholder="e.g. 10" step="any"></div>
+          <div class="fw"><div class="fl">LL (Low Low)</div><input class="fi" type="number" id="ma-all" placeholder="e.g. 5" step="any"></div>
+          <div class="fw"><div class="fl">H (High)</div><input class="fi" type="number" id="ma-ah" placeholder="e.g. 90" step="any"></div>
+          <div class="fw"><div class="fl">HH (High High)</div><input class="fi" type="number" id="ma-ahh" placeholder="e.g. 95" step="any"></div>
+        </div>
+        <button class="calcbtn" style="margin:0 0 12px" onclick="maCheckAlarms()">Check Alarms →</button>
+        <div id="ma-alarm-result"></div>
+      </div>
+      <button class="calcbtn" style="margin:0" onclick="document.getElementById('ma-alarm-section').style.display=document.getElementById('ma-alarm-section').style.display==='none'?'block':'none'">Configure Alarm Setpoints ▾</button>
       <table class="qref"><tr><td>4 mA</td><td>0% (LRV)</td></tr><tr><td>8 mA</td><td>25%</td></tr><tr><td>12 mA</td><td>50% (Mid)</td></tr><tr><td>16 mA</td><td>75%</td></tr><tr><td>20 mA</td><td>100% (URV)</td></tr><tr><td>&lt;3.8 mA</td><td><span style="color:var(--red)">Underrange / Wire Break</span></td></tr><tr><td>&gt;20.5 mA</td><td><span style="color:var(--red)">Overrange / Short</span></td></tr></table>
-      <div class="fnote"><p><strong>Formula:</strong> mA = (% × 16/100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100/16<br><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01</p></div>`,
+      <div class="fnote"><p><strong>Formula:</strong> mA = (% × 16/100) + 4 &nbsp;|&nbsp; % = (mA − 4) × 100/16 &nbsp;|&nbsp; PV = LRV + % × (URV − LRV) / 100<br><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01</p></div>`,
 
     pv:`
       <div class="loop-diag">
@@ -1574,8 +1601,8 @@ function buildTool(id){
         <div class="loop-node output">DCS / HMI</div>
       </div>
       <div class="frow c2">
-        <div class="fw"><div class="fl">LRV (4mA value)</div><input class="fi" type="number" id="pv-lrv" placeholder="e.g. 0" step="any"></div>
-        <div class="fw"><div class="fl">URV (20mA value)</div><input class="fi" type="number" id="pv-urv" placeholder="e.g. 100" step="any"></div>
+        <div class="fw"><div class="fl">LRV (4mA value)</div><input class="fi" type="number" id="pv-lrv" placeholder="e.g. 0" step="any" value="0"></div>
+        <div class="fw"><div class="fl">URV (20mA value)</div><input class="fi" type="number" id="pv-urv" placeholder="e.g. 100" step="any" value="100"></div>
       </div>
       <div class="frow c2">
         <div class="fw"><div class="fl">mA Signal (4–20)</div><input class="fi" type="number" id="pv-m" placeholder="4 – 20" step=".001" oninput="pvMA()"></div>
@@ -1583,11 +1610,24 @@ function buildTool(id){
       </div>
       <div class="sigbar"><div class="sigbar-fill" id="pv-bar" style="width:0%"></div><div class="sigbar-marker" id="pv-marker" style="left:0%">0%</div></div>
       <div class="sigbar-scale"><span id="pv-scale-lrv">LRV</span><span>50%</span><span id="pv-scale-urv">URV</span></div>
-      <div class="resbox"><div class="rg c3">
+      <div class="resbox"><div class="rg c4">
         <div class="ri"><div class="rl">PV (EU)</div><div class="rv a" id="pv-r1">—</div></div>
         <div class="ri"><div class="rl">mA Signal</div><div class="rv w" id="pv-r2">—</div></div>
-        <div class="ri"><div class="rl">Status</div><div class="rv" id="pv-r3"><span class="badge badge-ok">Ready</span></div></div>
+        <div class="ri"><div class="rl">Percentage</div><div class="rv b" id="pv-r3">—</div></div>
+        <div class="ri"><div class="rl">Status</div><div class="rv" id="pv-r4"><span class="badge badge-ok">Ready</span></div></div>
       </div></div>
+      <div class="alarm-section" id="pv-alarm-section" style="display:none">
+        <div class="alarm-title">⚠ Alarm Setpoints (in Engineering Units)</div>
+        <div class="frow c4">
+          <div class="fw"><div class="fl">L (Low)</div><input class="fi" id="pv-al" placeholder="e.g. 10" step="any"></div>
+          <div class="fw"><div class="fl">LL (Low Low)</div><input class="fi" id="pv-all" placeholder="e.g. 5" step="any"></div>
+          <div class="fw"><div class="fl">H (High)</div><input class="fi" id="pv-ah" placeholder="e.g. 90" step="any"></div>
+          <div class="fw"><div class="fl">HH (High High)</div><input class="fi" id="pv-ahh" placeholder="e.g. 95" step="any"></div>
+        </div>
+        <button class="calcbtn" style="margin:0 0 12px" onclick="pvCheckAlarms()">Check Alarms →</button>
+        <div id="pv-alarm-result"></div>
+      </div>
+      <button class="calcbtn" style="margin:0" onclick="document.getElementById('pv-alarm-section').style.display=document.getElementById('pv-alarm-section').style.display==='none'?'block':'none'">Configure Alarm Setpoints ▾</button>
       <table class="qref"><tr><td>PV Formula</td><td>LRV + (mA − 4) × (URV − LRV) / 16</td></tr><tr><td>mA Formula</td><td>4 + (PV − LRV) × 16 / (URV − LRV)</td></tr><tr><td>Span</td><td>URV − LRV</td></tr><tr><td>Zero Elevation</td><td>LRV (if &gt; 0)</td></tr></table>
       <div class="fnote"><p><strong>Common Ranges:</strong> 0–100°C · 0–50 bar · 0–200 m³/h · −50 to 150°C<br><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01</p></div>`,
 
@@ -1599,16 +1639,29 @@ function buildTool(id){
         <div class="loop-node output">FLOW (EU)</div>
       </div>
       <div class="frow c2">
-        <div class="fw"><div class="fl">Design Max Flow (Qmax)</div><input class="fi" type="number" id="dp-q" placeholder="e.g. 1000" step="any"></div>
-        <div class="fw"><div class="fl">Design DPmax (%, usually 100)</div><input class="fi" type="number" id="dp-d" placeholder="100" step="any"></div>
+        <div class="fw"><div class="fl">Design Max Flow (Qmax)</div><input class="fi" type="number" id="dp-q" placeholder="e.g. 1000" step="any" value="1000"></div>
+        <div class="fw"><div class="fl">Design DPmax (%)</div><input class="fi" type="number" id="dp-d" placeholder="100" step="any" value="100"></div>
       </div>
       <div class="frow c1"><div class="fw"><div class="fl">Measured DP (% of DPmax)</div><input class="fi" type="number" id="dp-m" placeholder="0 – 100" step=".01" oninput="calcDP()"></div></div>
       <div class="sigbar"><div class="sigbar-fill" id="dp-bar" style="width:0%"></div><div class="sigbar-marker" id="dp-marker" style="left:0%">0%</div></div>
       <div class="sigbar-scale"><span>0%</span><span>50%</span><span>100%</span></div>
-      <div class="resbox"><div class="rg c2">
+      <div class="resbox"><div class="rg c3">
         <div class="ri"><div class="rl">Actual Flow</div><div class="rv a" id="dp-r1">—</div></div>
         <div class="ri"><div class="rl">% of Qmax</div><div class="rv w" id="dp-r2">—</div></div>
+        <div class="ri"><div class="rl">Status</div><div class="rv" id="dp-r3"><span class="badge badge-ok">Ready</span></div></div>
       </div></div>
+      <div class="alarm-section" id="dp-alarm-section" style="display:none">
+        <div class="alarm-title">⚠ Alarm Setpoints (in Flow Units)</div>
+        <div class="frow c4">
+          <div class="fw"><div class="fl">L (Low)</div><input class="fi" id="dp-al" placeholder="e.g. 100" step="any"></div>
+          <div class="fw"><div class="fl">LL (Low Low)</div><input class="fi" id="dp-all" placeholder="e.g. 50" step="any"></div>
+          <div class="fw"><div class="fl">H (High)</div><input class="fi" id="dp-ah" placeholder="e.g. 900" step="any"></div>
+          <div class="fw"><div class="fl">HH (High High)</div><input class="fi" id="dp-ahh" placeholder="e.g. 950" step="any"></div>
+        </div>
+        <button class="calcbtn" style="margin:0 0 12px" onclick="dpCheckAlarms()">Check Alarms →</button>
+        <div id="dp-alarm-result"></div>
+      </div>
+      <button class="calcbtn" style="margin:0" onclick="document.getElementById('dp-alarm-section').style.display=document.getElementById('dp-alarm-section').style.display==='none'?'block':'none'">Configure Alarm Setpoints ▾</button>
       <table class="qref"><tr><td>Flow Formula</td><td>Q = Qmax × √(DPmeasured / DPmax)</td></tr><tr><td>DP at 50% flow</td><td>25% of DPmax</td></tr><tr><td>DP at 80% flow</td><td>64% of DPmax</td></tr><tr><td>DP at 100% flow</td><td>100% of DPmax</td></tr></table>
       <div class="fnote"><p><strong>ISA-19.52 / ISO 5167:</strong> Square root extraction converts DP (proportional to pressure) to flow (proportional to velocity²).<br><strong>Critical:</strong> If √ extraction is disabled, readings will be non-linear and incorrect.</p></div>`,
     pid:`
@@ -1730,12 +1783,16 @@ function buildTool(id){
 }
 
 /* ── CALCULATOR FUNCTIONS ──────────────────────────────────── */
-function maPct(){const p=parseFloat($('ma-p').value);if(isNaN(p))return;const m=(p*16/100)+4;$('ma-m').value=m.toFixed(3);maShow(m,p)}
-function maMA(){const m=parseFloat($('ma-m').value);if(isNaN(m))return;const p=((m-4)*100)/16;$('ma-p').value=p.toFixed(2);maShow(m,p)}
-function maShow(m,p){set('ma-r1',m.toFixed(3)+' mA');set('ma-r2',p.toFixed(2)+'%');const pct=Math.max(0,Math.min(100,p));$('ma-bar').style.width=pct+'%';$('ma-marker').style.left=pct+'%';$('ma-marker').textContent=p.toFixed(1)+'%';let s='<span class="badge badge-ok">Normal</span>';if(m<3.8)s='<span class="badge badge-err">Underrange / Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">Overrange / Short</span>';else if(m<4||m>20)s='<span class="badge badge-warn">Out of Linear Range</span>';$('ma-r3').innerHTML=s}
-function pvMA(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),m=parseFloat($('pv-m').value);if([l,u,m].some(isNaN))return;const pv=l+((m-4)*(u-l))/16,pc=((m-4)*100)/16;$('pv-e').value=pv.toFixed(3);set('pv-r1',pv.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');const pct=Math.max(0,Math.min(100,pc));$('pv-bar').style.width=pct+'%';$('pv-marker').style.left=pct+'%';$('pv-marker').textContent=pc.toFixed(1)+'%';$('pv-scale-lrv').textContent=l;$('pv-scale-urv').textContent=u;let s='<span class="badge badge-ok">Normal</span>';if(m<3.8)s='<span class="badge badge-err">Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">Short</span>';else if(m<4||m>20)s='<span class="badge badge-warn">Out of Range</span>';$('pv-r3').innerHTML=s}
-function pvEU(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),e=parseFloat($('pv-e').value);if([l,u,e].some(isNaN))return;const m=4+((e-l)/(u-l))*16,pc=((m-4)*100)/16;$('pv-m').value=m.toFixed(3);set('pv-r1',e.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');const pct=Math.max(0,Math.min(100,pc));$('pv-bar').style.width=pct+'%';$('pv-marker').style.left=pct+'%';$('pv-marker').textContent=pc.toFixed(1)+'%';$('pv-scale-lrv').textContent=l;$('pv-scale-urv').textContent=u;let s='<span class="badge badge-ok">Normal</span>';if(m<3.8)s='<span class="badge badge-err">Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">Short</span>';else if(m<4||m>20)s='<span class="badge badge-warn">Out of Range</span>';$('pv-r3').innerHTML=s}
-function calcDP(){const q=parseFloat($('dp-q').value),d=parseFloat($('dp-d').value),m=parseFloat($('dp-m').value);if([q,d,m].some(isNaN)||d===0)return;const f=q*Math.sqrt(m/d);set('dp-r1',f.toFixed(3));set('dp-r2',((f/q)*100).toFixed(2)+'%');const pct=Math.max(0,Math.min(100,m));$('dp-bar').style.width=pct+'%';$('dp-marker').style.left=pct+'%';$('dp-marker').textContent=m.toFixed(1)+'%'}
+function maPct(){const p=parseFloat($('ma-p').value);if(isNaN(p))return;const m=(p*16/100)+4;$('ma-m').value=m.toFixed(3);maCalc(m,p)}
+function maMA(){const m=parseFloat($('ma-m').value);if(isNaN(m))return;const p=((m-4)*100)/16;$('ma-p').value=p.toFixed(2);maCalc(m,p)}
+function maCalc(m,p){const lrv=parseFloat($('ma-lrv').value)||0,urv=parseFloat($('ma-urv').value)||100;const pv=lrv+(p/100)*(urv-lrv);set('ma-r1',m.toFixed(3)+' mA');set('ma-r2',p.toFixed(2)+'%');set('ma-r3',pv.toFixed(3)+(lrv!==0||urv!==100?' '+('EU'):''));const pct=Math.max(0,Math.min(100,p));$('ma-bar').style.width=pct+'%';$('ma-marker').style.left=pct+'%';$('ma-marker').textContent=p.toFixed(1)+'%';let s='<span class="badge badge-ok">● Normal</span>';if(m<3.8)s='<span class="badge badge-err">⚠ UNDERRANGE — Wire Break / Open Circuit</span>';else if(m>20.5)s='<span class="badge badge-err">⚠ OVERRANGE — Short Circuit / Sensor Fault</span>';else if(m<4)s='<span class="badge badge-warn">▲ Below Linear Range (&lt;4mA)</span>';else if(m>20)s='<span class="badge badge-warn">▲ Above Linear Range (&gt;20mA)</span>';$('ma-r4').innerHTML=s}
+function maCheckAlarms(){const lrv=parseFloat($('ma-lrv').value)||0,urv=parseFloat($('ma-urv').value)||100;const pv=lrv+(parseFloat($('ma-p').value)/100)*(urv-lrv);const al=parseFloat($('ma-al').value),all=parseFloat($('ma-all').value),ah=parseFloat($('ma-ah').value),ahh=parseFloat($('ma-ahh').value);let h='';const isN=n=>!isNaN(n);if(isN(ahh)&&pv>=ahh)h+='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';if(isN(ah)&&pv>=ah)h+='<div class="alarm-msg h">⚠️ HIGH ALARM: PV '+pv.toFixed(2)+' ≥ '+ah+' (High) — Process Above Normal</div>';if(isN(al)&&pv<=al)h+='<div class="alarm-msg l">⚠️ LOW ALARM: PV '+pv.toFixed(2)+' ≤ '+al+' (Low) — Process Below Normal</div>';if(isN(all)&&pv<=all)h+='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';if(!h)h+='<div class="alarm-msg ok">✅ No Alarms — PV '+pv.toFixed(2)+' within normal operating range</div>';$('ma-alarm-result').innerHTML=h}
+function pvMA(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),m=parseFloat($('pv-m').value);if([l,u,m].some(isNaN))return;const pv=l+((m-4)*(u-l))/16,pc=((m-4)*100)/16;$('pv-e').value=pv.toFixed(3);pvShow(pv,m,pc,l,u)}
+function pvEU(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),e=parseFloat($('pv-e').value);if([l,u,e].some(isNaN))return;const m=4+((e-l)/(u-l))*16,pc=((m-4)*100)/16;$('pv-m').value=m.toFixed(3);pvShow(e,m,pc,l,u)}
+function pvShow(pv,m,pc,l,u){set('pv-r1',pv.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');set('pv-r3',pc.toFixed(2)+'%');const pct=Math.max(0,Math.min(100,pc));$('pv-bar').style.width=pct+'%';$('pv-marker').style.left=pct+'%';$('pv-marker').textContent=pc.toFixed(1)+'%';$('pv-scale-lrv').textContent=l;$('pv-scale-urv').textContent=u;let s='<span class="badge badge-ok">● Normal</span>';if(m<3.8)s='<span class="badge badge-err">⚠ UNDERRANGE — Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">⚠ OVERRANGE — Short Circuit</span>';else if(m<4)s='<span class="badge badge-warn">▲ Below Linear Range</span>';else if(m>20)s='<span class="badge badge-warn">▲ Above Linear Range</span>';$('pv-r4').innerHTML=s}
+function pvCheckAlarms(){const l=parseFloat($('pv-lrv').value)||0,u=parseFloat($('pv-urv').value)||100;const pv=parseFloat($('pv-e').value)||l+(parseFloat($('pv-m').value)-4)*(u-l)/16;const al=parseFloat($('pv-al').value),all=parseFloat($('pv-all').value),ah=parseFloat($('pv-ah').value),ahh=parseFloat($('pv-ahh').value);let h='';const isN=n=>!isNaN(n);if(isN(ahh)&&pv>=ahh)h+='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';if(isN(ah)&&pv>=ah)h+='<div class="alarm-msg h">⚠️ HIGH ALARM: PV '+pv.toFixed(2)+' ≥ '+ah+' (High) — Process Above Normal</div>';if(isN(al)&&pv<=al)h+='<div class="alarm-msg l">⚠️ LOW ALARM: PV '+pv.toFixed(2)+' ≤ '+al+' (Low) — Process Below Normal</div>';if(isN(all)&&pv<=all)h+='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';if(!h)h+='<div class="alarm-msg ok">✅ No Alarms — PV '+pv.toFixed(2)+' within normal operating range</div>';$('pv-alarm-result').innerHTML=h}
+function calcDP(){const q=parseFloat($('dp-q').value),d=parseFloat($('dp-d').value),m=parseFloat($('dp-m').value);if([q,d,m].some(isNaN)||d===0)return;const f=q*Math.sqrt(m/d);set('dp-r1',f.toFixed(3));set('dp-r2',((f/q)*100).toFixed(2)+'%');const pct=Math.max(0,Math.min(100,m));$('dp-bar').style.width=pct+'%';$('dp-marker').style.left=pct+'%';$('dp-marker').textContent=m.toFixed(1)+'%';let s='<span class="badge badge-ok">● Normal</span>';if(m<0||m>100)s='<span class="badge badge-err">⚠ Out of Range</span>';$('dp-r3').innerHTML=s}
+function dpCheckAlarms(){const q=parseFloat($('dp-q').value)||0;const m=parseFloat($('dp-m').value)||0;const f=q*Math.sqrt(Math.max(0,m)/100);const al=parseFloat($('dp-al').value),all=parseFloat($('dp-all').value),ah=parseFloat($('dp-ah').value),ahh=parseFloat($('dp-ahh').value);let h='';const isN=n=>!isNaN(n);if(isN(ahh)&&f>=ahh)h+='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: Flow '+f.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';if(isN(ah)&&f>=ah)h+='<div class="alarm-msg h">⚠️ HIGH ALARM: Flow '+f.toFixed(2)+' ≥ '+ah+' (High) — Flow Above Normal</div>';if(isN(al)&&f<=al)h+='<div class="alarm-msg l">⚠️ LOW ALARM: Flow '+f.toFixed(2)+' ≤ '+al+' (Low) — Flow Below Normal</div>';if(isN(all)&&f<=all)h+='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: Flow '+f.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';if(!h)h+='<div class="alarm-msg ok">✅ No Alarms — Flow '+f.toFixed(2)+' within normal operating range</div>';$('dp-alarm-result').innerHTML=h}
 function rtdR(){const r=parseFloat($('rtd-r').value);if(isNaN(r))return;const t=(r-100)/(100*0.00385);$('rtd-t').value=t.toFixed(2);set('rtd-r1',t.toFixed(2)+' °C');set('rtd-r2',r.toFixed(2)+' Ω')}
 function rtdT(){const t=parseFloat($('rtd-t').value);if(isNaN(t))return;const r=100*(1+0.00385*t);$('rtd-r').value=r.toFixed(2);set('rtd-r1',t.toFixed(2)+' °C');set('rtd-r2',r.toFixed(2)+' Ω')}
 function calcTC(){const t=parseFloat($('tc-t').value);if(isNaN(t))return;set('tc-r1',(0.041*t).toFixed(3)+' mV')}
@@ -1802,12 +1859,18 @@ let pidAnimId=null, pidPv=25, pidSp=70, pidKp=1.8, pidKi=0.25, pidKd=0.4;
 let pidInt=0, pidPrevErr=0, pidHistory=[], pidSpHist=[], pidOutHist=[];
 function initPID(){
   const c=$('pid-canvas');if(!c)return;
-  const dpr=window.devicePixelRatio||1;
-  c.width=c.offsetWidth*dpr;c.height=c.offsetHeight*dpr;
-  const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
-  pidPv=25;pidSp=70;pidInt=0;pidPrevErr=0;pidHistory=[];pidSpHist=[];pidOutHist=[];
-  if(pidAnimId)cancelAnimationFrame(pidAnimId);
-  pidLoop();
+  // Wait for canvas to be visible then initialize
+  requestAnimationFrame(()=>{
+    const rect=c.parentElement.getBoundingClientRect();
+    if(rect.width===0){setTimeout(initPID,100);return;}
+    const dpr=window.devicePixelRatio||1;
+    c.width=rect.width*dpr;c.height=260*dpr;
+    c.style.height='260px';
+    const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
+    pidPv=25;pidSp=70;pidInt=0;pidPrevErr=0;pidHistory=[];pidSpHist=[];pidOutHist=[];
+    if(pidAnimId)cancelAnimationFrame(pidAnimId);
+    pidLoop();
+  });
 }
 function updatePID(){
   pidKp=parseFloat($('pid-kp').value)||1.8;
@@ -1817,9 +1880,10 @@ function updatePID(){
 }
 function injectPID(){pidPv-=15+Math.random()*10}
 function pidLoop(){
-  const c=$('pid-canvas');if(!c)return;
+  const c=$('pid-canvas');if(!c){pidAnimId=requestAnimationFrame(pidLoop);return;}
   const ctx=c.getContext('2d');
-  const W=c.offsetWidth,H=c.offsetHeight;
+  const W=c.width/(window.devicePixelRatio||1);
+  const H=260;
   const err=pidSp-pidPv;
   pidInt+=err*0.05;pidInt=Math.max(-50,Math.min(50,pidInt));
   const deriv=(err-pidPrevErr)/0.05;pidPrevErr=err;
@@ -1848,9 +1912,14 @@ function pidLoop(){
   pidOutHist.forEach((v,i)=>{const x=i/pidOutHist.length*W;const y=H-Math.min(100,Math.max(0,v))/100*H;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
   ctx.stroke();
   // Labels
-  ctx.fillStyle='#F5A800';ctx.font='11px JetBrains Mono';ctx.fillText('PV: '+pidPv.toFixed(1)+'%',10,20);
+  ctx.fillStyle='#F5A800';ctx.font='bold 12px JetBrains Mono';ctx.fillText('PV: '+pidPv.toFixed(1)+'%',10,20);
   ctx.fillStyle='#3D8EFF';ctx.fillText('SP: '+pidSp.toFixed(1)+'%',10,36);
   ctx.fillStyle='#00E090';ctx.fillText('OUT: '+(pidKp*err+pidKi*pidInt+pidKd*deriv).toFixed(1)+'%',10,52);
+  ctx.fillStyle='#8A95B0';ctx.font='9px JetBrains Mono';ctx.fillText('Kp='+pidKp+' Ki='+pidKi+' Kd='+pidKd,10,H-8);
+  // Legend
+  ctx.fillStyle='#F5A800';ctx.fillRect(W-100,10,12,3);ctx.fillText('PV',W-85,14);
+  ctx.fillStyle='#3D8EFF';ctx.fillRect(W-100,22,12,3);ctx.fillText('SP',W-85,26);
+  ctx.fillStyle='#00E090';ctx.fillRect(W-100,34,12,3);ctx.fillText('OUT',W-85,38);
   // Update displays
   set('pid-pv',pidPv.toFixed(1)+'%');set('pid-sp-disp',pidSp.toFixed(1)+'%');
   set('pid-out',(pidKp*err+pidKi*pidInt+pidKd*deriv).toFixed(1)+'%');set('pid-err',err.toFixed(1)+'%');
