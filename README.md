@@ -71,7 +71,6 @@ Download the latest ATS-optimized resume:
 ## 📬 Contact
 
 - **Email**: [jaissatish@gmail.com](mailto:jaissatish@gmail.com)
-- **Phone**: +966 554803735
 - **LinkedIn**: [linkedin.com/in/jaissatish](https://linkedin.com/in/jaissatish)
 - **Location**: Duba, Tabuk, Saudi Arabia (Immediate availability, GCC-wide)
 
