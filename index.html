@@ -1349,8 +1349,20 @@ function initReveal(){
     });
   },{threshold:.1});
   document.querySelectorAll('.r').forEach(el=>obs.observe(el));
+  // Immediately reveal elements already in viewport on load
+  setTimeout(()=>{
+    document.querySelectorAll('.r:not(.vis)').forEach(el=>{
+      const rect=el.getBoundingClientRect();
+      if(rect.top<window.innerHeight&&rect.bottom>0){
+        el.classList.add('vis');
+        el.querySelectorAll('.bar-fi').forEach(b=>{b.style.transform=`scaleX(${b.dataset.w||1})`;});
+      }
+    });
+  },50);
 }
 initReveal();
+// Backup: force reveal check on first scroll/resize
+window.addEventListener('scroll',function once(){window.removeEventListener('scroll',once);initReveal();},{once:true});
 
 /* ── TOAST ─────────────────────────────────────────────────── */
 function showToast(m){
