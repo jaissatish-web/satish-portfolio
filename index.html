@@ -1215,8 +1215,7 @@ footer{
       <div class="tcopen">Open Simulator →</div>
     </div>
   </div>
-  <div class="tctag">TIER 1 — Signal & Loop Fundamentals</div>
-  <div class="tgrid" id="tgrid2" style="margin-top:10px">
+    <div class="tgrid" id="tgrid2" style="margin-top:10px">
     <div class="tcrd" onclick="openTool('rtd')">
       <div class="tco">📟</div>
       <div class="tcn">RTD Pt100</div>
@@ -1241,8 +1240,28 @@ footer{
       <div class="tcd">Solve V, I, R, P from any two knowns. 4-20mA loop context.</div>
       <div class="tcopen">Coming Soon</div>
     </div>
-  </div>
-  <div class="tctag">TIER 2 — Sensors & Valves (Coming Soon)</div>
+      </div>
+
+      <div class="tgrid" id="tgrid3" style="margin-top:10px">
+        <div class="tcrd" onclick="openTool('unit')">
+          <div class="tco">↔</div>
+          <div class="tcn">Unit Converter</div>
+          <div class="tcd">Pressure · Temperature · Flow · Length · Mass. All common engineering units.</div>
+          <div class="tcopen">Open Converter →</div>
+        </div>
+        <div class="tcrd" onclick="openTool('cable')">
+          <div class="tco">🔌</div>
+          <div class="tcn">Cable Sizing</div>
+          <div class="tcd">Voltage drop for 4-20mA loops. Copper · 2-wire · mm² cross-section.</div>
+          <div class="tcopen">Open Calculator →</div>
+        </div>
+        <div class="tcrd" onclick="openTool('checklist')">
+          <div class="tco">✅</div>
+          <div class="tcn">Loop Checklist</div>
+          <div class="tcd">Pre-commissioning checklist with 24 items, 5 sections, progress tracking, .txt export.</div>
+          <div class="tcopen">Open Checklist →</div>
+        </div>
+      </div>
 
   <div class="tarea" id="tarea">
     <button class="backbtn" onclick="closeTool()">All Tools</button>
@@ -1573,8 +1592,9 @@ const TMETA={
 
 function openTool(id){
   $('tgrid').style.display='none';
-  $('tgrid2').style.display='none';
-  $('tarea').style.display='block';
+    $('tgrid2').style.display='none';
+    $('tgrid3').style.display='none';
+    $('tarea').style.display='block';
   const m=TMETA[id]||{ico:'📊',t:'PID Loop Simulator',s:'Interactive PID control with live response graph'};
   $('tph').innerHTML=`<div class="tpi">${m.ico}</div><div><div class="tptit">${m.t}</div><div class="tpsub">${m.s}</div></div>`;
   $('tpb').innerHTML=buildTool(id);
@@ -1605,6 +1625,7 @@ function closeTool(){
   $('tarea').style.display='none';
   $('tgrid').style.display='grid';
   $('tgrid2').style.display='grid';
+  $('tgrid3').style.display='grid';
   window.scrollTo({top:0,behavior:'instant'});
 }
 
@@ -2141,33 +2162,86 @@ function buildTool(id){
       <div class="fnote"><p><strong>Formulas:</strong> V=IR · I=V/R · R=V/I · P=VI=I²R=V²/R</p></div>`,
 
     unit:`
-      <div class="frow c1"><div class="fw"><div class="fl">Category</div><div id="uc-cat-wrap"></div></div></div>
-      <div class="frow c3" style="align-items:end">
-        <div class="fw"><div class="fl">From</div><div id="uc-from-wrap"></div></div>
-        <div class="fw"><div class="fl">Value</div><input class="fi" type="number" id="uc-val" placeholder="Enter value" step="any" oninput="calcUC()"></div>
-        <div class="fw"><div class="fl">To</div><div id="uc-to-wrap"></div></div>
-      </div>
-      <div class="resbox"><div class="rg c2">
-        <div class="ri"><div class="rl">Result</div><div class="rv a" id="uc-r1">—</div></div>
-        <div class="ri"><div class="rl">Conversion</div><div class="rv w" style="font-size:15px;font-weight:600" id="uc-r2">—</div></div>
-      </div></div>`,
+          <div class="frow c1"><div class="fw"><div class="fl">Category</div><div id="uc-cat-wrap"></div></div></div>
+          <div class="frow c3" style="align-items:end">
+            <div class="fw"><div class="fl">From</div><div id="uc-from-wrap"></div></div>
+            <div class="fw"><div class="fl">Value</div><input class="fi" type="number" id="uc-val" placeholder="Enter value" step="any" oninput="calcUC()"></div>
+            <div class="fw"><div class="fl">To</div><div id="uc-to-wrap"></div></div>
+          </div>
+          <div class="resbox"><div class="rg c2">
+            <div class="ri"><div class="rl">Result</div><div class="rv a" id="uc-r1">—</div></div>
+            <div class="ri"><div class="rl">Conversion</div><div class="rv w" style="font-size:15px;font-weight:600" id="uc-r2">—</div></div>
+          </div></div>
+
+          <div class="field-notes">
+            <div class="fn-title">📋 Field Notes — Engineering Unit Conversions</div>
+            <ul>
+              <li><strong>Pressure conversions matter in commissioning:</strong> A DCS faceplate might show bar while the transmitter is calibrated in psi. A PCS7 block reads 6.9 bar when transmitter sends 100 psi — wrong. Always check the unit tag in the signal path.</li>
+              <li><strong>Temperature units — the °C vs °F trap:</strong> Many EPC design packages (SmartPlant, AVEVA) use °C internally but US-based clients demand °F on the HMI. A mistake here shows up as 32°F = 0°C, but 100°F ≠ 100°C. Offset conversions (not just scaling) must be applied.</li>
+              <li><strong>Flow unit pitfall:</strong> m³/h vs US GPM vs bbl/day vs SCFM. For gas, SCFM is at standard conditions (usually 60°F, 14.7 psi). Actual volumetric flow differs. Compensated mass-flow (using P/T) is always preferred for custody transfer.</li>
+              <li><strong>mmH₂O vs inH₂O:</strong> Both are common DP transmitter units. 1 inH₂O ≈ 25.4 mmH₂O. Getting this wrong on a 100 inH₂O transmitter calibrated to mmH₂O = 2540 mmH₂O span — which may exceed transmitter limits.</li>
+              <li><strong>kg/cm² vs bar:</strong> Old plants (especially in Asia/Middle East) still use kg/cm². 1 kg/cm² = 0.980665 bar ≈ 14.22 psi. Close but not exact — a common source of confusion during legacy system migration.</li>
+            </ul>
+          </div>
+
+          <details class="glossary">
+            <summary>📖 Glossary — Engineering Units</summary>
+            <div class="glossary-grid">
+              <div class="g-item"><div class="g-term">bar</div><div class="g-def">Metric pressure: 1 bar ≈ 14.5 psi ≈ 100 kPa. Common in European/Middle East DCS projects.</div></div>
+              <div class="g-item"><div class="g-term">psi</div><div class="g-def">Pounds per square inch. US standard. 0 psi(g) = 14.7 psi(a) at sea level.</div></div>
+              <div class="g-item"><div class="g-term">kPa / MPa</div><div class="g-def">SI standard. 1 MPa = 10 bar = 145 psi. Used in modern green-field projects (NEOM, ADNOC).</div></div>
+              <div class="g-item"><div class="g-term">kg/cm²</div><div class="g-def">Legacy metric. 1 kg/cm² = 0.981 bar. Still found in older Asian/Middle Eastern plants.</div></div>
+              <div class="g-item"><div class="g-term">mmH₂O</div><div class="g-def">Millimeters of water column. Common for low DP ranges (level, filter differential).</div></div>
+              <div class="g-item"><div class="g-term">SCFM</div><div class="g-def">Standard Cubic Feet per Minute. Volumetric flow corrected to standard T &amp; P (typically 60°F, 14.7 psia).</div></div>
+              <div class="g-item"><div class="g-term">US GPM</div><div class="g-def">US Gallons Per Minute. 1 US gallon = 3.785 L. Imperial gallon = 4.546 L — different! Know which.</div></div>
+              <div class="g-item"><div class="g-term">bbl/day</div><div class="g-def">Barrels per day. Oil industry standard. 1 barrel = 42 US gallons.</div></div>
+              <div class="g-item"><div class="g-term">inch → mm</div><div class="g-def">Imperial pipe sizing: 1" = DN25, 2" = DN50, 4" = DN100. Not exact. Always check flange standards.</div></div>
+              <div class="g-item"><div class="g-term">°C vs °F</div><div class="g-def">Offset conversion: °F = °C×9/5+32. Not a scaling factor! 100°C ≠ 212°F only at span endpoints.</div></div>
+              <div class="g-item"><div class="g-term">Gauge vs Absolute</div><div class="g-def">bar(g) vs bar(a). Gauge excludes atmospheric (1.013 bar). Absolute includes it. Wrong reference = 1 bar error.</div></div>
+            </div>
+          </details>`,
 
     cable:`
-      <div class="frow c2">
-        <div class="fw"><div class="fl">Current (mA)</div><input class="fi" type="number" id="cab-i" placeholder="e.g. 20" step="any"></div>
-        <div class="fw"><div class="fl">Cable Length one-way (m)</div><input class="fi" type="number" id="cab-l" placeholder="e.g. 500" step="any"></div>
-      </div>
-      <div class="frow c2">
-        <div class="fw"><div class="fl">Cross-Section (mm²)</div><div id="cab-mm-ph"></div></div>
-        <div class="fw"><div class="fl">Supply Voltage (VDC)</div><input class="fi" type="number" id="cab-v" placeholder="e.g. 24" step="any"></div>
-      </div>
-      <button class="calcbtn" onclick="calcCable()">Calculate Voltage Drop →</button>
-      <div class="resbox"><div class="rg c3">
-        <div class="ri"><div class="rl">Voltage Drop</div><div class="rv r" id="cab-r1">—</div></div>
-        <div class="ri"><div class="rl">V at Load</div><div class="rv a" id="cab-r2">—</div></div>
-        <div class="ri"><div class="rl">Drop %</div><div class="rv b" id="cab-r3">—</div></div>
-      </div></div>
-      <div class="fnote"><p><strong>Formula:</strong> Vdrop = 2 × L × (ρ/A) × I &nbsp;|&nbsp; ρ(Cu)=0.0175 Ω·mm²/m<br>Factor 2: both conductor and return. Instrument loops typically &lt;5% drop.</p></div>`,
+          <div class="frow c2">
+            <div class="fw"><div class="fl">Current (mA)</div><input class="fi" type="number" id="cab-i" placeholder="e.g. 20" step="any"></div>
+            <div class="fw"><div class="fl">Cable Length one-way (m)</div><input class="fi" type="number" id="cab-l" placeholder="e.g. 500" step="any"></div>
+          </div>
+          <div class="frow c2">
+            <div class="fw"><div class="fl">Cross-Section (mm²)</div><div id="cab-mm-ph"></div></div>
+            <div class="fw"><div class="fl">Supply Voltage (VDC)</div><input class="fi" type="number" id="cab-v" placeholder="e.g. 24" step="any"></div>
+          </div>
+          <button class="calcbtn" onclick="calcCable()">Calculate Voltage Drop →</button>
+          <div class="resbox"><div class="rg c3">
+            <div class="ri"><div class="rl">Voltage Drop</div><div class="rv r" id="cab-r1">—</div></div>
+            <div class="ri"><div class="rl">V at Load</div><div class="rv a" id="cab-r2">—</div></div>
+            <div class="ri"><div class="rl">Drop %</div><div class="rv b" id="cab-r3">—</div></div>
+          </div></div>
+
+          <div class="field-notes">
+            <div class="fn-title">📋 Field Notes — Instrument Cable Sizing</div>
+            <ul>
+              <li><strong>Why 2× length?</strong> The formula doubles the one-way length because current flows out on the conductor AND returns on the return conductor. Total loop resistance = 2 × R_per_meter × length.</li>
+              <li><strong>Maximum drop rule:</strong> For 4-20mA loops, voltage drop should not exceed 5% of supply voltage (e.g., 1.2V drop on 24VDC). Above this, the transmitter cannot source 20mA into the loop — causing non-linearity at the top end.</li>
+              <li><strong>Copper resistivity with temperature:</strong> ρ(Cu) = 0.0175 Ω·mm²/m at 20°C. At 60°C (sunlit cable tray in KSA summer), ρ rises to ~0.020 Ω·mm²/m — a 14% increase. Always use temperature-corrected ρ for outdoor installations.</li>
+              <li><strong>Minimum cable size:</strong> 1.0 mm² is the practical minimum for instrument cables (tensile strength during pulling). 0.5 mm² is rarely used in field. 1.5–2.5 mm² for longer runs (&gt;500m).</li>
+              <li><strong>Voltage drop per device:</strong> A 4-20mA loop typically has: transmitter (~12V compliance), barrier (~5-7V), DCS AI card (~5V load resistor). Total burden = 24-26V minimum supply. At 20mA and 1km of 1.0mm², Vdrop = 2×1000×(0.0175/1.0)×0.020 = 0.7V — acceptable.</li>
+              <li><strong>NEOM specification:</strong> For NEOM NGHC, signal cables are 1.5 mm² minimum for 4-20mA loops, 2.5 mm² for solenoid valves. Instrument cable runs over 800m require calculation to ensure &lt;3% drop at 20mA.</li>
+            </ul>
+          </div>
+
+          <details class="glossary">
+            <summary>📖 Glossary — Cable Sizing Terms</summary>
+            <div class="glossary-grid">
+              <div class="g-item"><div class="g-term">Vdrop</div><div class="g-def"><strong>Voltage Drop</strong> — Loss of voltage along the cable due to conductor resistance. Impacts transmitter compliance at high mA.</div></div>
+              <div class="g-item"><div class="g-term">ρ (rho)</div><div class="g-def"><strong>Resistivity</strong> — Material property. For copper at 20°C: 0.0175 Ω·mm²/m. Higher temperature = higher ρ.</div></div>
+              <div class="g-item"><div class="g-term">mm²</div><div class="g-def"><strong>Cross-sectional area</strong> of conductor. 1.0 mm² is standard for signal. Larger area = lower resistance.</div></div>
+              <div class="g-item"><div class="g-term">Compliance</div><div class="g-def">The minimum voltage a 4-20mA transmitter needs to operate. Typically 12V. Below this, output goes non-linear.</div></div>
+              <div class="g-item"><div class="g-term">Burden</div><div class="g-def">The voltage drop across the DCS input resistor (typically 250Ω = 5V at 20mA). Must be included in loop budget.</div></div>
+              <div class="g-item"><div class="g-term">Barrier</div><div class="g-def">Intrinsic safety barrier. Zener or galvanic. Drops 5-7V from the loop supply. Critical for NEOM ATEX/IECEx zones.</div></div>
+              <div class="g-item"><div class="g-term">AWG</div><div class="g-def">American Wire Gauge. Alternative to mm². AWG18 ≈ 0.82 mm², AWG16 ≈ 1.31 mm², AWG14 ≈ 2.08 mm².</div></div>
+              <div class="g-item"><div class="g-term">IS Loop</div><div class="g-def"><strong>Intrinsically Safe</strong> loop. Limited energy. Max cable capacitance/inductance defined by barrier certification.</div></div>
+            </div>
+          </details>`,
 
     checklist:`
       <div class="cl-top">
