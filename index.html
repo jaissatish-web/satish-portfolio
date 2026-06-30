@@ -1599,6 +1599,7 @@ function openTool(id){
   if(id==='pid'){setTimeout(initPID,100);}
   if(id==='ma'){setTimeout(()=>{if($('ma-pv'))$('ma-pv').focus()},100);}
   if(id==='pv'){setTimeout(()=>{if($('pv-e')){if($('pv-e').value){pvDrive('pv')}else{pvDrive('cfg');}}},100);}
+  if(id==='dp'){setTimeout(()=>{if($('dp-f')){dpDrive('cfg');}},100);}
 }
 function closeTool(){
   $('tarea').style.display='none';
@@ -1820,38 +1821,134 @@ function buildTool(id){
       </details>`,
 
     dp:`
-      <div class="loop-diag">
-        <div class="loop-node active">ORIFICE</div><span class="loop-arrow">→</span>
-        <div class="loop-node">DP TRANSMITTER</div><span class="loop-arrow">→</span>
-        <div class="loop-node">√ EXTRACTION</div><span class="loop-arrow">→</span>
-        <div class="loop-node output">FLOW (EU)</div>
+      <div class="loop-diag" id="dp-path">
+        <div class="loop-node active" id="dp-node-o">ORIFICE</div><span class="loop-arrow" id="dp-arr-1">→</span>
+        <div class="loop-node" id="dp-node-t">DP TX</div><span class="loop-arrow" id="dp-arr-2">→</span>
+        <div class="loop-node" id="dp-node-j">JB</div><span class="loop-arrow" id="dp-arr-3">→</span>
+        <div class="loop-node" id="dp-node-d">DCS AI</div><span class="loop-arrow" id="dp-arr-4">→</span>
+        <div class="loop-node" id="dp-node-s">√ SQRT</div><span class="loop-arrow" id="dp-arr-5">→</span>
+        <div class="loop-node output" id="dp-node-h">HMI</div>
       </div>
-      <div class="frow c2">
-        <div class="fw"><div class="fl">Design Max Flow (Qmax)</div><input class="fi" type="number" id="dp-q" placeholder="e.g. 1000" step="any" value="1000"></div>
-        <div class="fw"><div class="fl">Design DPmax (%)</div><input class="fi" type="number" id="dp-d" placeholder="100" step="any" value="100"></div>
+
+      <div class="ma-explain">
+        <p><strong>How DP Flow works:</strong> An orifice plate creates a pressure drop (ΔP) proportional to <em>velocity squared</em>. The DP transmitter outputs mA linear with ΔP — but flow is proportional to <em>√ of ΔP</em>.<br>
+        Type into <strong>any</strong> driving field below (Flow, %DP, mA, or reconfigure Qmax/DPmax) — the rest solve instantly.<br>
+        Toggle <strong>SQRT</strong> on/off to see <em>exactly</em> how wrong readings get without square-root extraction.</p>
       </div>
-      <div class="frow c1"><div class="fw"><div class="fl">Measured DP (% of DPmax)</div><input class="fi" type="number" id="dp-m" placeholder="0 – 100" step=".01" oninput="calcDP()"></div></div>
-      <div class="sigbar"><div class="sigbar-fill" id="dp-bar" style="width:0%"></div><div class="sigbar-marker" id="dp-marker" style="left:0%">0%</div></div>
-      <div class="sigbar-scale"><span>0%</span><span>50%</span><span>100%</span></div>
-      <div class="resbox"><div class="rg c3">
-        <div class="ri"><div class="rl">Actual Flow</div><div class="rv a" id="dp-r1">—</div></div>
-        <div class="ri"><div class="rl">% of Qmax</div><div class="rv w" id="dp-r2">—</div></div>
-        <div class="ri"><div class="rl">Status</div><div class="rv" id="dp-r3"><span class="badge badge-ok">Ready</span></div></div>
-      </div></div>
-      <div class="alarm-section" id="dp-alarm-section" style="display:none">
-        <div class="alarm-title">⚠ Alarm Setpoints (in Flow Units)</div>
-        <div class="frow c4">
-          <div class="fw"><div class="fl">L (Low)</div><input class="fi" id="dp-al" placeholder="e.g. 100" step="any"></div>
-          <div class="fw"><div class="fl">LL (Low Low)</div><input class="fi" id="dp-all" placeholder="e.g. 50" step="any"></div>
-          <div class="fw"><div class="fl">H (High)</div><input class="fi" id="dp-ah" placeholder="e.g. 900" step="any"></div>
-          <div class="fw"><div class="fl">HH (High High)</div><input class="fi" id="dp-ahh" placeholder="e.g. 950" step="any"></div>
+
+      <div class="frow c2" style="margin-bottom:6px">
+        <div class="fw"><div class="fl">Qmax — Design Max Flow (at DPmax)</div><input class="fi" type="number" id="dp-q" value="1000" step="any" oninput="dpDrive('cfg')"></div>
+        <div class="fw"><div class="fl">DPmax — Design Max DP (% of DP span)</div><input class="fi" type="number" id="dp-d" value="100" step="any" oninput="dpDrive('cfg')"></div>
+      </div>
+
+      <div class="ma-matrix">
+        <div class="ma-matrix-label">LIVE FLOW MATRIX — type in any field</div>
+        <div class="frow c3">
+          <div class="fw"><div class="fl">Measured Flow (EU)</div><input class="fi ma-inp" type="number" id="dp-f" placeholder="e.g. 750" step="any" oninput="dpDrive('flow')"></div>
+          <div class="fw"><div class="fl">% of DPmax (raw)</div><input class="fi ma-inp" type="number" id="dp-m" placeholder="e.g. 56.25" step=".01" oninput="dpDrive('pct')"></div>
+          <div class="fw"><div class="fl">mA Signal (4–20)</div><input class="fi ma-inp" type="number" id="dp-ma" placeholder="e.g. 13.0" step=".001" oninput="dpDrive('ma')"></div>
         </div>
-        <button class="calcbtn" style="margin:0 0 12px" onclick="dpCheckAlarms()">Check Alarms →</button>
-        <div id="dp-alarm-result"></div>
+        <div class="frow c3">
+          <div class="fw"><div class="fl">% of Qmax (flow)</div><input class="fi ma-inp" type="number" id="dp-qpct" placeholder="" step=".01" oninput="dpDrive('qpct')"></div>
+          <div class="fw"><div class="fl">SQRT Extraction</div>
+            <div style="padding:4px 0">
+              <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+                <input type="checkbox" id="dp-sqrt" checked onchange="dpDrive('cfg')" style="width:18px;height:18px;accent-color:#F5A800">
+                <span style="font-family:var(--mono);font-size:12px;color:var(--ice)">√ enabled (correct)</span>
+              </label>
+            </div>
+          </div>
+          <div class="fw"><div class="fl">SQRT Error at this point</div><input class="fi ma-inp" type="text" id="dp-sqrt-err" placeholder="" disabled style="opacity:.7"></div>
+        </div>
       </div>
-      <button class="calcbtn" style="margin:0" onclick="document.getElementById('dp-alarm-section').style.display=document.getElementById('dp-alarm-section').style.display==='none'?'block':'none'">Configure Alarm Setpoints ▾</button>
-      <table class="qref"><tr><td>Flow Formula</td><td>Q = Qmax × √(DPmeasured / DPmax)</td></tr><tr><td>DP at 50% flow</td><td>25% of DPmax</td></tr><tr><td>DP at 80% flow</td><td>64% of DPmax</td></tr><tr><td>DP at 100% flow</td><td>100% of DPmax</td></tr></table>
-      <div class="fnote"><p><strong>ISA-19.52 / ISO 5167:</strong> Square root extraction converts DP (proportional to pressure) to flow (proportional to velocity²).<br><strong>Critical:</strong> If √ extraction is disabled, readings will be non-linear and incorrect.</p></div>`,
+
+      <div class="sigbar" id="dp-sigbar"><div class="sigbar-fill" id="dp-bar" style="width:0%"></div><div class="sigbar-marker" id="dp-marker" style="left:0%">0%</div></div>
+      <div class="sigbar-scale"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+
+      <div class="resbox" id="dp-resbox"><div class="rg c4">
+        <div class="ri"><div class="rl">Actual Flow (EU)</div><div class="rv a" id="dp-r1">—</div></div>
+        <div class="ri"><div class="rl">% of Qmax</div><div class="rv w" id="dp-r2">—</div></div>
+        <div class="ri"><div class="rl">mA Signal</div><div class="rv b" id="dp-r3">—</div></div>
+        <div class="ri"><div class="rl">Status</div><div class="rv" id="dp-r4"><span class="badge badge-ok">Ready</span></div></div>
+      </div></div>
+
+      <div class="alarm-banner" id="dp-banner"></div>
+
+      <div class="alarm-section">
+        <div class="alarm-title">⚠ Alarm & Trip Setpoints (in Flow Units — EU)</div>
+        <div class="alarm-legend">
+          <span class="al-ll">LL (flow trip — rupture/cavitation)</span>
+          <span class="al-l">L (low flow warning)</span>
+          <span class="al-h">H (high flow warning)</span>
+          <span class="al-hh">HH (flow trip — over-pump/surge)</span>
+        </div>
+        <div class="frow c4">
+          <div class="fw"><div class="fl">LL (Low-Low)</div><input class="fi" type="number" id="dp-all" placeholder="e.g. 50" step="any" oninput="dpReEval()"></div>
+          <div class="fw"><div class="fl">L (Low)</div><input class="fi" type="number" id="dp-al" placeholder="e.g. 100" step="any" oninput="dpReEval()"></div>
+          <div class="fw"><div class="fl">H (High)</div><input class="fi" type="number" id="dp-ah" placeholder="e.g. 900" step="any" oninput="dpReEval()"></div>
+          <div class="fw"><div class="fl">HH (High-High)</div><input class="fi" type="number" id="dp-ahh" placeholder="e.g. 950" step="any" oninput="dpReEval()"></div>
+        </div>
+        <div id="dp-alarm-warn" style="margin-top:8px"></div>
+      </div>
+
+      <div class="try-caption">💡 Try: Qmax=<strong>1000</strong>, enter %DP=<strong>25</strong> → Flow shows <strong>500</strong> (not 250!). Or: toggle SQRT <strong>OFF</strong> → meter reads <strong>250 EU</strong> — that's what happens if DCS √ is missed. Or: enter Flow=<strong>707</strong> → %DP=<strong>50%</strong> (the "50% signal ≠ 50% flow" trap).</div>
+
+      <table class="qref">
+        <tr><td>Flow (with √)</td><td>Q = Qmax × √(%DP / 100)</td></tr>
+        <tr><td>Flow (without √)</td><td>Q_wrong = Qmax × (%DP / 100) — <em>non-linear error</em></td></tr>
+        <tr><td>%DP from Flow</td><td>%DP = (Q / Qmax)² × 100</td></tr>
+        <tr><td>mA from %DP</td><td>mA = 4 + (%DP / 100) × 16</td></tr>
+        <tr><td>%DP from mA</td><td>%DP = (mA − 4) × 100 / 16</td></tr>
+        <tr><td>DP at 50% flow</td><td>25% of DPmax</td></tr>
+        <tr><td>DP at 80% flow</td><td>64% of DPmax</td></tr>
+        <tr><td>DP at 10% flow</td><td>1% of DPmax — <em>turndown limit!</em></td></tr>
+      </table>
+
+      <div class="fnote"><p><strong>Standards:</strong> ISO 5167 (orifice/nozzle/venturi) · AGA-3 (gas) · API MPMS 14.3 · ASME MFC<br><strong>Beta ratio:</strong> β = d/D (bore/pipe ID), typical 0.3–0.75<br><strong>Turndown:</strong> 10:1 practical; below 10% flow, DP is 1% of span — beyond transmitter resolution.</p></div>
+
+      <div class="field-notes">
+        <div class="fn-title">📋 Field Notes — DP Flow &amp; Orifice Measurement</div>
+        <ul>
+          <li><strong>The √ trap:</strong> A common commissioning error is placing the square-root function in TWO places (transmitter AND DCS) — or in ZERO places. If in both: readings are sub-linear (√√ distortion). If in none: readings read too high (at 50% flow meter shows 70.7%). Verify which device does √ and ensure only ONE does.</li>
+          <li><strong>Orifice plate sizing:</strong> Plates are designed for a specific Qmax at a specific DPmax (e.g., 1000 m³/h at 25 kPa). Beta ratio β = d/D (hole/pipe). Low β = high DP = good signal at low flow but high permanent pressure loss. High β = low DP = poor turndown but efficient. The β value is stamped on the plate tab.</li>
+          <li><strong>Straight-run requirements:</strong> ISO 5167 requires minimum 10D upstream and 5D downstream of straight pipe. With an elbow or valve upstream, this increases to 16-20D+. Violating this distorts the flow velocity profile and introduces errors that no calibration can fix — the flow coefficient C shifts unpredictably.</li>
+          <li><strong>DP transmitter orientation:</strong>
+            <br>• <em>Gas/steam service:</em> Mount transmitter ABOVE the pipe. Impulse lines slope back ≥ 1:12 so condensate drains. Fill liquid fill pots on both legs.
+            <br>• <em>Liquid service:</em> Mount BELOW the pipe. Vents at high points to release gas bubbles. Both impulse lines full of process liquid.
+            <br>Wrong orientation = liquid head trapped in gas legs = false DP offset that drifts with ambient temperature.</li>
+          <li><strong>Temperature &amp; Pressure (T&amp;P) Compensation:</strong> For gas/vapor, ρ changes with P and T. True mass-flow requires:
+          <br>Flow_mass = K × √(ΔP × ρ), where ρ = P/(R×T)
+          <br>Without compensation, a 10% pressure swing at gas service creates ~5% flow error even if ΔP is perfect. At NEOM hydrogen (30 bar, 40-80°C), T&amp;P comp is essential.</li>
+          <li><strong>Turndown limitation:</strong> At 10% of Qmax, %DP is only 1% of span. A typical DP tx has ±0.075% accuracy → at 1% span, that's ±75% of reading. Practical turndown is 10:1 (some claim 15:1 with smart transmitters). Below turndown, switch to Coriolis or vortex.</li>
+          <li><strong>Wet leg / seal pot:</strong> On closed vessels, the reference leg is filled with a stable fill fluid (silicon oil, glycol). As ambient temperature changes, fill density changes → zero drift. Seal pots maintain constant leg level. In cold climates, heated impulse lines (trace heating) prevent freezing.</li>
+          <li><strong>2oo3 voting for critical flow:</strong> Reactor feed, compressor anti-surge, furnace fuel — critical flows use three DP transmitters with 2-out-of-3 voting. The median DP value feeds the √ block. If one transmitter drifts high (erosion, plugging), the system ignores it. Trip action only fires on 2-of-3 agreement.</li>
+          <li><strong>Commissioning check — bypass the orifice:</strong> Apply known DP directly at transmitter with a calibrator (not through the pipe):
+            <br>• 0 kPa applied → DCS should show 0.0% DP and 0.0 EU flow
+            <br>• 50% DPmax applied → DCS should show 50.0% DP and 70.7% of Qmax (NOT 50%!)
+            <br>• 100% DPmax applied → 100.0% DP and 100% Qmax
+            <br>This isolates the DCS √ and scaling chain from the orifice itself.</li>
+          <li><strong>Coriolis vs Orifice at NEOM:</strong> Coriolis meters measure mass-flow directly — no orifice, no DP, no √ needed. Better accuracy (±0.1% vs ±1-2%), higher turndown (100:1). But expensive for large pipes (>12") and sensitive to vibration. For critical hydrogen metering at NGHC, Coriolis is used. For general utility flow, DP/orifice remains cost-effective.</li>
+        </ul>
+      </div>
+
+      <details class="glossary">
+        <summary>📖 Glossary — DP Flow &amp; Orifice Measurement</summary>
+        <div class="glossary-grid">
+          <div class="g-item"><div class="g-term">Orifice Plate</div><div class="g-def">Thin plate with machined concentric hole installed between pipe flanges. Creates flow restriction → DP signal.</div></div>
+          <div class="g-item"><div class="g-term">Beta Ratio (β)</div><div class="g-def">d/D — orifice bore diameter / pipe inner diameter. Standard range 0.30–0.75. Stamped on the plate tab.</div></div>
+          <div class="g-item"><div class="g-term">DP Transmitter</div><div class="g-def">Measures differential pressure between upstream (high side) and downstream (low side) taps. Outputs 4–20mA linear with %DP.</div></div>
+          <div class="g-item"><div class="g-term">Qmax</div><div class="g-def">Design maximum flow — the flow rate at which the transmitter reaches full DP (20 mA). Defines the "100%" of the meter range.</div></div>
+          <div class="g-item"><div class="g-term">DPmax</div><div class="g-def">Design maximum differential pressure — the DP value that produces 20 mA and corresponds to Qmax. E.g., 25 kPa or 100 inH₂O.</div></div>
+          <div class="g-item"><div class="g-term">SQRT Extraction</div><div class="g-def">Square-root function converts %DP to flow %: Flow_% = √(DP_%) × 100. Without this, flow reads too high at mid-range.</div></div>
+          <div class="g-item"><div class="g-term">Turndown Ratio</div><div class="g-def">Qmax / Q_min_measurable. Practical 10:1, some claim 15:1. Below 10%, DP is too small for reliable measurement.</div></div>
+          <div class="g-item"><div class="g-term">Re Number</div><div class="g-def"><strong>Reynolds Number</strong> — dimensionless ratio of inertial to viscous forces. Must be &gt;4000 for orifice to work (turbulent flow).</div></div>
+          <div class="g-item"><div class="g-term">Permanent ΔP</div><div class="g-def">Irrecoverable pressure loss across the orifice beyond the downstream tap. Represents pumping energy cost — forever. Higher β = less loss.</div></div>
+          <div class="g-item"><div class="g-term">L/D Ratio</div><div class="g-def">Straight pipe length / pipe diameter. Upstream requirement: 10D to 40D+ depending on fittings. Downstream: 5D minimum.</div></div>
+          <div class="g-item"><div class="g-term">T&amp;P Compensation</div><div class="g-def">Correcting gas flow for actual P and T vs design conditions. Without it, density errors cause 5-20% flow reading error on gas service.</div></div>
+          <div class="g-item"><div class="g-term">Coriolis Meter</div><div class="g-def">Measures mass-flow by vibrating tube — no orifice, no DP, no √. ±0.1% accuracy, 100:1 turndown. Expensive but precise.</div></div>
+          <div class="g-item"><div class="g-term">2oo3 Voting</div><div class="g-def">Two-out-of-three: median of three transmitters is used. Rejects single drift/fault signal. Standard for safety-critical flow measurements.</div></div>
+        </div>
+      </details>`,
     pid:`
       <div class="loop-diag">
         <div class="loop-node active">PROCESS</div><span class="loop-arrow">→</span>
@@ -2136,8 +2233,125 @@ function pvEvaluateAlarms(pv,pct,mA,lrv,urv,span){
   else if(status==='h'||status==='l'){['pv-node-s','pv-node-h','pv-arr-4'].forEach(id=>$(id).classList.add('glow-amber','btnk-slow'));}
 }
 function pvReEval(){var p=parseFloat($('pv-e').value),l=parseFloat($('pv-lrv').value)||0,u=parseFloat($('pv-urv').value)||100;if(isNaN(p))return;var s=u-l;if(s===0)return;var pc=((p-l)/s)*100,m=4+(pc*16/100);pvUpdateVisuals(p,pc,m,l,u,s);pvEvaluateAlarms(p,pc,m,l,u,s);}
-function calcDP(){const q=parseFloat($('dp-q').value),d=parseFloat($('dp-d').value),m=parseFloat($('dp-m').value);if([q,d,m].some(isNaN)||d===0)return;const f=q*Math.sqrt(m/d);set('dp-r1',f.toFixed(3));set('dp-r2',((f/q)*100).toFixed(2)+'%');const pct=Math.max(0,Math.min(100,m));$('dp-bar').style.width=pct+'%';$('dp-marker').style.left=pct+'%';$('dp-marker').textContent=m.toFixed(1)+'%';let s='<span class="badge badge-ok">● Normal</span>';if(m<0||m>100)s='<span class="badge badge-err">⚠ Out of Range</span>';$('dp-r3').innerHTML=s}
-function dpCheckAlarms(){const q=parseFloat($('dp-q').value)||0;const m=parseFloat($('dp-m').value)||0;const f=q*Math.sqrt(Math.max(0,m)/100);const al=parseFloat($('dp-al').value),all=parseFloat($('dp-all').value),ah=parseFloat($('dp-ah').value),ahh=parseFloat($('dp-ahh').value);let h='';const isN=n=>!isNaN(n);if(isN(ahh)&&f>=ahh)h+='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: Flow '+f.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';if(isN(ah)&&f>=ah)h+='<div class="alarm-msg h">⚠️ HIGH ALARM: Flow '+f.toFixed(2)+' ≥ '+ah+' (High) — Flow Above Normal</div>';if(isN(al)&&f<=al)h+='<div class="alarm-msg l">⚠️ LOW ALARM: Flow '+f.toFixed(2)+' ≤ '+al+' (Low) — Flow Below Normal</div>';if(isN(all)&&f<=all)h+='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: Flow '+f.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';if(!h)h+='<div class="alarm-msg ok">✅ No Alarms — Flow '+f.toFixed(2)+' within normal operating range</div>';$('dp-alarm-result').innerHTML=h}
+/* ── DP FLOW CALCULATOR — bidirectional drive + SQRT toggle ─────────────────────── */
+let dpUpdating=false, dpDriver=null;
+function dpDrive(src){
+  if(dpUpdating)return;
+  const qmax=parseFloat($('dp-q').value)||1000;
+  const dpmaxPct=parseFloat($('dp-d').value)||100;
+  const sqrtOn=$('dp-sqrt')?$('dp-sqrt').checked:true;
+  if(qmax<=0||dpmaxPct<=0)return;
+  dpUpdating=true;dpDriver=src;
+  const fIn=$('dp-f').value,pctIn=$('dp-m').value,mAIn=$('dp-ma').value,qpctIn=$('dp-qpct').value;
+  let flow,dpPct,mA,qPct;
+  if(src==='cfg'){
+    let fVal=parseFloat(fIn);
+    if(isNaN(fVal)){fVal=0;}
+    if(sqrtOn){dpPct=Math.min(100,Math.max(0,(fVal/qmax)**2*100));}
+    else{dpPct=Math.min(100,Math.max(0,(fVal/qmax)*100));}
+    mA=4+(dpPct/100)*16;qPct=Math.min(100,(fVal/qmax)*100);
+    flow=fVal;
+    $('dp-m').value=dpPct.toFixed(2);$('dp-ma').value=mA.toFixed(3);$('dp-qpct').value=qPct.toFixed(2);
+  } else if(src==='flow'){
+    flow=parseFloat(fIn);
+    if(isNaN(flow)){dpUpdating=false;dpUpdating=false;return;}
+    if(sqrtOn){dpPct=Math.min(100,Math.max(0,(flow/qmax)**2*100));}
+    else{dpPct=Math.min(100,Math.max(0,(flow/qmax)*100));}
+    mA=4+(dpPct/100)*16;qPct=Math.min(100,(flow/qmax)*100);
+    $('dp-m').value=dpPct.toFixed(2);$('dp-ma').value=mA.toFixed(3);$('dp-qpct').value=qPct.toFixed(2);
+  } else if(src==='pct'){
+    dpPct=parseFloat(pctIn);
+    if(isNaN(dpPct)){dpUpdating=false;return;}
+    dpPct=Math.min(100,Math.max(0,dpPct));
+    mA=4+(dpPct/100)*16;
+    if(sqrtOn){flow=qmax*Math.sqrt(dpPct/100);qPct=Math.min(100,Math.sqrt(dpPct/100)*100);}
+    else{flow=qmax*(dpPct/100);qPct=dpPct;}
+    $('dp-f').value=flow.toFixed(3);$('dp-ma').value=mA.toFixed(3);$('dp-qpct').value=qPct.toFixed(2);
+  } else if(src==='ma'){
+    mA=parseFloat(mAIn);
+    if(isNaN(mA)){dpUpdating=false;return;}
+    dpPct=(mA-4)/16*100;
+    dpPct=Math.min(100,Math.max(0,dpPct));
+    if(sqrtOn){flow=qmax*Math.sqrt(dpPct/100);qPct=Math.min(100,Math.sqrt(dpPct/100)*100);}
+    else{flow=qmax*(dpPct/100);qPct=dpPct;}
+    $('dp-f').value=flow.toFixed(3);$('dp-m').value=dpPct.toFixed(2);$('dp-qpct').value=qPct.toFixed(2);
+  } else if(src==='qpct'){
+    qPct=parseFloat(qpctIn);
+    if(isNaN(qPct)){dpUpdating=false;return;}
+    flow=(qPct/100)*qmax;
+    if(sqrtOn){dpPct=Math.min(100,(flow/qmax)**2*100);}else{dpPct=Math.min(100,qPct);}
+    mA=4+(dpPct/100)*16;
+    $('dp-f').value=flow.toFixed(3);$('dp-m').value=dpPct.toFixed(2);$('dp-ma').value=mA.toFixed(3);
+  }
+  dpUpdating=false;
+  // Display SQRT error if disabled
+  if(!sqrtOn&&flow>0){
+    const correctFlow=qmax*Math.sqrt(dpPct/100);
+    const err=correctFlow-flow;
+    $('dp-sqrt-err').value='−'+err.toFixed(1)+' EU (reads low without √)';
+  } else if(sqrtOn&&flow>0){
+    $('dp-sqrt-err').value='exact — √ extraction active';
+  } else {
+    $('dp-sqrt-err').value='—';
+  }
+  dpUpdateVisuals(flow,dpPct,mA,qmax);
+  dpEvaluateAlarms(flow,dpPct,mA,qmax);
+}
+function dpUpdateVisuals(flow,dpPct,mA,qmax){
+  set('dp-r1',(isNaN(flow)?'—':flow.toFixed(2)+' EU'));
+  set('dp-r2',(isNaN(flow)?'—':((flow/qmax)*100).toFixed(2)+'%'));
+  set('dp-r3',(isNaN(mA)?'—':mA.toFixed(3)+' mA'));
+  const barPct=Math.max(0,Math.min(100,dpPct));
+  $('dp-bar').style.width=barPct+'%';
+  $('dp-marker').style.left=barPct+'%';
+  $('dp-marker').textContent=dpPct.toFixed(1)+'%';
+  ['dp-f','dp-m','dp-ma','dp-qpct'].forEach(id=>$(id).classList.remove('field-driver'));
+  if(dpDriver==='flow')$('dp-f').classList.add('field-driver');
+  else if(dpDriver==='pct')$('dp-m').classList.add('field-driver');
+  else if(dpDriver==='ma')$('dp-ma').classList.add('field-driver');
+  else if(dpDriver==='qpct')$('dp-qpct').classList.add('field-driver');
+}
+function dpEvaluateAlarms(flow,dpPct,mA,qmax){
+  const al=parseFloat(document.getElementById('dp-al').value)||NaN;
+  const all=parseFloat(document.getElementById('dp-all').value)||NaN;
+  const ah=parseFloat(document.getElementById('dp-ah').value)||NaN;
+  const ahh=parseFloat(document.getElementById('dp-ahh').value)||NaN;
+  const isN=n=>!isNaN(n);
+  const qMaxVal=qmax;
+  // Draw alarm lines on signal bar (in %Q space)
+  const bar=document.getElementById('dp-sigbar');
+  if(bar){
+    bar.querySelectorAll('.alarm-line,.alarm-line-label').forEach(el=>el.remove());
+    if(qMaxVal>0){
+      if(isN(ahh)){const px=Math.max(0,Math.min(100,(ahh/qMaxVal)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line hh';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label hh';lb.style.left=px+'%';lb.textContent='HH='+ahh;bar.appendChild(lb);}}
+      if(isN(ah)){const px=Math.max(0,Math.min(100,(ah/qMaxVal)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line h';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label h';lb.style.left=px+'%';lb.textContent='H='+ah;bar.appendChild(lb);}}
+      if(isN(al)){const px=Math.max(0,Math.min(100,(al/qMaxVal)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line l';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label l';lb.style.left=px+'%';lb.textContent='L='+al;bar.appendChild(lb);}}
+      if(isN(all)){const px=Math.max(0,Math.min(100,(all/qMaxVal)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line ll';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label ll';lb.style.left=px+'%';lb.textContent='LL='+all;bar.appendChild(lb);}}
+    }
+  }
+  // Auto alarm detection — LL→HH→L→H→fault→normal
+  let status='normal',badge='',banner='',bannerClass='',glowClass='';
+  if(isN(all)&&flow<=all){status='ll';badge='<span class="badge badge-err btnk-fast">🚨 LL ALARM</span>';banner='🔴 LOW-LOW TRIP — Flow '+flow.toFixed(2)+' ≤ '+all+' EU. Likely line rupture, pump cavitation, or reverse flow. TRIP ACTIVATED.';bannerClass='alarm-msg ll';glowClass='glow-red';}
+  else if(isN(ahh)&&flow>=ahh){status='hh';badge='<span class="badge badge-err btnk-fast">🚨 HH ALARM</span>';banner='🔴 HIGH-HIGH TRIP — Flow '+flow.toFixed(2)+' ≥ '+ahh+' EU. Over-pumping, compressor surge, or run-out. TRIP ACTIVATED.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else if(isN(al)&&flow<=al){status='l';badge='<span class="badge badge-warn btnk-slow">⚠️ LOW FLOW</span>';banner='🟡 LOW FLOW WARNING — Flow '+flow.toFixed(2)+' ≤ '+al+' EU. Below minimum stable flow for pump/heat exchanger.';bannerClass='alarm-msg l';glowClass='glow-amber';}
+  else if(isN(ah)&&flow>=ah){status='h';badge='<span class="badge badge-warn btnk-slow">⚠️ HIGH FLOW</span>';banner='🟡 HIGH FLOW WARNING — Flow '+flow.toFixed(2)+' ≥ '+ah+' EU. Approaching erosion/cavitation limit in pipe.';bannerClass='alarm-msg h';glowClass='glow-amber';}
+  else if(mA<3.8){status='fault';badge='<span class="badge badge-err btnk-fast">⚠ WIRE BREAK</span>';banner='⚠️ SIGNAL FAULT — mA='+mA.toFixed(3)+' (&lt;3.8mA). DP transmitter wire break / open circuit.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else if(mA>20.5){status='fault';badge='<span class="badge badge-err btnk-fast">⚠ SHORT</span>';banner='⚠️ SIGNAL FAULT — mA='+mA.toFixed(3)+' (&gt;20.5mA). DP transmitter short circuit.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else{status='normal';badge='<span class="badge badge-ok">● HEALTHY</span>';banner='✅ Flow '+flow.toFixed(2)+' EU normal | '+mA.toFixed(2)+' mA | %DP='+dpPct.toFixed(1)+'%';bannerClass='alarm-msg ok';glowClass='';}
+  $('dp-r4').innerHTML=badge;
+  const ban=$('dp-banner');
+  ban.className='alarm-banner show '+bannerClass;
+  ban.textContent=banner;
+  ban.style.display='block';
+  const rb=$('dp-resbox');
+  rb.className='resbox '+glowClass;
+  // Breadcrumb alarm pulse on signal path
+  ['dp-node-o','dp-node-t','dp-node-j','dp-node-d','dp-node-s','dp-node-h'].forEach(id=>{let el=$(id);el.classList.remove('glow-amber','glow-red','btnk-fast','btnk-slow');});
+  ['dp-arr-1','dp-arr-2','dp-arr-3','dp-arr-4','dp-arr-5'].forEach(id=>{let el=$(id);el.classList.remove('glow-amber','glow-red','btnk-fast','btnk-slow');});
+  if(status==='hh'||status==='ll'||status==='fault'){['dp-node-j','dp-node-d','dp-node-s','dp-node-h','dp-arr-3','dp-arr-4','dp-arr-5'].forEach(id=>$(id).classList.add('glow-red','btnk-fast'));}
+  else if(status==='h'||status==='l'){['dp-node-s','dp-node-h','dp-arr-5'].forEach(id=>$(id).classList.add('glow-amber','btnk-slow'));}
+}
+function dpReEval(){var f=parseFloat($('dp-f').value),q=parseFloat($('dp-q').value)||1000;if(isNaN(f))return;var dp=Math.min(100,Math.max(0,(f/q)**2*100));if(!$('dp-sqrt').checked){dp=Math.min(100,f/q*100);}var m=4+(dp/100)*16;dpUpdateVisuals(f,dp,m,q);dpEvaluateAlarms(f,dp,m,q);}
 function rtdR(){const r=parseFloat($('rtd-r').value);if(isNaN(r))return;const t=(r-100)/(100*0.00385);$('rtd-t').value=t.toFixed(2);set('rtd-r1',t.toFixed(2)+' °C');set('rtd-r2',r.toFixed(2)+' Ω')}
 function rtdT(){const t=parseFloat($('rtd-t').value);if(isNaN(t))return;const r=100*(1+0.00385*t);$('rtd-r').value=r.toFixed(2);set('rtd-r1',t.toFixed(2)+' °C');set('rtd-r2',r.toFixed(2)+' Ω')}
 function calcTC(){const t=parseFloat($('tc-t').value);if(isNaN(t))return;set('tc-r1',(0.041*t).toFixed(3)+' mV')}
