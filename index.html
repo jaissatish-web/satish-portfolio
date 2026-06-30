@@ -1598,7 +1598,7 @@ function openTool(id){
   },50)}
   if(id==='pid'){setTimeout(initPID,100);}
   if(id==='ma'){setTimeout(()=>{if($('ma-pv'))$('ma-pv').focus()},100);}
-  if(id==='pv'){setTimeout(()=>{if($('pv-lrv'))$('pv-lrv').focus()},100);}
+  if(id==='pv'){setTimeout(()=>{if($('pv-e')){if($('pv-e').value){pvDrive('pv')}else{pvDrive('cfg');}}},100);}
 }
 function closeTool(){
   $('tarea').style.display='none';
@@ -1710,41 +1710,114 @@ function buildTool(id){
       </div>`,
 
     pv:`
-      <div class="loop-diag">
-        <div class="loop-node active">TRANSMITTER</div><span class="loop-arrow">→</span>
-        <div class="loop-node">mA SIGNAL</div><span class="loop-arrow">→</span>
-        <div class="loop-node output">DCS / HMI</div>
+      <div class="loop-diag" id="pv-path">
+        <div class="loop-node active" id="pv-node-f">FIELD TX</div><span class="loop-arrow" id="pv-arr-1">→</span>
+        <div class="loop-node" id="pv-node-j">JB</div><span class="loop-arrow" id="pv-arr-2">→</span>
+        <div class="loop-node" id="pv-node-d">DCS AI</div><span class="loop-arrow" id="pv-arr-3">→</span>
+        <div class="loop-node" id="pv-node-s">SCALING</div><span class="loop-arrow" id="pv-arr-4">→</span>
+        <div class="loop-node output" id="pv-node-h">HMI</div>
       </div>
-      <div class="frow c2">
-        <div class="fw"><div class="fl">LRV (4mA value)</div><input class="fi" type="number" id="pv-lrv" placeholder="e.g. 0" step="any" value="0"></div>
-        <div class="fw"><div class="fl">URV (20mA value)</div><input class="fi" type="number" id="pv-urv" placeholder="e.g. 100" step="any" value="100"></div>
+
+      <div class="ma-explain">
+        <p><strong>How PV Scaling works:</strong> A field transmitter outputs <em>mA</em> proportional to the physical measurement. The DCS converts that 4–20mA into <em>Engineering Units (EU)</em> using the configured LRV and URV.<br>
+        Type into <strong>any</strong> of the four fields below (PV, %, mA, or reconfigure LRV/URV) — the rest solve themselves instantly.<br>
+        This teaches the full loop: <em>physical process → mA signal → DCS scaling → EU display</em>.</p>
       </div>
-      <div class="frow c2">
-        <div class="fw"><div class="fl">mA Signal (4–20)</div><input class="fi" type="number" id="pv-m" placeholder="4 – 20" step=".001" oninput="pvMA()"></div>
-        <div class="fw"><div class="fl">Process Variable (EU)</div><input class="fi" type="number" id="pv-e" placeholder="Engineering Units" step="any" oninput="pvEU()"></div>
+
+      <div class="frow c2" style="margin-bottom:6px">
+        <div class="fw"><div class="fl">LRV — Lower Range Value (4mA / 0%)</div><input class="fi" type="number" id="pv-lrv" value="0" step="any" oninput="pvDrive('cfg')"></div>
+        <div class="fw"><div class="fl">URV — Upper Range Value (20mA / 100%)</div><input class="fi" type="number" id="pv-urv" value="100" step="any" oninput="pvDrive('cfg')"></div>
       </div>
-      <div class="sigbar"><div class="sigbar-fill" id="pv-bar" style="width:0%"></div><div class="sigbar-marker" id="pv-marker" style="left:0%">0%</div></div>
-      <div class="sigbar-scale"><span id="pv-scale-lrv">LRV</span><span>50%</span><span id="pv-scale-urv">URV</span></div>
-      <div class="resbox"><div class="rg c4">
+
+      <div class="ma-matrix">
+        <div class="ma-matrix-label">LIVE SCALING MATRIX — type in any field</div>
+        <div class="frow c2">
+          <div class="fw"><div class="fl">Process Variable (EU)</div><input class="fi ma-inp" type="number" id="pv-e" placeholder="e.g. 50" step="any" oninput="pvDrive('pv')"></div>
+          <div class="fw"><div class="fl">mA Signal (4–20)</div><input class="fi ma-inp" type="number" id="pv-m" placeholder="e.g. 12" step=".001" oninput="pvDrive('ma')"></div>
+        </div>
+        <div class="frow c2">
+          <div class="fw"><div class="fl">Percent of Span (%)</div><input class="fi ma-inp" type="number" id="pv-pct" placeholder="e.g. 50" step="any" oninput="pvDrive('pct')"></div>
+          <div class="fw"><div class="fl">Span (URV − LRV)</div><input class="fi ma-inp" type="number" id="pv-span" placeholder="auto" step="any" oninput="pvDrive('span')" disabled style="opacity:.5"></div>
+        </div>
+      </div>
+
+      <div class="sigbar" id="pv-sigbar"><div class="sigbar-fill" id="pv-bar" style="width:0%"></div><div class="sigbar-marker" id="pv-marker" style="left:0%">0%</div></div>
+      <div class="sigbar-scale"><span id="pv-scale-lrv">0</span><span>25%</span><span>50%</span><span>75%</span><span id="pv-scale-urv">100</span></div>
+
+      <div class="resbox" id="pv-resbox"><div class="rg c4">
         <div class="ri"><div class="rl">PV (EU)</div><div class="rv a" id="pv-r1">—</div></div>
         <div class="ri"><div class="rl">mA Signal</div><div class="rv w" id="pv-r2">—</div></div>
-        <div class="ri"><div class="rl">Percentage</div><div class="rv b" id="pv-r3">—</div></div>
+        <div class="ri"><div class="rl">Percent</div><div class="rv b" id="pv-r3">—</div></div>
         <div class="ri"><div class="rl">Status</div><div class="rv" id="pv-r4"><span class="badge badge-ok">Ready</span></div></div>
       </div></div>
-      <div class="alarm-section" id="pv-alarm-section" style="display:none">
-        <div class="alarm-title">⚠ Alarm Setpoints (in Engineering Units)</div>
-        <div class="frow c4">
-          <div class="fw"><div class="fl">L (Low)</div><input class="fi" id="pv-al" placeholder="e.g. 10" step="any"></div>
-          <div class="fw"><div class="fl">LL (Low Low)</div><input class="fi" id="pv-all" placeholder="e.g. 5" step="any"></div>
-          <div class="fw"><div class="fl">H (High)</div><input class="fi" id="pv-ah" placeholder="e.g. 90" step="any"></div>
-          <div class="fw"><div class="fl">HH (High High)</div><input class="fi" id="pv-ahh" placeholder="e.g. 95" step="any"></div>
+
+      <div class="alarm-banner" id="pv-banner"></div>
+
+      <div class="alarm-section">
+        <div class="alarm-title">⚠ Alarm & Trip Setpoints (in Engineering Units)</div>
+        <div class="alarm-legend">
+          <span class="al-ll">LL (dangerous trip)</span>
+          <span class="al-l">L (warning)</span>
+          <span class="al-h">H (warning)</span>
+          <span class="al-hh">HH (dangerous trip)</span>
         </div>
-        <button class="calcbtn" style="margin:0 0 12px" onclick="pvCheckAlarms()">Check Alarms →</button>
-        <div id="pv-alarm-result"></div>
+        <div class="frow c4">
+          <div class="fw"><div class="fl">LL (Low-Low)</div><input class="fi" type="number" id="pv-all" placeholder="e.g. 10" step="any" oninput="pvReEval()"></div>
+          <div class="fw"><div class="fl">L (Low)</div><input class="fi" type="number" id="pv-al" placeholder="e.g. 20" step="any" oninput="pvReEval()"></div>
+          <div class="fw"><div class="fl">H (High)</div><input class="fi" type="number" id="pv-ah" placeholder="e.g. 80" step="any" oninput="pvReEval()"></div>
+          <div class="fw"><div class="fl">HH (High-High)</div><input class="fi" type="number" id="pv-ahh" placeholder="e.g. 90" step="any" oninput="pvReEval()"></div>
+        </div>
+        <div id="pv-alarm-warn" style="margin-top:8px"></div>
       </div>
-      <button class="calcbtn" style="margin:0" onclick="document.getElementById('pv-alarm-section').style.display=document.getElementById('pv-alarm-section').style.display==='none'?'block':'none'">Configure Alarm Setpoints ▾</button>
-      <table class="qref"><tr><td>PV Formula</td><td>LRV + (mA − 4) × (URV − LRV) / 16</td></tr><tr><td>mA Formula</td><td>4 + (PV − LRV) × 16 / (URV − LRV)</td></tr><tr><td>Span</td><td>URV − LRV</td></tr><tr><td>Zero Elevation</td><td>LRV (if &gt; 0)</td></tr></table>
-      <div class="fnote"><p><strong>Common Ranges:</strong> 0–100°C · 0–50 bar · 0–200 m³/h · −50 to 150°C<br><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01</p></div>`,
+
+      <div class="try-caption">💡 Try: Set LRV=<strong>0</strong>, URV=<strong>250</strong>, enter PV=<strong>200</strong> → mA jumps to <strong>16.80mA</strong>. Or try <strong>zero elevation</strong>: LRV=50, URV=200, PV=125 → mA=<strong>12.0mA</strong>.</div>
+
+      <table class="qref">
+        <tr><td>PV (from mA)</td><td>LRV + (mA − 4) × Span / 16</td></tr>
+        <tr><td>mA (from PV)</td><td>4 + (PV − LRV) × 16 / Span</td></tr>
+        <tr><td>Percent</td><td>(PV − LRV) × 100 / Span</td></tr>
+        <tr><td>Span</td><td>URV − LRV</td></tr>
+        <tr><td>Zero Elevation</td><td>LRV &gt; 0 (tx reads zero above absolute zero)</td></tr>
+        <tr><td>Zero Suppression</td><td>LRV &lt; 0 (tx reads below process connection)</td></tr>
+      </table>
+
+      <div class="fnote"><p><strong>Common Ranges:</strong> 0–100°C · 0–50 bar · 0–200 m³/h · −50 to 150°C · 0–3000 mmH₂O · −1.0 to +1.0 bar(g)<br><strong>Standards:</strong> IEC 60381-1 · ISA-50.00.01 · NAMUR NE43 (fault &lt;3.6 / &gt;21mA)</p></div>
+
+      <div class="field-notes">
+        <div class="fn-title">📋 Field Notes — PV Scaling</div>
+        <ul>
+          <li><strong>Zero Elevation:</strong> When LRV &gt; 0, the transmitter's lowest output corresponds to a positive EU value. Example: a level transmitter set to 1.5–4.5m outputs ≥ 4mA even when tank is empty. Critical for closed/pressurized vessels where the lowest readable point is above true zero.</li>
+          <li><strong>Zero Suppression:</strong> When LRV &lt; 0, output is suppressed. Rare but exists on equipment below datum (e.g., condenser hotwell level referenced to pump centreline).</li>
+          <li><strong>Span vs Range:</strong> Span = URV − LRV (always positive). A range of −10 bar to +10 bar has Span = 20 bar, LRV = −10 bar. Confusing these is a common DCS misconfiguration that gives wrong readings at every point.</li>
+          <li><strong>DCS Scaling Configuration:</strong> In Siemens PCS7, the AI channel has "PV_MIN" / "PV_MAX" that must match LRV/URV. In Honeywell Experion, it's the PVCHAR block LRV/URV. Mismatch between transmitter range and DCS scaling causes wrong EU readings across the entire range.</li>
+          <li><strong>Commissioning Check (Step Test):</strong> Always inject 4mA at the DCS input terminals (not at transmitter body) and confirm DCS reads exactly LRV. Then 20mA → exactly URV. Then 12mA → exactly (LRV + 0.5×Span). This validates the <em>entire chain</em> — field wiring, JB terminals, AI card, DCS scaling block, and HMI faceplate.</li>
+          <li><strong>Square-root Scaling (DP Flow):</strong> For orifice-based flow, raw mA is proportional to differential pressure, NOT flow rate. The DCS applies √ extraction <em>after</em> converting mA to % of DP span. If √ is applied before LRV/URV scaling, the output is non-linear and incorrect at all values.</li>
+          <li><strong>NAMUR NE43 Fault Regions:</strong> Defines 3.8–4.0mA and 20.0–20.5mA as "in linear range but near limit." Below 3.6mA or above 21.0mA = wire break/short (BAD PV quality). Between 3.6–3.8 or 20.5–21 = sensor fault.</li>
+          <li><strong>HART Configuration Mismatch:</strong> Smart transmitters store LRV/URV internally in their own electronics. Configuring scaling via the HART handheld does NOT automatically update the DCS scaling block. Both must be independently verified during loop checks — a major source of discrepancies found during FAT.</li>
+          <li><strong>Turndown Ratio:</strong> Practical transmitter accuracy degrades below 10% of span. A 0–400°C transmitter measuring 20°C (5% span) will have worse accuracy than at mid-range. Select transmitter range to match normal operating point, not just maximum possible.</li>
+        </ul>
+      </div>
+
+      <details class="glossary">
+        <summary>📖 Glossary — PV Scaling Terms</summary>
+        <div class="glossary-grid">
+          <div class="g-item"><div class="g-term">PV</div><div class="g-def"><strong>Process Variable</strong> — The real-world value displayed to operator (e.g., 47.2 bar, 320°C, 1500 m³/h)</div></div>
+          <div class="g-item"><div class="g-term">EU</div><div class="g-def"><strong>Engineering Units</strong> — The unit of measurement for PV (bar, °C, m³/h, mmH₂O) as opposed to raw mA signal</div></div>
+          <div class="g-item"><div class="g-term">LRV</div><div class="g-def"><strong>Lower Range Value</strong> — EU value at exactly 4mA (bottom of calibrated span). Same as "Range Zero" on some DCS.</div></div>
+          <div class="g-item"><div class="g-term">URV</div><div class="g-def"><strong>Upper Range Value</strong> — EU value at exactly 20mA (top of calibrated span). Same as "Range Span" on some DCS.</div></div>
+          <div class="g-item"><div class="g-term">Span</div><div class="g-def"><strong>URV − LRV</strong> — Total calibrated measurement range (always positive). Determines sensitivity: large span = less resolution per mA step.</div></div>
+          <div class="g-item"><div class="g-term">Range</div><div class="g-def"><strong>LRV to URV</strong> — The interval from lower to upper bound. Written as "0–100 bar" or "−10 to +10 bar".</div></div>
+          <div class="g-item"><div class="g-term">Zero Elevation</div><div class="g-def">LRV &gt; 0. Transmitter outputs ≥4mA even when process is at "zero" (e.g., 1.5m minimum level on pressurized tank).</div></div>
+          <div class="g-item"><div class="g-term">Zero Suppression</div><div class="g-def">LRV &lt; 0. Transmitter reads below process datum line. Rare; used when sensor is physically below reference point.</div></div>
+          <div class="g-item"><div class="g-term">FIELD TX</div><div class="g-def"><strong>Field Transmitter</strong> — Physical sensor + electronics mounted on process pipe/vessel, outputs 4–20mA.</div></div>
+          <div class="g-item"><div class="g-term">DCS AI</div><div class="g-def"><strong>Analog Input Card</strong> — Converts mA to digital count, then scaling block converts count to EU via LRV/URV.</div></div>
+          <div class="g-item"><div class="g-term">Scaling Block</div><div class="g-def">DCS function (PVCHAR, AI_8PV, etc.) that maps raw count → engineering units using LRV/URV/offset.</div></div>
+          <div class="g-item"><div class="g-term">Square-Root Extr</div><div class="g-def">DP flow transmitters output mA proportional to pressure. The DCS takes √ of the %DP to get flow rate. Order matters!</div></div>
+          <div class="g-item"><div class="g-term">HART</div><div class="g-def"><strong>Highway Addressable Remote Transducer</strong> — Digital protocol overlaid on 4–20mA carrying metadata (tag, diagnostic, range).</div></div>
+          <div class="g-item"><div class="g-term">NAMUR NE43</div><div class="g-def">Standard defining signal quality regions: 3.6–3.8 / 3.8–4 / 4–20 / 20–20.5 / 20.5–21 / &gt;21 mA.</div></div>
+          <div class="g-item"><div class="g-term">Turndown</div><div class="g-def"><strong>URV / normal PV</strong> — Operating range as fraction of full span. Below 10:1 turndown, accuracy degrades.</div></div>
+        </div>
+      </details>`,
 
     dp:`
       <div class="loop-diag">
@@ -1987,11 +2060,82 @@ function maEvaluateAlarms(pv,pct,mA,lrv,urv){
   else if(status==='h'||status==='l'){['ma-node-h','ma-arr-3'].forEach(id=>$(id).classList.add('glow-amber','btnk-slow'));}
 }
 function maReEval(){var p=parseFloat($('ma-pv').value),l=parseFloat($('ma-lrv').value)||0,u=parseFloat($('ma-urv').value)||100;if(isNaN(p))return;var s=u-l;if(s===0)return;var pc=((p-l)/s)*100,m=4+(pc*16/100);maUpdateVisuals(p,pc,m,l,u);maEvaluateAlarms(p,pc,m,l,u);}
-/* unit converter with custom dropdowns */
-function pvMA(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),m=parseFloat($('pv-m').value);if([l,u,m].some(isNaN))return;const pv=l+((m-4)*(u-l))/16,pc=((m-4)*100)/16;$('pv-e').value=pv.toFixed(3);pvShow(pv,m,pc,l,u)}
-function pvEU(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),e=parseFloat($('pv-e').value);if([l,u,e].some(isNaN))return;const m=4+((e-l)/(u-l))*16,pc=((m-4)*100)/16;$('pv-m').value=m.toFixed(3);pvShow(e,m,pc,l,u)}
-function pvShow(pv,m,pc,l,u){set('pv-r1',pv.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');set('pv-r3',pc.toFixed(2)+'%');const pct=Math.max(0,Math.min(100,pc));$('pv-bar').style.width=pct+'%';$('pv-marker').style.left=pct+'%';$('pv-marker').textContent=pc.toFixed(1)+'%';$('pv-scale-lrv').textContent=l;$('pv-scale-urv').textContent=u;let s='<span class="badge badge-ok">● Normal</span>';if(m<3.8)s='<span class="badge badge-err">⚠ UNDERRANGE — Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">⚠ OVERRANGE — Short Circuit</span>';else if(m<4)s='<span class="badge badge-warn">▲ Below Linear Range</span>';else if(m>20)s='<span class="badge badge-warn">▲ Above Linear Range</span>';$('pv-r4').innerHTML=s}
-function pvCheckAlarms(){const l=parseFloat($('pv-lrv').value)||0,u=parseFloat($('pv-urv').value)||100;const pv=parseFloat($('pv-e').value)||l+(parseFloat($('pv-m').value)-4)*(u-l)/16;const al=parseFloat($('pv-al').value),all=parseFloat($('pv-all').value),ah=parseFloat($('pv-ah').value),ahh=parseFloat($('pv-ahh').value);let h='';const isN=n=>!isNaN(n);if(isN(ahh)&&pv>=ahh)h+='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';if(isN(ah)&&pv>=ah)h+='<div class="alarm-msg h">⚠️ HIGH ALARM: PV '+pv.toFixed(2)+' ≥ '+ah+' (High) — Process Above Normal</div>';if(isN(al)&&pv<=al)h+='<div class="alarm-msg l">⚠️ LOW ALARM: PV '+pv.toFixed(2)+' ≤ '+al+' (Low) — Process Below Normal</div>';if(isN(all)&&pv<=all)h+='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';if(!h)h+='<div class="alarm-msg ok">✅ No Alarms — PV '+pv.toFixed(2)+' within normal operating range</div>';$('pv-alarm-result').innerHTML=h}
+/* ── PV SCALING CALCULATOR — bidirectional drive ─────────────────────── */
+let pvUpdating=false, pvDriver=null;
+function pvDrive(src){
+  if(pvUpdating)return;
+  const lrv=parseFloat($('pv-lrv').value)||0;
+  const urv=parseFloat($('pv-urv').value)||100;
+  const span=urv-lrv;
+  if(span===0)return;
+  pvUpdating=true;pvDriver=src;
+  const pvIn=$('pv-e').value,pctIn=$('pv-pct').value,mAIn=$('pv-m').value;
+  let pv,pct,mA;
+  if(src==='cfg'){pv=parseFloat(pvIn);if(isNaN(pv)){pv=lrv;}pct=((pv-lrv)/span)*100;mA=4+(pct*16/100);$('pv-e').value=pv.toFixed(3);$('pv-pct').value=pct.toFixed(2);$('pv-m').value=mA.toFixed(3);$('pv-span').value=span.toFixed(3);
+  }else if(src==='pv'){pv=parseFloat(pvIn);if(isNaN(pv)){pvUpdating=false;return;}pct=((pv-lrv)/span)*100;mA=4+(pct*16/100);$('pv-pct').value=pct.toFixed(2);$('pv-m').value=mA.toFixed(3);$('pv-span').value=span.toFixed(3);
+  }else if(src==='ma'){mA=parseFloat(mAIn);if(isNaN(mA)){pvUpdating=false;return;}pct=((mA-4)/16)*100;pv=lrv+(pct/100)*span;$('pv-e').value=pv.toFixed(3);$('pv-pct').value=pct.toFixed(2);$('pv-span').value=span.toFixed(3);
+  }else if(src==='pct'){pct=parseFloat(pctIn);if(isNaN(pct)){pvUpdating=false;return;}pv=lrv+(pct/100)*span;mA=4+(pct*16/100);$('pv-e').value=pv.toFixed(3);$('pv-m').value=mA.toFixed(3);$('pv-span').value=span.toFixed(3);
+  }
+  pvUpdating=false;
+  pvUpdateVisuals(pv,pct,mA,lrv,urv,span);
+  pvEvaluateAlarms(pv,pct,mA,lrv,urv,span);
+}
+function pvUpdateVisuals(pv,pct,mA,lrv,urv,span){
+  set('pv-r1',(isNaN(pv)?'—':pv.toFixed(2)+' EU'));
+  set('pv-r2',(isNaN(mA)?'—':mA.toFixed(3)+' mA'));
+  set('pv-r3',(isNaN(pct)?'—':pct.toFixed(2)+'%'));
+  $('pv-scale-lrv').textContent=lrv;
+  $('pv-scale-urv').textContent=urv;
+  const barPct=Math.max(0,Math.min(100,pct));
+  $('pv-bar').style.width=barPct+'%';
+  $('pv-marker').style.left=barPct+'%';
+  $('pv-marker').textContent=pct.toFixed(1)+'%';
+  $('pv-span').value=span.toFixed(3);
+  ['pv-e','pv-pct','pv-m'].forEach(id=>$(id).classList.remove('field-driver'));
+  if(pvDriver==='pv')$('pv-e').classList.add('field-driver');
+  else if(pvDriver==='ma')$('pv-m').classList.add('field-driver');
+  else if(pvDriver==='pct')$('pv-pct').classList.add('field-driver');
+}
+function pvEvaluateAlarms(pv,pct,mA,lrv,urv,span){
+  const al=parseFloat(document.getElementById('pv-al').value)||NaN;
+  const all=parseFloat(document.getElementById('pv-all').value)||NaN;
+  const ah=parseFloat(document.getElementById('pv-ah').value)||NaN;
+  const ahh=parseFloat(document.getElementById('pv-ahh').value)||NaN;
+  const isN=n=>!isNaN(n);
+  // Draw alarm lines on signal bar
+  const bar=document.getElementById('pv-sigbar');
+  if(bar){
+    bar.querySelectorAll('.alarm-line,.alarm-line-label').forEach(el=>el.remove());
+    if(span>0){
+      if(isN(ahh)){const px=Math.max(0,Math.min(100,((ahh-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line hh';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label hh';lb.style.left=px+'%';lb.textContent='HH='+ahh;bar.appendChild(lb);}}
+      if(isN(ah)){const px=Math.max(0,Math.min(100,((ah-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line h';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label h';lb.style.left=px+'%';lb.textContent='H='+ah;bar.appendChild(lb);}}
+      if(isN(al)){const px=Math.max(0,Math.min(100,((al-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line l';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label l';lb.style.left=px+'%';lb.textContent='L='+al;bar.appendChild(lb);}}
+      if(isN(all)){const px=Math.max(0,Math.min(100,((all-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line ll';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label ll';lb.style.left=px+'%';lb.textContent='LL='+all;bar.appendChild(lb);}}
+    }
+  }
+  // Auto alarm detection — most severe (outside-in): LL→HH→L→H→fault→normal
+  let status='normal',badge='',banner='',bannerClass='',glowClass='';
+  if(isN(all)&&pv<=all){status='ll';badge='<span class="badge badge-err btnk-fast">🚨 LL ALARM</span>';banner='🔴 LOW-LOW ALARM — PV '+pv.toFixed(2)+' ≤ '+all+' EU. In a live plant this typically triggers an automatic shutdown.';bannerClass='alarm-msg ll';glowClass='glow-red';}
+  else if(isN(ahh)&&pv>=ahh){status='hh';badge='<span class="badge badge-err btnk-fast">🚨 HH ALARM</span>';banner='🔴 HIGH-HIGH ALARM — PV '+pv.toFixed(2)+' ≥ '+ahh+' EU. In a live plant this typically triggers an automatic shutdown.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else if(isN(al)&&pv<=al){status='l';badge='<span class="badge badge-warn btnk-slow">⚠️ LOW</span>';banner='🟡 LOW ALARM — PV '+pv.toFixed(2)+' ≤ '+al+' EU. Operator attention required.';bannerClass='alarm-msg l';glowClass='glow-amber';}
+  else if(isN(ah)&&pv>=ah){status='h';badge='<span class="badge badge-warn btnk-slow">⚠️ HIGH</span>';banner='🟡 HIGH ALARM — PV '+pv.toFixed(2)+' ≥ '+ah+' EU. Operator attention required.';bannerClass='alarm-msg h';glowClass='glow-amber';}
+  else if(mA<3.8){status='fault';badge='<span class="badge badge-err btnk-fast">⚠ WIRE BREAK</span>';banner='⚠️ SIGNAL FAULT — mA='+mA.toFixed(3)+' (&lt;3.8mA). Possible wire break / open circuit.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else if(mA>20.5){status='fault';badge='<span class="badge badge-err btnk-fast">⚠ SHORT</span>';banner='⚠️ SIGNAL FAULT — mA='+mA.toFixed(3)+' (&gt;20.5mA). Possible short circuit.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else{status='normal';badge='<span class="badge badge-ok">● HEALTHY</span>';banner='✅ PV '+pv.toFixed(2)+' EU normal | '+mA.toFixed(2)+' mA';bannerClass='alarm-msg ok';glowClass='';}
+  $('pv-r4').innerHTML=badge;
+  const ban=$('pv-banner');
+  ban.className='alarm-banner show '+bannerClass;
+  ban.textContent=banner;
+  ban.style.display='block';
+  const rb=$('pv-resbox');
+  rb.className='resbox '+glowClass;
+  // Breadcrumb alarm pulse on signal path
+  ['pv-node-f','pv-node-j','pv-node-d','pv-node-s','pv-node-h'].forEach(id=>{let el=$(id);el.classList.remove('glow-amber','glow-red','btnk-fast','btnk-slow');});
+  ['pv-arr-1','pv-arr-2','pv-arr-3','pv-arr-4'].forEach(id=>{let el=$(id);el.classList.remove('glow-amber','glow-red','btnk-fast','btnk-slow');});
+  if(status==='hh'||status==='ll'||status==='fault'){['pv-node-d','pv-node-s','pv-node-h','pv-arr-3','pv-arr-4'].forEach(id=>$(id).classList.add('glow-red','btnk-fast'));}
+  else if(status==='h'||status==='l'){['pv-node-s','pv-node-h','pv-arr-4'].forEach(id=>$(id).classList.add('glow-amber','btnk-slow'));}
+}
+function pvReEval(){var p=parseFloat($('pv-e').value),l=parseFloat($('pv-lrv').value)||0,u=parseFloat($('pv-urv').value)||100;if(isNaN(p))return;var s=u-l;if(s===0)return;var pc=((p-l)/s)*100,m=4+(pc*16/100);pvUpdateVisuals(p,pc,m,l,u,s);pvEvaluateAlarms(p,pc,m,l,u,s);}
 function calcDP(){const q=parseFloat($('dp-q').value),d=parseFloat($('dp-d').value),m=parseFloat($('dp-m').value);if([q,d,m].some(isNaN)||d===0)return;const f=q*Math.sqrt(m/d);set('dp-r1',f.toFixed(3));set('dp-r2',((f/q)*100).toFixed(2)+'%');const pct=Math.max(0,Math.min(100,m));$('dp-bar').style.width=pct+'%';$('dp-marker').style.left=pct+'%';$('dp-marker').textContent=m.toFixed(1)+'%';let s='<span class="badge badge-ok">● Normal</span>';if(m<0||m>100)s='<span class="badge badge-err">⚠ Out of Range</span>';$('dp-r3').innerHTML=s}
 function dpCheckAlarms(){const q=parseFloat($('dp-q').value)||0;const m=parseFloat($('dp-m').value)||0;const f=q*Math.sqrt(Math.max(0,m)/100);const al=parseFloat($('dp-al').value),all=parseFloat($('dp-all').value),ah=parseFloat($('dp-ah').value),ahh=parseFloat($('dp-ahh').value);let h='';const isN=n=>!isNaN(n);if(isN(ahh)&&f>=ahh)h+='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: Flow '+f.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';if(isN(ah)&&f>=ah)h+='<div class="alarm-msg h">⚠️ HIGH ALARM: Flow '+f.toFixed(2)+' ≥ '+ah+' (High) — Flow Above Normal</div>';if(isN(al)&&f<=al)h+='<div class="alarm-msg l">⚠️ LOW ALARM: Flow '+f.toFixed(2)+' ≤ '+al+' (Low) — Flow Below Normal</div>';if(isN(all)&&f<=all)h+='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: Flow '+f.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';if(!h)h+='<div class="alarm-msg ok">✅ No Alarms — Flow '+f.toFixed(2)+' within normal operating range</div>';$('dp-alarm-result').innerHTML=h}
 function rtdR(){const r=parseFloat($('rtd-r').value);if(isNaN(r))return;const t=(r-100)/(100*0.00385);$('rtd-t').value=t.toFixed(2);set('rtd-r1',t.toFixed(2)+' °C');set('rtd-r2',r.toFixed(2)+' Ω')}
