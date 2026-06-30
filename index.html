@@ -1650,13 +1650,13 @@ function buildTool(id){
 
       <div class="alarm-banner" id="ma-banner"></div>
 
-      <div class="alarm-section" id="ma-alarm-section" style="display:none">
-        <div class="alarm-title">⚠ Alarm Setpoints <span style="font-size:10px;color:var(--ghost);font-weight:400">(optional — enter values to activate)</span></div>
+      <div class="alarm-section">
+        <div class="alarm-title">⚠ Alarm Setpoints</div>
         <div class="alarm-legend">
-          <span class="al-ll">LL — Low-Low (dangerous, trips SIS)</span>
-          <span class="al-l">L — Low (early warning)</span>
-          <span class="al-h">H — High (early warning)</span>
-          <span class="al-hh">HH — High-High (dangerous, trips SIS)</span>
+          <span class="al-ll">LL (dangerous)</span>
+          <span class="al-l">L (warning)</span>
+          <span class="al-h">H (warning)</span>
+          <span class="al-hh">HH (dangerous)</span>
         </div>
         <div class="frow c4">
           <div class="fw"><div class="fl">LL (Low-Low)</div><input class="fi" type="number" id="ma-all" placeholder="e.g. 10" step="any" oninput="maReEval()"></div>
@@ -1666,7 +1666,6 @@ function buildTool(id){
         </div>
         <div id="ma-alarm-warn" style="margin-top:8px"></div>
       </div>
-      <button class="calcbtn" style="margin:0" onclick="$('ma-alarm-section').style.display=$('ma-alarm-section').style.display==='none'?'block':'none'">⚙ Configure Alarm Setpoints ▾</button>
 
       <div class="try-caption">💡 Try: Change PV to <strong>85</strong> → <strong>95</strong> → <strong>15</strong> and watch status + alarms respond live</div>
 
@@ -1948,18 +1947,22 @@ function maUpdateVisuals(pv,pct,mA,lrv,urv){
   else if(maDriver==='ma')$('ma-mA').classList.add('field-driver');
 }
 function maEvaluateAlarms(pv,pct,mA,lrv,urv){
-  const al=parseFloat($('ma-al').value),all=parseFloat($('ma-all').value);
-  const ah=parseFloat($('ma-ah').value),ahh=parseFloat($('ma-ahh').value);
+  const al=parseFloat(document.getElementById('ma-al').value)||NaN;
+  const all=parseFloat(document.getElementById('ma-all').value)||NaN;
+  const ah=parseFloat(document.getElementById('ma-ah').value)||NaN;
+  const ahh=parseFloat(document.getElementById('ma-ahh').value)||NaN;
   const isN=n=>!isNaN(n);
   const span=urv-lrv;
   // Draw alarm lines on bar
-  const bar=$('ma-sigbar');
-  bar.querySelectorAll('.alarm-line,.alarm-line-label').forEach(el=>el.remove());
-  if(span>0){
-    if(isN(ahh)){const pos=Math.max(0,Math.min(100,((ahh-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line hh';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label hh';l.style.left=pos+'%';l.textContent='HH='+ahh;bar.appendChild(l);}}
-    if(isN(ah)){const pos=Math.max(0,Math.min(100,((ah-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line h';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label h';l.style.left=pos+'%';l.textContent='H='+ah;bar.appendChild(l);}}
-    if(isN(al)){const pos=Math.max(0,Math.min(100,((al-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line l';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label l';l.style.left=pos+'%';l.textContent='L='+al;bar.appendChild(l);}}
-    if(isN(all)){const pos=Math.max(0,Math.min(100,((all-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line ll';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label ll';l.style.left=pos+'%';l.textContent='LL='+all;bar.appendChild(l);}}
+  const bar=document.getElementById('ma-sigbar');
+  if(bar){
+    bar.querySelectorAll('.alarm-line,.alarm-line-label').forEach(el=>el.remove());
+    if(span>0){
+      if(isN(ahh)){const px=Math.max(0,Math.min(100,((ahh-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line hh';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label hh';lb.style.left=px+'%';lb.textContent='HH='+ahh;bar.appendChild(lb);}}
+      if(isN(ah)){const px=Math.max(0,Math.min(100,((ah-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line h';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label h';lb.style.left=px+'%';lb.textContent='H='+ah;bar.appendChild(lb);}}
+      if(isN(al)){const px=Math.max(0,Math.min(100,((al-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line l';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label l';lb.style.left=px+'%';lb.textContent='L='+al;bar.appendChild(lb);}}
+      if(isN(all)){const px=Math.max(0,Math.min(100,((all-lrv)/span)*100));if(px>1&&px<99){const d=document.createElement('div');d.className='alarm-line ll';d.style.left=px+'%';bar.appendChild(d);const lb=document.createElement('div');lb.className='alarm-line-label ll';lb.style.left=px+'%';lb.textContent='LL='+all;bar.appendChild(lb);}}
+    }
   }
   // Auto alarm detection — most severe (outside-in)
   let status='normal',badge='',banner='',bannerClass='',glowClass='';
