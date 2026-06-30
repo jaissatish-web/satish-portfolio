@@ -1898,54 +1898,87 @@ function buildTool(id){
   return T[id]||'<p style="color:var(--ghost)">Coming soon.</p>';
 }
 
-/* ── CALCULATOR FUNCTIONS ──────────────────────────────────── */
-function maFromPv(){
+/* ── 4-20mA MATRIX CALCULATOR + ALARM STATE MACHINE ─────── */
+let maUpdating=false, maDriver=null;
+function maDrive(src){
+  if(maUpdating)return;
   const lrv=parseFloat($('ma-lrv').value)||0;
   const urv=parseFloat($('ma-urv').value)||100;
-  const pv=parseFloat($('ma-pv').value);
   const span=urv-lrv;
-  if(isNaN(pv)||span===0)return;
-  const pct=((pv-lrv)/span)*100;
-  const mA=4+(pct*16/100);
-  // Update display
-  set('ma-r1',pv.toFixed(2)+' EU');
-  set('ma-r2',pct.toFixed(2)+'%');
-  set('ma-r3',mA.toFixed(3)+' mA');
-  // Scale labels
+  if(span===0)return;
+  maUpdating=true;maDriver=src;
+  const pvIn=$('ma-pv').value,pctIn=$('ma-pct').value,mAIn=$('ma-mA').value;
+  let pv,pct,mA;
+  if(src==='pv'){
+    pv=parseFloat(pvIn);
+    if(isNaN(pv)){maUpdating=false;return;}
+    pct=((pv-lrv)/span)*100;mA=4+(pct*16/100);
+    $('ma-pct').value=pct.toFixed(2);
+    $('ma-mA').value=mA.toFixed(3);
+  } else if(src==='pct'){
+    pct=parseFloat(pctIn);
+    if(isNaN(pct)){maUpdating=false;return;}
+    pv=lrv+(pct/100)*span;mA=4+(pct*16/100);
+    $('ma-pv').value=pv.toFixed(3);
+    $('ma-mA').value=mA.toFixed(3);
+  } else {
+    mA=parseFloat(mAIn);
+    if(isNaN(mA)){maUpdating=false;return;}
+    pct=((mA-4)/16)*100;pv=lrv+(pct/100)*span;
+    $('ma-pv').value=pv.toFixed(3);
+    $('ma-pct').value=pct.toFixed(2);
+  }
+  maUpdating=false;
+  maUpdateVisuals(pv,pct,mA,lrv,urv);
+  maEvaluateAlarms(pv,pct,mA,lrv,urv);
+}
+function maUpdateVisuals(pv,pct,mA,lrv,urv){
+  set('ma-r1',(isNaN(pv)?'—':pv.toFixed(2)+' EU'));
+  set('ma-r2',(isNaN(pct)?'—':pct.toFixed(2)+'%'));
+  set('ma-r3',(isNaN(mA)?'—':mA.toFixed(3)+' mA'));
   $('ma-scale-lrv').textContent=lrv;
   $('ma-scale-urv').textContent=urv;
-  // Signal bar
   const barPct=Math.max(0,Math.min(100,pct));
   $('ma-bar').style.width=barPct+'%';
   $('ma-marker').style.left=barPct+'%';
   $('ma-marker').textContent=pct.toFixed(1)+'%';
-  // Alarm lines on bar
-  const bar=$('ma-sigbar');
-  // Remove old alarm lines
-  bar.querySelectorAll('.alarm-line').forEach(el=>el.remove());
-  // Get alarm setpoints
+  ['ma-pv','ma-pct','ma-mA'].forEach(id=>$(id).classList.remove('field-driver'));
+  if(maDriver==='pv')$('ma-pv').classList.add('field-driver');
+  else if(maDriver==='pct')$('ma-pct').classList.add('field-driver');
+  else if(maDriver==='ma')$('ma-mA').classList.add('field-driver');
+}
+function maEvaluateAlarms(pv,pct,mA,lrv,urv){
   const al=parseFloat($('ma-al').value),all=parseFloat($('ma-all').value);
   const ah=parseFloat($('ma-ah').value),ahh=parseFloat($('ma-ahh').value);
   const isN=n=>!isNaN(n);
-  // Draw alarm lines at correct positions
-  if(isN(ahh)){const pos=Math.max(0,Math.min(100,((ahh-lrv)/span)*100));if(pos>=0&&pos<=100){const d=document.createElement('div');d.className='alarm-line hh';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label hh';l.style.left=pos+'%';l.textContent='HH';bar.appendChild(l);}}
-  if(isN(ah)){const pos=Math.max(0,Math.min(100,((ah-lrv)/span)*100));if(pos>=0&&pos<=100){const d=document.createElement('div');d.className='alarm-line h';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label h';l.style.left=pos+'%';l.textContent='H';bar.appendChild(l);}}
-  if(isN(al)){const pos=Math.max(0,Math.min(100,((al-lrv)/span)*100));if(pos>=0&&pos<=100){const d=document.createElement('div');d.className='alarm-line l';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label l';l.style.left=pos+'%';l.textContent='L';bar.appendChild(l);}}
-  if(isN(all)){const pos=Math.max(0,Math.min(100,((all-lrv)/span)*100));if(pos>=0&&pos<=100){const d=document.createElement('div');d.className='alarm-line ll';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label ll';l.style.left=pos+'%';l.textContent='LL';bar.appendChild(l);}}
-  // Auto alarm detection — most critical alarm takes priority
-  let st='',msg='';
-  if((isN(ahh)&&pv>=ahh)||(isN(all)&&pv<=all)){
-    // CRITICAL — blinking red lamp
-    if(isN(ahh)&&pv>=ahh){st='<span class="badge badge-err btnk">🚨 HH ALARM</span>';msg='<div class="alarm-msg hh">🚨 HH ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≥ '+ahh+' (High High) — EMERGENCY ACTION REQUIRED</div>';}
-    else{st='<span class="badge badge-err btnk">🚨 LL ALARM</span>';msg='<div class="alarm-msg ll">🚨 LL ALARM TRIGGERED: PV '+pv.toFixed(2)+' ≤ '+all+' (Low Low) — EMERGENCY ACTION REQUIRED</div>';}
-  }
-  else if(isN(ah)&&pv>=ah){st='<span class="badge badge-warn">⚠️ HIGH</span>';msg='<div class="alarm-msg h">⚠️ HIGH ALARM: PV '+pv.toFixed(2)+' ≥ '+ah+' (High) — Process Above Normal</div>';}
-  else if(isN(al)&&pv<=al){st='<span class="badge badge-warn">⚠️ LOW</span>';msg='<div class="alarm-msg l">⚠️ LOW ALARM: PV '+pv.toFixed(2)+' ≤ '+al+' (Low) — Process Below Normal</div>';}
-  else if(mA<3.8){st='<span class="badge badge-err btnk">⚠ SIGNAL FAULT</span>';msg='<div class="alarm-msg hh">⚠️ SIGNAL FAULT: mA='+mA.toFixed(3)+' &lt; 3.8mA — Wire Break / Open Circuit</div>';}
-  else if(mA>20.5){st='<span class="badge badge-err btnk">⚠ SIGNAL FAULT</span>';msg='<div class="alarm-msg hh">⚠️ SIGNAL FAULT: mA='+mA.toFixed(3)+' &gt; 20.5mA — Short Circuit</div>';}
-  else{st='<span class="badge badge-ok">● Normal</span>';msg='<div class="alarm-msg ok">✅ No Alarms — PV '+pv.toFixed(2)+' within normal operating range ('+mA.toFixed(2)+'mA)</div>';}
-  $('ma-r4').innerHTML=st;
-  $('ma-alarm-result').innerHTML=msg;
+  // Draw alarm lines on bar
+  const bar=$('ma-sigbar');
+  bar.querySelectorAll('.alarm-line,.alarm-line-label').forEach(el=>el.remove());
+  if(isN(ahh)){const pos=Math.max(0,Math.min(100,((ahh-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line hh';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label hh';l.style.left=pos+'%';l.textContent='HH='+ahh;bar.appendChild(l);}}
+  if(isN(ah)){const pos=Math.max(0,Math.min(100,((ah-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line h';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label h';l.style.left=pos+'%';l.textContent='H='+ah;bar.appendChild(l);}}
+  if(isN(al)){const pos=Math.max(0,Math.min(100,((al-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line l';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label l';l.style.left=pos+'%';l.textContent='L='+al;bar.appendChild(l);}}
+  if(isN(all)){const pos=Math.max(0,Math.min(100,((all-lrv)/span)*100));if(pos>0&&pos<100){const d=document.createElement('div');d.className='alarm-line ll';d.style.left=pos+'%';bar.appendChild(d);const l=document.createElement('div');l.className='alarm-line-label ll';l.style.left=pos+'%';l.textContent='LL='+all;bar.appendChild(l);}}
+  // Auto alarm detection — most severe (outside-in)
+  let status='normal',badge='',banner='',bannerClass='',glowClass='';
+  if(isN(all)&&pv<=all){status='ll';badge='<span class="badge badge-err btnk-fast">🚨 LL ALARM</span>';banner='🔴 LOW-LOW ALARM — PV '+pv.toFixed(2)+' ≤ '+all+' EU (Low-Low). In a live plant this typically triggers an automatic shutdown.';bannerClass='alarm-msg ll';glowClass='glow-red';}
+  else if(isN(ahh)&&pv>=ahh){status='hh';badge='<span class="badge badge-err btnk-fast">🚨 HH ALARM</span>';banner='🔴 HIGH-HIGH ALARM — PV '+pv.toFixed(2)+' ≥ '+ahh+' EU (High-High). In a live plant this typically triggers an automatic shutdown.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else if(isN(al)&&pv<=al){status='l';badge='<span class="badge badge-warn btnk-slow">⚠️ LOW</span>';banner='🟡 LOW ALARM — PV '+pv.toFixed(2)+' ≤ '+al+' EU (Low). Operator attention required.';bannerClass='alarm-msg l';glowClass='glow-amber';}
+  else if(isN(ah)&&pv>=ah){status='h';badge='<span class="badge badge-warn btnk-slow">⚠️ HIGH</span>';banner='🟡 HIGH ALARM — PV '+pv.toFixed(2)+' ≥ '+ah+' EU (High). Operator attention required.';bannerClass='alarm-msg h';glowClass='glow-amber';}
+  else if(mA<3.8){status='fault';badge='<span class="badge badge-err btnk-fast">⚠ WIRE BREAK</span>';banner='⚠️ SIGNAL FAULT — mA='+mA.toFixed(3)+' (<3.8mA). Possible wire break / open circuit.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else if(mA>20.5){status='fault';badge='<span class="badge badge-err btnk-fast">⚠ SHORT</span>';banner='⚠️ SIGNAL FAULT — mA='+mA.toFixed(3)+' (>20.5mA). Possible short circuit.';bannerClass='alarm-msg hh';glowClass='glow-red';}
+  else{status='normal';badge='<span class="badge badge-ok">● HEALTHY</span>';banner='✅ PV '+pv.toFixed(2)+' EU normal | '+mA.toFixed(2)+' mA';bannerClass='alarm-msg ok';glowClass='';}
+  $('ma-r4').innerHTML=badge;
+  const ban=$('ma-banner');
+  ban.className='alarm-banner show '+bannerClass;
+  ban.textContent=banner;
+  ban.style.display='block';
+  const rb=$('ma-resbox');
+  rb.className='resbox '+glowClass;
+  // Breadcrumb alarm pulse
+  ['ma-node-f','ma-node-j','ma-node-d','ma-node-h'].forEach(id=>{let el=$(id);el.classList.remove('glow-amber','glow-red','btnk-fast','btnk-slow');});
+  ['ma-arr-1','ma-arr-2','ma-arr-3'].forEach(id=>{let el=$(id);el.classList.remove('glow-amber','glow-red','btnk-fast','btnk-slow');});
+  if(status==='hh'||status==='ll'||status==='fault'){['ma-node-d','ma-node-h','ma-arr-3'].forEach(id=>$(id).classList.add('glow-red','btnk-fast'));}
+  else if(status==='h'||status==='l'){['ma-node-h','ma-arr-3'].forEach(id=>$(id).classList.add('glow-amber','btnk-slow'));}
 }
 function pvMA(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),m=parseFloat($('pv-m').value);if([l,u,m].some(isNaN))return;const pv=l+((m-4)*(u-l))/16,pc=((m-4)*100)/16;$('pv-e').value=pv.toFixed(3);pvShow(pv,m,pc,l,u)}
 function pvEU(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),e=parseFloat($('pv-e').value);if([l,u,e].some(isNaN))return;const m=4+((e-l)/(u-l))*16,pc=((m-4)*100)/16;$('pv-m').value=m.toFixed(3);pvShow(e,m,pc,l,u)}
