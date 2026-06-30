@@ -483,7 +483,7 @@ footer{
 .tcrd:hover .tcopen{color:var(--amber)}
 
 /* Tool panel */
-.tarea{max-width:860px;margin:0 auto;padding:36px clamp(16px,4vw,56px) 80px;display:none}
+.tarea{max-width:900px;margin:0 auto;padding:24px clamp(16px,4vw,56px) 80px}
 .backbtn{
   display:inline-flex;align-items:center;gap:7px;
   font-family:var(--mono);font-size:10px;font-weight:600;
@@ -493,7 +493,7 @@ footer{
 .backbtn::before{content:'←';font-size:13px}
 .backbtn:hover{color:var(--amber)}
 .tpanel{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:clamp(26px,4vw,42px)}
-.tph{display:flex;align-items:center;gap:14px;padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--edge)}
+.tph{display:flex;align-items:center;gap:12px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--edge)}
 .tph-pb{padding-bottom:22px;margin-bottom:24px;border-bottom:1px solid var(--edge);display:flex;align-items:center;gap:14px}
 .tpi{font-size:26px}
 .tptit{font-family:var(--disp);font-size:22px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--ice)}
@@ -1140,15 +1140,9 @@ footer{
 
 <!-- ════════════════════ VIEW: TOOLS ════════════════════════ -->
 <div class="view" id="view-tools">
-  <div class="tools-top">
-    <button class="backbtn" onclick="homeV()">Back to Portfolio</button>
-    <div class="eye">Product Suite</div>
-    <h1 style="font-family:var(--disp);font-size:clamp(42px,8vw,90px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;color:var(--ice);line-height:.9;margin-bottom:12px">
-      Instrumentation<br><span style="color:var(--amber)">Tools Hub</span>
-    </h1>
-    <p style="font-size:15px;color:var(--mist);max-width:500px;line-height:1.7;margin-top:12px">
-      Precision-built calculators and checklists for I&C engineers. Built by a field engineer who needed them on site.
-    </p>
+  <div style="padding:78px clamp(16px,4vw,56px) 20px;display:flex;align-items:center;justify-content:space-between">
+    <button class="backbtn" onclick="homeV()">← Back to Portfolio</button>
+    <div class="eye">Engineering Tools</div>
   </div>
 
   <div class="tgrid" id="tgrid">
