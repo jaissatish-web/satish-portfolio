@@ -1185,86 +1185,112 @@ footer{
 <!-- ════════════════════ VIEW: TOOLS ════════════════════════ -->
 <div class="view" id="view-tools">
   <div style="padding:78px clamp(16px,4vw,56px) 20px;display:flex;align-items:center;justify-content:space-between">
-    <button class="backbtn" onclick="homeV()">← Back to Portfolio</button>
+    <button class="backbtn" onclick="homeV()">← Portfolio</button>
     <div class="eye">Engineering Tools</div>
   </div>
 
-  <div class="tgrid" id="tgrid">
-    <div class="tcrd" onclick="openTool('ma')">
-      <div class="tco">〰</div>
-      <div class="tcn">4–20 mA Signal</div>
-      <div class="tcd">Bidirectional percentage ↔ milliamp converter. Live error detection for loop verification.</div>
-      <div class="tcopen">Open Calculator →</div>
-    </div>
-    <div class="tcrd" onclick="openTool('pv')">
-      <div class="tco">🌡</div>
-      <div class="tcn">PV Scaling Calculator</div>
-      <div class="tcd">Convert mA signal to Engineering Units using LRV/URV. Bidirectional with live scaling.</div>
-      <div class="tcopen">Open Calculator →</div>
-    </div>
-    <div class="tcrd" onclick="openTool('dp')">
-      <div class="tco">〜</div>
-      <div class="tcn">DP Flow Calculator</div>
-      <div class="tcd">Square-root extraction from differential pressure. Orifice plate flow measurement.</div>
-      <div class="tcopen">Open Calculator →</div>
-    </div>
-    <div class="tcrd" onclick="openTool('pid')">
-      <div class="tco">📊</div>
-      <div class="tcn">PID Loop Simulator</div>
-      <div class="tcd">Interactive PID control simulation. Tune Kp, Ki, Kd and watch live response.</div>
-      <div class="tcopen">Open Simulator →</div>
-    </div>
-  </div>
-    <div class="tgrid" id="tgrid2" style="margin-top:10px">
-    <div class="tcrd" onclick="openTool('rtd')">
-      <div class="tco">📟</div>
-      <div class="tcn">RTD Pt100</div>
-      <div class="tcd">Resistance ↔ Temperature per IEC 60751. Cable compensation included.</div>
-      <div class="tcopen">Coming Soon</div>
-    </div>
-    <div class="tcrd" onclick="openTool('tc')">
-      <div class="tco">🔥</div>
-      <div class="tcn">Thermocouple mV</div>
-      <div class="tcd">Type K/J/T/E/N mV ↔ Temperature with cold junction compensation.</div>
-      <div class="tcopen">Coming Soon</div>
-    </div>
-    <div class="tcrd" onclick="openTool('cv')">
-      <div class="tco">⚙</div>
-      <div class="tcn">Valve Cv / Kv</div>
-      <div class="tcd">ISA-75.01 liquid service flow coefficient with Kv equivalent.</div>
-      <div class="tcopen">Coming Soon</div>
-    </div>
-    <div class="tcrd" onclick="openTool('ohm')">
-      <div class="tco">⚡</div>
-      <div class="tcn">Ohm's Law & Power</div>
-      <div class="tcd">Solve V, I, R, P from any two knowns. 4-20mA loop context.</div>
-      <div class="tcopen">Coming Soon</div>
-    </div>
-      </div>
+  <div id="tool-grids">
 
-      <div class="tgrid" id="tgrid3" style="margin-top:10px">
-        <div class="tcrd" onclick="openTool('unit')">
-          <div class="tco">↔</div>
-          <div class="tcn">Unit Converter</div>
-          <div class="tcd">Pressure · Temperature · Flow · Length · Mass. All common engineering units.</div>
-          <div class="tcopen">Open Converter →</div>
-        </div>
-        <div class="tcrd" onclick="openTool('cable')">
-          <div class="tco">🔌</div>
-          <div class="tcn">Cable Sizing</div>
-          <div class="tcd">Voltage drop for 4-20mA loops. Copper · 2-wire · mm² cross-section.</div>
-          <div class="tcopen">Open Calculator →</div>
-        </div>
-        <div class="tcrd" onclick="openTool('checklist')">
-          <div class="tco">✅</div>
-          <div class="tcn">Loop Checklist</div>
-          <div class="tcd">Pre-commissioning checklist with 24 items, 5 sections, progress tracking, .txt export.</div>
-          <div class="tcopen">Open Checklist →</div>
-        </div>
+    <!-- Category: Signal & Loop -->
+    <div class="tctag">Signal &amp; Loop</div>
+    <div class="tgrid">
+      <div class="tcrd" onclick="openTool('ma')">
+        <div class="tco">〰</div>
+        <div class="tcn">4–20 mA Signal</div>
+        <div class="tcd">Bidirectional percentage ↔ milliamp converter. Live error detection for loop verification.</div>
+        <div class="tcopen">Open Calculator →</div>
       </div>
+      <div class="tcrd" onclick="openTool('pv')">
+        <div class="tco">🌡</div>
+        <div class="tcn">PV Scaling Calculator</div>
+        <div class="tcd">Convert mA signal to Engineering Units using LRV/URV. Bidirectional with live scaling.</div>
+        <div class="tcopen">Open Calculator →</div>
+      </div>
+      <div class="tcrd" onclick="openTool('dp')">
+        <div class="tco">〜</div>
+        <div class="tcn">DP Flow Calculator</div>
+        <div class="tcd">Square-root extraction from differential pressure. Orifice plate flow measurement.</div>
+        <div class="tcopen">Open Calculator →</div>
+      </div>
+    </div>
+
+    <!-- Category: Process Control -->
+    <div class="tctag">Process Control</div>
+    <div class="tgrid">
+      <div class="tcrd" onclick="openTool('pid')">
+        <div class="tco">📊</div>
+        <div class="tcn">PID Loop Simulator</div>
+        <div class="tcd">Interactive PID control simulation. Tune Kp, Ki, Kd and watch live response with tuning metrics.</div>
+        <div class="tcopen">Open Simulator →</div>
+      </div>
+    </div>
+
+    <!-- Category: Temperature Measurement -->
+    <div class="tctag">Temperature Measurement</div>
+    <div class="tgrid">
+      <div class="tcrd" onclick="openTool('rtd')">
+        <div class="tco">📟</div>
+        <div class="tcn">RTD Pt100</div>
+        <div class="tcd">Resistance ↔ Temperature per IEC 60751. Cable compensation included.</div>
+        <div class="tcopen">Coming Soon</div>
+      </div>
+      <div class="tcrd" onclick="openTool('tc')">
+        <div class="tco">🔥</div>
+        <div class="tcn">Thermocouple mV</div>
+        <div class="tcd">Type K/J/T/E/N mV ↔ Temperature with cold junction compensation.</div>
+        <div class="tcopen">Coming Soon</div>
+      </div>
+    </div>
+
+    <!-- Category: Valves & Actuators -->
+    <div class="tctag">Valves &amp; Actuators</div>
+    <div class="tgrid">
+      <div class="tcrd" onclick="openTool('cv')">
+        <div class="tco">⚙</div>
+        <div class="tcn">Valve Cv / Kv</div>
+        <div class="tcd">ISA-75.01 liquid service flow coefficient with Kv equivalent.</div>
+        <div class="tcopen">Coming Soon</div>
+      </div>
+    </div>
+
+    <!-- Category: Electrical & Wiring -->
+    <div class="tctag">Electrical &amp; Wiring</div>
+    <div class="tgrid">
+      <div class="tcrd" onclick="openTool('ohm')">
+        <div class="tco">⚡</div>
+        <div class="tcn">Ohm's Law &amp; Power</div>
+        <div class="tcd">Solve V, I, R, P from any two knowns. 4-20mA loop context.</div>
+        <div class="tcopen">Coming Soon</div>
+      </div>
+      <div class="tcrd" onclick="openTool('cable')">
+        <div class="tco">🔌</div>
+        <div class="tcn">Cable Sizing</div>
+        <div class="tcd">Voltage drop for 4-20mA loops. Copper · 2-wire · mm² cross-section.</div>
+        <div class="tcopen">Open Calculator →</div>
+      </div>
+    </div>
+
+    <!-- Category: Utilities -->
+    <div class="tctag">Utilities</div>
+    <div class="tgrid">
+      <div class="tcrd" onclick="openTool('unit')">
+        <div class="tco">↔</div>
+        <div class="tcn">Unit Converter</div>
+        <div class="tcd">Pressure · Temperature · Flow · Length · Mass. All common engineering units.</div>
+        <div class="tcopen">Open Converter →</div>
+      </div>
+      <div class="tcrd" onclick="openTool('checklist')">
+        <div class="tco">✅</div>
+        <div class="tcn">Loop Checklist</div>
+        <div class="tcd">Pre-commissioning checklist with 24 items, 5 sections, progress tracking, .txt export.</div>
+        <div class="tcopen">Open Checklist →</div>
+      </div>
+    </div>
+
+  </div>
 
   <div class="tarea" id="tarea">
-    <button class="backbtn" onclick="closeTool()">All Tools</button>
+    <button class="backbtn" onclick="closeTool()">← All Tools</button>
     <div class="tpanel">
       <div class="tph" id="tph"></div>
       <div id="tpb"></div>
@@ -1292,7 +1318,7 @@ function openTools(){
   closeMob();
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   $('view-tools').classList.add('on');
-  $('tgrid').style.display='grid';
+  $('tool-grids').style.display='block';
   $('tarea').style.display='none';
   window.scrollTo({top:0,behavior:'instant'});
   document.body.scrollTop = 0;
@@ -1591,10 +1617,8 @@ const TMETA={
 };
 
 function openTool(id){
-  $('tgrid').style.display='none';
-    $('tgrid2').style.display='none';
-    $('tgrid3').style.display='none';
-    $('tarea').style.display='block';
+  $('tool-grids').style.display='none';
+  $('tarea').style.display='block';
   const m=TMETA[id]||{ico:'📊',t:'PID Loop Simulator',s:'Interactive PID control with live response graph'};
   $('tph').innerHTML=`<div class="tpi">${m.ico}</div><div><div class="tptit">${m.t}</div><div class="tpsub">${m.s}</div></div>`;
   $('tpb').innerHTML=buildTool(id);
@@ -1623,9 +1647,7 @@ function openTool(id){
 }
 function closeTool(){
   $('tarea').style.display='none';
-  $('tgrid').style.display='grid';
-  $('tgrid2').style.display='grid';
-  $('tgrid3').style.display='grid';
+  $('tool-grids').style.display='block';
   window.scrollTo({top:0,behavior:'instant'});
 }
 
