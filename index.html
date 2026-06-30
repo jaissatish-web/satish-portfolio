@@ -523,6 +523,39 @@ footer{
 .badge-warn{background:rgba(245,168,0,.15);color:var(--amber);border:1px solid rgba(245,168,0,.3)}
 .badge-err{background:rgba(255,59,92,.15);color:var(--red);border:1px solid rgba(255,59,92,.3)}
 
+/* MA Matrix Calculator enhanced */
+.ma-explain{background:var(--void);border:1px solid var(--edge);border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:var(--mist);line-height:1.7}
+.ma-explain strong{color:var(--ice)}
+.ma-explain em{color:var(--amber)}
+.ma-matrix{background:var(--void);border:1px solid var(--edge);border-radius:10px;padding:16px;margin-bottom:16px}
+.ma-matrix-label{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.15em;margin-bottom:12px}
+.ma-inp{font-family:var(--mono) !important;font-size:15px !important;font-weight:600 !important;letter-spacing:-.01em}
+.try-caption{font-family:var(--mono);font-size:11px;color:var(--ghost);margin:12px 0;padding:8px 12px;background:var(--raise);border-radius:6px}
+.try-caption strong{color:var(--amber)}
+.alarm-legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.alarm-legend span{font-family:var(--mono);font-size:9px;padding:3px 8px;border-radius:4px}
+.al-ll{background:rgba(255,59,92,.15);color:var(--red);border:1px solid rgba(255,59,92,.3)}
+.al-l{background:rgba(245,168,0,.1);color:var(--amber);border:1px solid rgba(245,168,0,.2)}
+.al-h{background:rgba(245,168,0,.1);color:var(--amber);border:1px solid rgba(245,168,0,.2)}
+.al-hh{background:rgba(255,59,92,.15);color:var(--red);border:1px solid rgba(255,59,92,.3)}
+
+/* Glossary */
+.glossary{margin:20px 0;border:1px solid var(--edge);border-radius:10px;overflow:hidden}
+.glossary summary{padding:12px 16px;font-family:var(--disp);font-size:14px;font-weight:700;color:var(--ice);cursor:pointer;background:var(--panel);user-select:none}
+.glossary summary:hover{color:var(--amber)}
+.glossary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:16px;background:var(--void)}
+.g-item{padding:8px 12px;background:var(--raise);border:1px solid var(--edge);border-radius:6px}
+.g-term{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.g-def{font-size:12px;color:var(--mist);line-height:1.5}
+.g-def strong{color:var(--ice)}
+
+/* Field Notes */
+.field-notes{margin-top:20px;padding:16px;background:var(--panel);border:1px solid var(--edge);border-radius:10px;border-left:3px solid var(--amber)}
+.fn-title{font-family:var(--disp);font-size:14px;font-weight:800;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.field-notes ul{margin:0;padding-left:18px}
+.field-notes li{font-size:12px;color:var(--mist);line-height:1.7;margin-bottom:6px}
+.field-notes li strong{color:var(--ice)}
+
 /* Tool specific: canvas wrapper */
 .tool-canvas-wrap{position:relative;width:100%;height:260px;background:var(--void);border:1px solid var(--edge);border-radius:10px;overflow:hidden;margin:16px 0}
 .tool-canvas-wrap canvas{width:100%;height:100%}
@@ -534,8 +567,19 @@ footer{
 .qref td:last-child{color:var(--amber)}
 
 /* Blinking lamp animation for critical alarms */
-@keyframes blink-lamp{0%,100%{opacity:1;box-shadow:0 0 8px currentColor}50%{opacity:0.4;box-shadow:0 0 2px currentColor}}
-.btnk{animation:blink-lamp 0.8s ease-in-out infinite}
+@keyframes blink-lamp{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes pulse-slow{0%,100%{opacity:1}50%{opacity:0.6}}
+@keyframes glow-red{0%,100%{box-shadow:0 0 8px rgba(255,59,92,.6)}50%{box-shadow:0 0 20px rgba(255,59,92,.9)}}
+@keyframes glow-amber{0%,100%{box-shadow:0 0 5px rgba(245,168,0,.4)}50%{box-shadow:0 0 12px rgba(245,168,0,.7)}}
+.btnk-fast{animation:blink-lamp 0.5s ease-in-out infinite}
+.btnk-slow{animation:pulse-slow 1.5s ease-in-out infinite}
+.glow-red{animation:glow-red 0.6s ease-in-out infinite}
+.glow-amber{animation:glow-amber 1.2s ease-in-out infinite}
+.field-driver{border-color:var(--amber) !important;box-shadow:0 0 0 2px rgba(245,168,0,.2)}
+.field-sel{opacity:.7}
+.alarm-banner{margin-top:12px;padding:12px 16px;border-radius:8px;font-family:var(--mono);font-size:12px;line-height:1.6;display:none}
+.alarm-banner.show{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
 
 /* Alarm lines on signal bar */
 .alarm-line{position:absolute;top:-6px;bottom:-6px;width:2px;z-index:5;pointer-events:none}
@@ -1567,40 +1611,104 @@ function closeTool(){
 function buildTool(id){
   const T={
     ma:`
-      <div class="loop-diag">
-        <div class="loop-node active">FIELD</div><span class="loop-arrow">→</span>
-        <div class="loop-node">JB</div><span class="loop-arrow">→</span>
-        <div class="loop-node">DCS</div><span class="loop-arrow">→</span>
-        <div class="loop-node output">HMI</div>
+      <div class="loop-diag" id="ma-path">
+        <div class="loop-node active" id="ma-node-f">FIELD</div><span class="loop-arrow" id="ma-arr-1">→</span>
+        <div class="loop-node" id="ma-node-j">JB</div><span class="loop-arrow" id="ma-arr-2">→</span>
+        <div class="loop-node" id="ma-node-d">DCS</div><span class="loop-arrow" id="ma-arr-3">→</span>
+        <div class="loop-node output" id="ma-node-h">HMI</div>
       </div>
-      <div class="frow c2">
-        <div class="fw"><div class="fl">LRV (4mA Value)</div><input class="fi" type="number" id="ma-lrv" placeholder="e.g. 0" step="any" value="0" oninput="maFromPv()"></div>
-        <div class="fw"><div class="fl">URV (20mA Value)</div><input class="fi" type="number" id="ma-urv" placeholder="e.g. 100" step="any" value="100" oninput="maFromPv()"></div>
+
+      <div class="ma-explain">
+        <p><strong>How it works:</strong> A 4–20mA loop carries <em>one</em> signal expressed four different ways across the FIELD → JB → DCS → HMI path.<br>
+        Type into <strong>any</strong> of the three fields below (PV, %, mA) — the other two solve themselves instantly.<br>
+        A new engineer sees "50 bar → 12mA." A tech at a junction box sees "14.2mA → ?? bar." This tool teaches <em>every</em> direction.</p>
       </div>
-      <div class="frow c1">
-        <div class="fw"><div class="fl">PV (Process Variable — Engineering Units)</div><input class="fi" type="number" id="ma-pv" placeholder="Enter measured value" step="any" oninput="maFromPv()"></div>
+
+      <div class="frow c2" style="margin-bottom:6px">
+        <div class="fw"><div class="fl">LRV — Lower Range Value (4mA / 0%)</div><input class="fi" type="number" id="ma-lrv" value="0" step="any"></div>
+        <div class="fw"><div class="fl">URV — Upper Range Value (20mA / 100%)</div><input class="fi" type="number" id="ma-urv" value="100" step="any"></div>
       </div>
+
+      <div class="ma-matrix">
+        <div class="ma-matrix-label">LIVE MATRIX — type in any field</div>
+        <div class="frow c3">
+          <div class="fw"><div class="fl">PV (Process Variable)</div><input class="fi ma-inp" type="number" id="ma-pv" placeholder="e.g. 50" step="any" oninput="maDrive('pv')"></div>
+          <div class="fw"><div class="fl">Percent (%)</div><input class="fi ma-inp" type="number" id="ma-pct" placeholder="e.g. 50" step="any" oninput="maDrive('pct')"></div>
+          <div class="fw"><div class="fl">Current (mA)</div><input class="fi ma-inp" type="number" id="ma-mA" placeholder="e.g. 12" step=".001" oninput="maDrive('ma')"></div>
+        </div>
+      </div>
+
       <div class="sigbar" id="ma-sigbar"><div class="sigbar-fill" id="ma-bar" style="width:0%"></div><div class="sigbar-marker" id="ma-marker" style="left:0%">0%</div></div>
       <div class="sigbar-scale"><span id="ma-scale-lrv">0</span><span>50%</span><span id="ma-scale-urv">100</span></div>
-      <div class="resbox"><div class="rg c4">
+
+      <div class="resbox" id="ma-resbox"><div class="rg c4">
         <div class="ri"><div class="rl">PV (EU)</div><div class="rv a" id="ma-r1">—</div></div>
         <div class="ri"><div class="rl">Percentage</div><div class="rv w" id="ma-r2">—</div></div>
         <div class="ri"><div class="rl">mA Signal</div><div class="rv b" id="ma-r3">—</div></div>
         <div class="ri"><div class="rl">Status</div><div class="rv" id="ma-r4"><span class="badge badge-ok">Ready</span></div></div>
       </div></div>
+
+      <div class="alarm-banner" id="ma-banner"></div>
+
       <div class="alarm-section" id="ma-alarm-section" style="display:none">
-        <div class="alarm-title">⚠ Alarm Setpoints (in Engineering Units)</div>
-        <div class="frow c4">
-          <div class="fw"><div class="fl">L (Low)</div><input class="fi" type="number" id="ma-al" placeholder="e.g. 10" step="any" oninput="maFromPv()"></div>
-          <div class="fw"><div class="fl">LL (Low Low)</div><input class="fi" type="number" id="ma-all" placeholder="e.g. 5" step="any" oninput="maFromPv()"></div>
-          <div class="fw"><div class="fl">H (High)</div><input class="fi" type="number" id="ma-ah" placeholder="e.g. 90" step="any" oninput="maFromPv()"></div>
-          <div class="fw"><div class="fl">HH (High High)</div><input class="fi" type="number" id="ma-ahh" placeholder="e.g. 95" step="any" oninput="maFromPv()"></div>
+        <div class="alarm-title">⚠ Alarm Setpoints <span style="font-size:10px;color:var(--ghost);font-weight:400">(optional — enter values to activate)</span></div>
+        <div class="alarm-legend">
+          <span class="al-ll">LL — Low-Low (dangerous, trips SIS)</span>
+          <span class="al-l">L — Low (early warning)</span>
+          <span class="al-h">H — High (early warning)</span>
+          <span class="al-hh">HH — High-High (dangerous, trips SIS)</span>
         </div>
-        <div id="ma-alarm-result"></div>
+        <div class="frow c4">
+          <div class="fw"><div class="fl">LL (Low-Low)</div><input class="fi" type="number" id="ma-all" placeholder="e.g. 10" step="any"></div>
+          <div class="fw"><div class="fl">L (Low)</div><input class="fi" type="number" id="ma-al" placeholder="e.g. 20" step="any"></div>
+          <div class="fw"><div class="fl">H (High)</div><input class="fi" type="number" id="ma-ah" placeholder="e.g. 80" step="any"></div>
+          <div class="fw"><div class="fl">HH (High-High)</div><input class="fi" type="number" id="ma-ahh" placeholder="e.g. 90" step="any"></div>
+        </div>
+        <div id="ma-alarm-warn" style="margin-top:8px"></div>
       </div>
-      <button class="calcbtn" style="margin:0" onclick="document.getElementById('ma-alarm-section').style.display=document.getElementById('ma-alarm-section').style.display==='none'?'block':'none'">Configure Alarm Setpoints ▾</button>
-      <table class="qref"><tr><td>PV Formula</td><td>PV = LRV + % × (URV − LRV) / 100</td></tr><tr><td>mA Formula</td><td>mA = 4 + (PV − LRV) × 16 / (URV − LRV)</td></tr><tr><td>% Formula</td><td>% = (PV − LRV) × 100 / (URV − LRV)</td></tr><tr><td>Span</td><td>URV − LRV</td></tr></table>
-      <div class="fnote"><p><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01<br><strong>Alarm Lines:</strong> Red = HH/Amber = H,L — Status auto-updates when PV crosses setpoint</p></div>`,
+      <button class="calcbtn" style="margin:0" onclick="$('ma-alarm-section').style.display=$('ma-alarm-section').style.display==='none'?'block':'none'">⚙ Configure Alarm Setpoints ▾</button>
+
+      <div class="try-caption">💡 Try: Change PV to <strong>85</strong> → <strong>95</strong> → <strong>15</strong> and watch status + alarms respond live</div>
+
+      <table class="qref">
+        <tr><td>PV =</td><td>LRV + % × (URV − LRV) / 100</td></tr>
+        <tr><td>mA =</td><td>4 + (PV − LRV) × 16 / (URV − LRV)</td></tr>
+        <tr><td>% =</td><td>(PV − LRV) × 100 / (URV − LRV)</td></tr>
+        <tr><td>Span =</td><td>URV − LRV</td></tr>
+      </table>
+
+      <div class="fnote"><p><strong>Standard:</strong> IEC 60381-1 / ISA-50.00.01 | NAMUR NE43 defines fault ranges (&lt;3.6mA / &gt;21mA)</p></div>
+
+      <details class="glossary">
+        <summary>📖 Glossary — What Every Term Means</summary>
+        <div class="glossary-grid">
+          <div class="g-item"><div class="g-term">PV</div><div class="g-def"><strong>Process Variable</strong> — The real engineering-unit value (e.g., 47.2 bar, 320°C)</div></div>
+          <div class="g-item"><div class="g-term">EU</div><div class="g-def"><strong>Engineering Units</strong> — Real-world unit (bar, °C, m³/h) as opposed to raw signal</div></div>
+          <div class="g-item"><div class="g-term">mA</div><div class="g-def"><strong>Milliampere</strong> — The current carrying the signal: 4mA = 0%, 20mA = 100%</div></div>
+          <div class="g-item"><div class="g-term">LRV</div><div class="g-def"><strong>Lower Range Value</strong> — EU value at 4mA / 0% (bottom of calibrated range)</div></div>
+          <div class="g-item"><div class="g-term">URV</div><div class="g-def"><strong>Upper Range Value</strong> — EU value at 20mA / 100% (top of calibrated range)</div></div>
+          <div class="g-item"><div class="g-term">%</div><div class="g-def"><strong>Percentage of Span</strong> — How far PV sits between LRV (0%) and URV (100%)</div></div>
+          <div class="g-item"><div class="g-term">Span</div><div class="g-def"><strong>URV − LRV</strong> — The total calibrated range of the instrument</div></div>
+          <div class="g-item"><div class="g-term">L / LL</div><div class="g-def"><strong>Low / Low-Low</strong> — L = early warning. LL = severe, often triggers automatic shutdown</div></div>
+          <div class="g-item"><div class="g-term">H / HH</div><div class="g-def"><strong>High / High-High</strong> — H = early warning. HH = severe, often triggers automatic shutdown</div></div>
+          <div class="g-item"><div class="g-term">FIELD</div><div class="g-def"><strong>Field Instrument</strong> — The physical transmitter at the process equipment</div></div>
+          <div class="g-item"><div class="g-term">JB</div><div class="g-def"><strong>Junction Box</strong> — Local enclosure where field cables terminate before control room</div></div>
+          <div class="g-item"><div class="g-term">DCS</div><div class="g-def"><strong>Distributed Control System</strong> — Plant's central control computer system</div></div>
+          <div class="g-item"><div class="g-term">HMI</div><div class="g-def"><strong>Human-Machine Interface</strong> — Operator's screen where PV, status and alarms are displayed</div></div>
+          <div class="g-item"><div class="g-term">SP</div><div class="g-def"><strong>Setpoint</strong> — The configured value at which an alarm or action activates</div></div>
+          <div class="g-item"><div class="g-term">NAMUR NE43</div><div class="g-def">Industry standard defining fault-signal ranges to distinguish process reading from instrument fault</div></div>
+        </div>
+      </details>
+
+      <div class="field-notes">
+        <div class="fn-title">📋 Field Notes</div>
+        <ul>
+          <li>In a real DCS, LL and HH alarms are wired to SIS — they trigger automatic trips, not just operator warnings. Recognizing "alarm" vs "trip" is a core commissioning responsibility.</li>
+          <li>Always confirm setpoints are in the same units as LRV/URV. A setpoint entered in wrong units produces a wrong trigger point that may only be caught during actual operation.</li>
+          <li>During functional testing, force PV through each threshold in <strong>both directions</strong> — rising through H→HH, falling through L→LL, then back — to confirm status de-escalates correctly.</li>
+          <li>"Alarm chattering" occurs when PV sits at a setpoint boundary. Real DCS adds small deadband/hysteresis to prevent rapid on/off cycling.</li>
+        </ul>
+      </div>`,
 
     pv:`
       <div class="loop-diag">
