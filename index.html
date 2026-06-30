@@ -1659,10 +1659,10 @@ function buildTool(id){
           <span class="al-hh">HH — High-High (dangerous, trips SIS)</span>
         </div>
         <div class="frow c4">
-          <div class="fw"><div class="fl">LL (Low-Low)</div><input class="fi" type="number" id="ma-all" placeholder="e.g. 10" step="any"></div>
-          <div class="fw"><div class="fl">L (Low)</div><input class="fi" type="number" id="ma-al" placeholder="e.g. 20" step="any"></div>
-          <div class="fw"><div class="fl">H (High)</div><input class="fi" type="number" id="ma-ah" placeholder="e.g. 80" step="any"></div>
-          <div class="fw"><div class="fl">HH (High-High)</div><input class="fi" type="number" id="ma-ahh" placeholder="e.g. 90" step="any"></div>
+          <div class="fw"><div class="fl">LL (Low-Low)</div><input class="fi" type="number" id="ma-all" placeholder="e.g. 10" step="any" oninput="maReEval()"></div>
+          <div class="fw"><div class="fl">L (Low)</div><input class="fi" type="number" id="ma-al" placeholder="e.g. 20" step="any" oninput="maReEval()"></div>
+          <div class="fw"><div class="fl">H (High)</div><input class="fi" type="number" id="ma-ah" placeholder="e.g. 80" step="any" oninput="maReEval()"></div>
+          <div class="fw"><div class="fl">HH (High-High)</div><input class="fi" type="number" id="ma-ahh" placeholder="e.g. 90" step="any" oninput="maReEval()"></div>
         </div>
         <div id="ma-alarm-warn" style="margin-top:8px"></div>
       </div>
@@ -1980,6 +1980,8 @@ function maEvaluateAlarms(pv,pct,mA,lrv,urv){
   if(status==='hh'||status==='ll'||status==='fault'){['ma-node-d','ma-node-h','ma-arr-3'].forEach(id=>$(id).classList.add('glow-red','btnk-fast'));}
   else if(status==='h'||status==='l'){['ma-node-h','ma-arr-3'].forEach(id=>$(id).classList.add('glow-amber','btnk-slow'));}
 }
+function maReEval(){var p=parseFloat($('ma-pv').value),l=parseFloat($('ma-lrv').value)||0,u=parseFloat($('ma-urv').value)||100;if(isNaN(p))return;var s=u-l;if(s===0)return;var pc=((p-l)/s)*100,m=4+(pc*16/100);maUpdateVisuals(p,pc,m,l,u);maEvaluateAlarms(p,pc,m,l,u);}
+/* unit converter with custom dropdowns */
 function pvMA(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),m=parseFloat($('pv-m').value);if([l,u,m].some(isNaN))return;const pv=l+((m-4)*(u-l))/16,pc=((m-4)*100)/16;$('pv-e').value=pv.toFixed(3);pvShow(pv,m,pc,l,u)}
 function pvEU(){const l=parseFloat($('pv-lrv').value),u=parseFloat($('pv-urv').value),e=parseFloat($('pv-e').value);if([l,u,e].some(isNaN))return;const m=4+((e-l)/(u-l))*16,pc=((m-4)*100)/16;$('pv-m').value=m.toFixed(3);pvShow(e,m,pc,l,u)}
 function pvShow(pv,m,pc,l,u){set('pv-r1',pv.toFixed(3)+' EU');set('pv-r2',m.toFixed(3)+' mA');set('pv-r3',pc.toFixed(2)+'%');const pct=Math.max(0,Math.min(100,pc));$('pv-bar').style.width=pct+'%';$('pv-marker').style.left=pct+'%';$('pv-marker').textContent=pc.toFixed(1)+'%';$('pv-scale-lrv').textContent=l;$('pv-scale-urv').textContent=u;let s='<span class="badge badge-ok">● Normal</span>';if(m<3.8)s='<span class="badge badge-err">⚠ UNDERRANGE — Wire Break</span>';else if(m>20.5)s='<span class="badge badge-err">⚠ OVERRANGE — Short Circuit</span>';else if(m<4)s='<span class="badge badge-warn">▲ Below Linear Range</span>';else if(m>20)s='<span class="badge badge-warn">▲ Above Linear Range</span>';$('pv-r4').innerHTML=s}
