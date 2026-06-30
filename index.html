@@ -1950,30 +1950,147 @@ function buildTool(id){
         </div>
       </details>`,
     pid:`
-      <div class="loop-diag">
-        <div class="loop-node active">PROCESS</div><span class="loop-arrow">→</span>
-        <div class="loop-node">TRANSMITTER</div><span class="loop-arrow">→</span>
-        <div class="loop-node">PID</div><span class="loop-arrow">→</span>
-        <div class="loop-node output">VALVE</div>
+      <div class="loop-diag" id="pid-path">
+        <div class="loop-node active" id="pid-node-p">PROCESS</div><span class="loop-arrow" id="pid-arr-1">→</span>
+        <div class="loop-node" id="pid-node-t">TX</div><span class="loop-arrow" id="pid-arr-2">→</span>
+        <div class="loop-node" id="pid-node-e">ERROR</div><span class="loop-arrow" id="pid-arr-3">→</span>
+        <div class="loop-node" id="pid-node-c">PID</div><span class="loop-arrow" id="pid-arr-4">→</span>
+        <div class="loop-node output" id="pid-node-v">VALVE</div>
       </div>
-      <div class="tool-canvas-wrap"><canvas id="pid-canvas"></canvas></div>
+
+      <div class="ma-explain">
+        <p><strong>How PID control works:</strong> The controller continuously computes <em>error = SP − PV</em>. It applies three terms: <strong>P</strong> (how far), <strong>I</strong> (how long it's been wrong), <strong>D</strong> (how fast it's changing).<br>
+        Adjust Kp, Ki, Kd below and watch the <strong>live graph</strong> respond — each term's contribution is drawn in its own color.<br>
+        Try the <strong>Ziegler-Nichols</strong> button to auto-tune, or load a <strong>preset</strong> to compare behaviors.</p>
+      </div>
+
+      <div class="tool-canvas-wrap"><canvas id="tool-pid-canvas"></canvas></div>
+
       <div class="frow c3">
-        <div class="fw"><div class="fl">Kp (Proportional)</div><input class="fi" type="number" id="pid-kp" value="1.8" step="0.1" min="0" max="10" oninput="updatePID()"></div>
-        <div class="fw"><div class="fl">Ki (Integral)</div><input class="fi" type="number" id="pid-ki" value="0.25" step="0.01" min="0" max="5" oninput="updatePID()"></div>
-        <div class="fw"><div class="fl">Kd (Derivative)</div><input class="fi" type="number" id="pid-kd" value="0.4" step="0.05" min="0" max="5" oninput="updatePID()"></div>
+        <div class="fw"><div class="fl">Kp — Proportional</div><input class="fi" type="number" id="pid-kp" value="1.8" step="0.1" min="0" max="10" oninput="updatePID()"></div>
+        <div class="fw"><div class="fl">Ki — Integral (1/s)</div><input class="fi" type="number" id="pid-ki" value="0.25" step="0.01" min="0" max="5" oninput="updatePID()"></div>
+        <div class="fw"><div class="fl">Kd — Derivative (s)</div><input class="fi" type="number" id="pid-kd" value="0.4" step="0.05" min="0" max="5" oninput="updatePID()"></div>
       </div>
-      <div class="frow c2">
-        <div class="fw"><div class="fl">Setpoint (SP %)</div><input class="fi" type="number" id="pid-sp" value="70" step="1" min="0" max="100" oninput="updatePID()"></div>
-        <div class="fw"><div class="fl">Disturbance</div><button class="calcbtn" style="margin:0" onclick="injectPID()">Inject Disturbance</button></div>
+
+      <div class="frow c3">
+        <div class="fw"><div class="fl">Setpoint SP (%)</div><input class="fi" type="number" id="pid-sp" value="70" step="1" min="0" max="100" oninput="updatePID()"></div>
+        <div class="fw"><div class="fl">Disturbance Amplitude</div><input class="fi" type="number" id="pid-dist-amp" value="18" step="1" min="5" max="40"></div>
+        <div class="fw" style="display:flex;align-items:flex-end;gap:6px">
+          <button class="calcbtn" style="margin:0" onclick="injectPID()">⚡ Inject Disturbance</button>
+          <button class="calcbtn" style="margin:0;background:var(--edge);color:var(--mist)" onclick="resetPID()">↺ Reset</button>
+        </div>
       </div>
-      <div class="resbox"><div class="rg c4">
-        <div class="ri"><div class="rl">PV</div><div class="rv a" id="pid-pv">—</div></div>
-        <div class="ri"><div class="rl">SP</div><div class="rv w" id="pid-sp-disp">—</div></div>
-        <div class="ri"><div class="rl">OUT</div><div class="rv g" id="pid-out">—</div></div>
-        <div class="ri"><div class="rl">Error</div><div class="rv r" id="pid-err">—</div></div>
-      </div></div>
-      <table class="qref"><tr><td>P Term</td><td>Kp × Error</td></tr><tr><td>I Term</td><td>Ki × ∫Error dt</td></tr><tr><td>D Term</td><td>Kd × dError/dt</td></tr><tr><td>Output</td><td>P + I + D</td></tr></table>
-      <div class="fnote"><p><strong>Tuning Tips:</strong> Start with Kp only. Add Ki to eliminate offset. Add Kd to reduce overshoot.<br><strong>Ziegler-Nichols:</strong> Ku = ultimate gain, Pu = oscillation period. Kp=0.6Ku, Ki=2Kp/Pu, Kd=KpPu/8</p></div>`,
+
+      <div class="frow c3">
+        <div class="fw"><div class="fl">Process Model</div>
+          <select class="fi" id="pid-model" onchange="resetPID()" style="font-family:var(--mono);font-size:12px">
+            <option value="fo">First-Order (simple lag)</option>
+            <option value="int">Integrating (level)</option>
+            <option value="dt">First-Order + Dead-Time</option>
+          </select>
+        </div>
+        <div class="fw"><div class="fl">Tuning Preset</div>
+          <select class="fi" id="pid-preset" onchange="applyPreset()" style="font-family:var(--mono);font-size:12px">
+            <option value="custom">Custom (manual)</option>
+            <option value="conservative">Conservative (slow)</option>
+            <option value="aggressive">Aggressive (fast)</option>
+            <option value="p-only">P-Only (no integral)</option>
+          </select>
+        </div>
+        <div class="fw"><div class="fl">&nbsp;</div>
+          <button class="calcbtn" style="margin:0" onclick="autoTuneZN()">📐 ZN Auto-Tune</button>
+        </div>
+      </div>
+
+      <!-- P/I/D Contribution Readout -->
+      <div class="resbox" style="padding:12px 16px">
+        <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;font-family:var(--mono);font-size:11px">
+          <span>P: <strong id="pid-p-term" style="color:var(--amber)">0.0</strong></span>
+          <span>I: <strong id="pid-i-term" style="color:#00E090">0.0</strong></span>
+          <span>D: <strong id="pid-d-term" style="color:#3D8EFF">0.0</strong></span>
+          <span style="color:var(--ghost)">│</span>
+          <span>PV: <strong id="pid-pv" style="color:#F5A800">—</strong></span>
+          <span>SP: <strong id="pid-sp-disp" style="color:#3D8EFF">—</strong></span>
+          <span>OUT: <strong id="pid-out" style="color:#00E090">—</strong></span>
+          <span>Error: <strong id="pid-err" style="color:#FF3B5C">—</strong></span>
+          <span style="color:var(--ghost)">│</span>
+          <span>⏱: <strong id="pid-elapsed" style="color:var(--mist)">00:00</strong></span>
+        </div>
+      </div>
+
+      <!-- Metrics Row -->
+      <div class="resbox" id="pid-metrics-box" style="padding:12px 16px">
+        <div class="rg c4" style="gap:4px">
+          <div class="ri"><div class="rl">Overshoot</div><div class="rv a" id="pid-os" style="font-size:16px">—</div></div>
+          <div class="ri"><div class="rl">2% Settling</div><div class="rv w" id="pid-ss" style="font-size:16px">—</div></div>
+          <div class="ri"><div class="rl">SS Error</div><div class="rv r" id="pid-sse" style="font-size:16px">—</div></div>
+          <div class="ri"><div class="rl">Status</div><div class="rv" id="pid-status" style="font-size:12px"><span class="badge badge-ok">Running</span></div></div>
+        </div>
+      </div>
+
+      <!-- Graph Canvas Legend Inline -->
+      <div style="display:flex;gap:18px;padding:6px 4px 12px;font-family:var(--mono);font-size:9px;flex-wrap:wrap">
+        <span><span style="color:#F5A800">━</span> PV (process)</span>
+        <span><span style="color:#3D8EFF;opacity:.8">━ —</span> SP (setpoint)</span>
+        <span><span style="color:#00E090">━</span> OUT (valve)</span>
+        <span><span style="color:#F5A800;opacity:.4">━ ━</span> P-term</span>
+        <span><span style="color:#00E090;opacity:.4">━ ━</span> I-term</span>
+        <span><span style="color:#3D8EFF;opacity:.4">━ ━</span> D-term</span>
+      </div>
+
+      <table class="qref">
+        <tr><td>P Term</td><td>Kp × Error</td></tr>
+        <tr><td>I Term</td><td>Ki × ∫Error · dt</td></tr>
+        <tr><td>D Term</td><td>Kd × dError / dt</td></tr>
+        <tr><td>Output</td><td>P + I + D</td></tr>
+        <tr><td>Overshoot</td><td>(PV_peak − SP) × 100 / SP  [%]</td></tr>
+        <tr><td>ZN (P-only)</td><td>Kp = Ku</td></tr>
+        <tr><td>ZN (PID)</td><td>Kp = 0.6Ku · Ki = 2Kp/Pu · Kd = Kp·Pu/8</td></tr>
+      </table>
+
+      <div class="fnote"><p><strong>Tuning Heuristics:</strong><br>
+        • <em>Start P-only:</em> Increase Kp until steady oscillation — that's Ku (ultimate gain), Pu = oscillation period.<br>
+        • <em>Add I:</em> Eliminates offset but integral windup causes overshoot — keep Ki low, ~2Kp/Pu.<br>
+        • <em>Add D:</em> Predicts error direction — dampens overshoot but amplifies high-frequency noise. Use with caution on noisier loops.<br>
+        • <em>Reset integral:</em> If the error saturates the valve, integral continues accumulating. When the process moves, it over-reacts (windup). Use anti-windup in real DCS.<br>
+        • <em>Reverse vs Direct:</em> Heating needs direct action (out↑ when error↑). Cooling needs reverse (out↑ when error↓).</p></div>
+
+      <div class="field-notes">
+        <div class="fn-title">📋 Field Notes — PID Control in the Plant</div>
+        <ul>
+          <li><strong>Derivative Kick:</strong> Kd reacts to the rate of change of error. When SP changes sharply (e.g., operator bumps setpoint from 70% to 80%), derivative generates a huge initial spike in output — the "derivative kick." In real DCS, derivative is often applied to PV only (not to error), or the SP ramp-rate limiter is used. Without this, every SP change looks like a control failure to the operator.</li>
+          <li><strong>Integral Windup:</strong> If the final control element (valve, VFD) saturates at 100% but the process hasn't caught up, integral keeps accumulating. When the process finally moves, the unwinding integral produces a large overshoot. Real solutions: external reset feedback, conditional integration (stop integrating near saturation), or velocity-form PID.</li>
+          <li><strong>Reverse / Direct Action:</strong> A DCS PID block always computes <em>Output = Kp × (SP − PV)</em> for direct action. For a cooling valve (open to cool), an error increase means PV above SP = need more cooling = valve opens — that's direct. For heating (open valve = more heat), error increase means PV above SP = need less heat = valve closes — that's reverse action (Kp becomes negative in some DCS, or the SP − PV sign is swapped). Wrong action = runaway process.</li>
+          <li><strong>Bumpless Transfer:</strong> When switching from MANUAL to AUTO, the PID output must match the last manual output. Without bumpless transfer, the controller jumps the valve position instantly on mode change — causing a sudden process bump. Modern DCS (Siemens PCS7, Honeywell) handles this by back-calculating the bias/integral term to match the manual output at the moment of transfer.</li>
+          <li><strong>Process Dead Time (Transport Lag):</strong> In flow through long pipes, conveyor belts, or chemical reactors, the process doesn't respond immediately to valve movement. Pure PID struggles with dead time — if the delay is significant, use a Smith Predictor or feed-forward. Rule of thumb: if dead time / time constant &gt; 0.5, PID alone is insufficient.</li>
+          <li><strong>P-Only Offset:</strong> A P-only controller (<em>Ki=0</em>) cannot achieve zero steady-state error. It always settles at a PV slightly below SP. The offset = SP − PV = Load / Kp. Increasing Kp reduces offset but causes more oscillation. This is why every real process loop needs at least some integral action.</li>
+          <li><strong>Cascade Control:</strong> Some PID loops use a secondary PV (e.g., temperature cascade: master PID outputs a setpoint to a slave flow PID). The inner loop (flow) must be ~3-5x faster than the outer loop (temperature). Tuning the faster loop first, then the outer. Never tune both at once.</li>
+          <li><strong>Lambda Tuning:</strong> An alternative to Ziegler-Nichols popular for NEOM-type green-field projects. Instead of exciting the process into oscillation, lambda tuning sets a closed-loop time constant (λ) — usually 1-3× the process time constant. Results in a smoother, more robust response with less overshoot. Preferred for EPC projects where conservative = safe.</li>
+          <li><strong>Auto-Tune vs Manual:</strong> Modern DCS includes auto-tune (e.g., Siemens PCS7 TUN_EC, Honeywell Profit Loop). Always verify the results — auto-tune assumes a simple FOPDT model. For loops with backlash, stiction, or non-linear valves, manual tuning with step-test data is more reliable. Never accept auto-tune blindly during commissioning.</li>
+          <li><strong>Loop Commissioning Sequence:</strong> (1) Verify transmitter calibration at 0/50/100% with a calibrator. (2) Valve stroke test: 0-25-50-75-100%. (3) Set PID to MANUAL, move output manually, verify valve moves correctly. (4) Switch to AUTO with low gain (Kp=0.5, Ki=0.05, Kd=0). (5) Apply step change to SP and observe response. (6) Add I to eliminate offset. (7) Add D only if oscillations persist. This sequence catches >90% of tuning issues in the field.</li>
+        </ul>
+      </div>
+
+      <details class="glossary">
+        <summary>📖 Glossary — PID Control Terms</summary>
+        <div class="glossary-grid">
+          <div class="g-item"><div class="g-term">PV</div><div class="g-def"><strong>Process Variable</strong> — The measured value (pressure, temperature, level) the controller is trying to regulate.</div></div>
+          <div class="g-item"><div class="g-term">SP</div><div class="g-def"><strong>Setpoint</strong> — The desired value of the PV. The controller's job is to make PV = SP.</div></div>
+          <div class="g-item"><div class="g-term">Error</div><div class="g-def"><strong>SP − PV</strong> — The difference the controller acts on. Positive = PV below target. Negative = PV above target.</div></div>
+          <div class="g-item"><div class="g-term">P (Proportional)</div><div class="g-def">Output proportional to <em>current</em> error. Kp × Error. Fast response but cannot eliminate offset alone.</div></div>
+          <div class="g-item"><div class="g-term">I (Integral)</div><div class="g-def">Output proportional to <em>accumulated past</em> error. Ki × ∫Error·dt. Eliminates steady-state offset but causes overshoot and windup.</div></div>
+          <div class="g-item"><div class="g-term">D (Derivative)</div><div class="g-def">Output proportional to <em>rate of change</em> of error. Kd × dError/dt. Predicts future error, dampens overshoot, but amplifies noise.</div></div>
+          <div class="g-item"><div class="g-term">Overshoot</div><div class="g-def">PV exceeds SP during settling. Measured as % above SP. Caused by integral windup or excessive Kp.</div></div>
+          <div class="g-item"><div class="g-term">Settling Time</div><div class="g-def">Time for PV to enter and stay within ±2% of SP after a setpoint change. Key commissioning KPI.</div></div>
+          <div class="g-item"><div class="g-term">Ku / Pu</div><div class="g-def"><strong>Ultimate Gain / Ultimate Period</strong> — Kp value that causes steady oscillation, and the oscillation period. Used in Ziegler-Nichols tuning.</div></div>
+          <div class="g-item"><div class="g-term">Integral Windup</div><div class="g-def">When valve saturates but integral keeps accumulating → large overshoot when error reverses. Requires anti-windup logic.</div></div>
+          <div class="g-item"><div class="g-term">Derivative Kick</div><div class="g-def">SP step change causes infinite dError/dt → huge D-term spike. Solved by applying D to PV only, not error.</div></div>
+          <div class="g-item"><div class="g-term">Bumpless Transfer</div><div class="g-def">Seamless MAN→AUTO transition without sudden output jumps. The integral term is initialized to match last manual output.</div></div>
+          <div class="g-item"><div class="g-term">FOPDT</div><div class="g-def"><strong>First Order Plus Dead Time</strong> — The standard process model assumed by most tuning rules: Kp, τp, θp (gain, time constant, dead time).</div></div>
+          <div class="g-item"><div class="g-term">Lambda Tuning</div><div class="g-def">Alternative to ZN that sets closed-loop time constant λ = 1-3τp. Smoother response, preferred for EPC projects.</div></div>
+          <div class="g-item"><div class="g-term">Anti-Windup</div><div class="g-def">Stops integral accumulation when output saturates. Methods: clamp integrator, back-calculation, conditional integration.</div></div>
+        </div>
+      </details>`,
 
     rtd:`
       <div class="frow c2">
@@ -2413,12 +2530,18 @@ function calcCable(){
   set('cab-r1',vd.toFixed(4)+' V');set('cab-r2',vload.toFixed(4)+' V');set('cab-r3',pct.toFixed(3)+'%');
 }
 
-/* ── PID LOOP SIMULATOR ───────────────────────────────────── */
+/* ── PID LOOP SIMULATOR — full interactive with P/I/D components & metrics ─── */
 let pidAnimId=null, pidPv=25, pidSp=70, pidKp=1.8, pidKi=0.25, pidKd=0.4;
-let pidInt=0, pidPrevErr=0, pidHistory=[], pidSpHist=[], pidOutHist=[];
+let pidInt=0, pidPrevErr=0, pidDt=0.05;
+let pidHistory=[], pidSpHist=[], pidOutHist=[], pidPHist=[], pidIHist=[], pidDHist=[];
+let pidTick=0, pidElapsed=0;
+let pidOS=0, pidOSSettleCount=0, pidSettled=false;
+let pidDisturbance=0, pidDeadTimeIdx=0, pidDTBuffer=[];
+const PID_MAX_PTS=250;
+
 function initPID(){
-  const c=$('pid-canvas');if(!c)return;
-  // Wait for canvas to be visible then initialize
+  const c=$('tool-pid-canvas');if(!c)return;
+  cancelAnimationFrame(pidAnimId);
   requestAnimationFrame(()=>{
     const rect=c.parentElement.getBoundingClientRect();
     if(rect.width===0){setTimeout(initPID,100);return;}
@@ -2426,62 +2549,198 @@ function initPID(){
     c.width=rect.width*dpr;c.height=260*dpr;
     c.style.height='260px';
     const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
-    pidPv=25;pidSp=70;pidInt=0;pidPrevErr=0;pidHistory=[];pidSpHist=[];pidOutHist=[];
-    if(pidAnimId)cancelAnimationFrame(pidAnimId);
-    pidLoop();
+    resetPID();
   });
 }
+function resetPID(){
+  pidPv=25;pidInt=0;pidPrevErr=0;pidTick=0;pidElapsed=0;
+  pidOS=0;pidOSSettleCount=0;pidSettled=false;
+  pidDisturbance=0;pidDeadTimeIdx=0;pidDTBuffer=[];
+  pidHistory=[];pidSpHist=[];pidOutHist=[];pidPHist=[];pidIHist=[];pidDHist=[];
+  $('pid-os').textContent='—';$('pid-ss').textContent='—';$('pid-sse').textContent='—';
+  if(pidAnimId)cancelAnimationFrame(pidAnimId);
+  pidLoop();
+}
+
 function updatePID(){
   pidKp=parseFloat($('pid-kp').value)||1.8;
   pidKi=parseFloat($('pid-ki').value)||0.25;
   pidKd=parseFloat($('pid-kd').value)||0.4;
   pidSp=parseFloat($('pid-sp').value)||70;
+  // Reset overshoot tracking on tuning change
+  pidOS=0;pidOSSettleCount=0;pidSettled=false;
+  // Reset settling
+  $('pid-ss').textContent='—';
 }
-function injectPID(){pidPv-=15+Math.random()*10}
+
+function injectPID(){
+  const amp=parseFloat($('pid-dist-amp').value)||18;
+  pidDisturbance=-(amp*0.5+Math.random()*amp*0.5);
+}
+
+function applyPreset(){
+  const v=$('pid-preset').value;
+  let kp,ki,kd,sp;
+  if(v==='conservative'){kp=0.8;ki=0.1;kd=0.15;sp=70;}
+  else if(v==='aggressive'){kp=3.5;ki=0.8;kd=0.6;sp=70;}
+  else if(v==='p-only'){kp=1.5;ki=0.0;kd=0.0;sp=70;}
+  else return; // custom
+  $('pid-kp').value=kp;$('pid-ki').value=ki;$('pid-kd').value=kd;$('pid-sp').value=sp;
+  updatePID();resetPID();
+}
+
+function autoTuneZN(){
+  // Simulate Ziegler-Nichols: assume Ku=3.2, Pu=2.0 (reasonable defaults for the process)
+  const Ku=3.2,Pu=2.0;
+  const kp=0.6*Ku,ki=2*kp/Pu,kd=kp*Pu/8;
+  $('pid-kp').value=kp.toFixed(2);$('pid-ki').value=ki.toFixed(3);$('pid-kd').value=kd.toFixed(3);
+  $('pid-preset').value='custom';
+  updatePID();resetPID();
+  showToast('✓ ZN Tuned: Kp='+kp.toFixed(2)+' Ki='+ki.toFixed(3)+' Kd='+kd.toFixed(3));
+}
+
 function pidLoop(){
-  const c=$('pid-canvas');if(!c){pidAnimId=requestAnimationFrame(pidLoop);return;}
+  const c=$('tool-pid-canvas');if(!c){pidAnimId=requestAnimationFrame(pidLoop);return;}
   const ctx=c.getContext('2d');
   const W=c.width/(window.devicePixelRatio||1);
   const H=260;
+  const dt=pidDt;
+  pidTick++;pidElapsed+=dt;
+  const model=$('pid-model').value;
+  // Process input = OUT + disturbance
+  let processInput=0;
+
+  // Compute PID
   const err=pidSp-pidPv;
-  pidInt+=err*0.05;pidInt=Math.max(-50,Math.min(50,pidInt));
-  const deriv=(err-pidPrevErr)/0.05;pidPrevErr=err;
-  const out=pidKp*err+pidKi*pidInt+pidKd*deriv;
-  pidPv+=(out-pidPv)*0.025;
-  pidPv+=Math.sin(Date.now()/3000)*0.3;
+
+  // Anti-windup: clamp integral when saturated
+  const out_raw=pidKp*err+pidKi*pidInt+pidKd*(err-pidPrevErr)/dt;
+  if(out_raw>=100||out_raw<=0){
+    // stop integrating when saturated
+  } else {
+    pidInt+=err*dt;
+  }
+  pidInt=Math.max(-50,Math.min(50,pidInt));
+  const deriv=(err-pidPrevErr)/dt;
+  pidPrevErr=err;
+  // Individual contributions
+  const pTerm=pidKp*err;
+  const iTerm=pidKi*pidInt;
+  const dTerm=pidKd*deriv;
+  let out=Math.max(0,Math.min(100,pTerm+iTerm+dTerm+pidDisturbance));
+
+  // Process model
+  if(model==='fo'){
+    // First-order lag (simple)
+    const damping=0.03;
+    pidPv+=(out-pidPv)*damping+(Math.random()-0.5)*0.2;
+  } else if(model==='int'){
+    // Integrating process (level-like): PV keeps moving with zero error
+    pidPv+=(out-50)*0.008+(Math.random()-0.5)*0.15;
+  } else if(model==='dt'){
+    // First-order + dead-time buffer
+    pidDTBuffer.push(out);
+    if(pidDTBuffer.length>40){pidDTBuffer.shift();}
+    const delayedOut=pidDTBuffer[0]||out;
+    const damping=0.03;
+    pidPv+=(delayedOut-pidPv)*damping+(Math.random()-0.5)*0.2;
+  }
+  pidPv=Math.max(0,Math.min(100,pidPv));
+  pidDisturbance*=0.96; // exponential decay
+
+  // Track overshoot
+  if(pidPv>pidSp && pidPv>pidOS) pidOS=pidPv;
+  // Settling detection — check if PV is within ±2% of SP
+  if(Math.abs(pidPv-pidSp)<2){
+    if(!pidSettled){pidOSSettleCount++;if(pidOSSettleCount>30){pidSettled=true;$('pid-ss').textContent=(pidElapsed-dt*30).toFixed(1)+'s';}}
+  } else {
+    pidSettled=false;pidOSSettleCount=0;
+  }
+
+  // Store data
   pidHistory.push(pidPv);pidSpHist.push(pidSp);pidOutHist.push(out);
-  if(pidHistory.length>200){pidHistory.shift();pidSpHist.shift();pidOutHist.shift();}
+  pidPHist.push(50+pTerm*0.5); // shift P term to visible range
+  pidIHist.push(50+iTerm*2);   // shift I term
+  pidDHist.push(50+dTerm);     // shift D term
+  if(pidHistory.length>PID_MAX_PTS){
+    pidHistory.shift();pidSpHist.shift();pidOutHist.shift();
+    pidPHist.shift();pidIHist.shift();pidDHist.shift();
+  }
+
+  // ── DRAW ──
   ctx.fillStyle='#07080D';ctx.fillRect(0,0,W,H);
   // Grid
   ctx.strokeStyle='#1A2640';ctx.lineWidth=0.5;
   for(let i=0;i<=10;i++){const y=H*i/10;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
   for(let i=0;i<=20;i++){const x=W*i/20;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
-  // SP line
-  ctx.strokeStyle='#3D8EFF';ctx.lineWidth=1.5;ctx.setLineDash([5,5]);
-  ctx.beginPath();ctx.moveTo(0,H-pidSp/100*H);ctx.lineTo(W,H-pidSp/100*H);ctx.stroke();
+  // ±2% band
+  const band=0.02*H; // 2% of height in pixels
+  const spY=H-pidSp/100*H;
+  ctx.fillStyle='rgba(61,142,255,.04)';ctx.fillRect(0,spY-band,W,band*2);
+  ctx.strokeStyle='rgba(61,142,255,.1)';ctx.lineWidth=0.5;ctx.setLineDash([2,4]);
+  ctx.beginPath();ctx.moveTo(0,spY-band);ctx.lineTo(W,spY-band);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(0,spY+band);ctx.lineTo(W,spY+band);ctx.stroke();
   ctx.setLineDash([]);
-  // PV line
-  ctx.strokeStyle='#F5A800';ctx.lineWidth=2;
-  ctx.beginPath();
-  pidHistory.forEach((v,i)=>{const x=i/pidHistory.length*W;const y=H-v/100*H;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
-  ctx.stroke();
-  // OUT line
-  ctx.strokeStyle='#00E090';ctx.lineWidth=1;
-  ctx.beginPath();
-  pidOutHist.forEach((v,i)=>{const x=i/pidOutHist.length*W;const y=H-Math.min(100,Math.max(0,v))/100*H;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
-  ctx.stroke();
+  // SP line (blue dashed)
+  ctx.strokeStyle='#3D8EFF';ctx.lineWidth=1.5;ctx.setLineDash([5,5]);
+  ctx.beginPath();ctx.moveTo(0,spY);ctx.lineTo(W,spY);ctx.stroke();ctx.setLineDash([]);
+  // Draw P, I, D component lines (behind main signals)
+  const drawLine=(data,color,width,dash)=>{
+    if(data.length<2)return;
+    ctx.beginPath();
+    ctx.strokeStyle=color;ctx.lineWidth=width;
+    if(dash)ctx.setLineDash(dash);else ctx.setLineDash([]);
+    data.forEach((v,i)=>{const x=i/data.length*W;const y=H-Math.min(99,Math.max(1,v))/100*H;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
+    ctx.stroke();ctx.setLineDash([]);
+  };
+  drawLine(pidPHist,'rgba(245,168,0,.3)',0.8,[3,3]);
+  drawLine(pidIHist,'rgba(0,224,144,.25)',0.8,[2,4]);
+  drawLine(pidDHist,'rgba(61,142,255,.25)',0.8,[1,3]);
+  // OUT line (green)
+  drawLine(pidOutHist,'rgba(0,224,144,.6)',1.2,null);
+  // PV line (amber bold)
+  drawLine(pidHistory,'#F5A800',2.5,null);
+  // PV dot at right edge
+  const lastPv=pidHistory[pidHistory.length-1];
+  const pvY=H-lastPv/100*H;
+  ctx.fillStyle='#F5A800';ctx.beginPath();ctx.arc(W-3,pvY,3,0,Math.PI*2);ctx.fill();
+
   // Labels
-  ctx.fillStyle='#F5A800';ctx.font='bold 12px JetBrains Mono';ctx.fillText('PV: '+pidPv.toFixed(1)+'%',10,20);
-  ctx.fillStyle='#3D8EFF';ctx.fillText('SP: '+pidSp.toFixed(1)+'%',10,36);
-  ctx.fillStyle='#00E090';ctx.fillText('OUT: '+(pidKp*err+pidKi*pidInt+pidKd*deriv).toFixed(1)+'%',10,52);
-  ctx.fillStyle='#8A95B0';ctx.font='9px JetBrains Mono';ctx.fillText('Kp='+pidKp+' Ki='+pidKi+' Kd='+pidKd,10,H-8);
+  ctx.fillStyle='#F5A800';ctx.font='bold 11px JetBrains Mono';ctx.fillText('PV: '+lastPv.toFixed(1)+'%',8,16);
+  ctx.fillStyle='#3D8EFF';ctx.fillText('SP: '+pidSp.toFixed(1)+'%',8,30);
+  ctx.fillStyle='#00E090';ctx.fillText('OUT: '+out.toFixed(1)+'%',8,44);
+  // Kp Ki Kd at bottom
+  ctx.fillStyle='#8A95B0';ctx.font='9px JetBrains Mono';
+  ctx.fillText('Kp='+pidKp.toFixed(2)+'  Ki='+pidKi.toFixed(3)+'  Kd='+pidKd.toFixed(3)+'  '+model,8,H-6);
+
   // Legend
-  ctx.fillStyle='#F5A800';ctx.fillRect(W-100,10,12,3);ctx.fillText('PV',W-85,14);
-  ctx.fillStyle='#3D8EFF';ctx.fillRect(W-100,22,12,3);ctx.fillText('SP',W-85,26);
-  ctx.fillStyle='#00E090';ctx.fillRect(W-100,34,12,3);ctx.fillText('OUT',W-85,38);
-  // Update displays
-  set('pid-pv',pidPv.toFixed(1)+'%');set('pid-sp-disp',pidSp.toFixed(1)+'%');
-  set('pid-out',(pidKp*err+pidKi*pidInt+pidKd*deriv).toFixed(1)+'%');set('pid-err',err.toFixed(1)+'%');
+  ctx.fillStyle='#F5A800';ctx.fillRect(W-96,8,12,3);ctx.fillText('PV',W-82,12);
+  ctx.fillStyle='#3D8EFF';ctx.fillRect(W-96,20,12,3);ctx.fillText('SP',W-82,24);
+  ctx.fillStyle='#00E090';ctx.fillRect(W-96,32,12,3);ctx.fillText('OUT',W-82,36);
+  ctx.fillStyle='rgba(245,168,0,.4)';ctx.fillRect(W-96,44,12,2);ctx.fillText('P',W-82,48);
+  ctx.fillStyle='rgba(0,224,144,.4)';ctx.fillRect(W-96,52,12,2);ctx.fillText('I',W-82,56);
+  ctx.fillStyle='rgba(61,142,255,.4)';ctx.fillRect(W-96,60,12,2);ctx.fillText('D',W-82,64);
+
+  // ── UPDATE DISPLAYS ──
+  set('pid-p-term',pTerm.toFixed(1));
+  set('pid-i-term',iTerm.toFixed(1));
+  set('pid-d-term',dTerm.toFixed(1));
+  set('pid-pv',lastPv.toFixed(1)+'%');
+  set('pid-sp-disp',pidSp.toFixed(1)+'%');
+  set('pid-out',out.toFixed(1)+'%');
+  set('pid-err',err.toFixed(1)+'%');
+  const mins=Math.floor(pidElapsed/60),secs=Math.floor(pidElapsed%60);
+  set('pid-elapsed',String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0'));
+  // Overshoot
+  const overshootPct=pidSp>0?Math.max(0,(pidOS-pidSp)/pidSp*100):0;
+  $('pid-os').textContent=overshootPct.toFixed(1)+'%';
+  set('pid-sse',err.toFixed(1)+'%');
+  // Status
+  const statusEl=$('pid-status');
+  if(Math.abs(err)<1){statusEl.innerHTML='<span class="badge badge-ok">● LOCKED</span>';}
+  else if(Math.abs(err)<5){statusEl.innerHTML='<span class="badge badge-warn btnk-slow">◐ TRACKING</span>';}
+  else{statusEl.innerHTML='<span class="badge badge-err btnk-fast">◑ RESPONDING</span>';}
+
   pidAnimId=requestAnimationFrame(pidLoop);
 }
 
