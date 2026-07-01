@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thermocouple mV to temperature conversion for J, K, T, E types.">
+  <title>Thermocouple Converter – Instrumentation Mastery</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/components.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id="header-placeholder"></div>
+    
+    <div class="lesson-container" style="grid-template-columns: 1fr;">
+      <main class="main-content">
+        <h1>🔬 Thermocouple mV Converter</h1>
+        
+        <div style="background: var(--carbon-gray); padding: 2rem; border-radius: 0.5rem;">
+          <div>
+            <label>Select Type:</label>
+            <select id="tc-type" style="width: 100%; padding: 0.5rem;">
+              <option value="K">Type K (Chromel-Alumel)</option>
+              <option value="J">Type J (Iron-Constantan)</option>
+              <option value="T">Type T (Copper-Constantan)</option>
+              <option value="E">Type E (Chromel-Constantan)</option>
+            </select>
+          </div>
+          
+          <div style="margin: 1rem 0;">
+            <label>mV Input:</label>
+            <input type="number" id="mv-input" step="0.1" value="0" style="width: 100%; padding: 0.5rem;">
+          </div>
+          
+          <div id="result" style="padding: 1rem; background: var(--carbon-medium); border-radius: 0.5rem;">
+            <strong>Temperature: </strong><span id="temp-result">0°C</span>
+          </div>
+        </div>
+        
+        <script>
+          function convert() {
+            const mv = parseFloat(document.getElementById('mv-input').value) || 0;
+            const approx = mv * 25;
+            document.getElementById('temp-result').textContent = approx.toFixed(1) + '°C';
+          }
+          document.getElementById('mv-input').oninput = convert;
+          document.getElementById('tc-type').onchange = convert;
+        </script>
+      </main>
+    </div>
+    
+    <div id="footer-placeholder"></div>
+  </div>
+  
+  <script>loadComponents();</script>
+</body>
+</html>
