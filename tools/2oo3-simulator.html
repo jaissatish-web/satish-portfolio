@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2oo3 Simulator – Instrumentation Mastery</title>
+<link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/components.js"></script>
+</head><body><div id="app"><div id="header-placeholder"></div>
+<div class="lesson-container" style="grid-template-columns:1fr;"><main class="main-content">
+<h1>🛡️ 2oo3 Voting Logic Simulator</h1>
+<p>Three-sensor fault-tolerant voting for safety systems.</p>
+<div style="background:var(--carbon-gray);padding:2rem;border-radius:0.5rem;">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+<div><h4>Sensor 1</h4><input type="range" id="s1" min="0" max="200" value="120"><span id="v1">60%</span></div>
+<div><h4>Sensor 2</h4><input type="range" id="s2" min="0" max="200" value="140"><span id="v2">70%</span></div>
+<div><h4>Sensor 3</h4><input type="range" id="s3" min="0" max="200" value="100"><span id="v3">50%</span></div>
+</div>
+<div id="res" style="margin-top:1rem;padding:1rem;background:var(--carbon-medium);border-radius:0.5rem;"><strong>Result:</strong> <span>Adjust sensors to simulate</span></div>
+</div>
+<script>
+function update() {
+  const v = [+document.getElementById('s1').value, +document.getElementById('s2').value, +document.getElementById('s3').value];
+  v.forEach((val,i) => document.getElementById('v'+(i+1)).textContent = (val/2)+'%');
+  const trip = v.filter(x => x > 150).length >= 2;
+  document.querySelector('#res span').textContent = trip ? 'TRIP ACTIVATED' : 'No Trip';
+  document.querySelector('#res span').style.color = trip ? 'var(--error)' : 'var(--success)';
+}
+['s1','s2','s3'].forEach(id => document.getElementById(id).oninput = update);
+document.addEventListener('DOMContentLoaded', function(){ loadComponents(); update(); });
+</script></main></div><div id="footer-placeholder"></div></div></body></html>

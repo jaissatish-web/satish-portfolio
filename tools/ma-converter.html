@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4-20mA Converter – Instrumentation Mastery</title>
+<link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/components.js"></script>
+</head><body><div id="app"><div id="header-placeholder"></div>
+<div class="lesson-container" style="grid-template-columns:1fr;"><main class="main-content">
+<h1>📡 4-20mA Converter</h1>
+<div style="background:var(--carbon-gray);padding:2rem;border-radius:0.5rem;">
+<div><label>Physical Value (%): <input type="number" id="pct" min="0" max="100" value="50" style="width:100%;padding:0.5rem;"></label></div>
+<div style="margin-top:1rem;"><strong>Output: <span id="out">12.0 mA</span></strong></div>
+<div id="ne43" style="margin-top:0.5rem;"><strong>NE43 Status:</strong> <span style="color:var(--success);">OK</span></div>
+</div>
+<script>
+function convert() {
+  const p = +document.getElementById('pct').value || 0;
+  const ma = (4 + p * 0.16).toFixed(1);
+  document.getElementById('out').textContent = ma + ' mA';
+}
+document.getElementById('pct').oninput = convert;
+document.addEventListener('DOMContentLoaded', function(){ loadComponents(); convert(); });
+</script></main></div><div id="footer-placeholder"></div></div></body></html>

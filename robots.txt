@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jaissatish-web.github.io/satish-portfolio/sitemap.xml

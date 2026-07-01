@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Instrumentation knowledge library with lessons on pressure, temperature, flow, control valves, and safety systems.">
+<title>Knowledge Library – Instrumentation Mastery</title>
+<link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/components.js"></script>
+</head><body><div id="app"><div id="header-placeholder"></div>
+<div class="lesson-container" style="grid-template-columns:1fr;"><main class="main-content">
+<nav class="breadcrumb"><a href="/">Home</a> > <span>Knowledge Library</span></nav>
+<div class="lesson-header"><h1>📚 Knowledge Library</h1><p style="color:var(--text-secondary);margin-top:1rem;">Master instrumentation concepts with interactive lessons. Filter by category.</p></div>
+<input type="text" id="search-input" class="search-input" placeholder="Search lessons..." style="margin:2rem 0;">
+<div class="category-grid" id="cat-grid"></div>
+<script>
+async function loadCategories() {
+  const r = await fetch('/assets/data/categories.json');
+  const d = await r.json();
+  document.getElementById('cat-grid').innerHTML = d.categories.map(c => `<a href="/knowledge/${c.id}/" class="category-card"><div class="category-card-icon">${c.icon}</div><h3>${c.name}</h3><p>${c.sub.length} topics</p></a>`).join('');
+}
+document.addEventListener('DOMContentLoaded', function(){ loadComponents(); loadCategories(); });
+</script></main></div><div id="footer-placeholder"></div></div></body></html>
