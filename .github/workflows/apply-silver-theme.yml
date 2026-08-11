@@ -1,0 +1,34 @@
+name: Apply Silver Portfolio Theme
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - 'silver-theme.css'
+      - '.github/workflows/apply-silver-theme.yml'
+      - 'index.html'
+permissions:
+  contents: write
+jobs:
+  theme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Attach silver theme
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          link = '<link rel="stylesheet" href="silver-theme.css">'
+          if link not in s:
+              s = s.replace('</head>', '  ' + link + '\n</head>', 1)
+              p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit theme attachment
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet || git commit -m 'Attach premium silver theme [skip ci]'
+          git push
