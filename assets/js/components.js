@@ -1,9 +1,3 @@
-// Component injection: header, footer, sidebar
-const headerTpl = `<header><nav class="navbar"><a href="/" class="navbar-brand">Instrumentation Mastery</a><div class="navbar-links"><a href="/">Home</a><a href="/knowledge/">Library</a><a href="/tools/">Tools</a><button class="theme-toggle" id="theme-toggle">🌙 Dark</button></div></nav></header>`;
-const footerTpl = `<footer style="text-align:center;padding:2rem;color:var(--text-muted);">© 2025 Satish Jaiswal. Built for NEOM, ADNOC, and global I&C engineers.</footer>`;
-
-async function loadComponents() {
-  document.getElementById('header-placeholder').innerHTML = headerTpl;
-  document.getElementById('footer-placeholder').innerHTML = footerTpl;
-  document.getElementById('theme-toggle').onclick = toggleTheme;
-}
+const headerTpl = `<header class="site-header"><nav class="nav container"><a class="brand" href="./"><span class="brand-mark">SJ</span><span><strong>Instrumentation Hub</strong><small>Tools · Knowledge · Field Practice</small></span></a><div class="nav-links" style="display:flex"><a href="./#tools">Tools</a><a href="knowledge/">Knowledge</a><a href="blog/">Blog</a><a href="portfolio/">My Portfolio</a></div></nav></header>`;
+const footerTpl = `<footer class="site-footer"><div class="container"><div class="copyright">© 2026 Satish Kumar Jaiswal · Instrumentation Hub</div></div></footer>`;
+function loadComponents(){const h=document.getElementById('header-placeholder'),f=document.getElementById('footer-placeholder');if(h)h.innerHTML=headerTpl;if(f)f.innerHTML=footerTpl;}

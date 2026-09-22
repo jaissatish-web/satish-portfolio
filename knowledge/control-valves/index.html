@@ -5,28 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Cv sizing, positioners, actuators, and valve trim.">
   <title>Control Valves – Instrumentation Mastery</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <script src="/assets/js/components.js"></script>
-</head>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/components.js"></script>
+<link rel="stylesheet" href="assets/css/hub.css"></head>
 <body>
   <div id="app">
     <div id="header-placeholder"></div>
-    
+
     <div class="lesson-container" style="grid-template-columns: 1fr;">
       <main class="main-content">
         <nav class="breadcrumb">
-          <a href="/">Home</a> > 
-          <a href="/knowledge/">Library</a> > 
+          <a href="./">Home</a> >
+          <a href="knowledge/">Library</a> >
           <span>Control Valves</span>
         </nav>
-        
+
         <header class="lesson-header">
           <h1>🚰 Control Valves</h1>
           <p style="color: var(--text-secondary); margin-top: 1rem;">
             Cv sizing, positioners, actuators, and valve trim.
           </p>
         </header>
-        
+
         <section class="lesson-section">
           <h2>Available Lessons</h2>
           <div class="tools-grid" id="lessons-grid">
@@ -35,25 +35,25 @@
         </section>
       </main>
     </div>
-    
+
     <div id="footer-placeholder"></div>
   </div>
-  
+
   <script>
     async function loadCategoryLessons() {
       const response = await fetch('/assets/data/content-map.json');
       const data = await response.json();
       const grid = document.getElementById('lessons-grid');
       const lessons = data.lessons.filter(l => l.category === 'control-valves');
-      
+
       grid.innerHTML = lessons.map(lesson => `
-        <a href="/knowledge/control-valves/` + lesson.slug + `.html" class="tool-card">
+        <a href="knowledge/control-valves/` + lesson.slug + `.html" class="tool-card">
           <h3>` + lesson.title + `</h3>
           <p>` + lesson.excerpt + `</p>
         </a>
       `).join('') || '<p style="color: var(--text-secondary);">Lessons coming soon...</p>';
     }
-    
+
     document.addEventListener('DOMContentLoaded', loadCategoryLessons);
   </script>
   <script>loadComponents();</script>

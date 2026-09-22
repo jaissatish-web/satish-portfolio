@@ -1,10 +1,10 @@
 // Main utilities: theme, search, daily challenge
-function initTheme() { 
-  const saved = localStorage.getItem('theme') || 'dark'; 
-  document.documentElement.setAttribute('data-theme', saved); 
+function initTheme() {
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
 }
 
-function toggleTheme() { 
+function toggleTheme() {
   const current = document.documentElement.getAttribute('data-theme') || 'dark';
   const next = current === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
@@ -23,19 +23,19 @@ function initDailyChallenge() {
   const ch = challenges[day % challenges.length];
   c.innerHTML = `<h3>🎯 Daily Challenge</h3><div class="challenge-question">${ch.q}</div><div class="challenge-options">${ch.opts.map((o,i)=>`<div class="challenge-option" data-i="${i}">${o}</div>`).join('')}</div><div class="challenge-feedback" id="cf"></div>`;
   document.querySelectorAll('.challenge-option').forEach(o => {
-    o.onclick = function() { 
+    o.onclick = function() {
       const i = +this.dataset.i; const f = document.getElementById('cf');
       if (i === ch.a) { f.className = 'challenge-feedback correct'; f.innerHTML = `<strong>Correct!</strong> ${ch.e}`; }
       else { f.className = 'challenge-feedback incorrect'; f.innerHTML = `<strong>Try again!</strong> ${ch.e}`; }
-      f.style.display = 'block'; 
+      f.style.display = 'block';
     };
   });
 }
 
-async function loadContentMap() { 
-  const r = await fetch('/assets/data/content-map.json'); 
-  const d = await r.json(); 
-  return d.lessons || []; 
+async function loadContentMap() {
+  const r = await fetch('/satish-portfolio/assets/data/content-map.json');
+  const d = await r.json();
+  return d.lessons || [];
 }
 
 function initSearch(inputId, resultsId, data) {
@@ -44,7 +44,7 @@ function initSearch(inputId, resultsId, data) {
   input.oninput = function() {
     const v = this.value.toLowerCase();
     if (v.length < 2) { results.innerHTML = ''; return; }
-    results.innerHTML = data.filter(d => d.title.toLowerCase().includes(v) || d.category.toLowerCase().includes(v)).slice(0,5).map(d => `<a href="/knowledge/${d.category}/${d.slug}.html" style="display:block;padding:0.5rem;">${d.title}</a>`).join('');
+    results.innerHTML = data.filter(d => d.title.toLowerCase().includes(v) || d.category.toLowerCase().includes(v)).slice(0,5).map(d => `<a href="/satish-portfolio/knowledge/${d.category}/${d.slug}.html" style="display:block;padding:0.5rem;">${d.title}</a>`).join('');
   };
 }
 

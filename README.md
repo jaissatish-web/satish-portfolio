@@ -1,81 +1,41 @@
-# Satish Kumar Jaiswal — Portfolio
+# Instrumentation Hub — Satish Kumar Jaiswal
 
-> **Lead Instrumentation & Control Engineer** | Commissioning & Pre-Commissioning Specialist | 15+ Years Experience
+A mobile-first instrumentation engineering resource combining free field tools, practical learning, engineering articles, and Satish's professional portfolio.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-emerald?style=for-the-badge)](https://jaissatish-web.github.io/satish-portfolio/)
-[![PDF Resume](https://img.shields.io/badge/Download-Resume-blue?style=for-the-badge)](assets/docs/Satish_Jaiswal_Resume.pdf)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-purple?style=for-the-badge)](https://linkedin.com/in/jaissatish)
+**Live site:** https://jaissatish-web.github.io/satish-portfolio/
 
----
+## Site structure
 
-## 🏆 Overview
+- `/` — tools-first homepage and tool discovery
+- `/tools/` — free calculators, simulators, and commissioning checklists
+- `/knowledge/` — structured instrumentation knowledge library
+- `/blog/` — practical field articles and reusable article template
+- `/portfolio/` — Satish Kumar Jaiswal's experience, projects, skills, and contact details
 
-Award-winning, dark-mode portfolio showcasing 15+ years of instrumentation & control engineering excellence. Built for recruiters and industry professionals to explore Satish's career journey, technical expertise, and mega-project achievements across the GCC and Asia.
+## Available tools
 
-### ✨ Key Features
+- 4–20 mA converter and reverse scaling
+- DP flow calculator
+- Five-point calibration generator
+- 2oo3 voting-logic simulator
+- Loop-check checklist with local progress saving
+- Pressure and temperature unit converter
 
-- **Dark Stripe-SaaS Aesthetic** — Glassmorphism, gradient orbs, particle network, custom cursor
-- **Interactive Timeline** — Scroll-triggered career journey from 2011 to present
-- **Live Instrumentation Toolkit** — 10 interactive engineering calculators embedded in the page:
-  - 4-20mA Signal Converter · PV Calculator · DP Flow · RTD Pt100
-  - Thermocouple mV · Valve Cv · Ohm's Law · Unit Converter
-  - Cable Sizing · Loop Check Checklist with export
-- **Animated Counters** — 67K+ loop checks, 15+ years, 8+ projects, 4 countries
-- **Scroll-Reveal Animations** — Staggered fade-ups, skill bars, floating stats
-- **PDF Resume Download** — One-click download of ATS-optimized resume
-- **Mobile Responsive** — Fully adaptive layout
+## Adding a new tool
 
-### 🛠️ Tech Stack
+Copy an existing file under `tools/`, keep the shared `assets/css/hub.css` and `assets/js/hub.js` references, then add its card to the homepage tool grid. Every tool should include:
 
-| Technology | Purpose |
-|-----------|---------|
-| HTML5 + CSS3 | Structure & styling |
-| Tailwind CSS (CDN) | Utility-first design system |
-| Lucide Icons (CDN) | SVG icon set |
-| Google Fonts (Inter + Space Grotesk) | Typography |
-| Vanilla JavaScript | All interactivity & calculators |
-| Canvas API | Particle network background |
-| Intersection Observer | Scroll-triggered animations |
+1. A short purpose statement
+2. Clearly labelled inputs
+3. A live result with units
+4. The formula or operating assumption
+5. Engineering notes and limitations
+6. Mobile-friendly controls
 
----
+## Adding a blog article
 
-## 🚀 Live Demo
+Copy `blog/article-template.html`, replace the metadata and article content, and add the article card to `blog/index.html`. Articles use the same navigation, typography, surfaces, and responsive layout as the tool pages.
 
-**👉 [https://jaissatish-web.github.io/satish-portfolio/](https://jaissatish-web.github.io/satish-portfolio/)**
+## Technology
 
----
-
-## 📂 Project Structure
-
-```
-satish-portfolio/
-├── index.html                # Main portfolio page
-├── README.md                 # This file
-├── assets/
-│   ├── images/
-│   │   └── photo.jpg         # Professional headshot
-│   └── docs/
-│       └── Satish_Jaiswal_Resume.pdf  # ATS-optimized resume
-```
-
----
-
-## 📄 Resume
-
-Download the latest ATS-optimized resume:
-
-[📥 Download Resume (PDF)](assets/docs/Satish_Jaiswal_Resume.pdf)
-
----
-
-## 📬 Contact
-
-- **Email**: [jaissatish@gmail.com](mailto:jaissatish@gmail.com)
-- **LinkedIn**: [linkedin.com/in/jaissatish](https://linkedin.com/in/jaissatish)
-- **Location**: Duba, Tabuk, Saudi Arabia (Immediate availability, GCC-wide)
-
----
-
-## 📝 License
-
-© 2025 Satish Kumar Jaiswal. All rights reserved.
+Static HTML, CSS, and JavaScript hosted on GitHub Pages. The current tools run entirely in the browser and require no account or API.
