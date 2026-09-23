@@ -41,6 +41,7 @@ def build():
         if 'assets/js/hub.js' not in s:s=s.replace('</body>','<script src="/satish-portfolio/assets/js/hub.js"></script></body>')
         if '<main' in s and 'id="main-content"' not in s:s=s.replace('<main','<main id="main-content"',1)
         if 'fonts.googleapis.com/css2' not in s:s=s.replace('</head>','<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head>')
+        s=re.sub(r'(assets/(?:css/hub.css|js/hub.js))(?:\?v=[^\"]*)?', r'\1?v=20260923', s)
         p.write_text(s)
     urls=['','portfolio/','knowledge/','blog/']+[f"tools/{t['slug']}.html" for t in rows if t['status']=='available']+['blog/5-point-transmitter-calibration.html']
     (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>https://jaissatish-web.github.io/satish-portfolio/'+u+'</loc></url>' for u in urls)+'</urlset>\n')
