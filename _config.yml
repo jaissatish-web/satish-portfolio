@@ -1,0 +1,5 @@
+exclude:
+  - templates
+  - scripts
+  - CONTRIBUTING.md
+  - _drafts

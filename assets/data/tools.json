@@ -1,0 +1,253 @@
+[
+  {
+    "slug": "ma-converter",
+    "title": "4–20 mA Converter",
+    "category": "signal",
+    "icon": "mA",
+    "description": "Convert current, percentage and engineering units.",
+    "status": "available"
+  },
+  {
+    "slug": "dp-flow-simulator",
+    "title": "DP Flow Calculator",
+    "category": "process",
+    "icon": "√DP",
+    "description": "Find flow from differential pressure.",
+    "status": "available"
+  },
+  {
+    "slug": "pressure-calibrator",
+    "title": "5-Point Calibration",
+    "category": "signal",
+    "icon": "CAL",
+    "description": "Generate rising and falling calibration points.",
+    "status": "available"
+  },
+  {
+    "slug": "2oo3-simulator",
+    "title": "2oo3 Voting Simulator",
+    "category": "safety",
+    "icon": "2oo3",
+    "description": "Explore how transmitter states create a trip.",
+    "status": "available"
+  },
+  {
+    "slug": "loop-checklist",
+    "title": "Loop Check Checklist",
+    "category": "commissioning",
+    "icon": "ITR",
+    "description": "Track field checks and save your progress.",
+    "status": "available"
+  },
+  {
+    "slug": "unit-converter",
+    "title": "Engineering Unit Converter",
+    "category": "process",
+    "icon": "UNIT",
+    "description": "Convert pressure and temperature units.",
+    "status": "available"
+  },
+  {
+    "slug": "rtd-pt100",
+    "title": "RTD Pt100 Calculator",
+    "category": "temperature",
+    "icon": "RTD",
+    "description": "Convert resistance and temperature for Pt100 sensors.",
+    "status": "planned",
+    "inputs": [
+      "Resistance or temperature",
+      "Lead-wire configuration"
+    ],
+    "outputs": [
+      "Converted value",
+      "Selected sensor assumptions"
+    ]
+  },
+  {
+    "slug": "thermocouple-converter",
+    "title": "Thermocouple Converter",
+    "category": "temperature",
+    "icon": "TC",
+    "description": "Convert thermocouple voltage with reference-junction compensation.",
+    "status": "planned",
+    "inputs": [
+      "Thermocouple type",
+      "Millivolts",
+      "Reference-junction temperature"
+    ],
+    "outputs": [
+      "Temperature",
+      "Valid conversion range"
+    ]
+  },
+  {
+    "slug": "hydrostatic-level",
+    "title": "Hydrostatic Level",
+    "category": "process",
+    "icon": "LVL",
+    "description": "Relate liquid head, density and differential pressure.",
+    "status": "planned",
+    "inputs": [
+      "Liquid density",
+      "Height or differential pressure"
+    ],
+    "outputs": [
+      "Level or differential pressure",
+      "Unit conversion"
+    ]
+  },
+  {
+    "slug": "wet-leg-dry-leg",
+    "title": "Wet & Dry Leg Level",
+    "category": "process",
+    "icon": "DP",
+    "description": "Work through DP level transmitter range calculations.",
+    "status": "planned",
+    "inputs": [
+      "Vessel dimensions",
+      "Process and reference-leg densities",
+      "Tap elevations"
+    ],
+    "outputs": [
+      "LRV and URV",
+      "Illustrated setup"
+    ]
+  },
+  {
+    "slug": "valve-cv",
+    "title": "Valve Cv / Kv",
+    "category": "process",
+    "icon": "CV",
+    "description": "Estimate liquid-service valve flow coefficients.",
+    "status": "planned",
+    "inputs": [
+      "Flow rate",
+      "Specific gravity",
+      "Pressure drop"
+    ],
+    "outputs": [
+      "Cv and Kv",
+      "Application limitations"
+    ]
+  },
+  {
+    "slug": "pid-simulator",
+    "title": "PID Loop Simulator",
+    "category": "process",
+    "icon": "PID",
+    "description": "Explore setpoint tracking and process disturbances.",
+    "status": "planned",
+    "inputs": [
+      "Kp, Ki and Kd",
+      "Setpoint",
+      "Process assumptions"
+    ],
+    "outputs": [
+      "Response trend",
+      "Overshoot and settling indicators"
+    ]
+  },
+  {
+    "slug": "loop-voltage",
+    "title": "Loop Voltage Budget",
+    "category": "electrical",
+    "icon": "VDC",
+    "description": "Check supply voltage against loop device requirements.",
+    "status": "planned",
+    "inputs": [
+      "Supply voltage",
+      "Device voltage requirements",
+      "Loop resistance",
+      "Current"
+    ],
+    "outputs": [
+      "Available voltage margin",
+      "Budget breakdown"
+    ]
+  },
+  {
+    "slug": "cable-sizing",
+    "title": "Cable Voltage Drop",
+    "category": "electrical",
+    "icon": "WIRE",
+    "description": "Estimate conductor voltage drop for instrument loops.",
+    "status": "planned",
+    "inputs": [
+      "Cable length",
+      "Conductor area",
+      "Current",
+      "Material"
+    ],
+    "outputs": [
+      "Loop resistance",
+      "Voltage drop"
+    ]
+  },
+  {
+    "slug": "ohms-law",
+    "title": "Ohm’s Law & Power",
+    "category": "electrical",
+    "icon": "Ω",
+    "description": "Calculate voltage, current, resistance and power.",
+    "status": "planned",
+    "inputs": [
+      "Two known quantities"
+    ],
+    "outputs": [
+      "Remaining quantities",
+      "Formula used"
+    ]
+  },
+  {
+    "slug": "calibration-error",
+    "title": "Calibration Error",
+    "category": "signal",
+    "icon": "ERR",
+    "description": "Compare measured and expected values against span.",
+    "status": "planned",
+    "inputs": [
+      "Expected value",
+      "Measured value",
+      "Span",
+      "Tolerance"
+    ],
+    "outputs": [
+      "Error as percent of span",
+      "Pass/fail against supplied tolerance"
+    ]
+  },
+  {
+    "slug": "fat-sat-checklist",
+    "title": "FAT / SAT Checklist",
+    "category": "commissioning",
+    "icon": "FAT",
+    "description": "Prepare a reusable system acceptance checklist.",
+    "status": "planned",
+    "inputs": [
+      "System details",
+      "Test scope",
+      "Checklist selections"
+    ],
+    "outputs": [
+      "Test progress",
+      "Exportable report"
+    ]
+  },
+  {
+    "slug": "cause-effect-checklist",
+    "title": "Cause & Effect Tests",
+    "category": "safety",
+    "icon": "C&E",
+    "description": "Organize cause, effect and reset verification.",
+    "status": "planned",
+    "inputs": [
+      "Cause and effect references",
+      "Test results",
+      "Witness details"
+    ],
+    "outputs": [
+      "Verification checklist",
+      "Exportable report"
+    ]
+  }
+]
