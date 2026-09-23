@@ -1,0 +1,183 @@
+[
+  {
+    "slug": "signal-scaling-guide",
+    "title": "4–20 mA scaling: from current to a useful process value",
+    "category": "signal",
+    "summary": "Understand live zero, span and reverse scaling with a worked pressure example.",
+    "tools": [
+      "ma-converter",
+      "unit-converter"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "Fluke: sourcing current to test loop devices",
+        "https://www.fluke.com/en-us/learn/blog/calibration/using-ma-source-for-testing-4-20-ma-loop-devices"
+      ]
+    ]
+  },
+  {
+    "slug": "dp-flow-square-root",
+    "title": "Why 25% differential pressure means 50% flow",
+    "category": "process",
+    "summary": "Use a live curve to understand square-root extraction and avoid applying it twice.",
+    "tools": [
+      "dp-flow-simulator"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "Emerson: differential-pressure measurement",
+        "https://www.emerson.com/en/measurement-instrumentation/catalog/pressure-measurement/differential-pressure"
+      ]
+    ]
+  },
+  {
+    "slug": "rtd-and-thermocouple",
+    "title": "Pt100 and thermocouples: two different conversion problems",
+    "category": "temperature",
+    "summary": "Compare resistance measurement with thermocouple EMF and reference-junction compensation.",
+    "tools": [
+      "rtd-pt100",
+      "thermocouple-converter"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "NIST: reference functions and tables",
+        "https://www.nist.gov/publications/temperature-electromotive-force-reference-functions-and-tables-letter-designated"
+      ],
+      [
+        "Thermometrics: Pt100 resistance tables",
+        "https://www.sensingtemp.com/resources-rtd-resistance-tables.html"
+      ]
+    ]
+  },
+  {
+    "slug": "dp-level-wet-dry-leg",
+    "title": "DP level: why a wet leg can give a negative range",
+    "category": "process",
+    "summary": "Understand process head, transmitter elevation and the reference-leg offset.",
+    "tools": [
+      "hydrostatic-level",
+      "wet-leg-dry-leg"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "Emerson: DP level measurement",
+        "https://www.emerson.com/en/measurement-instrumentation/catalog/pressure-measurement/pressure-transmitters/differential-pressure-level-transmitter"
+      ]
+    ]
+  },
+  {
+    "slug": "loop-voltage-and-cables",
+    "title": "Will the transmitter have enough voltage?",
+    "category": "electrical",
+    "summary": "Build a loop voltage budget and understand the contribution of cable resistance.",
+    "tools": [
+      "loop-voltage",
+      "cable-sizing",
+      "ohms-law"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "Fluke: loop power and transmitter testing",
+        "https://www.fluke.com/en-sg/learn/blog/calibration/using-loop-power-for-process-instrument-and-4-20-ma-loop-testing"
+      ]
+    ]
+  },
+  {
+    "slug": "valve-cv-basics",
+    "title": "Cv and Kv: a useful estimate, not a complete valve selection",
+    "category": "process",
+    "summary": "Explore the simplified liquid-flow relationship and know when it stops being sufficient.",
+    "tools": [
+      "valve-cv"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "Emerson: control-valve sizing",
+        "https://www.emerson.com/en/final-control/catalog/products-and-software/valves/control-valves-sizing"
+      ]
+    ]
+  },
+  {
+    "slug": "pid-response-basics",
+    "title": "Learn PID by changing one parameter at a time",
+    "category": "process",
+    "summary": "Watch setpoint tracking, output limits and disturbance recovery in a teaching simulation.",
+    "tools": [
+      "pid-simulator"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "NI: PID theory",
+        "https://www.ni.com/en/shop/labview/pid-theory-explained.html"
+      ],
+      [
+        "NI: advanced PID features",
+        "https://www.ni.com/en/shop/labview/advanced-features-in-pid-tuning.html"
+      ]
+    ]
+  },
+  {
+    "slug": "calibration-error-and-tolerance",
+    "title": "Calibration error: percent of span is not percent of reading",
+    "category": "signal",
+    "summary": "Calculate signed error and interpret a tolerance comparison correctly.",
+    "tools": [
+      "calibration-error",
+      "pressure-calibrator"
+    ],
+    "date": "2026-09-23",
+    "sources": [
+      [
+        "Beamex: calibration out of tolerance",
+        "https://resources.beamex.com/en-us/calibration-out-of-tolerance"
+      ],
+      [
+        "Beamex: metrology fundamentals",
+        "https://blog.beamex.com/using-metrology-fundamentals-in-calibration-to-drive-long-term-value"
+      ]
+    ]
+  },
+  {
+    "slug": "voting-and-cause-effect",
+    "title": "2oo3 voting and cause-and-effect testing",
+    "category": "safety",
+    "summary": "Separate a Boolean voting example from a complete safety-function verification.",
+    "tools": [
+      "2oo3-simulator",
+      "cause-effect-checklist"
+    ],
+    "date": "2026-09-23",
+    "sources": []
+  },
+  {
+    "slug": "commissioning-records",
+    "title": "Loop checks, FAT and SAT: make the evidence traceable",
+    "category": "commissioning",
+    "summary": "Use distinct test records, clear acceptance criteria and honest progress indicators.",
+    "tools": [
+      "loop-checklist",
+      "fat-sat-checklist"
+    ],
+    "date": "2026-09-23",
+    "sources": []
+  },
+  {
+    "slug": "5-point-transmitter-calibration",
+    "title": "How to perform a 5-point transmitter calibration",
+    "category": "signal",
+    "summary": "Prepare expected values and compare rising and falling readings.",
+    "tools": [
+      "pressure-calibrator"
+    ],
+    "date": "2026-09-22",
+    "existing": true
+  }
+]

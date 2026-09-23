@@ -3,3 +3,5 @@ exclude:
   - scripts
   - CONTRIBUTING.md
   - _drafts
+  - content
+  - tests

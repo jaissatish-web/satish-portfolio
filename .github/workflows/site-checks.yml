@@ -21,3 +21,5 @@ jobs:
       - run: git diff --exit-code
       - run: python scripts/validate.py
       - run: node --check assets/js/hub.js
+      - run: node tests/engineering.test.js
+      - run: node --check assets/js/engineering-tools.js

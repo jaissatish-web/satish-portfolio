@@ -1,28 +1,24 @@
-# Adding tools and articles
+# Engineering tools and articles
 
-The public site uses a shared light design in `assets/css/hub.css`, shared navigation in `templates/`, and client-side interactions in `assets/js/hub.js`. No paid API is required.
+Run `python scripts/build.py` to generate the catalogue, the 18 tool pages, all registry-backed articles and sitemap. Shared styles remain in `assets/css/hub.css` and `assets/css/engineering.css`.
 
-## Tools
-1. Add a record to `assets/data/tools.json` with status `planned`, category, description, inputs and outputs.
-2. Run `python scripts/build.py`. It creates the planned page and refreshes the catalogue automatically.
-3. Implement and review the calculation, units, invalid inputs, worked examples and mobile layout. Only then change its status to `available`; the builder will preserve that implementation.
-4. Run the build and validation commands below before committing.
+## Add a tool
+1. Add a planned record to `assets/data/tools.json` with title, category, description, inputs and outputs. The builder generates a clearly labelled planned page.
+2. Implement the pure calculation in `assets/js/engineering-math.js`, fields/formula/example in `scripts/build_engineering.py`, and the live visualization in `assets/js/engineering-tools.js`.
+3. Add independently worked reference cases, boundaries and invalid-input assertions to `tests/engineering.test.js`. Add the related guide and document supported ranges and model limits.
+4. The engineering-page builder marks configured tools available. Review the formula and UI before publishing; an unknown planned tool remains planned.
 
-## Blog
-Create a draft with:
+## Add a blog article
+Write the original body in `content/articles/<slug>.html`. Register title, category, summary, date, related tool slugs and source links in `assets/data/articles.json`. The builder generates the public article, blog card and sitemap entry automatically. Preserve author identity accurately and distinguish general guides from personal project experience.
 
-```
-python scripts/new_article.py loop-checking --title "A practical loop-check guide" --summary "What to prepare and how to record results."
-```
-
-Edit `_drafts/loop-checking.html`, verify technical claims and sources, then move the finished file to `blog/`. Add an article card in `blog/index.html` using the existing `article-card`, `data-tool-card` and `data-category` attributes. Add its URL to the sitemap list in `scripts/build.py`. Drafts are excluded from publishing. Run the builder to refresh shared navigation and fonts.
-
-## Before publishing
-
+## Checks
 ```
 python scripts/build.py
 python scripts/validate.py
-node --check assets/js/hub.js
+node tests/engineering.test.js
+node --check assets/js/engineering-tools.js
 ```
+GitHub runs checks on pushes and pull requests. GitHub Pages publishes master. Checklists save only in the current browser, under the entered record ID, and export CSV. They do not provide signatures or server storage.
 
-GitHub runs these checks on pushes and pull requests. GitHub Pages publishes the master branch. Checks report failures without rewriting files or changing the theme. Review the check result and the Pages deployment before announcing an update.
+## Numerical references
+Pt100 uses nominal IEC 60751 coefficients (A 3.9083e-3, B -5.775e-7, C -4.183e-12), -200 to 850 °C. Thermocouples use NIST Monograph 175 positive-temperature forward polynomials for K/J/T, with bisection inversion and reference-junction compensation; configured ranges are shown in the UI. Other tools expose their equations and scope. PID is an educational first-order simulation, not field tuning or SIL analysis.

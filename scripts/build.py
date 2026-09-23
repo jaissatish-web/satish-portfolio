@@ -6,6 +6,10 @@ import json,re
 ROOT=Path(__file__).resolve().parents[1]
 CATEGORIES={'signal':'Signal & calibration','process':'Flow & process','temperature':'Temperature','electrical':'Electrical','safety':'Safety logic','commissioning':'Commissioning'}
 def build():
+    from build_engineering import build as build_tools
+    from build_articles import build as build_articles
+    build_tools()
+    build_articles()
     rows=json.loads((ROOT/'assets/data/tools.json').read_text())
     header=(ROOT/'templates/header.html').read_text().strip()
     footer=(ROOT/'templates/footer.html').read_text().strip()
@@ -20,8 +24,8 @@ def build():
     cards=[]
     for t in rows:
         active=t['status']=='available'
-        cards.append(f'''<a class="tool-card {'planned-card' if not active else ''}" data-tool-card data-category="{t['category']}" data-status="{t['status']}" href="tools/{t['slug']}.html"><span class="tool-icon">{escape(t['icon'])}</span><h3>{escape(t['title'])}</h3><p>{escape(t['description'])}</p><div class="tool-meta"><span class="status {'coming' if not active else ''}">{'Ready to use' if active else 'Planned'}</span><span class="tool-link">{'Open tool' if active else 'View plan'} →</span></div></a>''')
-    catalogue=f'<div class="workspace-toolbar"><span class="catalogue-count">{ready} ready to use · {len(rows)-ready} planned</span><label><input type="checkbox" id="ready-only"> Show ready tools only</label></div>'+filters+'<div class="tool-grid">'+''.join(cards)+'</div>'
+        cards.append(f'''<a class="tool-card {'planned-card' if not active else ''}" data-tool-card data-category="{t['category']}" data-status="{t['status']}" href="tools/{t['slug']}.html"><span class="tool-icon">{escape(t['icon'])}</span><h3>{escape(t['title'])}</h3><p>{escape(t['description'])}</p><div class="tool-meta"><span class="status {'coming' if not active else ''}">{'Live visual' if active else 'Planned'}</span><span class="tool-link">{'Open tool' if active else 'View plan'} →</span></div></a>''')
+    catalogue=f'<div class="workspace-toolbar"><span class="catalogue-count">{ready} free tools · Live visuals · No paid API</span><label><input type="checkbox" id="ready-only"> Show ready tools only</label></div>'+filters+'<div class="tool-grid">'+''.join(cards)+'</div>'
     home=ROOT/'index.html';s=home.read_text()
     s=re.sub(r'<!-- CATALOGUE:START -->.*?<!-- CATALOGUE:END -->','<!-- CATALOGUE:START -->\n'+catalogue+'\n<!-- CATALOGUE:END -->',s,flags=re.S)
     home.write_text(s)
@@ -43,7 +47,7 @@ def build():
         if 'fonts.googleapis.com/css2' not in s:s=s.replace('</head>','<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head>')
         s=re.sub(r'(assets/(?:css/hub.css|js/hub.js))(?:\?v=[^\"]*)?', r'\1?v=20260923', s)
         p.write_text(s)
-    urls=['','portfolio/','knowledge/','blog/']+[f"tools/{t['slug']}.html" for t in rows if t['status']=='available']+['blog/5-point-transmitter-calibration.html']
+    urls=['','portfolio/','knowledge/','blog/']+[f"tools/{t['slug']}.html" for t in rows if t['status']=='available']+[f"blog/{a['slug']}.html" for a in json.loads((ROOT/'assets/data/articles.json').read_text())]
     (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>https://jaissatish-web.github.io/satish-portfolio/'+u+'</loc></url>' for u in urls)+'</urlset>\n')
-    print(f'Built {len(rows)} catalogue entries, {len(rows)-ready} planned pages, shared navigation and sitemap.')
+    print(f'Built {len(rows)} working tools, article library, shared navigation and sitemap.')
 if __name__=='__main__':build()
