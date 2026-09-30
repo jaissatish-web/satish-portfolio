@@ -1,0 +1,9 @@
+{
+  "commit": "dda1a0e8995eb81861e262bb6a102c29c72dac0b",
+  "files": {
+    "assets/js/engineering-math.js": "3d9636d4a7c1de4c57e3671ab1d71bdc226640149aea62e5869aaa464ef23911",
+    "assets/js/engineering-tools.js": "eeedfafb54cabf20286d01d4207c7bc127bb7519f31f2a8bb4de8550241f519e",
+    "assets/data/tools.json": "2b4d48aec20c020e4f67998f885acdedfcdd6adf6cd1722369cd9bb22b056a3f",
+    "assets/data/articles.json": "e4fd30ef0a062f0084ae6ec1aa3247c9ed2a942cec8cde643ec5521d5d7c7297"
+  }
+}

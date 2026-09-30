@@ -23,7 +23,7 @@ A mobile-first instrumentation engineering resource combining free field tools, 
 
 ## Adding a new tool
 
-Copy an existing file under `tools/`, keep the shared `assets/css/hub.css` and `assets/js/hub.js` references, then add its card to the homepage tool grid. Every tool should include:
+Copy an existing file under `tools/`, keep the shared `assets/css/redesign.css` and `assets/js/hub.js` references, then add its card to the homepage tool grid. Every tool should include:
 
 1. A short purpose statement
 2. Clearly labelled inputs
@@ -39,3 +39,11 @@ Copy `blog/article-template.html`, replace the metadata and article content, and
 ## Technology
 
 Static HTML, CSS, and JavaScript hosted on GitHub Pages. The current tools run entirely in the browser and require no account or API.
+
+## Visual redesign and source files
+
+The live tools-first structure is retained. `assets/css/redesign.css` is the only stylesheet served by public pages; Inter and JetBrains Mono are local font subsets. All authored pages have canonical sources under `content/pages/`. Edit those sources, shared templates, or the relevant generator and run `python3 scripts/build.py`; do not hand-edit generated output.
+
+`templates/header.html` has an explicitly marked shared-head block and a body-navigation fragment. `scripts/build_redesign.py` injects expanded metadata only into each page's `<head>` and gives the body fragment to the existing builders. The tool and article generation order and calculations remain unchanged.
+
+`VALIDATION.md` contains exact verification commands and test limits. The request was applied to the existing live site, which has a career portfolio rather than individual `/portfolio/projects/<slug>/` pages. Projects and About links target its existing sections. No new case-study narratives, routes, or metrics were fabricated.

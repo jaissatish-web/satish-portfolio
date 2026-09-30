@@ -6,12 +6,14 @@ import json,re
 ROOT=Path(__file__).resolve().parents[1]
 CATEGORIES={'signal':'Signal & calibration','process':'Flow & process','temperature':'Temperature','electrical':'Electrical','safety':'Safety logic','commissioning':'Commissioning'}
 def build():
+    from build_redesign import prepare_sources, header as shared_header
+    prepare_sources()
     from build_engineering import build as build_tools
     from build_articles import build as build_articles
     build_tools()
     build_articles()
     rows=json.loads((ROOT/'assets/data/tools.json').read_text())
-    header=(ROOT/'templates/header.html').read_text().strip()
+    header=shared_header()
     footer=(ROOT/'templates/footer.html').read_text().strip()
     template=Template((ROOT/'templates/tool.html').read_text())
     for tool in rows:
@@ -44,10 +46,12 @@ def build():
         s=s.replace('loadComponents();','')
         if 'assets/js/hub.js' not in s:s=s.replace('</body>','<script src="/satish-portfolio/assets/js/hub.js"></script></body>')
         if '<main' in s and 'id="main-content"' not in s:s=s.replace('<main','<main id="main-content"',1)
-        if 'fonts.googleapis.com/css2' not in s:s=s.replace('</head>','<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head>')
         s=re.sub(r'(assets/(?:css/hub.css|js/hub.js))(?:\?v=[^\"]*)?', r'\1?v=20260923', s)
         p.write_text(s)
     urls=['','portfolio/','knowledge/','blog/']+[f"tools/{t['slug']}.html" for t in rows if t['status']=='available']+[f"blog/{a['slug']}.html" for a in json.loads((ROOT/'assets/data/articles.json').read_text())]
     (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>https://jaissatish-web.github.io/satish-portfolio/'+u+'</loc></url>' for u in urls)+'</urlset>\n')
     print(f'Built {len(rows)} working tools, article library, shared navigation and sitemap.')
-if __name__=='__main__':build()
+if __name__=='__main__':
+    build()
+    from build_redesign import build as build_redesign
+    build_redesign()

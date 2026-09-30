@@ -1,6 +1,6 @@
 # Engineering tools and articles
 
-Run `python scripts/build.py` to generate the catalogue, the 18 tool pages, all registry-backed articles and sitemap. Shared styles remain in `assets/css/hub.css` and `assets/css/engineering.css`.
+Run `python scripts/build.py` to generate the catalogue, the 18 tool pages, all registry-backed articles and sitemap. Shared styles are consolidated in `assets/css/redesign.css`. Hand-authored page sources are in `content/pages/`; metadata and navigation are in `templates/header.html`. The final `build_redesign.py` pass applies the shared visual layer after the original tools and articles are generated.
 
 ## Add a tool
 1. Add a planned record to `assets/data/tools.json` with title, category, description, inputs and outputs. The builder generates a clearly labelled planned page.
