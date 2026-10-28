@@ -53,6 +53,6 @@ def build():
         if 'id="engineering-app"' in text and '<noscript>' not in text:
             text=text.replace('<div class="container engineering-app"','<noscript><p class="container callout">Interactive calculations require JavaScript. Formulas and worked examples below remain available.</p></noscript><div class="container engineering-app"')
         page.write_text(text)
-    print('Applied one local dark theme, mobile navigation and shared metadata.')
+    print('Applied the light v2 theme, mobile navigation and shared metadata.')
 
 if __name__=='__main__':build()
