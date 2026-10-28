@@ -1,34 +1,6 @@
-/* Progressive navigation, theme and cosmetic effects only. Calculations are untouched. */
+/* Progressive navigation and cosmetic effects only — single light theme. Calculations are untouched. */
 (() => {
   document.documentElement.classList.add('enhanced');
-
-  /* Theme: light is the default (field use); prefers-color-scheme or an
-     explicit stored choice may select dark. Persisted in localStorage. */
-  const KEY = 'sj-theme';
-  const applyTheme = () => {
-    const stored = localStorage.getItem(KEY);
-    const dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.dataset.theme = stored || (dark ? 'dark' : 'light');
-  };
-  const toggle = document.querySelector('[data-theme-toggle]');
-  if (toggle) {
-    const updateLabel = () => {
-      const dark = document.documentElement.dataset.theme === 'dark';
-      toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-      toggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
-    };
-    toggle.addEventListener('click', () => {
-      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-      localStorage.setItem(KEY, next);
-      document.documentElement.dataset.theme = next;
-      updateLabel();
-    });
-    applyTheme();
-    updateLabel();
-  }
-  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    if (!localStorage.getItem(KEY)) applyTheme();
-  });
 
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const syncMotion = () => document.documentElement.classList.toggle('motion-ready', !motion.matches);

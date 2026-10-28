@@ -11,7 +11,7 @@ import json, re
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://jaissatish-web.github.io'
 BASE = '/satish-portfolio/'
-VER = '20261028'
+VER = '20261028b'
 
 def field(key, label, kind='number', value=None, opts=None, placeholder=None, step=None, min=None, max=None, grid=None):
     d = {'key': key, 'label': label, 'kind': kind, 'value': value, 'opts': opts or [],
@@ -144,7 +144,6 @@ def build():
     from build_redesign import header as shared_header
     header = shared_header()
     footer = (ROOT / 'templates/footer.html').read_text().strip()
-    cards_html = []
     page_urls = []
     for tool in rows:
         slug, title, desc = tool['slug'], tool['title'], tool['description']
@@ -168,17 +167,7 @@ def build():
         html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{E(meta_desc)}"><title>{E(title)} | Instrumentation Hub</title><link rel="stylesheet" href="../assets/css/redesign.css?v={VER}"></head><body>{header}<main id="main-content"><section class="page-hero compact-hero"><div class="container"><div class="breadcrumbs"><a href="../#tools">Tool library</a> / <a href="../#field-tools">New field tools</a> / {E(title)}</div><div class="eyebrow">Free engineering workspace · {E(cfg['category'])}</div><h1>{E(title)}</h1><p class="hero-copy">{E(desc)} Change an input to see the result.</p></div></section><div class="container engineering-app" id="engineering-app" data-tool="{slug}"><div class="engineering-grid"><section class="tool-surface"><h2>Inputs</h2><form id="tool-inputs" onsubmit="return false"><div class="field-grid">{fields_html}</div>{extra}</form><div class="inline-actions"><button class="button small ghost" type="button" id="reset-tool">Reset</button><button class="button small" type="button" id="export-report">Export CSV report</button></div></section><section class="visual-surface"><div class="visual-heading"><h2>See the change</h2><span class="status">Live</span></div><div id="live-visual"></div><div id="live-results" class="result-grid" aria-live="polite"></div><p id="tool-message" class="tool-message" role="status"></p></section></div><div id="extra-results"></div><section class="tool-explanation"><div><h2>How it works</h2><p class="formula">{cfg['formula']}</p><h3>Try this example</h3><p>{cfg['example']}</p></div><div><h2>Understand the result</h2><p>{cfg['notes']}</p><p class="field-note">Reference: {cfg['reference']}</p><div style="margin-top:14px">{related}</div></div></section></div></main>{footer}<script src="../assets/js/hub.js?v={VER}"></script><script src="../assets/js/engineering-math.js?v=1"></script><script src="../assets/js/hub-tools.js?v={VER}"></script><script type="application/ld+json">{schema}</script></body></html>'''
         (ROOT / 'tools' / f'{slug}.html').write_text(html)
         page_urls.append(f'tools/{slug}.html')
-        aliases = ' '.join(tool.get('aliases', []))
-        cards_html.append(f'<a class="tool-card field-card" data-tool-card data-category="{CHART[cfg["category"]]}" data-status="available" data-aliases="{E(aliases)}" href="tools/{slug}.html"><span class="tool-icon">{E(tool["icon"])}</span><h3>{E(title)}</h3><p>{E(desc)}</p><div class="tool-meta"><span class="status">Live visual</span><span class="tool-link">Open tool →</span></div></a>')
-    # Inject homepage field-tools block
-    home = ROOT / 'index.html'
-    s = home.read_text()
-    block = '<div class="field-tool-grid">' + ''.join(cards_html) + '</div>'
-    s2 = re.sub(r'<!-- FIELD-TOOLS:START -->.*?<!-- FIELD-TOOLS:END -->', '<!-- FIELD-TOOLS:START -->\n' + block + '\n<!-- FIELD-TOOLS:END -->', s, flags=re.S)
-    if s2 == s:
-        # marker may be absent in root yet (first run without authored source); insert before bio section
-        s2 = s.replace('  <section class="section alt"><div class="container feature-split bio-bento">', '  <section class="section" id="field-tools">\n    <div class="container">\n      <div class="section-head"><div><div class="eyebrow">Fresh from the workbench</div><h2>New field tools</h2><p class="section-intro">Six first-release additions from the redesign blueprint.</p></div></div>\n      <!-- FIELD-TOOLS:START -->\n' + block + '\n      <!-- FIELD-TOOLS:END -->\n    </div>\n  </section>\n  <section class="section alt"><div class="container feature-split bio-bento">')
-    home.write_text(s2)
+    # Homepage catalogue is unified by build.py; this builder only publishes pages.
     # Extend sitemap
     sp = ROOT / 'sitemap.xml'
     if sp.exists():
@@ -187,7 +176,7 @@ def build():
             if u not in xml:
                 xml = xml.replace('</urlset>', f'<url><loc>{ORIGIN}{BASE}{u}</loc></url></urlset>')
         sp.write_text(xml)
-    print(f'Built {len(rows)} field tools (P0), homepage cards and sitemap entries.')
+    print(f'Built {len(rows)} field tool pages (P0) and extended the sitemap.')
 
 if __name__ == '__main__':
     build()

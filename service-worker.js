@@ -1,16 +1,16 @@
 /* SJ Hub Service Worker — offline-first shell + runtime cache.
    Scope: /satish-portfolio/ (GitHub Pages subpath). Version-cache everything
    with the build date so stale formulas are never served after an update. */
-const VERSION = 'sj-hub-v20261028';
+const VERSION = 'sj-hub-v20261028b';
 const BASE = '/satish-portfolio/';
 const PRECACHE = [
   BASE,
-  BASE + 'assets/css/redesign.css?v=20261028',
-  BASE + 'assets/js/hub.js?v=20261028',
-  BASE + 'assets/js/redesign.js?v=20261028',
+  BASE + 'assets/css/redesign.css?v=20261028b',
+  BASE + 'assets/js/hub.js?v=20261028b',
+  BASE + 'assets/js/redesign.js?v=20261028b',
   BASE + 'assets/js/engineering-math.js?v=1',
   BASE + 'assets/js/engineering-tools.js?v=1',
-  BASE + 'assets/js/hub-tools.js?v=20261028',
+  BASE + 'assets/js/hub-tools.js?v=20261028b',
   BASE + 'assets/data/tools.json',
   BASE + 'assets/data/field-tools.json',
   BASE + 'manifest.webmanifest',

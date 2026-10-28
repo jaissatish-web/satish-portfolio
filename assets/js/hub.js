@@ -44,7 +44,7 @@
     cards.forEach((card) => {
       const haystack = (card.textContent + ' ' + (card.dataset.aliases || '')).toLowerCase();
       const matchesText = !query || haystack.includes(query);
-      const matchesCategory = category === 'all' || !card.dataset.category || card.dataset.category === category;
+      const matchesCategory = category === 'all' || !card.dataset.kind || card.dataset.kind === category;
       card.hidden = !(matchesText && matchesCategory && (!readyOnly?.checked || card.dataset.status === 'available'));
       if (!card.hidden) visible += 1;
     });

@@ -41,7 +41,7 @@ def build():
         text=re.sub(r'<meta name="theme-color"[^>]*>','',text)
         text=re.sub(r'<meta name="viewport"[^>]*>','<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">',text)
         text=re.sub(r'<!-- PAGE-METADATA:START -->.*?<!-- PAGE-METADATA:END -->','',text,flags=re.S)
-        head=f'<meta name="theme-color" content="#123B5D"><link rel="manifest" href="{BASE}manifest.webmanifest"><link rel="icon" type="image/png" sizes="192x192" href="{BASE}assets/icons/icon-192.png"><link rel="apple-touch-icon" href="{BASE}assets/icons/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="SJ Hub"><link rel="stylesheet" href="{BASE}assets/css/redesign.css?v=20261028">'
+        head=f'<meta name="theme-color" content="#123B5D"><link rel="manifest" href="{BASE}manifest.webmanifest"><link rel="icon" type="image/png" sizes="192x192" href="{BASE}assets/icons/icon-192.png"><link rel="apple-touch-icon" href="{BASE}assets/icons/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="SJ Hub"><link rel="stylesheet" href="{BASE}assets/css/redesign.css?v=20261028b">'
         text=text.replace('</head>',head+'<!-- PAGE-METADATA:START -->'+metadata(page,text)+'<!-- PAGE-METADATA:END --></head>')
         # Navigation is static: visible with JS off, collapsed only after enhancement loads.
         text=re.sub(r'<a class="skip-link".*?</a>\s*','',text,flags=re.S)
