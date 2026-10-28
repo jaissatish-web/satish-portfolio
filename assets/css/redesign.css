@@ -441,3 +441,33 @@ td { font-variant-numeric: tabular-nums; }
   .engineering-grid { display: block; }
   .visual-surface { break-inside: avoid; }
 }
+
+/* ---------- 16. Mobile hero compaction (2026-10-28 hotfix) ---------- */
+.quick-toggle { display: none; }
+@media (min-width: 768px) { .quick-toggle { display: none !important; } }
+@media (max-width: 767px) {
+  .hero { padding: 8px 0 14px; }
+  .hero-grid { gap: 12px; }
+  .hero h1 { font-size: clamp(1.4rem, 5.2vw, 1.8rem); line-height: 1.18; }
+  .hero-intro .eyebrow { margin-top: 8px; }
+  .hero-copy { margin-top: 9px; font-size: .9rem; }
+  .hero-actions { margin-top: 12px; }
+  .hero-actions .button { min-height: 44px; }
+  .engineer-name { font-size: .84rem; }
+  .engineer-role { font-size: .72rem; }
+  .trust-row { display: none; }
+  .quick-panel { padding: 12px 14px; }
+  .architecture { display: none; }
+  .quick-toggle {
+    display: inline-flex; align-items: center; gap: 4px; min-height: 30px; padding: 2px 10px;
+    border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--subtle);
+    color: var(--text-2); font: 600 .7rem var(--mono); letter-spacing: .03em; cursor: pointer; white-space: nowrap;
+  }
+  .quick-toggle:hover { border-color: var(--action); color: var(--action); }
+  .quick-panel .field-grid, .quick-panel .result-box, .quick-panel .inline-actions { display: none; }
+  .quick-panel.open .field-grid { display: grid; }
+  .quick-panel.open .result-box { display: block; }
+  .quick-panel.open .inline-actions { display: flex; }
+  .quick-panel .result-value { font-size: 1.6rem; }
+  .quick-panel .result-box { padding: 11px 13px; }
+}

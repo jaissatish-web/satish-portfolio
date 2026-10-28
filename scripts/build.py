@@ -61,7 +61,7 @@ def build():
         s=s.replace('loadComponents();','')
         if 'assets/js/hub.js' not in s:s=s.replace('</body>','<script src="/satish-portfolio/assets/js/hub.js"></script></body>')
         if '<main' in s and 'id="main-content"' not in s:s=s.replace('<main','<main id="main-content"',1)
-        s=re.sub(r'(assets/(?:css/hub.css|js/hub.js))(?:\?v=[^"]*)?', r'\1?v=20261028b', s)
+        s=re.sub(r'(assets/(?:css/hub.css|js/hub.js))(?:\?v=[^"]*)?', r'\1?v=20261028c', s)
         p.write_text(s)
     urls=['','portfolio/','knowledge/','blog/']+[f"tools/{t['slug']}.html" for t in rows if t['status']=='available']+[f"blog/{a['slug']}.html" for a in json.loads((ROOT/'assets/data/articles.json').read_text())]
     (ROOT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>https://jaissatish-web.github.io/satish-portfolio/'+u+'</loc></url>' for u in urls)+'</urlset>\n')
