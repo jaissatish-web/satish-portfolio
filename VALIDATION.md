@@ -62,3 +62,15 @@ Profile: Chromium, 375 × 812, empty cache, 750 kbps download, 250 kbps upload, 
 The live baseline has no `/portfolio/projects/<slug>/` case-study pages or `67K+ loops commissioned` claim. No case-study narratives or sibling-project cards were invented. Projects/About navigation points to the existing career portfolio sections; no `/about/` route was added. The tools-first structure remains intact. The original hero illustration was replaced by the requested visual architecture diagram; its image asset is retained.
 
 The authorized exceptions to the content freeze are the hero identity, 66-word bio, three scope/role metric labels, functionally independent safety diagram, navigation labels and metadata. There are no new credentials or numerical claims.
+
+## SJ Hub v1 redesign baseline (2026-10-28)
+
+Applied the ChatGPT redesign blueprint (full copy: `D:\Desktop\Website Redesign\ChatGPT-Reply-Full-Blueprint.txt`). New commit baseline: `ec867ef`.
+
+- 63 published HTML pages pass local-link and inline-script validation (57 → 63: +6 field tools).
+- 24 working tools: 18 validated engines (untouched, byte-identical) + 6 new P0 field tools from `assets/data/field-tools.json` + `assets/js/hub-tools.js` (61 new assertions in `tests/hub-tools.test.js`).
+- Design: SJ Hub System v1, light-first (#123B5D/#087E9A/#137547/#A35B08/#B42332), dark via `prefers-color-scheme` or the header `[data-theme]` toggle; 52px controls, ≥44px targets, safe-area bottom tabs.
+- PWA: `manifest.webmanifest` + `service-worker.js` (subpath scoped, offline cache, versioned `v20261028`); all shared-asset query strings bumped on change.
+- CI now additionally runs `node --check assets/js/redesign.js`, `node --check assets/js/hub-tools.js` and `node tests/hub-tools.test.js`.
+- Windows local note: `tests/preservation.py` hashes the four protected files as committed LF blobs; a Windows working tree (CRLF checkout) and Python's CRLF text-mode writes make the raw-hash and rebuild-snapshot assertions fail locally even when CI passes. Verify with a Linux checkout (CI) or CR-normalize; protected-file hashes were confirmed identical to baseline at commit `ec867ef`.
+

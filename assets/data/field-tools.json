@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "ma-loop-fault-finder",
+    "title": "mA Loop Fault Finder",
+    "category": "signal",
+    "icon": "‼",
+    "description": "Guide field diagnosis of abnormal analog signals.",
+    "aliases": ["4-20", "loop fault", "troubleshoot", "signal fault", "namur", "ne43", "open circuit", "diagnostic", "mA"],
+    "chart": "signal"
+  },
+  {
+    "slug": "rtd-tc-reference",
+    "title": "RTD & Thermocouple Reference",
+    "category": "temperature",
+    "icon": "TBL",
+    "description": "Fast sensor verification tables for Pt100, K, J and T.",
+    "aliases": ["pt100", "resistance", "rtd", "thermocouple", "mv", "reference table", "iec 60751", "nist 175", "sensor"],
+    "chart": "temperature"
+  },
+  {
+    "slug": "hart-command-reference",
+    "title": "HART Command Lookup",
+    "category": "signal",
+    "icon": "H",
+    "description": "Identify common universal HART commands on site.",
+    "aliases": ["hart", "command", "field communicator", "device", "universal", "command 0", "command 40"],
+    "chart": "signal"
+  },
+  {
+    "slug": "isa-tag-builder",
+    "title": "ISA Tag Builder",
+    "category": "process",
+    "icon": "TAG",
+    "description": "Create consistent instrument tag proposals.",
+    "aliases": ["tag", "isa", "instrument number", "tagnumber", "loop number", "identification", "naming"],
+    "chart": "signal"
+  },
+  {
+    "slug": "io-spares-calculator",
+    "title": "DCS / PLC I/O Spares",
+    "category": "electrical",
+    "icon": "I/O",
+    "description": "Plan cabinet capacity and spare channels.",
+    "aliases": ["dcs", "plc", "io", "i/o", "spares", "modules", "channels", "cabinet", "marshalling", "capacity"],
+    "chart": "electrical"
+  },
+  {
+    "slug": "punch-list-generator",
+    "title": "Punch-List & ITR Generator",
+    "category": "commissioning",
+    "icon": "PL",
+    "description": "Create commissioning punch records and export CSV.",
+    "aliases": ["punch", "punchlist", "itr", "snag list", "commissioning", "walkdown", "records", "open items"],
+    "chart": "commissioning"
+  }
+]
