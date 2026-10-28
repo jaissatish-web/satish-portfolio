@@ -87,8 +87,11 @@
 <script src="assets/js/hub.js?v=20261028c"></script>
 <script>
 const q=(id)=>document.getElementById(id);
-function updateQuick(){const lrv=Number(q('quick-lrv').value),urv=Number(q('quick-urv').value),ma=Number(q('quick-ma').value),value=lrv+((ma-4)/16)*(urv-lrv);q('quick-result').textContent=Number.isFinite(value)?value.toFixed(2):'—';q('quick-status').textContent=ma<3.6?'Below-range fault signal. Check the loop and transmitter.':ma>21?'Above-range fault signal. Check the loop and transmitter.':ma<4||ma>20?'Signal is outside the calibrated measurement range.':'Signal is within the normal measurement range.';const dot=q('quick-dot');if(dot){const p=Math.max(0,Math.min(1,(ma-4)/16));dot.setAttribute('cx',(360+p*55).toFixed(1));dot.setAttribute('cy',(107-p*32).toFixed(1));dot.setAttribute('fill',ma<3.6||ma>21?'#B42332':ma<4||ma>20?'#A35B08':'#087E9A');}syncQuickLabel();}
-function syncQuickLabel(){const b=q('[data-quick-toggle]');if(!b)return;const v=Number(q('quick-result').textContent);b.textContent=b.closest('.quick-panel').classList.contains('open')?'Hide values ▴':'4–20 mA · '+(Number.isFinite(v)?v.toFixed(1):'—')+' ▾';}
-['quick-lrv','quick-urv','quick-ma'].forEach((id)=>q(id).addEventListener('input',updateQuick));updateQuick();const qtb=q('[data-quick-toggle]');if(qtb){qtb.addEventListener('click',()=>{const open=qtb.closest('.quick-panel').classList.toggle('open');qtb.setAttribute('aria-expanded',String(open));syncQuickLabel();});}
+const quickPanel=()=>document.querySelector('.quick-panel');
+function updateQuick(){const lrv=Number(q('quick-lrv').value),urv=Number(q('quick-urv').value),ma=Number(q('quick-ma').value),value=lrv+((ma-4)/16)*(urv-lrv);q('quick-result').textContent=Number.isFinite(value)?value.toFixed(2):'—';q('quick-status').textContent=ma<3.6?'Below-range fault signal. Check the loop and transmitter.':ma>21?'Above-range fault signal. Check the loop and transmitter.':ma<4||ma>20?'Signal is outside the calibrated measurement range.':'Signal is within the normal measurement range.';const dot=q('quick-dot');if(dot){const p=Math.max(0,Math.min(1,(ma-4)/16));dot.setAttribute('cx',(360+p*55).toFixed(1));dot.setAttribute('cy',(107-p*32).toFixed(1));dot.setAttribute('fill',ma<3.6||ma>21?'#B42332':ma<4||ma>20?'#A35B08':'#087E9A');}const tb=q('quick-toggle');if(tb){const pc=quickPanel();tb.textContent=pc&&pc.classList.contains('open')?'Hide values ▴':'4–20 mA · '+(Number.isFinite(value)?value.toFixed(1):'—')+' ▾';}}
+['quick-lrv','quick-urv','quick-ma'].forEach((id)=>q(id).addEventListener('input',updateQuick));
+const qt=q('quick-toggle');
+if(qt){qt.addEventListener('click',()=>{const pc=quickPanel();if(!pc)return;const open=pc.classList.toggle('open');qt.setAttribute('aria-expanded',String(open));updateQuick();});}
+updateQuick();
 </script>
 <script defer src="/satish-portfolio/assets/js/redesign.js"></script></body></html>
