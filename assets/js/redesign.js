@@ -9,7 +9,8 @@
   let scheduled = false;
   const draw = () => { const max = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`; scheduled = false; };
   addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(draw); } }, { passive: true }); addEventListener('resize', draw); draw();
-  document.querySelectorAll('.nav-links a').forEach((link) => link.addEventListener('click', () => { document.querySelector('.nav-links')?.classList.remove('open'); document.querySelector('.menu-button')?.setAttribute('aria-expanded', 'false'); }));
+  document.querySelectorAll('.nav-links a').forEach((link) => link.addEventListener('click', () => { document.querySelector('.site-header')?.classList.remove('open'); document.querySelector('.menu-button')?.setAttribute('aria-expanded', 'false'); }));
   // Return keyboard focus to the menu trigger when Escape closes the menu.
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && event.target.closest('.nav-links')) document.querySelector('.menu-button')?.focus(); });
+  window.toggleMenu = () => { const header = document.querySelector('.site-header'); if (!header) return; const open = header.classList.toggle('open'); document.querySelector('.menu-button')?.setAttribute('aria-expanded', String(open)); };
 })();

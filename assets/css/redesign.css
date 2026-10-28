@@ -471,3 +471,28 @@ td { font-variant-numeric: tabular-nums; }
   .quick-panel .result-value { font-size: 1.6rem; }
   .quick-panel .result-box { padding: 11px 13px; }
 }
+
+/* ---------- 17. Mobile header: dropdown nav + trim above the fold (2026-10-28) ---------- */
+@media (min-width: 768px) { .menu-button { display: none !important; } }
+@media (max-width: 767px) {
+  .nav { position: relative; min-height: 52px; gap: 8px; }
+  .site-header { min-height: 52px; }
+  .brand small { display: none; }
+  .brand strong { font-size: .8rem; }
+  .contact-pill { padding: 6px 10px; font-size: .74rem; min-height: var(--tap); margin-left: 0; }
+  .menu-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 12px; }
+  .nav-links {
+    display: none; position: absolute; top: calc(100% + 8px); left: 8px; right: 8px; z-index: 99;
+    flex-direction: column; align-items: stretch; gap: 0; padding: 8px; margin: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow-elev);
+  }
+  .site-header.open .nav-links { display: flex; }
+  .nav-links a { padding: 14px; font-size: .95rem; min-height: 46px; border-radius: 8px; color: var(--text); width: 100%; }
+  .nav-links a:hover { background: var(--subtle); }
+  .nav-links a[aria-current="page"] { color: var(--action); background: var(--action-soft); }
+  .nav-links .nav-cta { margin-top: 6px; background: var(--action); color: #fff !important; justify-content: center; }
+  .nav-links .nav-cta:hover { background: var(--action-strong); }
+  .engineer-name, .engineer-role { display: none; }
+  .hero-copy { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .hero-actions .button.ghost { display: none; }
+}

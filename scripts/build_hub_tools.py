@@ -11,7 +11,7 @@ import json, re
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://jaissatish-web.github.io'
 BASE = '/satish-portfolio/'
-VER = '20261028c'
+VER = '20261028d'
 
 def field(key, label, kind='number', value=None, opts=None, placeholder=None, step=None, min=None, max=None, grid=None):
     d = {'key': key, 'label': label, 'kind': kind, 'value': value, 'opts': opts or [],
